@@ -12,23 +12,95 @@ The ultimate goal is to train users toward a state where their cognitive machine
 
 ## 2. Strategic Context
 
-### 2.1 The Two Universal Pillars
+### 2.1 Content Modes and Path Modes
 
-The Exercise Section and Repertoire Section together form the universal foundation of MuseFlow — the two features that serve users at every skill level, from absolute beginners to professional musicians.
+MuseFlow's product surface is organized into two categories of mode: **content modes** (where musical material lives and is engaged with directly) and **path modes** (structured progressions through content modes). This pattern unifies how users access content, how custom material is created, and how AI-mediated guidance composes the system into goal-directed experiences.
 
-The Curriculum (sight-reading trainer) provides a guided pathway for progressive skill building, but it is inherently level-bounded: a user eventually completes it or outgrows it. Exercises and Repertoire are not bounded in this way. A professional pianist who already knows everything in the curriculum would still use MuseFlow to practice repertoire and run exercises — just as a professional athlete still does drills and plays games regardless of whether they need the training manual.
+#### 2.1.1 Content Modes
 
-This means getting the Exercise Section right has outsized leverage. It is not a supplementary feature bolted onto the curriculum — it is one of the two core modes of the app that define MuseFlow's long-term value for every user.
+A **content mode** is a surface where musical material lives and users practice with it. Each content mode contains content with one of four **authorship origins**:
 
-### 2.2 Relationship Between Sections
+- **MuseFlow presets** — curated content shipped with the app
+- **User-generated** — created by the user through the mode's generation tool
+- **AI-generated** — created by the MuseFlow AI in service of a Project goal or direct user command
+- **Community-generated** — content from other users or shared via a marketplace (future)
 
-The three major sections of MuseFlow serve distinct but interconnected roles:
+Within each content mode, users can engage through **three primary flows**:
 
-- **Curriculum (Sight-Reading Trainer)** — Guided, sequential skill building. Level-specific. The "structured course."
-- **Exercise Section** — Targeted, configurable skill drilling. Level-agnostic. The "gym."
-- **Repertoire Section** — Free-choice performance of real music. Level-agnostic. The "stage."
+- **Browse** — explore available content. Browse decomposes along the authorship-origin axis: users can view all content together (with origin tags visible) or filter to a single origin (presets, their own previously-generated content, AI-generated content from past Projects or commands, or community-generated content when the marketplace exists). The four authorship origins are both architectural metadata and a primary filter axis in the user-facing Browse experience.
+- **Generate** — create custom content using the mode's generation tool
+- **Project** — declare a goal and work with MuseFlow's AI guidance, drawing from this content mode and others
 
-The Exercise Section trains substrates in isolation and in controlled combinations. The Repertoire Section is where those trained substrates are stress-tested in the messy, contextual reality of real music. The Curriculum sequences the introduction of new substrates over time. All three sections must share a **common complexity language** (see Architecture Doc, Section 9) so that skills trained in one section can be recognized, measured, and connected in the others.
+The three-flow pattern and four authorship origins apply identically across content modes, making the architecture extensible: new content modes inherit the pattern.
+
+**Confirmed content modes:**
+- **Exercises** — targeted, configurable skill drilling
+- **Repertoire** — free-choice performance of real music
+
+**Anticipated content modes** (evolution paths under design):
+- **Sight Reading** — currently bound to Curriculum; envisioned as a custom-level generator with full parameter control over difficulty, complexity metrics, musical parameters, and performance constraints, plus preset levels and AI-built custom levels
+
+**Candidate future content modes** (not committed):
+- **Theory** — pending evaluation of whether theory practice warrants its own mode or remains a substrate within Exercises (status TBD pending review of Patrick's Theory Library & Exercise Section design document)
+- **Free Play** — pending further design exploration; whether free play belongs as a content mode, a path-construction primitive, or its own non-mode category is open
+
+#### 2.1.2 Path Modes
+
+A **path mode** is a structured progression through content modes. Path modes don't hold content of their own — they reference content held in content modes. Path modes carry authorship origins (applied to the path itself rather than the content it references):
+
+- **Curriculum** — preset paths authored by MuseFlow, used by many users (authorship: MuseFlow preset)
+- **User Paths** — custom paths a user authors for themselves (authorship: user-generated). Naming is TBD; alternatives under consideration include "Playlists" and "Plans."
+- **Projects** — AI-mediated, goal-driven paths composed per-user by the MuseFlow AI in conversation with the user (authorship: AI-generated)
+
+Curriculum, User Paths, and Projects are **sibling experiences** in the UI. The user chooses based on whether they want a preset, self-curated, or AI-built path — all are first-class. The product is designed so that **AI-averse users can engage fully with content and paths without invoking the AI surface** at all.
+
+Path modes also support Browse-by-authorship-origin: a user can browse paths and filter by MuseFlow Curriculum (preset), their own User Paths, their own Projects (current and past), or community-shared paths (future).
+
+Future expansion may include **community-shared paths** (an extension of the community-generated authorship origin to the path-mode space — paths created by other users, teachers, or institutions and shared or sold via a marketplace).
+
+#### 2.1.3 The Architectural Principle
+
+The architecture is unified by a single principle:
+
+> **Content lives in content modes; paths reference content; authorship is a property of content and of paths, not of mode.**
+
+Custom content created by any author — user, AI, or community — lives in its respective content mode tagged by origin, accessible directly (via browsing) and indirectly (via path nodes that reference it). Generated content is persistent and reusable across contexts: an exercise atom generated by the AI for a specific Project remains in the user's Exercise content mode after the Project concludes, and can be revisited or reused in subsequent Projects or directly via Browse.
+
+This principle generalizes from the atom schema (`authoring_origin`; see Architecture Doc §8.1) to all content entities — current and future. When repertoire and sight-reading-level entities are formalized in their own schemas, they will carry the same field with the same semantics.
+
+#### 2.1.4 Cross-cutting: Engagement and Nudging
+
+A separate **engagement layer** reads from Project goals, free-exploration patterns, and aggregate skill-progression data, surfacing re-engagement signals and proactive suggestions. This layer is orthogonal to the three flows — it triggers entry into them rather than constituting one. Andrew Urbanowicz's proposed proactive notification system (April 28 standup) is the leading anticipated implementation. Specific design TBD; see Decision #19 amendment for current scope.
+
+### 2.2 Mode Functions
+
+Each mode in MuseFlow's architecture has a distinct functional role:
+
+**Content Modes:**
+
+- **Exercises** is the targeted, configurable skill-drilling mode. Users practice specific musical substrates (intervals, chords, rhythms, scales, etc.) in isolation or in controlled combinations, with full configuration over training method, performance constraints, and session shape.
+- **Repertoire** is the free-choice performance mode. Users practice real musical works at their chosen pace and complexity, with looping, transposition, and other practice tools available.
+- **Sight Reading** (anticipated) is the fluency-with-new-material mode. Users develop the capacity to read and play music they've never seen before, with adjustable difficulty parameters and AI-built custom levels.
+- **Theory** (candidate) and **Free Play** (candidate) are placeholders for future modes whose status is open.
+
+**Path Modes:**
+
+- **Curriculum** is the preset-path mode — a MuseFlow-authored journey through content, used by many users. Currently bound to sight-reading content; anticipated to either dissolve in favor of Projects or to broaden into a multi-content-mode preset path.
+- **User Paths** is the user-authored path mode — a way for individual users to compose their own custom sequences through content without invoking the AI.
+- **Projects** is the AI-mediated path mode — users describe goals in natural language and the MuseFlow AI builds personalized roadmaps that reference content across modes, generating new content as needed for goal-specific gaps.
+
+### 2.3 Relationships Between Modes
+
+The confirmed and anticipated content modes (Exercises, Repertoire, Sight Reading) are **level-agnostic** — they serve users at every skill level, from absolute beginners to professional musicians. A professional pianist who has outgrown any preset curriculum would still use MuseFlow to practice repertoire, run exercises, and improve sight-reading fluency.
+
+The path modes (Curriculum, User Paths, Projects) compose those content modes into pedagogically meaningful sequences. Each path mode has its own value proposition:
+- **Curriculum** offers the convenience and assurance of an expert-authored journey
+- **User Paths** offer full control to users who want to design their own progression
+- **Projects** offer AI-mediated personalization that adapts to goals and learning pace
+
+This design ensures that getting any individual mode right has outsized leverage. **Exercises and Repertoire**, in particular — the two confirmed level-agnostic content modes — are not supplementary features. They are core modes that define MuseFlow's long-term value for every user. The original strategic argument for investing heavily in the Exercise Section (Decision #16) is unchanged by the framing refinement; the refinement just makes the architecture more extensible and reflects the team's evolved thinking on Projects, custom authoring, and AI-mediated experiences.
+
+All modes — content and path — must share a **common complexity language** (see Architecture Doc §9) so that skills trained or content engaged with in one mode can be recognized, measured, and connected in the others. This complexity language is what allows a Project's AI to assess current skill state from Exercise mastery data and prescribe Repertoire targets at appropriate difficulty, what allows Curriculum to draw from a shared progression vocabulary, and what eventually enables cross-section recommendations.
 
 ---
 
@@ -282,8 +354,10 @@ Substrates trained in isolation must also be trainable in context. A user who ca
 | **AI-Generated Warmup Rituals** | Personalized exercise sequences assembled from the exercise taxonomy, adapted to time of day, session length, and user performance history. | **V3** |
 | **Spaced Repetition** | Scheduling layer that determines when substrates should be revisited based on cache decay and retrieval performance. | **V3** |
 | **Workshop / Sandbox** | Open-ended environment for free exploration, improvisation, and unstructured practice — complements the structured exercise system. | **V3** |
-| **Agentic Exercise System** | Users describe goals in natural language; a MuseFlow agent builds custom projects with personalized roadmaps composed of exercise atoms, repertoire, and sight-reading targets. See UX & Navigation Spec, Section 8. | **V3+** |
+| **Agentic Exercise System (Projects)** | Users describe goals in natural language; the MuseFlow AI builds Projects with personalized roadmaps composed of exercise atoms, repertoire, sight-reading targets, and AI-generated custom content. See UX & Navigation Spec §8 and Doc 09 (Agentic MuseFlow Vision). | **Active R&D track / TBD** |
 | **Streak Tracking** | Engagement and consistency layer built on top of exercise completion data. | **V1–V2** |
+
+> **Note (May 2026):** Additional capabilities surfaced in April 28 and May 5 standups have phasing **TBD** and are not yet rowed into this table. These include: exercise generation on demand (Decision #33), custom authoring via the repertoire editor (#34), teacher tools and assignment flows (#35), mobile parity per atom/blueprint (#36), Lit-Keys mode and completion handicap (#38), User Paths as a third path mode (#41), and the engagement/nudging layer (#19 amendment). Phasing for each of these is a target for the open-question triage and PRD-authoring phases. The full list of additions and their reasoning is tracked in the Design Decisions Log (Decisions #32–#41).
 
 ### 9.2 V1 Design Philosophy
 
