@@ -284,6 +284,8 @@ An Exercise Metrics view (accessible from the Exercise Home but separate from th
 - (V2) ELO / skill rating
 - (V2) Personalized recommendations based on gap analysis
 
+**Note on engagement layer (May 2026):** Atom and molecule progress events — atoms cleared, molecules completed, time-since-last-practice, completion-state changes — are anticipated to be consumed by a cross-cutting engagement layer (the proactive nudging system Andrew Urbanowicz described in the April 28 standup) and by the agentic Project system. The Exercise Result schema (Architecture Doc §8.3) is the source-of-truth data primitive; ensuring it is persisted in a queryable location is sufficient at V1, no additional event-emission infrastructure required. See Decision #19 amendment.
+
 ### 5.6 Perfect Pitch Handling
 
 Atoms with `pitch_reference_mode = absolute` are tagged as **perfect pitch atoms**. These atoms:
@@ -392,29 +394,81 @@ Each atom maps to exactly one blueprint based on its output modality and trainin
 
 ---
 
-## 8. Future Vision: Agentic Exercise System
+## 8. Agentic Exercise System (Active R&D Track)
 
-> **Note**: This section captures a future product vision discussed in team standups. It is not in scope for V1 or V2 but is documented here because it has architectural implications.
+> **Note**: This section describes an active R&D track being driven jointly by Steven and Staley, targeted at investor-demo readiness as part of the $1.5M raise. The atom framework in this document was designed with this track's requirements in mind. Specific phasing within the exercise section's V1/V2/V3 roadmap is TBD and will be addressed in subsequent design phases. The freestanding **MuseFlow Agentic Vision** document (Doc 09) covers this system in depth; this section captures the implications for the exercise section specifically.
 
-A future version of MuseFlow envisions an **agentic interface** where users can describe their goals in natural language (e.g., "I want to prepare for my Grade 5 ABRSM exam" or "Help me learn to play this piece" or "I want to get better at hearing jazz chord progressions"), and a MuseFlow agent builds out a personalized project containing:
+### 8.1 The Core Idea
+
+Users describe their goals in natural language (e.g., "I want to prepare for my Grade 5 ABRSM exam," "Help me learn to play this piece," "I want to get better at hearing jazz chord progressions"), and the MuseFlow AI builds out a personalized **Project** containing:
 
 - A goal definition with context
 - An assessment of the user's current skill level (using exercise atom mastery data, repertoire performance data, and curriculum progress)
-- A custom roadmap from current state to goal mastery, composed of:
+- A custom **roadmap** from current state to goal mastery, composed of nodes that reference:
   - Specific exercise atoms to complete (drawing from the exercise hierarchy)
-  - Repertoire to practice (drawing from the repertoire section)
-  - Sight-reading targets (drawing from the curriculum)
-  - Custom-generated exercises for gaps not covered by the standard exercise catalog
+  - Repertoire to practice (drawing from the Repertoire content mode)
+  - Sight-reading targets (drawing from the Curriculum, or — when Sight Reading formalizes as its own content mode — directly from Sight Reading)
+  - Custom-generated exercises for gaps not covered by the standard exercise catalog (see §8.3)
 
-The exercise atom framework supports this vision because:
-- Atoms are the right granularity for an agent to prescribe ("practice this specific atom until you clear it at the Recall level")
-- The hierarchy provides structure for the agent to navigate ("this user needs work on the Chords × Ear Training cluster, specifically molecules 3 and 4 in the strand")
-- The progress tracking model provides the data the agent needs to assess current state and measure improvement
-- The generative architecture means the agent could potentially define new atoms (novel combinations of substrate, modality, target variables, and content scope) for specialized goals
+Projects are one of three **path modes** in MuseFlow's architecture (alongside Curriculum and User Paths — see Project Bible §2.1). They sit alongside, not above, the other path modes; AI-averse users can engage fully with the product without invoking the Project flow.
 
-This agentic system would coexist with the "free navigation" UX described in this document — users could alternate between agent-guided practice sessions and self-directed exploration.
+### 8.2 Why the Atom Framework Supports This
 
-Architectural implications for current design: the data model should be extensible enough that custom atoms can be created (not just selected from a fixed catalog), and the Exercise Result schema should capture enough context that an agent can reason about performance trends.
+The exercise atom model was designed with agent prescribability as a first-class requirement:
+
+- **Atoms are the right granularity for an agent to prescribe.** "Practice this specific atom until you clear it at the Recall level" is a complete, executable instruction. Coarser granularity (e.g., "practice chords") leaves the agent's intent ambiguous; finer granularity (individual prompts) is below the level the agent should reason at.
+- **The hierarchy provides navigable structure.** "This user needs work on the Chords × Ear Training cluster, specifically molecules 3 and 4 in the strand" is a coherent agent-level statement.
+- **The progress tracking model provides the data the agent reads.** Per-atom mastery state, per-method clearance, and the Exercise Result schema (Architecture Doc §8.3) give the agent everything it needs to assess current state and measure improvement.
+- **The atom schema includes agent-prescribability metadata** (Architecture Doc §8.1, Decision #40): `prerequisite_atoms` for path-building, `mastery_thresholds` for clearance criteria, `mobile_supported` for device-aware prescription, and `authoring_origin` for distinguishing system, teacher, user, and agent-authored atoms.
+
+### 8.3 Exercise Generation on Demand (Decision #33)
+
+Exercises are inherently combinatorial — atoms are defined by patches across modalities, substrates, target variables, and content scope. This makes generation on demand a natural extension of the existing architecture, distinct from selection from a fixed catalog.
+
+Three generation triggers are anticipated:
+
+- **User-triggered**: a user requests a custom exercise targeting specific skills or constraints from inside the Exercise content mode's **Generate** flow
+- **Teacher-triggered**: a teacher generates an exercise (typically via the repertoire editor surface, see §8.5) to assign to a student
+- **Agent-triggered**: the MuseFlow AI generates an exercise as part of a Project roadmap, in service of a goal-specific gap
+
+Generated exercises are first-class citizens of the Exercise content mode, tagged with `authoring_origin` (system / teacher / user / agent) and accessible via Browse-by-origin filtering. They persist beyond the originating context — a Project-generated atom can be revisited outside the Project, and a teacher-generated atom can be assigned to multiple students.
+
+Steven's framing on why this is tractable (May 5 standup): exercises are easier to generate than repertoire because they don't carry stylistic-fidelity constraints — they are "variations on scales and chords and stuff."
+
+### 8.4 Custom Authoring Paths (Decision #34)
+
+Beyond agent-generated exercises, three additional authoring paths are anticipated:
+
+- **User authoring**: a user constructs a custom exercise atom via parameter selection (substrate, modality, target variables, content scope) or via the repertoire editor surface
+- **Teacher authoring**: a teacher constructs custom exercises through the same surface, with the ability to assign them to specific students
+- **Community authoring** (future): exercises shared between users, eventually via a marketplace
+
+The repertoire editor (Andrew's May 5 demo) is the natural authoring surface for content of any kind. Specific UX for exercise authoring (vs. repertoire authoring) within the editor is open; see §8.6.
+
+### 8.5 Where Projects Live in the Navigation
+
+The Project flow is reachable from two entry points:
+
+- **Top-level Projects dashboard** (proposed): a parallel-navigation surface where users see all their Projects, zoom into individual ones, and review roadmap progress. Sibling to the content-mode entry points (Exercises Home, Repertoire Home, etc.).
+- **Inside each content mode**: when a user is browsing or generating within a content mode, they can pivot to the Project flow ("ask MuseFlow to build a roadmap that includes this kind of practice").
+
+The dashboard's specific UX — how Projects are listed, how roadmaps render, how cross-Project orchestration is visualized, how zoom-in works — is open. See §8.6 and Doc 09.
+
+### 8.6 Open Architectural Questions for the Agentic System
+
+The following questions are explicitly open and shape ongoing design work:
+
+1. **Where does the Project flow live in the navigation?** A top-level Projects dashboard, an entry point inside each content mode, both, or some other configuration. (Lean: both — see §8.5.)
+2. **What metadata do atoms need beyond the current schema for full agent prescribability?** The five fields added in Decision #40 (`prerequisite_atoms`, `mastery_thresholds`, `mobile_supported`, `authoring_origin`, `generation_mode`) are the load-bearing additions. Whether further metadata is needed (e.g., tags expressing pedagogical role, agent-readable descriptions) is open and may surface during catalog authoring.
+3. **Generation on demand UX**: who triggers, with what input, what gets generated, and how is the result surfaced? Three triggers (user, teacher, agent) imply at least three distinct flows. Specific UX is unspecified.
+4. **Custom atom authoring UI**: how does the editor → atom flow work? Where do custom atoms live (private library, shareable, gradeable)? How are user-authored atoms validated for pedagogical coherence?
+5. **MAGE's long-term role** (Decision #39): whether MAGE persists as a permanent generative engine that AI augments, or serves only as training-data scaffolding for an AI that eventually replaces it, is unresolved. Steven's working position is augmentation.
+6. **Cross-Project orchestration**: how is the agent's "air-traffic control" view (sequencing across multiple Project goals) surfaced to the user? Is it visible when zooming into individual Projects, or only at the dashboard level?
+7. **Engagement layer integration**: how do Project goals and roadmap progress interact with the engagement/nudging layer (Decision #19 amendment)? Re-engagement triggered by Project deadlines vs. by Project-agnostic activity patterns?
+8. **Pedagogical safety**: an AI generating exercises and roadmaps could produce pedagogically unsound combinations. What guardrails or review layers prevent this?
+9. **Pricing/tier gating** (Decision #37): not currently encoded in the schema. When pricing is designed, decisions about Project access, generation volume limits, and custom atom limits will need to be made.
+
+These questions will be addressed as the agentic vision matures. The atom-framework decisions made in this document should remain stable regardless of how these questions resolve — the architecture is intended to absorb all answers without restructuring.
 
 ---
 
@@ -450,3 +504,28 @@ The following questions are unresolved and should be addressed in subsequent des
 ### Scope
 16. **V1 exercise catalog**: Which substrate families, modality combinations, and content scope levels ship in V1? This is the most important scoping question and determines the total build effort.
 17. **Micro-PTA exercises**: Should exercises that explicitly train the endogenous micro-PTA loop (play with eyes closed, error recovery drills, etc.) be included in V1 or deferred? Current lean: deferred.
+
+### Mode Architecture (added May 2026 from standups)
+18. **Default Browse view**: When a user enters a content mode's Browse flow, do they see all content together (with origin tags visible) or only MuseFlow presets, with custom/AI/community content opt-in? AI-averse users argue for preset-default; full-power users argue for all-mixed-default. Open.
+19. **User Paths naming**: "User Paths" is a placeholder. Alternatives include "Playlists" (familiar music-app metaphor) and "Plans." User-facing name TBD.
+20. **Mobile parity per blueprint**: Each of the 13 blueprints needs a `mobile_supported` value (`full` / `partial` / `none`). Default values per blueprint are unspecified and will be set during catalog authoring (Track D). See Decisions #36, #40.
+
+### Pricing & Gating (added May 2026)
+21. **Pricing structure**: Tier ideas were floated (free / mid / premium at $15.99) but no structure is committed. Until pricing is designed, no atom-, blueprint-, or capability-level gating decisions can be made. See Decision #37.
+22. **Are exercises gated by tier?** If so, by atom, by blueprint, by training method, by feature category, or some combination? Open until pricing structure exists.
+23. **Generation volume limits**: AI-generated exercise content has inference cost. Whether on-demand generation is unlimited, rate-limited, or premium-gated is open.
+
+### Agentic System (added May 2026 — see also §8.6)
+24. **Project flow entry points**: A top-level Projects dashboard, an entry point inside each content mode, both, or some other configuration? Lean is "both."
+25. **Generation-on-demand UX**: User-triggered, teacher-triggered, and agent-triggered generation are likely distinct flows. Specific UX is unspecified.
+26. **Custom atom authoring UI**: how does the editor → atom flow work? Where do custom atoms live (private library, shareable, gradeable)? How are user-authored atoms validated for pedagogical coherence?
+27. **MAGE's long-term role**: Open architectural question — augmentation (Steven's working position) vs. training-data scaffolding-then-replacement (Staley's framing). See Decision #39.
+
+### Teacher Tools (added May 2026)
+28. **Teacher → student data visibility**: Teachers should see student progress per atom / molecule / strand / cluster. Specific UX (per-student dashboard, class roster view, etc.) is unspecified.
+29. **Assignment flows**: Teachers should assign atoms / molecules / strands / paths to specific students. Whether assignment is a first-class object (with deadlines, completion tracking, teacher feedback) or lighter-weight (just a "recommended" tag) is open.
+30. **Custom exercise sharing**: Teacher-authored exercises can presumably be shared with students. Whether they can be shared more broadly (all of a teacher's students, all teachers, public marketplace) is open.
+
+### Cross-cutting (added May 2026)
+31. **Lit-Keys Mode applicability**: Which atoms and blueprints support Lit-Keys assistance? Default values per blueprint are unspecified. See Decision #38.
+32. **Completion handicap behavior**: When the user invokes any non-default assistance, the session is flagged as assisted. How does this affect display (asterisk, visual flag, separate "assisted-clear" state) and downstream computation (does an assisted clear count toward molecule completion)? Open.
