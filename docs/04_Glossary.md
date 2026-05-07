@@ -252,3 +252,84 @@ The simplest atom within a molecule — typically the one with the fewest target
 
 ### GMTF
 The existing complexity scoring system in the MuseFlow codebase (GMTF repo). Provides cross-section complexity tagging that allows exercises, curriculum levels, and repertoire pieces to share a common difficulty vocabulary. Exercise atoms will be mapped to GMTF scores in V2 to enable cross-section recommendations.
+
+---
+
+## Mode Architecture
+
+### Content Mode
+A surface where musical material lives and is engaged with directly. MuseFlow's confirmed content modes are Exercises and Repertoire. Sight Reading is anticipated to evolve into its own content mode. Theory and Free Play are candidate future content modes (status TBD). See Project Bible §2.1.
+
+### Path Mode
+A structured progression through content modes. Path modes don't hold content of their own — they reference content held in content modes. MuseFlow has three path modes: Curriculum (preset, MuseFlow-authored), User Paths (custom, user-authored), and Projects (AI-mediated, goal-driven). See Project Bible §2.1.
+
+### Three-Flow Pattern
+The set of three primary user flows available within every content mode: Browse, Generate, and Project. The pattern applies identically across content modes, making the architecture extensible — new content modes inherit the pattern. See Project Bible §2.1.1.
+
+### Browse (Flow)
+The flow through which users explore available content within a content mode. Decomposes along the authorship-origin axis: users can view all content together (with origin tags visible) or filter to a single origin (presets, their own, AI-generated, community). See Project Bible §2.1.1, Decision #41.
+
+### Generate (Flow)
+The flow through which users create custom content using a mode's generation tool — for example, a custom exercise atom built from parameters, a custom sight-reading level, or (via Andrew's editor) a custom piece of repertoire. Generated content is tagged with `authoring_origin = user`. See Project Bible §2.1.1.
+
+### Project (Flow)
+The flow through which users declare a goal in natural language and work with MuseFlow's AI guidance to compose a roadmap that draws from any combination of content modes. Reachable both from a top-level Projects dashboard and from inside individual content modes. See Project Bible §2.1.1, Doc 09.
+
+### Authorship Origin
+The provenance of a piece of content (or a path). Four values are anticipated: **MuseFlow preset** (curated content shipped with the app), **user-generated** (created by the user), **AI-generated** (created by the MuseFlow AI in service of a Project goal or direct command), and **community-generated** (future, via marketplace). Encoded as `authoring_origin` on the atom schema and (when their content modes formalize) on repertoire and sight-reading entities. See Decision #40, Decision #41.
+
+### Browse-by-Origin
+A primary filter axis available in both content-mode browsing and path-mode browsing experiences. Allows users to view all content/paths together or filter to a specific authorship origin. Supports AI-averse users explicitly: a user who never wants to see AI-generated content can filter it out. See Decision #41.
+
+---
+
+## Agentic System (Projects, Goals, Paths)
+
+### Project
+A goal-bound, AI-mediated path through MuseFlow's content modes, composed by the MuseFlow AI in conversation with the user. A Project has two faces: a **conversational AI surface** for goal-setting and clarification, and a **roadmap container** that holds the structured path. Projects don't contain content directly — their roadmaps reference content that lives in content modes. See Doc 09.
+
+### Goal
+A statement of user intent, expressed in natural language, that anchors a Project. Goals can be specific ("learn this piece," "prepare for Grade 5 ABRSM") or general ("get better at hearing jazz progressions"). Goals decompose into roadmap nodes. See Doc 09.
+
+### Roadmap
+The structured plan inside a Project. Composed of nodes that reference specific atoms in Exercises, pieces in Repertoire, sight-reading targets (when Sight Reading formalizes as a content mode), or other content. Roadmaps may include AI-generated nodes (custom content created on demand) and may participate in cross-project orchestration. See Doc 09.
+
+### User Path
+A custom path authored by a user themselves, without AI involvement and without using a MuseFlow-preset Curriculum. Tagged with `authoring_origin = user`. Naming TBD; alternatives under consideration include "Playlist" and "Plan." See Decision #41.
+
+### Cross-Project Orchestration
+The agent's ability to identify overlap between multiple Projects' goals and sequence content in service of multiple goals at once ("air-traffic control"). Steven's framing from the May 5 standup: "If you do this, this will advance you towards three of your goals. If you do this, this will only advance you towards one." See Doc 09.
+
+### Generated Exercise (or Generated Content)
+Content produced by the MuseFlow AI (or by MAGE, or by a hybrid system) on demand, in service of a Project goal or a direct user command. Lives in the appropriate content mode tagged with `authoring_origin = agent` (or `user` if the user invoked the generator manually). Accessible via Browse-by-origin filtering and persistent — generated content can be revisited outside the originating Project context.
+
+### Custom Atom
+An exercise atom that is not part of MuseFlow's preset catalog. May be authored by a teacher, by a user (via the editor), or generated by the AI. Carries the same identity dimensions as preset atoms (substrate family, input modality, output modality, target variables, pitch reference mode, content scope) plus an `authoring_origin` tag. See Decision #40.
+
+### Engagement Layer
+A cross-cutting layer (orthogonal to the three flows) that reads from Project goals, free-exploration patterns, and aggregate skill-progression data, surfacing re-engagement signals and proactive nudges. Andrew Urbanowicz's proposed proactive notification system is the leading anticipated implementation. Specific design TBD. See Decision #19 (amended), Decision #41.
+
+---
+
+## Configurable Assistance
+
+### Mobile-Supported
+A property tagged on every atom and blueprint with three values: `full`, `partial`, `none`. Reflects the team's accepted reality that mobile is "a limited experience" and certain atoms (e.g., those requiring physical-keyboard input) cannot be supported on mobile. The user's UI surfaces appropriate atoms based on device capability. See Decision #36, Decision #40.
+
+### Lit-Keys Mode
+A configurable assistance level that highlights piano keys on a visual keyboard to show the user what to press. Anticipated to be applicable across many atoms (and across repertoire), not a separate exercise type or blueprint. See Decision #38.
+
+### Completion Handicap
+A rule that flags a session as assisted when the user invokes any non-default assistance (e.g., Lit-Keys Mode), affecting completion display or scoring. Steven's framing: "You don't get full credit for really knocking this song out of the park if a possibility exists that you would be cheating the whole time." Preserves the integrity of completion tracking without preventing users from benefiting from assistance when they want it. See Decision #38.
+
+---
+
+## MuseFlow Engineering Concepts
+
+### MAGE (Music Algorithmic Generation Engine)
+The MuseFlow codebase containing the algorithmic logic that decides what music to generate, simplify, modify, or analyze. MAGE handles complexity analysis, intentional downgrading of complexity metrics, and other generative operations on music data. **MAGE is distinct from Opusmodus.** Whether MAGE persists as a permanent generative engine that future AI augments, or serves only as training-data scaffolding for an AI that eventually replaces it, is an open architectural question. Steven's working position is augmentation. See Decision #39.
+
+### Opusmodus
+A music notation/printing engine integrated with MuseFlow. Opusmodus has no logic of its own — it does only what it is told to do, executing the instructions MAGE provides. **Opusmodus is one word**, frequently miscapitalized as "Opus Modus" in casual conversation. The MAGE / Opusmodus distinction has been confused multiple times in recent team discussions; the names are not interchangeable. Opusmodus = printing engine. MAGE = generative logic.
+
+---

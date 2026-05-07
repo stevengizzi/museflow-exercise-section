@@ -209,6 +209,8 @@ The following decisions were made after reviewing the transcript from the March 
 
 **Reasoning:** This framing was clearly important to Steven and was agreed to by the team. It elevates the exercise section from "supplementary feature" to "core product pillar," which affects how much design investment it deserves.
 
+**Amendment (May 2026, post-standup integration):** The "two universal pillars" framing has been refined to a content modes vs. path modes architecture (see Decision #42). The original argument that Exercises and Repertoire are level-agnostic foundational content surfaces still holds — they are now described as the two confirmed *content modes*. The architecture additionally accommodates anticipated content modes (Sight Reading) and candidate future content modes (Theory, Free Play), and distinguishes content modes from path modes (Curriculum, User Paths, Projects). The leverage argument for investing in Exercises is unaffected by the refinement.
+
 ---
 
 ## Decision 17: V1/V2/V3 Phasing on Product Features
@@ -220,6 +222,10 @@ The following decisions were made after reviewing the transcript from the March 
 **Reasoning:** The meeting made clear that the team wants to avoid over-building before validation. The phasing keeps the architecture forward-looking while scoping the initial build to what's practical.
 
 **Alternative:** The exact V1/V2/V3 boundaries are judgment calls. You might want to pull some V2 features forward (e.g., basic Optimal Grip™ in V1) or push some V1 features back (e.g., defer certain exercise blueprints). The phasing is a starting proposal, not a commitment.
+
+**Reconfirmation (April 28, 2026 standup):** Steven reaffirmed the V1/V2/V3 phasing during the April 28 MuseFlow standing meeting: "Complexity in the exercise section may be a V2 feature, essentially because complexity is not a feature anywhere else in the app yet. So we probably need to make sure that there's the capacity for it, but if we build it into V1 it just wouldn't serve much of a function yet." Team agreed: schema must accommodate complexity, but V1 ships without it.
+
+**Note (May 2026, post-standup integration):** Per A1 integration principle, new capabilities surfaced in the April 28 / May 5 standups (exercise generation on demand, custom authoring, teacher tools, mobile parity per atom, pricing gating, lit-keys/completion handicap, agent-prescribable atom metadata) are recorded with phasing left open — to be determined in the open-question triage and PRD-authoring phases.
 
 ---
 
@@ -233,6 +239,8 @@ The following decisions were made after reviewing the transcript from the March 
 
 **Alternative:** The specific axes of the Complexity Vector are a first proposal. You may want to add, remove, or redefine axes based on pedagogical judgment. The important thing is that the concept exists and the data model supports it from V1, even if the full vector isn't populated until V2.
 
+**Reconfirmation (April 28, 2026 standup):** Patrick reaffirmed during the April 28 meeting: "All this stuff needs to kind of be tied together from the start because we need that info, but I think we've got a good idea of how to do that with this whole complexity characteristic concept." The MAGE complexity pipeline conversation between Staley and Patrick remains the working approach. Note: as of May 5, MAGE-related ownership has shifted (Staley moving toward AI/ML infrastructure, Andrew taking over repertoire), and the cross-section complexity pipeline conversation has a clearer owner unblocking Steven.
+
 ---
 
 ## Decision 19: Exercise Result Schema
@@ -242,6 +250,8 @@ The following decisions were made after reviewing the transcript from the March 
 **Decision made:** I added an Exercise Result schema to the Architecture Doc (Section 8.3) that captures: completion status, accuracy score, response time, specific errors, training method used, constraint values, complexity vector, and session context.
 
 **Reasoning:** This is the atomic unit of exercise analytics. Every dashboard metric, ELO computation, and adaptive difficulty decision ultimately derives from Exercise Results. Defining this schema now means engineering builds the right data collection from day one.
+
+**Amendment (May 2026, post-standup integration):** Consumers of the Exercise Result include future re-engagement logic (Andrew's proactive nudging system, surfaced in the April 28 standup). The Result should be persisted in a queryable location that downstream systems can read. No new schema field is added at this time — Andrew's logic can derive engagement signals (atoms cleared, time-since-last-practice, completion state) from the existing fields. If a future implementation reveals a real gap, this can be revisited.
 
 ---
 
@@ -366,3 +376,198 @@ The following decisions were made during a continued conversation refining the e
 **Source:** Steven's correction that contributions attributed to "Tucker" in the transcript analysis were actually from Staley (Austin Clifton). Also, "AC" should be "Asif."
 
 **Decision made:** Corrected attribution throughout. Staley's contributions include: data model primacy principle, LeetCode-style V1 navigation, cross-section complexity language, ELO as user-facing metric. Asif is the primary engineering collaborator for exercise section implementation.
+
+---
+
+## Decision 32: Agentic "Projects" Vision Elevated to Near-Term R&D Track
+
+**Source:** April 28 and May 5, 2026 standups. Staley volunteered to drive an agentic learning system; the team agreed to adopt the "Projects" naming pattern from Claude/ChatGPT; Patrick is targeting it as the wedge for the $1.5M raise; Steven contributed the exercise-generation-on-demand framing in the May 5 brainstorm. An "Emergent Curriculum" working session was scheduled for the Thursday following May 5.
+
+**Decision made:** The agentic vision (originally logged in Decision #29 as "documented as future architecture") is elevated to an **active R&D track** with investor-demo target status. Documents are updated to reflect this:
+- UX Spec §8 reframed from "Future Vision" to "Agentic Exercise System (Active R&D Track)"
+- Project Bible §2 reframed to position Projects as one of three path modes (see Decision #41)
+- A new freestanding document (Doc 09 — Agentic MuseFlow Vision) is being drafted as part of A1 to capture the vision in detail
+
+**Reasoning:** The original framing ("future, not in scope") is no longer accurate to the team's posture. Treating the agentic system as a future consideration would understate its strategic importance and might lead to design choices in V1 that don't anticipate the Projects layer.
+
+**Phasing:** TBD. The exercise-section's V1/V2/V3 scope relative to agentic capabilities is not committed in this entry and is a topic for the open-question triage and PRD-authoring phases.
+
+**Cross-references:** Decisions #29 (extended, not superseded), #33 (generation on demand), #34 (custom authoring), #41 (content/path mode architecture).
+
+---
+
+## Decision 33: Exercise Generation on Demand as First-Class Capability
+
+**Source:** Steven's contribution to the May 5, 2026 "Emergent Curriculum" brainstorm: exercises should be generatable on command by user, teacher, or MuseFlow itself, because exercises don't carry the stylistic-fidelity constraints that repertoire and sight-reading material do — they're "variations on scales and chords and stuff."
+
+**Decision made:** Exercise generation on demand is recognized as a first-class capability of the exercise system, distinct from selection from a fixed catalog. Three triggers are anticipated:
+- **User-triggered**: the user requests a custom exercise targeting specific skills or constraints
+- **Teacher-triggered**: a teacher generates an exercise to assign to a student
+- **Agent-triggered**: the MuseFlow AI generates an exercise as part of a Project roadmap
+
+Generated exercises are first-class citizens of the Exercise content mode, tagged with `authoring_origin` (see Decision #40), and accessible via Browse-by-origin filtering (see Decision #41).
+
+**Reasoning:** The exercise atom framework is inherently combinatorial — atoms are defined by patches across modalities, substrates, target variables, and content scope. This makes generation on demand a natural extension of the existing architecture, not a new feature requiring a parallel stack. Treating generation as first-class also better serves the agentic system, which depends on the ability to create custom content for goal-specific gaps.
+
+**Phasing:** TBD. Whether generation on demand ships in V1, V2, or later — and through which mechanism (MAGE, future LLM, hybrid) — is open and will be addressed in subsequent design phases.
+
+**Cross-references:** Decisions #32 (Agentic Projects), #34 (custom authoring), #39 (MAGE long-term role), #40 (atom schema additions).
+
+---
+
+## Decision 34: Custom Authoring Path via Andrew's Repertoire Editor
+
+**Source:** Andrew's May 5, 2026 demo of an in-app music editor (click-to-add notes, drag-to-reposition, save to user library, notation editing, MIDI playback, three play modes). Patrick's framing during the demo: "I think this would be to give to instructors as well. They can write their own exercises, upload them, then share with their students, all within the MuseFlow ecosystem."
+
+**Decision made:** Andrew's repertoire editor is the natural authoring surface for custom exercises (and custom repertoire) authored by users and teachers. The data flow is: editor → exercise atom (or repertoire entity) → mode catalog (with `authoring_origin` set to user or teacher) → assignable / shareable / browsable.
+
+**Reasoning:** Building a separate exercise-authoring tool would duplicate functionality the repertoire editor already provides. Treating the editor as a multi-purpose authoring surface unifies the user-content-creation story across modes and reduces engineering load.
+
+**Phasing:** TBD. Specific UX flows for exercise authoring (vs. repertoire authoring) within the editor are not yet designed. Teacher-authored exercise assignment is part of the elevated teacher-tools scope (see Decision #35).
+
+**Cross-references:** Decisions #33 (generation on demand), #35 (teacher tools), #40 (atom schema — `authoring_origin`).
+
+---
+
+## Decision 35: Teacher Tools and Assignment Flows Elevated to Active Design Scope
+
+**Source:** Recurring themes across both standups: Earnest is a paying instructor with three students using MuseFlow; Patrick wants the instructor portal shipped so it can be handed off to him. The Arizona-teacher quote Patrick periodically cites: she needs (1) student-data visibility, (2) audio recognition — both now within sight. The two-sided marketplace is the long-term commercial vision (3–5 year deck).
+
+**Decision made:** Teacher tools and assignment flows are elevated from "open future item" (the prior status) to an active design scope. Specific capabilities anticipated:
+- Teachers can view student progress per atom / molecule / strand / cluster
+- Teachers can assign specific atoms, molecules, strands, or paths to specific students
+- Teachers can author custom exercises (via the repertoire editor; see Decision #34) and assign them to students
+
+**Reasoning:** Earnest is paying. The instructor portal has commercial pressure on it. The exercise section's design needs to anticipate these capabilities so the data model and UX can accommodate teacher-as-viewer-of-student-data and assignment-as-first-class-object without later restructuring.
+
+**Phasing:** TBD. Whether teacher tools ship in V1 or V2 is open. The instructor portal is being driven by Patrick and Staley separately; the exercise section's contribution is the schema and capability hooks, not the portal itself.
+
+**Cross-references:** Decision #34 (custom authoring), Decision #40 (atom schema — `authoring_origin`).
+
+---
+
+## Decision 36: Mobile Parity Specified Per Atom and Per Blueprint
+
+**Source:** Patrick's May 5, 2026 statement: "I fully accepted the fact that mobile is going to be a limited experience. We'll just need to present that to the user somehow — a little note up top, hey, full disclosure, mobile doesn't have all the features." Andrew's PRD note that exercise definitions need to work across mobile, iPad, and laptop, including UX language ("tap" vs. "click"). Asif is doing mobile work currently.
+
+**Decision made:** Every atom and every blueprint carries a `mobile_supported` field with three values: `full`, `partial`, `none` (see Decision #40). The PRD and downstream documentation must mark which atoms and blueprints are mobile-supported. Atoms that require physical-keyboard input (e.g., Performance training method on a piano) will typically be marked `none` or `partial` for mobile.
+
+**Reasoning:** Mobile parity is an explicit constraint, not an afterthought. Marking it on the atom/blueprint level allows the UI to gate and filter appropriately, the user to understand what's available on their device, and engineering to scope mobile work clearly.
+
+**Phasing:** TBD. Specific values for each atom / blueprint are not committed in this entry — they will be filled in during catalog authoring (Track D in the A1→PRD plan).
+
+**Cross-references:** Decision #40 (atom schema — `mobile_supported`).
+
+---
+
+## Decision 37: Pricing/Tier Gating Not Yet Encoded in Schema
+
+**Source:** Pricing-tier discussion across both standups (free unlimited / mid / premium at $15.99 floated; custom repertoire editor and transposition floated as premium-tier candidates). No tier structure is committed.
+
+**Decision made:** Tier gating is **not currently encoded as a field on the atom schema**. A `tier_gating` field was considered (see Q&A history during A1) and dropped on the rationale that adding speculative fields creates noise and falsely signals that pricing is a near-term design surface. When pricing is designed, adding the field is an additive non-breaking schema change.
+
+**Reasoning:** Schema additions for capabilities not yet being designed are a form of overdesign. The schema should reflect what the system needs to do today, with provisions for tomorrow only when those provisions are cheaply-reversible *and* there is a strong reason to encode them now. Pricing meets the cheap-to-add-later criterion but fails the strong-reason-now criterion.
+
+**Phasing:** TBD. When pricing is designed, the `tier_gating` field (or equivalent) will be added to atoms, blueprints, and other gateable entities as needed.
+
+**Cross-references:** Decision #40 (atom schema — what was added and what was deliberately deferred).
+
+---
+
+## Decision 38: Lit-Keys Mode and Completion Handicap as Cross-Atom Configurable Assistance
+
+**Source:** Patrick's April 28, 2026 floated idea of a piano view with keys lit up to show what to press. Team consensus: useful as an option, but using the assist mode flags or asterisks the user's 100% completion. Steven's framing: "You don't get full credit for really knocking this song out of the park if a possibility exists that you would be cheating the whole time."
+
+**Decision made:** Lit-keys assistance is a configurable assistance level applicable across many atoms (and across repertoire), not a new blueprint or atom type. The completion-handicap concept — using assistance flags the user's session as assisted, which affects completion display or scoring — applies identically. Both are atom-level (and blueprint-level) configuration options that engage when applicable.
+
+**Reasoning:** Treating lit-keys as a new blueprint would proliferate blueprints unnecessarily; treating it as configuration generalizes the concept (other forms of assistance — slow-motion, pre-highlighted notation, etc. — fit the same pattern). The completion-handicap rule preserves the integrity of completion tracking without preventing users from benefiting from the assist when they want it.
+
+**Phasing:** TBD. Specific atoms and blueprints that support lit-keys assistance are not enumerated in this entry — they will be tagged during catalog authoring.
+
+**Cross-references:** Future blueprint specifications will need a "supported_assistance_levels" property; this is a candidate for a future schema addition once the set of assistance modes stabilizes.
+
+---
+
+## Decision 39: MAGE's Long-Term Role — Logged as Open Architectural Question
+
+**Source:** May 5, 2026 standup. Steven's working position: "If a more AI-based approach were to replace MAGE, it would integrate MAGE into it. It would be an upgraded AI-enhanced version of MAGE to me. It wouldn't just be a separate thing that we build." Staley's framing: MAGE exists to generate training data for an eventual fine-tuned LLM; once enough data exists, the LLM replaces MAGE. The two framings were not reconciled in the standup.
+
+**Decision made:** MAGE's long-term role is logged as an **open architectural question**. Steven's working position — that AI augments / is built on top of MAGE rather than replacing it — is recorded as the current working assumption, with the question genuinely unresolved. The architecture is described in a way that does not silently bake in either framing.
+
+**Reasoning:** Forcing a resolution at this stage is premature. The Emergent Curriculum brainstorm is the appropriate venue for this conversation, and the question affects roadmap and cost modeling more than it affects the exercise section's near-term schema. Logging it openly prevents documentation drift toward an unagreed-upon assumption.
+
+**Phasing:** N/A — open question, to be resolved in a future architectural conversation.
+
+**Note for Glossary:** MAGE = Music Algorithmic Generation Engine. Distinct from Opusmodus (one word), which is the notation/printing engine that does only what it is told. The MAGE / Opusmodus distinction has been confused in two recent standups; the Glossary entries are reinforced.
+
+---
+
+## Decision 40: Exercise Atom Schema — Five Field Additions
+
+**Source:** Standup-derived capabilities (agent-prescribability, custom authoring origins, generation on demand, mobile parity) require schema metadata that the original atom identity model (Doc 07 §2.1) did not include. Eight fields were considered during A1; three were dropped on reflection.
+
+**Decision made:** Five fields are added to the Exercise Atom Schema in Architecture Doc §8.1:
+
+| Field | Purpose |
+|---|---|
+| `prerequisite_atoms` | List of atom_ids that should be cleared before this one. Empty list = no prerequisites. Required for agent path-building. |
+| `mastery_thresholds` | Map from training_method to clearance criteria (e.g., "REC: 90% accuracy across 20 prompts"). Makes implicit clearance criteria explicit. |
+| `mobile_supported` | Enum: `full` / `partial` / `none`. Per Decision #36. |
+| `authoring_origin` | Enum: `system` / `teacher` / `user` / `agent`. Default `system`. Generalizes to all content entities (repertoire, sight-reading levels) when those modes formalize. |
+| `generation_mode` | Enum: `fixed_content` / `parameterized_content` / `on_demand_content`. Distinguishes how content is produced per session within an atom — separate from how the atom itself came to exist (`authoring_origin`). |
+
+**Three fields considered and dropped:**
+- `expected_time_to_clear` — dropped because we have no data to populate it; would seed bad estimates.
+- `agent_prescribable` — dropped because default-true is the rule; per-atom booleans that are always true are noise.
+- `tier_gating` — dropped per Decision #37.
+
+**Reasoning:** Each retained field has a current real-world reason to exist (not speculative), defensible defaults that don't presume design choices we haven't made, and enables a capability discussed in the standups. Dropped fields fail one or more of these criteria.
+
+**Phasing:** TBD. Specific atoms' values for each field are populated during catalog authoring (Track D). The schema fields exist from V1 onward; population may be partial in V1 with completion in subsequent phases.
+
+**Cross-references:** Decisions #32–#36 (capabilities that motivate the fields), #37 (tier_gating dropped), #41 (Content/Path Mode Architecture — `authoring_origin` generalizes there).
+
+---
+
+## Decision 41: Content Mode and Path Mode Architecture
+
+**Source:** April 28 / May 5 standups, plus the A1 framing conversation that synthesized standup outputs into a unified architectural pattern. Steven's clarifications during A1 (especially around AI-averse user respect, custom content residing in content modes regardless of authorship, and User Paths as a third path mode) shaped the final framing.
+
+**Decision made:** The Project Bible §2 is reframed from "two universal pillars" (Decision #16) to a content modes / path modes architecture with the following structure:
+
+**Content modes** are surfaces where musical material lives and is engaged with directly:
+- Confirmed: **Exercises** (targeted skill drilling), **Repertoire** (free-choice performance)
+- Anticipated: **Sight Reading** (currently within Curriculum; envisioned as a custom-level generator)
+- Candidate: **Theory** (status TBD per A2 / Patrick's doc review), **Free Play** (deferred indefinitely)
+
+**Path modes** are structured progressions through content modes:
+- **Curriculum** (preset, MuseFlow-authored, used by many)
+- **User Paths** (custom, user-authored, used by one — naming TBD; alternatives include "Playlists" or "Plans")
+- **Projects** (AI-mediated, goal-driven, generated per-user)
+
+Path modes are sibling experiences in the UI. AI-averse users can engage fully with the product without invoking the AI surface.
+
+**The three-flow pattern** applies within every content mode:
+- **Browse** — explore available content, filterable by authorship origin
+- **Generate** — create custom content using the mode's generation tool
+- **Project** — declare a goal and work with MuseFlow's AI guidance, drawing from this content mode and others
+
+**Four authorship origins** classify content (and paths) within each mode:
+- MuseFlow presets
+- User-generated
+- AI-generated (created in service of a Project goal or direct user command)
+- Community-generated (future)
+
+Browse-by-authorship-origin is a primary filter axis in both content-mode and path-mode browsing experiences.
+
+**Architectural principle:** Content lives in content modes; paths reference content; authorship is a property of content and of paths, not of mode.
+
+**Cross-cutting engagement layer:** A separate engagement/nudging layer reads from Project goals, free-exploration patterns, and aggregate skill data, surfacing re-engagement signals. Orthogonal to the three flows. Specific design TBD.
+
+**Reasoning:** The unified pattern was discovered during A1 to collapse five previously-separate items (exercise generation on demand, custom authoring, sight-reading evolution, agentic Projects, atom `authoring_origin`) into a single architectural primitive that applies across modes. This both clarifies the framing and makes the architecture genuinely extensible — new content modes inherit the pattern automatically.
+
+**Phasing:** TBD. Specific UX implementations of the three flows, the dashboard surfaces, the User Paths feature, and the engagement layer are open design questions. The architectural pattern is committed; the implementations are not.
+
+**Cross-references:** Decisions #16 (amended), #29 (Agentic Vision — superseded in framing by this entry, though the underlying intent persists), #32 (Agentic Projects elevated), #33 (generation on demand), #34 (custom authoring), #40 (`authoring_origin` field on atom schema).
+
+---

@@ -357,9 +357,28 @@ ExerciseAtom {
   gmtf_complexity: number                  // from existing GMTF system (V2)
   requires_perfect_pitch: boolean          // derived from pitch_reference_mode
   requires_physical_instrument: boolean
+
+  // Standup-derived additions (May 2026, see Decision #40):
+  prerequisite_atoms: AtomID[]             // empty list = no prerequisites; required for agent path-building
+  mastery_thresholds: Map<TrainingMethod, ClearanceCriteria>  // per-method clearance criteria (e.g., REC: 90% accuracy across 20 prompts)
+  mobile_supported: enum [full, partial, none]
+  authoring_origin: enum [system, teacher, user, agent]   // default: system
+  generation_mode: enum [fixed_content, parameterized_content, on_demand_content]
+                                                          // how content is produced per session within this atom
+
   notes: string
 }
 ```
+
+**Notes on the standup-derived fields:**
+
+- **`prerequisite_atoms`** is the load-bearing field for agent path-building. An empty list is the most common case; explicit prerequisites are added only where pedagogical sequencing matters.
+- **`mastery_thresholds`** makes implicit clearance criteria explicit. Per-training-method thresholds may differ (e.g., Recognition cleared at 90% accuracy; Recall cleared at 85% accuracy due to higher cognitive load).
+- **`mobile_supported`** reflects the team's accepted reality that mobile is "a limited experience" — atoms requiring physical-keyboard input (Performance training method on a real piano) are typically `none` or `partial`. Default values per blueprint will be set during catalog authoring.
+- **`authoring_origin`** generalizes from atoms to all content entities (when repertoire and sight-reading-level entities are formalized in their own schemas, they will carry the same field). Default `system` for V1 catalog atoms; `teacher`, `user`, or `agent` for custom authored content.
+- **`generation_mode`** distinguishes how content is produced per session within an atom — separate from how the atom itself came to exist (which is `authoring_origin`). Most existing atoms are `parameterized_content` (the system samples or generates new prompts each session within the atom's rules). `on_demand_content` flags atoms that opt into runtime content generation by an external generator (MAGE / future AI / hybrid).
+
+**Tier gating is deliberately not encoded.** A `tier_gating` field was considered and dropped (Decision #37) on the rationale that pricing is not currently a near-term design surface. When pricing is designed, adding the field is an additive non-breaking schema change. Engineering should not bake tier-gating assumptions into implementation in V1.
 
 ### 8.2 Exercise Instance Schema
 
@@ -401,6 +420,8 @@ ExerciseResult {
   }
 }
 ```
+
+**Note on consumers (May 2026):** The Exercise Result is consumed by progress tracking, the future ELO computation, and adaptive-difficulty logic (Optimal Grip™). It is also anticipated to be the data source for the engagement/nudging layer (see Glossary; Decision #19 amendment). The Result should be persisted in a queryable location that downstream systems — including future re-engagement logic and the agentic Project system — can read. No additional schema fields are needed at this time; signals such as "atoms cleared," "time-since-last-practice," and "completion state" can be derived from the existing fields plus aggregation.
 
 ---
 
