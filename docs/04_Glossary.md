@@ -1,0 +1,254 @@
+# MuseFlow Exercise System: Glossary & Terminology Canon
+
+This document is the authoritative reference for all terminology used in the exercise system. When these terms appear in any MuseFlow document, spec, or conversation, they carry the definitions specified here.
+
+---
+
+## Foundational Frameworks
+
+### PTA Loop
+**Perception → Transformation → Action.** The three-stage cognitive circuit that models every musical task. Sensory input is perceived, processed through internal mental models, and converted into output. The PTA Loop is the cognitive operator of the exercise system. Every exercise is an instance of this loop.
+
+### FTA Field
+**Frequency × Time × Amplitude.** The three-dimensional space within which all music exists, whether experienced physically or conceptually. Frequency encompasses pitch, harmony, melody, and tonality. Time encompasses rhythm, duration, meter, tempo, and form. Amplitude encompasses dynamics, loudness, accent, and articulation weight. The FTA Field is the ground on which the PTA Loop operates.
+
+### Patching Principle
+The design rule that any input modality can be connected to any output modality through any transformation substrate to produce a potential exercise. Named by analogy with audio patch bays. The combinatorial composition of all valid patches generates the exercise catalog.
+
+---
+
+## PTA Loop Components
+
+### Perception Stage
+The first stage of the PTA Loop. Receives input data through one or more modalities. The training goal is to increase input resolution, granularity, and speed.
+
+### Transformation Stage
+The second stage of the PTA Loop. Processes input data through internal mental models (substrates) to produce structured output. The "black box" where cognition happens. The training goal is to build, optimize, and automate these internal models.
+
+### Action Stage
+The third stage of the PTA Loop. Converts transformed data into output through one or more modalities. The training goal is to execute output without data loss or distortion.
+
+### Endogenous Micro-PTA Loop
+A nested PTA loop that runs inside the Action stage during physical performance. Provides real-time feedback through visual (seeing hands), aural (hearing output), and kinesthetic (feeling keys) channels. Feeds validation or correction signals back into the ongoing macro Action stage. Also called the "feedback loop" or "error correction loop."
+
+---
+
+## Modalities
+
+### Visual Modality
+Perception: reading notation, chord charts, staff symbols, key signature diagrams, piano roll. Action: writing/placing notation, constructing visual representations on staff or screen.
+
+### Aural Modality
+Perception: hearing pitched sounds, rhythms, chords, scales, dynamics, timbres. Action: producing sound — playing piano keys, singing, humming, clapping, tapping.
+
+### Kinesthetic Modality
+Perception: spatial/tactile information from the body and instrument — key positions, hand shapes, finger span, topographic keyboard orientation. In the app context, also includes seeing highlighted keys on an onscreen keyboard processed as positional information. Action: pressing physical piano keys, tapping onscreen keyboard, performing motor patterns.
+
+### Semantic Modality
+Perception: reading symbolic/linguistic representations — pitch names, interval names, chord symbols, rhythm value names, music theory terminology. Action: producing symbolic/linguistic output — naming, selecting from named options, writing verbal answers, specifying identities or categories.
+
+### Multi-Modal Input/Output
+The combination of two or more modalities at the perception or action stage of a single exercise. Example: reading notation while hearing playback (Visual + Aural input). Treated as a composition of atomic modalities.
+
+---
+
+## Transformation Substrates
+
+### Substrate
+An internal mental model housed in the Transformation stage that processes input data and converts it into structured output. Substrates range from simple mappings to complex conceptual structures.
+
+### Atomic Substrate
+The simplest substrate type. Performs a direct 1:1 mapping between a single input element and a single concept. Example: mapping a pitch name to its piano key location.
+
+### Molecular Substrate
+A relational substrate that maps the relationship between neighboring atomic units. Example: recognizing a melodic interval (the relationship between two sequential pitches).
+
+### Compound Substrate
+A multi-element conceptual structure capable of variation, modulation, and inversion. Serves dual functions: anchoring cognition through pattern recognition and training embodied motor patterns. Examples: scales, chords, chord progressions, rhythm patterns.
+
+### Rhizomatic Structure
+The interconnection pattern of compound substrates. Unlike a strict hierarchy where each concept has a single parent, compound substrates interconnect laterally in a semi-lattice structure. Chord functions emerge from the intersection of chords and scales; voice leading emerges from chord voicings and melodic intervals. Named after Deleuze and Guattari's concept of the rhizome.
+
+### Substrate Hierarchy
+The organizational model for substrates: Atomic → Molecular → Compound, with rhizomatic interconnections at the compound level.
+
+---
+
+## Training Methods
+
+### Training Method
+The interaction pattern that defines how a user produces their response in an exercise. Ordered from most-scaffolded to least-scaffolded.
+
+### Verification (VER)
+Binary judgment: "Is this correct or not?" The most scaffolded method — requires evaluation but not production.
+
+### Recognition (REC)
+Multiple choice: select the correct answer from a limited set of options. The answer is visible among the options.
+
+### Selection (SEL)
+"Select all that apply" from a field of options. Multiple correct answers possible. Also called "Find-and-Select."
+
+### Assembly (ASM)
+Construct the correct answer by ordering or arranging provided components. Drag-and-drop, tile sequencing, ordering operations. Components are given; arrangement is not.
+
+### Alteration (ALT)
+Modify existing material to meet new specifications. Add accidentals to form a scale, transpose a chord, reharmonize a passage. Starting material is given; the transformation must be derived.
+
+### Recall (RCL)
+Free generation: produce the answer from memory with no scaffolding. Free text entry, free notation placement, open response. Also called "Tabula Rasa" when emphasizing the absence of scaffolding.
+
+### Performance (PRF)
+Real-time motor execution: play keys, sing, clap, tap. No scaffolding, with temporal pressure. The least-scaffolded method.
+
+### Tabula Rasa
+A general term for unscaffolded training — producing a correct response "from nothing," with no hints, options, or starting material. Recall and Performance are both tabula rasa methods. Contrasted with scaffolded methods like Recognition and Verification.
+
+### Limited Choice
+A general term for scaffolded training — the user's response options are constrained or pre-filtered. Recognition, Selection, and to some extent Assembly are limited-choice methods. Serves as "training wheels" when full tabula rasa is impractical.
+
+---
+
+## Performance Constraints (Tech Specs)
+
+### Tech Specs
+The set of performance constraints that model the technical limitations and capabilities of the user's cognitive system. Named by analogy with computer hardware specifications. These constraints make the same exercise easier or harder without changing the musical content.
+
+### Processing Speed
+The rate at which the user can complete a full PTA loop or any stage within it. Measured by tempo thresholds, response time limits, and prompt pacing. Musical fluency requires processing speed sufficient to keep up with the temporal demands of live music.
+
+### Working Memory (RAM)
+The amount of musical information the user can hold in active cognition simultaneously. Regulated by sequence length, information scarcity (hiding prompts after display), and the number of elements to track at once. By analogy with computer RAM.
+
+### Long-Term Memory (Cache)
+The internal store of pre-computed results available for rapid retrieval. When the user instantly recognizes that C to E♭ is a minor 3rd without computing it, that's a cache hit. Trained through spaced repetition and high-frequency exposure. By analogy with a lookup cache.
+
+### Cache Retrieval
+The process of accessing a stored result from long-term memory. One of two strategies for completing a transformation (the other being live computation). The training goal is to maximize cache size, retrieval speed, and retrieval accuracy.
+
+### Live Computation
+The process of deriving a result from first principles using the substrate's transformation function when the cache doesn't contain the answer. The training goal is to minimize computation time and error rate.
+
+### Multithreading
+The ability to run multiple PTA loops simultaneously. Engaged when an exercise involves multiple FTA dimensions (reading pitch and rhythm at once), multiple substrates (identifying a chord while maintaining metric awareness), or multi-voice textures. By analogy with CPU multithreading.
+
+### Compression / Chunking
+The ability to group individual elements into higher-order units for more efficient processing. Recognizing a scale pattern as "D Dorian" rather than processing seven individual pitches. Recognizing a rhythmic figure as "dotted-eighth-sixteenth" rather than computing each duration independently. By analogy with data compression.
+
+### Bottleneck
+A point in the PTA pipeline where processing speed is significantly slower than other stages, causing the overall loop to slow down. Example: a user whose pitch recognition is fast but whose finger coordination is slow has a bottleneck at the Action stage.
+
+### Bottleneck Detection / Targeting
+Exercises specifically designed to stress a single PTA stage in isolation, exposing which stage is the weakest link. Perception-only drills, transformation-only drills, and execution-only drills.
+
+### Error Tolerance
+The accuracy threshold required for exercise completion. Strict error tolerance (zero mistakes allowed) versus loose (e.g., 80% accuracy passes). Also includes retry policies (number of attempts per prompt).
+
+### External Conditions
+Environmental and physiological factors that affect performance: time of day, session duration, break frequency, fatigue level, recent practice history. These are inputs to the adaptive difficulty system and to AI-generated warmup ritual design.
+
+---
+
+## Exercise Architecture
+
+### Universal Exercise Template
+The sentence format that describes every exercise:
+> Take [input format] via [perception modality], convert it through [transformation substrate], and output it by [training method] as [output format] via [action modality].
+
+### Input Format
+The specific form of the data presented to the user. Examples: "notated pitch," "sounded chord," "named interval," "chord symbol." Determined by the perception modality and the substrate.
+
+### Output Format
+The specific form of the data the user must produce. Examples: "played key," "notated rhythm," "named chord quality." Determined by the action modality and the training method.
+
+### Exercise Configuration
+Parameters that scope the musical content of an exercise without changing its fundamental structure. Includes content scope (which pitches, intervals, chords, etc.), notation scope (clef, key signature), instrument scope (keyboard range, vocal range), and FTA dimensional scope.
+
+### Exercise Instance
+A specific, playable configuration of an exercise — with all parameters set, prompt material generated, and expected response defined.
+
+### Pruning
+The process of eliminating exercise combinations from the combinatorial matrix that are invalid, trivially simple, pedagogically empty, or redundant with simpler exercises.
+
+### Exercise Blueprint
+A reusable UI/interaction template that defines the screen layout, prompt presentation, response mechanism, and feedback behavior for a class of exercises. Multiple exercises with different substrates and musical content can share the same blueprint if their interaction mechanic is identical. Blueprints are the primary unit of work for UI/UX design (each blueprint = one screen type) and engineering (each blueprint = one interaction template). See the Exercise Blueprints Specification.
+
+### Exercise Result
+The atomic measurement unit for exercise analytics. A record of what happened when a user completed a specific exercise instance: completion status, accuracy score, response time, errors made, constraint values, and session context. Exercise Results feed the analytics layer, the adaptive difficulty system (V2), and the User Skill Rating (V2).
+
+---
+
+## Product Features
+
+### Optimal Grip™
+MuseFlow's adaptive difficulty scoring system. Positions the user at the intersection of substrate complexity, training method scaffolding, and performance constraint tightness where they are maximally challenged but still succeeding more often than failing. Named after Csikszentmihalyi's concept of flow, where grip strength on a climbing wall must match the difficulty of the hold.
+
+### Workshop / Sandbox
+An open-ended environment for free exploration, improvisation, and unstructured practice. Complements the structured exercise system. Provides a space for creative application of skills trained through exercises.
+
+### AI-Generated Warmup Rituals
+Personalized exercise sequences assembled from the exercise taxonomy, adapted to the user's performance history, time of day, session length, and external conditions. Uses spaced repetition data and Optimal Grip™ levels to determine which substrates need attention.
+
+### Streak Tracking
+An engagement and consistency layer built on exercise completion data. Tracks consecutive days of practice and exercise completion patterns.
+
+### Spaced Repetition
+A scheduling algorithm that determines when substrates should be revisited based on cache decay curves and retrieval performance. Substrates where the user's cache hit rate is declining get scheduled for review before the memory fades completely.
+
+### Cross-Section Complexity Language
+The shared vocabulary of difficulty and complexity that allows MuseFlow's three major sections (Curriculum, Exercises, Repertoire) to talk to each other. Without it, skill mastery in one section cannot inform recommendations or difficulty calibration in another. Implemented through the Complexity Vector.
+
+### Complexity Vector
+A multi-dimensional descriptor attached to every exercise, curriculum level, and repertoire piece that captures its musical demands along standardized axes (pitch complexity, rhythmic complexity, harmonic complexity, key complexity, textural complexity, tempo range, cognitive load). Enables cross-section linking, ELO computation, and adaptive recommendations. V2 feature; exercises are tagged with basic metadata (substrate family, FTA dimensions) in V1.
+
+### User Skill Rating (ELO)
+A user-facing composite skill rating computed from performance data across exercises, repertoire, and curriculum. Analogous to chess ELO ratings. Depends on the Complexity Vector for meaningful computation — a user's ELO is only meaningful if the system knows the difficulty of what they attempted. V2 feature.
+
+---
+
+## Miscellaneous
+
+### Musical Fluency
+The ultimate training outcome. The state where the user's cognitive machinery for music operates with sufficient speed, accuracy, and automaticity that the gap between musical intention and musical execution is negligible. Fluency = Speed × Accuracy × Automaticity.
+
+### Audiation
+The internal hearing of music — imagining sound without external stimulus. A form of aural cognition that exists in the transformation stage. Coined by Edwin Gordon.
+
+### Proprioception (Musical)
+The body's awareness of its own position and movement in relation to the instrument. In piano, this includes awareness of hand shape, finger position, distance between keys, and keyboard topography. A primary input channel for the endogenous micro-PTA loop.
+
+### FTA Dimensional Scope
+The number and combination of FTA Field dimensions active in an exercise. Single-dimension (frequency only, time only), dual-dimension (frequency + time), or triple-dimension (frequency + time + amplitude). A primary driver of exercise complexity and multithreading demand.
+
+### Contextual Transfer
+The principle that skills trained in isolation must also be trainable in context. A user who can identify intervals flawlessly in a dedicated exercise must also recognize those intervals when they appear embedded in a chord progression or melodic passage. Contextual Transfer is the bridge between the Exercise Section (controlled isolation) and the Repertoire Section (uncontrolled context). See Project Bible, Design Principle 8.8.
+
+### Replayability Multiplier
+The property of performance constraints that allows a single exercise definition to yield many distinct practice experiences. The same exercise with the same substrate and modality patch becomes a fundamentally different challenge when different constraints are tightened (speed, memory, accuracy, delay). This means the exercise catalog gets enormous mileage from a relatively compact set of exercise definitions.
+
+---
+
+## Exercise Hierarchy
+
+### Exercise Atom
+The smallest indivisible unit of distinct practice in the exercise system. Defined by six identity dimensions: substrate family, input modality, output modality, target variables, pitch reference mode, and content scope. Two atoms that differ on any of these dimensions are different atoms. Training methods and performance constraints are NOT part of the atom's identity — they are practice modes applied to the atom. See UX & Navigation Spec, Section 2.1.
+
+### Exercise Molecule
+A cluster of atoms that share the same substrate family, input modality, output modality, and content scope. Atoms within a molecule differ only on target variables and pitch reference mode. A molecule is "one box of related exercises at a specific difficulty level." See UX & Navigation Spec, Section 2.2.
+
+### Exercise Strand
+An ordered sequence of molecules that share the same substrate family, input modality, and output modality, but differ on content scope. A strand is a difficulty ladder — a learning path from easiest to hardest content scope. See UX & Navigation Spec, Section 2.3.
+
+### Exercise Cluster
+A group of strands that share the same substrate family (when grouped by substrate) or the same input modality (when grouped by modality). Clusters are the top-level navigation unit in the exercise section. See UX & Navigation Spec, Section 2.4.
+
+### Target Variables
+The specific musical properties being assessed in an exercise atom. For chords, target variables might be quality only, inversion only, quality + inversion, root + quality, etc. Target variables determine what the user is being tested on and influence how distractors are generated for multiple-choice exercises.
+
+### Pitch Reference Mode
+Whether an exercise atom requires absolute pitch identification. "Relative" means the root or reference pitch is provided or irrelevant. "Absolute" means the user must identify the root/pitch without a reference, requiring or developing perfect pitch. Atoms with absolute pitch reference mode are tagged as optional bonus challenges and excluded from default completion calculations.
+
+### Primary Atom
+The simplest atom within a molecule — typically the one with the fewest target variables and relative pitch reference mode. The primary atom must be cleared for its molecule to count as "complete." Other atoms in the molecule are secondary or bonus challenges.
+
+### GMTF
+The existing complexity scoring system in the MuseFlow codebase (GMTF repo). Provides cross-section complexity tagging that allows exercises, curriculum levels, and repertoire pieces to share a common difficulty vocabulary. Exercise atoms will be mapped to GMTF scores in V2 to enable cross-section recommendations.
