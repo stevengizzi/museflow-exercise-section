@@ -1,10 +1,14 @@
 # MuseFlow May 7, 2026 Brainstorm Synthesis: Emergent Curriculum Integration
 
-> **Status: Phase 1 analysis (working draft, v0.2).** Synthesized from the May 7, 2026 Emergent Curriculum brainstorm transcript (`docs/meeting-transcripts/2026-05-07-museflow-agentic-vision-call.md`, 1857 lines, ~100-minute call). This document is the foundation for Phase 2 canon evolution and Phase 3 team-facing materials. Recommendations are drafted for Steven's review and approval — nothing committed in this document is canon until Phase 2 lands the corresponding edits.
+> **Status: Phase 1 analysis (working draft, v0.3).** Synthesized from the May 7, 2026 Emergent Curriculum brainstorm transcript (`docs/meeting-transcripts/2026-05-07-museflow-agentic-vision-call.md`, 1857 lines, ~100-minute call). This document is the foundation for Phase 2 canon evolution and Phase 3 team-facing materials. Recommendations are drafted for Steven's review and approval — nothing committed in this document is canon until Phase 2 lands the corresponding edits.
 >
 > **Participants:** Steven Gizzi, Steven Staley (CTO), Patrick Boylan (co-founder).
 >
 > **Audience:** Steven (primary reviewer), future Claude conversations seeded with the integrated canon, MuseFlow team via downstream Phase 3 pitch document.
+
+> **v0.3 changelog (key changes from v0.2, after Steven's second redline):**
+>
+> 1. **User-modeling layer elevated to numbered Decision** — new proposed Decision #47 in §9 formalizes the architectural commitment articulated in §3.7. Headline #2, §3.7 recommendation, §11 Phase 2 scope, and §12 closeout list updated accordingly. The substantive analysis in §3.7 / §3.9 is unchanged.
 
 > **v0.2 changelog (key changes from v0.1, after Steven's first redline):**
 >
@@ -43,7 +47,7 @@ The twelve things that matter most:
 
 1. **The auto-looping algorithm is real and detailed — and it's one capability within a broader agent-controllable repertoire practice control surface.** Patrick's algorithm (read green-note JSON history, find first 2–3 errored notes in a row, center loop, perfect, auto-progress, combine in tree) is real, claimed-implemented in his PRD, and load-bearing for demo. Per Steven's redline, it's one specific orchestration pattern within a broader category — *agent-controllable repertoire practice tools* (song position, tempo, metronome, hand assignment, accuracy controls, audio playback, looping, cursor, note names / finger numbers). **Two Decision-class items: #42 (auto-looping) and #46 (control surface).** Lines 433–485, plus redline.
 
-2. **The user-modeling layer is the load-bearing capability of "MuseFlow as AI company."** Steven's articulation around 00:38:43–00:41:54 (lines 494–525): the per-user accumulating context store is what makes MuseFlow structurally different from competitor piano apps and what justifies the AI-company framing in front of technically literate investors. Two distinct "AI company" interpretations exist: **LLM-layer** expertise (Staley's current direction toward AWS Bedrock / fine-tuning) and **user-modeling-layer** expertise (currently unowned). Both are defensible; the implicit assumption that they're the same job will create gaps. **The user-modeling layer should be added as an explicit vision pillar in Doc 09 §1.** Detailed analysis: §3.7. Open question: §6 #13.
+2. **The user-modeling layer is the load-bearing capability of "MuseFlow as AI company."** Steven's articulation around 00:38:43–00:41:54 (lines 494–525): the per-user accumulating context store is what makes MuseFlow structurally different from competitor piano apps and what justifies the AI-company framing in front of technically literate investors. Two distinct "AI company" interpretations exist: **LLM-layer** expertise (Staley's current direction toward AWS Bedrock / fine-tuning) and **user-modeling-layer** expertise (currently unowned). Both are defensible; the implicit assumption that they're the same job will create gaps. **The user-modeling layer is now recognized as a foundational architectural commitment per proposed Decision #47, and added as an explicit vision pillar in Doc 09 §1.** Detailed analysis: §3.7. Open question on team ownership: §6 #13.
 
 3. **The MAGE-augmentation framing reached directional alignment.** Patrick: "the AI would probably be adjusting the mage output to make it more musical or to fit the like genre that they're trying to learn" (lines 1795–1800). Steven concurred, Staley did not push back. Closer to Steven's working position (Decision #39) than to "training-data scaffolding-then-replacement." **Decision #39 should be amended to reflect convergence.**
 
@@ -144,7 +148,7 @@ Per the May 7 call, Staley is heading toward LLM-layer expertise (Bedrock, fine-
 
 **Where this belongs in canon.** Doc 09 §1 (Vision) currently lists the strategic claim as "user states a goal, product builds personalized journey, generating custom content." The per-user accumulating user-model is the load-bearing capability that makes this work, and it should be named explicitly as a vision pillar. Without it, §1 reads like AI-as-feature; with it, §1 reads like AI-as-foundation.
 
-**Recommended Phase 2 action:** Add user-modeling layer as an explicit vision pillar in Doc 09 §1, separate from but cross-referenced to the LLM/agentic-layer framing in §10. Cross-reference §5.3 (persistence) and §10.5 (RAG architecture) as the implementation detail. Mark the team-ownership question as open.
+**Recommended Phase 2 action:** Formalized as proposed Decision #47 (§9). Add user-modeling layer as an explicit vision pillar in Doc 09 §1, separate from but cross-referenced to the LLM/agentic-layer framing in §10. Cross-reference §5.3 (persistence) and §10.5 (RAG architecture) as the implementation detail. The team-ownership question (LLM-layer vs user-modeling-layer ownership) remains open per §6 #13.
 
 ### 3.8 The atom schema's agent-prescribability fields (Decision #40, Doc 09 §3.4)
 
@@ -828,6 +832,30 @@ The agentic system's job-per-content-mode is enumerable in terms of these surfac
 
 **Cross-references:** Decision #42 (auto-looping as one capability within the surface), Decision #43 (cross-mode performance constraints — also part of each mode's surface), Doc 09 §6 (AI Surface) — should reference this as the operational scope.
 
+### Proposed Decision #47 (new in v0.3): User-Modeling Layer Recognized as Foundational Architectural Commitment
+
+**Source:** May 7, 2026 brainstorm (lines 494–525, the "Steven MD file" / "Patrick MD file" framing) + Steven's v0.2 redline elevating the user-modeling layer's strategic significance + Steven's v0.3 elevation request.
+
+**Decision made:** The per-user accumulating user-model — the architectural layer that observes, synthesizes, stores, and retrieves user-specific context across sessions — is recognized as a **foundational architectural commitment**, on par with the content/path-mode architecture (Decision #41) and the AI augmentation of MAGE (Decision #44). Specifically:
+
+- The user-modeling layer is named explicitly as a vision pillar in Doc 09 §1 — not buried as auxiliary infrastructure under the LLM/agentic-layer framing in §10
+- It is the load-bearing capability that distinguishes MuseFlow structurally from competitor piano-learning products (Simply Piano, Yousician, Skoove, Flowkey), all of which treat the user as roughly anonymous within content
+- It is the technical substrate that justifies the "AI company" framing in front of technically literate investors — without it, the framing reads as positioning; with it, it reads as a defensible architectural claim
+- Its implementation pattern is closer to "per-user RAG layer over conversation history, exercise/repertoire/sight-reading event data, and AI-extracted summaries" than to a single growing markdown file (the "Steven MD file" / "Patrick MD file" analogy is a user-facing metaphor, not implementation spec — see §3.9)
+
+**Reasoning:** The May 7 call surfaced this as a strategic claim, and Steven's v0.2 / v0.3 redlines elevated its significance. Recognizing it as a numbered Decision (rather than only as a Doc 09 §1 vision-pillar update) makes the commitment load-bearing in the Decision Log, where downstream architectural decisions can reference it explicitly. It also signals to the team that the user-modeling layer is a first-class architectural concern, not an emergent property of LLM choices.
+
+**What this Decision does NOT do:**
+- It does not specify the implementation architecture in detail. The implementation pattern is sketched in Doc 09 §10.5 and §3.9 of this document; concrete schema and retrieval logic are out of scope for this Decision.
+- It does not assign team ownership. The LLM-layer vs user-modeling-layer ownership question remains open per §6 #13 — that is a team-organization question separate from this architectural commitment.
+- It does not commit pricing or unit-economics implications. Those flow downstream once the user-modeling layer's compute profile is concrete.
+
+**Phasing:** N/A — architectural framing, not a feature. The vision-pillar update in Doc 09 §1 is V1 documentation work. Implementation phasing is a downstream question once team ownership is resolved.
+
+**Cross-references:** Doc 09 §1 (vision pillar to add), §5.3 (persistence and reusability), §10.5 (RAG architecture sketch). §3.7 and §3.9 of this document (substantive analysis and the metaphor-vs-implementation distinction). Decision #41 (the architecture this layer operates within). §6 #13 (open question on team ownership).
+
+---
+
 ### A note on what I considered but didn't propose
 
 I considered but **did not draft** Decision proposals for the following, on the rationale that they're not yet decision-class:
@@ -838,7 +866,6 @@ I considered but **did not draft** Decision proposals for the following, on the 
 - **AI-generated tutorials as roadmap nodes (§4.3)** — deferred future direction; architectural placement open. Should be added to Doc 09 §5.2 candidate-node-types list and §13 open questions.
 - **Demo scope (§5.5, §8.1)** — operational, not architectural. Should update Doc 09 §15.2.
 - **Cost framework (§8.3)** — not pricing, not architectural. Should add a "Cost Considerations" section to Doc 09 in Phase 2.
-- **User-modeling layer as vision pillar (§3.7)** — could be Decision-class, but its content is more a *recognition* of an architectural commitment already implicit in canon than a new commitment. Recommended as Doc 09 §1 vision-pillar update rather than numbered Decision. Steven may prefer to elevate it; if so, a Decision #47 is straightforward to draft.
 - **AI-analogy implementation discipline (§3.9)** — documentation discipline, not architectural commitment. Should land in Doc 09 §10 and possibly project-instructions.md.
 
 These can become Decisions later if Steven prefers, but I think they're better captured as inline canon updates in Phase 2 rather than as numbered Decisions.
@@ -946,7 +973,7 @@ Estimated effort: <1 session.
 Estimated effort: <1 session.
 
 **Doc 05 — Design Decisions Log.** Changes:
-- Append proposed Decisions #42 (revised), #43, #44, #45 (revised), #46 (with Steven's revisions). (medium)
+- Append proposed Decisions #42 (revised), #43, #44, #45 (revised), #46, #47 (with Steven's revisions). (medium)
 - Amend Decision #39 (per #44). (small)
 - Note on Decision #40 (Free Play unchanged status — clarify scope). (small)
 
@@ -998,17 +1025,15 @@ Each of those is a separate downstream piece. Phase 2's sole goal is to land the
 
 ## 12. Document Status
 
-**Version 0.2 (May 8, 2026)** — Second draft, integrating Steven's first redline. Substantive changes documented in the v0.2 changelog at the top. Produced from the May 7, 2026 transcript and the canon as of commit prior to this document.
+**Version 0.3 (May 8, 2026)** — Third draft, integrating Steven's second redline (user-modeling layer elevated to Decision #47). Substantive changes documented in the v0.3 and v0.2 changelogs at the top. Produced from the May 7, 2026 transcript and the canon as of commit prior to this document.
 
 **Outstanding for Phase 1 closeout:**
 
-- Steven redlines this v0.2 document (further iterations expected)
-- Steven approves / revises proposed Decisions #42 (revised), #43, #44, #45 (revised), #46
+- Steven approves / revises proposed Decisions #42 (revised), #43, #44, #45 (revised), #46, #47
 - Steven approves Phase 2 scope (§11)
-- Steven decides whether the user-modeling-layer item warrants Decision #47 status or stays as Doc 09 §1 update
 
 **After approval, this document becomes:** the canonical record of what the May 7 call produced and how it integrates with prior canon. It is canon-class — analogous to Doc 08 (Standup Synthesis Apr 28–May 5) — and persists as reference material in `docs/10-may7-brainstorm-synthesis.md` after Steven commits.
 
 ---
 
-*End of May 7, 2026 Brainstorm Synthesis (Doc 10), Version 0.2.*
+*End of May 7, 2026 Brainstorm Synthesis (Doc 10), Version 0.3.*
