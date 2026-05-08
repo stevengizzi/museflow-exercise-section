@@ -2,7 +2,7 @@
 
 > **Status: Reference document.** Synthesized from Granola transcripts of two consecutive MuseFlow standing meetings. Captures team thinking, decisions, and open tensions relevant to the exercise section, infrastructure, UI/UX, adjacent features, and product vision. Intended as input for the next design iteration on the exercise section.
 >
-> **Participants present across both meetings**: Steven Gizzi (founder/lead designer), Andrew Urbanowicz (engineering — audio recognition, repertoire), Austin Clifton / "Staley" (engineering — architecture, AI), Patrick Boylan (founder — marketing, fundraising, product), plus Tucker Dean, Tom Urbanowicz, Alayna L. Goss (mostly silent in these transcripts).
+> **Participants present across both meetings**: Steven Gizzi (founder/CEO), Andrew Urbanowicz (VP of Engineering — audio recognition, repertoire), Staley (CTO — architecture, AI), Patrick Boylan (co-founder — marketing, fundraising, product), plus Tucker Dean, Tom Urbanowicz, Alayna L. Goss (mostly silent in these transcripts; Tucker and Alayna have since departed the team).
 
 ---
 
@@ -301,7 +301,7 @@ A reorganization emerged across the two meetings, primarily in the May 5 standup
 | Person | Primary domain | Notes |
 |---|---|---|
 | **Steven Gizzi** | Exercise section design | Currently producing the PRD. Continued involvement in Mage / cross-section complexity. |
-| **Staley (Austin Clifton)** | AI/ML infrastructure, fine-tuning, music gen, instructor portal | **Shifting away from repertoire engineering.** Will continue instructor portal in parallel. |
+| **Staley** | AI/ML infrastructure, fine-tuning, music gen, instructor portal | **Shifting away from repertoire engineering.** Will continue instructor portal in parallel. |
 | **Andrew Urbanowicz** | Audio recognition (current), repertoire ownership (new), custom repertoire upload, repertoire sharing, social features | Taking over repertoire from Staley. Strong fit because Andrew is also a pianist. |
 | **Patrick Boylan** | Marketing/distribution (resistantly), pitch deck, MVP decomposition, fundraising, instructor portal pressure | Has explicitly said marketing/content "does not inspire me whatsoever." Wants to do QA, dev coordination, and people management instead. Strong opinion that Earnest's instructor portal needs to ship. |
 | **Asif** | Implementation (exercise section, mobile, sharps/flats fix) | Working through repertoire mobile bugs and accidentals refactor. |

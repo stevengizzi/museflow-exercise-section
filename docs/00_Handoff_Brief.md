@@ -81,7 +81,7 @@ Key evolution points during this phase:
 **The navigation model was sketched.** A three-screen flow: Exercise Home (with hook/mirror/library zones) → Exercise Detail/Config → Exercise + Results. The Exercise Home supports progressive zoom through the hierarchy but also allows flat browsing. Configuration (training method, constraints, session shape) lives on Screen B with sensible defaults.
 
 **Several corrections and refinements were made along the way:**
-- Steven corrected attribution: contributions initially attributed to "Tucker" were actually Staley's (Austin Clifton). "AC" should be "Asif."
+- Steven corrected attribution: contributions initially attributed to "Tucker" were actually Staley's. "AC" was a mis-transcription of "Asif." (Note: a later correction clarified that Austin Clifton, briefly mentioned in some early canon, is a separate departed engineer — not Staley. Staley is the CTO and a distinct person.)
 - GMTF complexity scoring already exists in the codebase — no need to reinvent it
 - Micro-PTA loop exercises were deferred as potentially over-complicated for V1
 - Amplitude exercises confirmed as deferred but kept in schema
@@ -172,7 +172,7 @@ For future conversations: Steven's thinking style is first-principles, systems-o
 
 He's also willing to change direction when something isn't working. The "core unit" concept went through three definitions before landing on the exercise atom. The navigation model evolved from pure library to layered drill-down to the current hybrid. He wants to be shown alternatives and hear honest pushback, not just have his ideas reflected back.
 
-Key collaborators: **Staley (Austin Clifton)** — engineering lead who emphasizes data model correctness as the foundation. **Asif** — engineering collaborator for exercise section implementation. **Tom** — product/business team member focused on analytics and data. **Patrick** — involved in marketing, commercial production, and fundraising.
+Key collaborators: **Staley** (CTO) — engineering lead who emphasizes data model correctness as the foundation. **Andrew Urbanowicz** (VP of Engineering) — repertoire editor, audio recognition, proactive nudging. **Asif** (contractor) — engineering collaborator for exercise section implementation. **Patrick Boylan** (co-founder) — product, marketing, commercial production, and fundraising. **Tom Urbanowicz** (Andrew's father) — small angel investor and advisor; occasionally helps with sales/marketing.
 
 ---
 

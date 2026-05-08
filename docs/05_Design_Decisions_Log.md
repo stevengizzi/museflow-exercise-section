@@ -373,9 +373,11 @@ The following decisions were made during a continued conversation refining the e
 
 ## Decision 31: Team Member Attribution Correction
 
-**Source:** Steven's correction that contributions attributed to "Tucker" in the transcript analysis were actually from Staley (Austin Clifton). Also, "AC" should be "Asif."
+**Source:** Steven's correction that contributions attributed to "Tucker" in the transcript analysis were actually from Staley. "AC" was a mis-transcription of "Asif" by the transcript tool.
 
 **Decision made:** Corrected attribution throughout. Staley's contributions include: data model primacy principle, LeetCode-style V1 navigation, cross-section complexity language, ELO as user-facing metric. Asif is the primary engineering collaborator for exercise section implementation.
+
+**Amendment (May 2026):** Steven clarified that **Austin Clifton and Staley are different people**. Austin Clifton was a separate engineer who briefly worked with the team early on and is no longer with the company; Staley is the CTO. Earlier canon (including the original text of this decision and several other documents) incorrectly used "Staley (Austin Clifton)" as a parenthetical, conflating the two. The parenthetical has been removed from current canon. The underlying decision — that Staley is the correct attribution for contributions previously misattributed to "Tucker," and that "AC" was a mis-transcription of "Asif" — remains correct.
 
 ---
 

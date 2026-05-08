@@ -1,0 +1,172 @@
+# CLAUDE.md — MuseFlow Exercise Section + Agentic Future
+
+This file orients Claude Code sessions working in this repository.
+
+## What this repo is
+
+Design and (eventually) implementation workspace for two intertwined tracks of MuseFlow work:
+
+1. **The MuseFlow Exercise Section** — one of MuseFlow's core content surfaces (a piano learning app). Currently late design / early implementation phase.
+2. **MuseFlow's agentic future** — the AI-mediated "Projects" layer that helps users define goals and build personalized roadmaps. Currently early design phase, with active investor-demo target.
+
+This is a **design-first repo**, not a sprint-cycle implementation repo. The bulk of the content is canonical design documentation. Implementation lives in MuseFlow's main codebase (separate repo); when implementation work happens here, it's mostly authoring and refining specs that engineering (Asif under Staley/Andrew) consumes.
+
+## Repo layout
+
+```
+docs/
+├── 00_Handoff_Brief.md            # Pre-A1 handoff; mostly historical
+├── 01_Project_Bible.md             # Vision, content/path mode architecture, foundational frameworks
+├── 02_System_Architecture.md       # Substrate catalog, training methods, atom schema
+├── 03_Exercise_Taxonomy.md         # Combinatorial exercise matrix, pruning rules
+├── 04_Glossary.md                  # Vocabulary canon
+├── 05_Design_Decisions_Log.md      # Numbered decisions; consult before re-deciding
+├── 06_Exercise_Blueprints.md       # 13 UI/interaction templates
+├── 07_UX_Navigation_Spec.md        # Navigation model, configuration, agentic reframe (§8), open questions (§9)
+├── 08_Standup_Synthesis_Apr28_May5.md   # May 2026 team meetings synthesis
+└── 09_Agentic_MuseFlow_Vision.md   # Freestanding agentic-system vision
+```
+
+The canon evolves through a tracked sequence of conversations on claude.ai (Track A1 done; A2 next; B/C/D/E queued). Steven commits to this repo manually after each phase. There is no programmatic write-back from Claude conversations.
+
+## Reading order for orientation
+
+For a fresh session, read in this order:
+
+1. `docs/01_Project_Bible.md` — vision, content/path modes, foundational frameworks (PTA Loop, FTA Field)
+2. `docs/05_Design_Decisions_Log.md` — 41 numbered decisions; this is the operational truth about what's been settled
+3. `docs/07_UX_Navigation_Spec.md` — atom hierarchy, navigation model, open questions register
+4. `docs/02_System_Architecture.md` — schema definitions, substrate catalog
+5. `docs/09_Agentic_MuseFlow_Vision.md` — agentic system context
+
+`docs/04_Glossary.md` is reference-on-demand. `docs/03`, `docs/06`, `docs/08`, `docs/00` are read when relevant to the task.
+
+## Who Steven is
+
+**Steven Gizzi** (founder/CEO) — first-principles systems thinker, comfortable with complexity, treats documentation as handoff artifact. Prefers iterative ideation → blueprinting → spec. Values direct pushback over agreement.
+
+**Current MuseFlow team:**
+- **Staley** (CTO) — engineering at the highest level; agentic system / AI/ML infrastructure
+- **Andrew Urbanowicz** (VP of Engineering) — repertoire editor, audio recognition, proactive nudging
+- **Asif** (contractor) — primary implementer for exercise section work
+- **Patrick Boylan** (co-founder) — product, marketing, pitch deck, fundraising
+
+Older canon docs sometimes misattribute Staley's contributions to "Austin Clifton" — these are different people; Austin is a former engineer no longer with the team. Corrections are tracked in Decision #31.
+
+## Working conventions
+
+### Decision Log discipline
+
+- New decisions append to `docs/05_Design_Decisions_Log.md` at the highest number (currently 41)
+- Existing decisions are amended (not replaced) when refined; amendments are dated and labeled
+- Consult the relevant entry before re-deriving or re-deciding
+- If you find yourself about to argue something the Log already settled, **stop and reference the decision** — don't relitigate without explicit cause
+
+### "Phasing TBD" principle
+
+V1/V2/V3 phasing is **not** decided by default. Most decisions describe *what* is being designed and explicitly leave *when it ships* open. Don't bind phasing in new content unless it's an explicit phasing decision being made deliberately.
+
+### Speculation marking
+
+Use explicit tags in canon content:
+- `[Speculative]` — claim is genuinely uncertain
+- `TBD` — known unknown that needs resolution
+- `Open question` — question that needs explicit decision
+
+Speculation that drifts toward overclaiming is worse than speculation that's clearly marked. Mark it.
+
+### Edit safety
+
+- **Read before editing.** Canon docs are tightly cross-referenced; an edit in one doc may need a parallel update elsewhere. Use `grep -rn "specific term" docs/` to find references before changing terminology.
+- **Match style.** Each doc has internal stylistic conventions (heading levels, list formats, table formats). Match what's there rather than imposing a new style.
+- **Cross-references must stay valid.** When citing a Decision, section, or document, verify the reference still exists.
+
+### Git conventions
+
+- Branch off `main` for any non-trivial work
+- Commit messages: `docs: <short description>` for canonical doc updates; other prefixes (`feat:`, `fix:`, etc.) when implementation arrives
+- Steven approves before pushing back to `origin/main` — even on the design canon
+- Don't force-push or rewrite history on `main`
+
+## Track system
+
+Work is organized into named Tracks:
+
+| Track | Purpose | Status |
+|---|---|---|
+| A1 | Doc-sync (integrate standup outputs) | Done |
+| A2 | Patrick's "Theory Library & Exercise Section" doc evaluation | Queued |
+| B | Open-question triage | Queued |
+| C | Taxonomy reconciliation (Doc 03 ↔ Doc 07) | Queued |
+| D | V1 atom catalog authoring | Queued |
+| E | PRD authoring | Queued |
+
+A session should know which Track it's in. If a session surfaces work belonging to a different Track, log it for that Track rather than absorbing it.
+
+## How Steven prefers to work
+
+- **Direct.** No padding, no excessive deference, no rubber-stamping.
+- **Fresh-POV pushback over agreement.** If something seems wrong, say so.
+- **Iterative approval on interpretive calls.** Propose, discuss, approve, proceed.
+- **Substance per line.** No filler.
+- **Markdown-native.** Bullets, tables, fenced code, section numbering. Avoid heavy formatting.
+- **Confirm before executing on interpretive calls.** Mechanical edits can flow; interpretive ones require sign-off.
+- **No emoji** unless he uses one first.
+
+## Operating principles (do / don't)
+
+**Do:**
+- Search the canon before answering questions about the design (`grep`, `rg`, etc. work fine on `docs/`)
+- Consult the Decision Log before acting on questions that may already be settled
+- Cite specific docs and section numbers when referencing canon
+- Mark speculation explicitly
+- Surface unresolved tensions rather than papering over them
+- Recommend, don't just summarize — give a position
+
+**Don't:**
+- Bind V1/V2/V3 phasing without explicit decision
+- Add speculative schema fields "just in case"
+- Re-derive frameworks from first principles each session — the canon exists for a reason
+- Forget the AI-averse user constraint — the design respects users who don't want AI mediation
+- Assume "it's been decided" without checking the Decision Log; equally, don't relitigate decisions that *are* in the Log
+
+## Common tasks
+
+### Adding a new Decision
+
+1. Read `docs/05_Design_Decisions_Log.md` to confirm the topic isn't already covered
+2. Append a new section at the end, using the highest unused number
+3. Follow the existing format: `## Decision N: <Title>`, then `**Source:**`, `**Decision made:**`, `**Reasoning:**` (optional `**Alternative:**`, `**Phasing:**`, `**Cross-references:**`)
+4. Cross-reference any related decisions
+5. If the new decision contradicts or refines an earlier one, **amend** the earlier one with a dated note rather than replacing its body
+
+### Editing canonical content
+
+1. Identify which docs are affected. Use `grep -rn` for terminology consistency
+2. For substantive changes, draft in a working copy first; review before committing
+3. For cross-document changes, do them in one commit when possible (so the canon is internally consistent at every commit)
+4. Update Decision Log if the edit reflects a new decision
+
+### Searching the canon
+
+```
+grep -rn "term" docs/                         # find all references
+rg --type md "term" docs/                     # ripgrep version (faster)
+grep -nE "^## |^### " docs/01_Project_Bible.md  # section structure of a doc
+```
+
+## What this file is NOT
+
+- **Not a substitute for the canon.** Read the actual docs for design content. This file orients you to *where* to look.
+- **Not a substitute for the project instructions in claude.ai.** Those are the parallel orientation file for chat-interface conversations. Both files describe the same project but are optimized for their respective surfaces.
+- **Not a sprint plan.** Work in this repo is currently design-first, not sprint-cycle implementation. If/when sprints arrive, additional artifacts (sprint history, risk register) may be added per the patterns in `stevengizzi/claude-workflow`.
+
+## Workflow metarepo relationship
+
+Steven maintains a separate repo `stevengizzi/claude-workflow` with general-purpose conversation protocols (Strategic Check-In, Sprint Planning, Mid-Sprint Doc-Sync, etc.). Those protocols are **engineering-sprint-shaped**. This project is currently design-first, so the metarepo's protocols apply in spirit (assumption audit, doc-sync principles) more than literally. Don't invoke a formal metarepo protocol unless it genuinely fits the current task.
+
+## A note on this file
+
+This file is living. Update it when conventions change, new tracks arrive, or new tools come online. Keep it terse — every line gets read at session start.
+
+Last updated: May 2026.

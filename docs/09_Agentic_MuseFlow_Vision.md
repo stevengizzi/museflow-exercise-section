@@ -2,7 +2,7 @@
 
 > **Status: Working Draft (May 2026).** This document captures MuseFlow's current thinking on the agentic system — the AI-mediated layer that helps users define goals, build personalized roadmaps, and generate custom content. It is **a freestanding artifact intended to be readable independently of the rest of the MuseFlow Exercise Section canon**, while cross-referencing that canon where useful. Substantial portions are speculative; speculation is marked inline with explicit tags. The document is expected to evolve as the Emergent Curriculum brainstorm and follow-on design work mature.
 >
-> **Audience:** Internal MuseFlow team (Steven, Patrick, Staley, Andrew, Tom, Tucker, Asif, Alayna), prospective investors and advisors via Patrick's pitch deck work, and future design-conversation partners (including potential subsequent Claude conversations seeded with this content).
+> **Audience:** Internal MuseFlow team (Steven, Staley, Andrew, Asif, Patrick), advisors (Tom), prospective investors and advisors via Patrick's pitch deck work, and future design-conversation partners (including potential subsequent Claude conversations seeded with this content).
 >
 > **Scope:** Vision, architectural framing, goals and roadmaps, AI surface, dashboard, custom content generation, MAGE-and-AI relationship, engagement layer integration, AI-averse user design constraints, open questions, and relationship to existing Exercise Section design work.
 >
