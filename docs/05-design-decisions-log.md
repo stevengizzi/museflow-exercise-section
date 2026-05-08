@@ -209,7 +209,7 @@ The following decisions were made after reviewing the transcript from the March 
 
 **Reasoning:** This framing was clearly important to Steven and was agreed to by the team. It elevates the exercise section from "supplementary feature" to "core product pillar," which affects how much design investment it deserves.
 
-**Amendment (May 2026, post-standup integration):** The "two universal pillars" framing has been refined to a content modes vs. path modes architecture (see Decision #42). The original argument that Exercises and Repertoire are level-agnostic foundational content surfaces still holds — they are now described as the two confirmed *content modes*. The architecture additionally accommodates anticipated content modes (Sight Reading) and candidate future content modes (Theory, Free Play), and distinguishes content modes from path modes (Curriculum, User Paths, Projects). The leverage argument for investing in Exercises is unaffected by the refinement.
+**Amendment (May 2026, post-standup integration):** The "two universal pillars" framing has been refined to a content modes vs. path modes architecture (see Decision #41). The original argument that Exercises and Repertoire are level-agnostic foundational content surfaces still holds — they are now described as the two confirmed *content modes*. The architecture additionally accommodates anticipated content modes (Sight Reading) and candidate future content modes (Theory, Free Play), and distinguishes content modes from path modes (Curriculum, User Paths, Projects). The leverage argument for investing in Exercises is unaffected by the refinement.
 
 ---
 
@@ -502,6 +502,8 @@ Generated exercises are first-class citizens of the Exercise content mode, tagge
 
 **Note for Glossary:** MAGE = Music Algorithmic Generation Engine. Distinct from Opusmodus (one word), which is the notation/printing engine that does only what it is told. The MAGE / Opusmodus distinction has been confused in two recent standups; the Glossary entries are reinforced.
 
+**Amendment (May 2026, post-May-7-brainstorm):** Per Decision #44, the team's working position is amended toward the **augmentation framing**: MAGE persists as a permanent algorithmic generation engine, with the AI adjusting MAGE's music-XML output for musicality, stylistic fitness, and goal-specific shaping. The May 7, 2026 Emergent Curriculum brainstorm produced directional alignment across Steven, Patrick, and Staley (Patrick's articulation of the AI-adjusts-MAGE-output mechanism, Steven's concurrence, Staley's non-pushback). The training-data-then-replacement framing (Staley's earlier articulation) is no longer the team's working framing. The question remains formally open pending Staley's explicit retirement of that framing; full closure of the open status is deferred to that confirmation. See Decision #44.
+
 ---
 
 ## Decision 40: Exercise Atom Schema — Five Field Additions
@@ -571,5 +573,143 @@ Browse-by-authorship-origin is a primary filter axis in both content-mode and pa
 **Phasing:** TBD. Specific UX implementations of the three flows, the dashboard surfaces, the User Paths feature, and the engagement layer are open design questions. The architectural pattern is committed; the implementations are not.
 
 **Cross-references:** Decisions #16 (amended), #29 (Agentic Vision — superseded in framing by this entry, though the underlying intent persists), #32 (Agentic Projects elevated), #33 (generation on demand), #34 (custom authoring), #40 (`authoring_origin` field on atom schema).
+
+---
+## Decision 42: The Auto-Looping / Perfect-Practice Tree Algorithm
+
+**Source:** May 7, 2026 Emergent Curriculum brainstorm. Patrick described an algorithm he claims to have already designed in his PRD: read the green-note JSON history, identify the first section with two-or-three-notes-in-a-row errors, dynamically determine loop boundaries (one or two measures before/after the errored section), perfect that section, auto-progress to the next errored section, and combine perfected sections in a tree structure (small section → small section → combined → next pair → combined → larger combination, recursively). Staley's read: largely algorithmic, with the LLM as "voice/text sugar on top." Steven concurred but flagged that AI judgment may need to override the algorithm for "break the rules" cases (e.g., the actual issue is the previous measure, not the errored one).
+
+**Decision made:** The auto-looping / perfect-practice tree algorithm is recognized as a **first-class algorithmic capability for repertoire practice**. Specifically:
+- It is the algorithmic execution layer that connects performance data (green-note JSON history) to looping decisions in repertoire
+- It is **one capability within the broader agent-controllable repertoire practice control surface** (see Decision #46) — not a standalone architectural primitive
+- It is the load-bearing capability for the engineering-critical step 4 of the integrated investor demo (Doc 10 §8.1)
+- It is invokable by the agentic system as part of Project execution (a Project's roadmap node for "practice this piece" can prescribe auto-looping as the practice mode)
+
+**Scope constraints (what auto-looping is not):**
+- Optimal Grip is about session-level adaptive difficulty (chevron count, tempo targets); auto-looping is distinct from it. Both are forms of adaptive difficulty, but they operate at different levels.
+- Game Mode is sight-reading-specific pass-condition mechanics, distinct from repertoire practice orchestration.
+- The algorithm operates on a piece's note-history JSON (a repertoire artifact). Exercises would have analogous mechanics, not the same algorithm ported.
+
+**Reasoning:** The algorithm exists. Patrick has implemented it (or specified it in detail) in his existing PRD. It is the strongest single demo capability the team has. Recognizing it explicitly in canon prevents it from sitting implicit in a PRD the rest of the team hasn't read, and it earns a canonical reference for downstream work.
+
+**Phasing:** TBD. The algorithm itself is implementable now (per Patrick); the AI-judgment override and voice-feedback layer are speculative-near-term. V1 / demo / V2+ scoping is open.
+
+**Cross-references:** Decision #46 (broader control surface). Patrick's PRD as the implementation source. Doc 09 §6 (AI Surface) — voice feedback as the language layer atop the algorithm.
+
+---
+
+## Decision 43: Performance Constraints Generalize Across Content Modes
+
+**Source:** May 7, 2026 brainstorm. Steven's articulation that the exercise section's performance-constraint vocabulary (time-based pass conditions, accuracy thresholds, memory-chain length) ports directly to sight reading and possibly repertoire. Staley: "the exercise section can also maybe be a version of this game mode thing." Bible §6.3 currently treats performance constraints as exercise-internal.
+
+**Decision made:** Performance constraints are promoted from exercise-section-internal to a **cross-content-mode primitive**. Any "completable" engagement with content (exercise atom session, sight-reading level attempt, repertoire practice session) carries performance constraints that determine pass conditions and shape the practice experience.
+
+The schema impact:
+- Exercise atoms already carry performance constraints (per Architecture Doc §5)
+- Sight-reading levels gain a performance-constraints schema entry (parallel to atom configuration)
+- Repertoire practice sessions may carry performance constraints (e.g., "play this passage at 80% accuracy or higher for 5 minutes to clear")
+
+**Reasoning:** The exercise framework's most useful product-level concept (replayability through constraint variation) generalizes with no architectural cost. Treating performance constraints as a cross-mode primitive avoids reinventing similar mechanics per mode and provides the agentic system a unified vocabulary for prescribing practice intensity.
+
+**Phasing:** TBD. Specific application to sight reading and repertoire is V2+. The conceptual promotion is V1; per-mode implementation phases independently.
+
+**Cross-references:** Decision #22 (replayability), Bible §6.3, Architecture Doc §5, Decision #41 (the cross-mode pattern this extends), Decision #46 (performance constraints are part of the per-content-mode control surface).
+
+---
+
+## Decision 44: MAGE Long-Term Role — Augmentation Direction Confirmed
+
+**Source:** May 7, 2026 brainstorm. Patrick: "the AI would probably be adjusting the mage output to make it more musical or to fit the like genre that they're trying to learn or to specifically work specific techniques that are in the piece of repertoire that they want to learn... There's like many reasons why the AI would adjust the music XML outputed by Mage." Steven concurred. Staley did not push back; his earlier articulations during the call ("I love mage. Yeah") and his agreement with Patrick's framing position him in alignment.
+
+**Decision made:** Decision #39 (MAGE's long-term role logged as open) is **amended toward the augmentation framing**. The team's working position, with directional alignment across all three brainstorm participants, is:
+- MAGE persists as a permanent algorithmic generation engine
+- The AI's role is to adjust MAGE's output for musicality, stylistic fitness, and goal-specific shaping
+- The training-data-then-replacement framing (Staley's earlier articulation) is no longer the team's working framing
+
+**Reasoning:** Patrick's articulation provides the concrete mechanism (AI adjusts music XML output by MAGE) that the augmentation framing previously lacked. Steven's concurrence and Staley's non-pushback constitute directional alignment.
+
+**Caveats / what remains open:**
+- Staley has not explicitly retired the training-data-then-replacement framing. The amendment records the convergence; full closure of the question awaits Staley's explicit confirmation.
+- Cost implications of the augmentation framing differ from the replacement framing (per Doc 09 §10.4): MAGE+AI is a hybrid stack, not a single LLM. This is a feature, not a bug, but architectural commitment must reflect it.
+
+**Phasing:** N/A — architectural framing, not a feature.
+
+**Cross-references:** Decision #39 (amended, not superseded). Doc 09 §10.3, §10.4.
+
+---
+
+## Decision 45: User-Generated Sight-Reading Mode Resolved as User-Generated Within Sight Reading Content Mode
+
+**Source:** May 7, 2026 brainstorm. Steven articulates user-constructed sight-reading levels with custom parameters as falling cleanly within the Sight Reading content mode's user-generated authorship origin. Staley and Patrick aligned during the call.
+
+**Decision made:** User-generated sight-reading mode (custom-parameterized levels with explicit musical parameters, performance constraints, and completion settings) is **resolved as user-generated content within the Sight Reading content mode**. Specifically:
+- The user invokes Sight Reading's Generate flow
+- Configures parameters (notes, rhythms, time signature, complexity metrics, performance constraints, completion criteria)
+- The system constructs the level
+- The level is stored with `authoring_origin = user`
+- The level may carry "no completion criteria, just play endlessly" as one of the configurable options
+
+**Crucial scope clarification:** This decision does **not** resolve "Free Play" in the original A1 sense. Free Play (original) refers to user improvisation without notation guidance — open-ended musical exploration. That capability remains deferred (per Decision #41's candidate content modes list, Free Play is "deferred indefinitely"); status unchanged. An earlier draft of this decision conflated user-generated sight-reading with Free Play; this decision narrows to the sight-reading capability only.
+
+**Reasoning:** The May 7 articulation closes the long-standing ambiguity for the specific capability of user-parameterizable sight-reading. The user-generated authorship origin (Decision #41) provides the primitive. No new content mode is required for this specific capability. Free Play original sense remains a separate question with its own deferral status.
+
+**Phasing:** N/A — architectural framing. Specific UI labels and Generate-flow UX are V1+ design questions.
+
+**Cross-references:** Decision #41 (user-generated authorship origin, and Free Play deferral within candidate content modes — unchanged). Bible §2.1.1 (status update for sight-reading-mode clarity, NOT Free Play status).
+
+---
+
+## Decision 46: Agent-Controllable Repertoire Practice Control Surface
+
+**Source:** May 7, 2026 brainstorm. The agentic system's repertoire-practice job is orchestrating decisions across a defined set of practice tools, of which auto-looping (Decision #42) is one specific algorithmic pattern. Steven's enumeration of the surface during the call.
+
+**Decision made:** The agentic system operates over an enumerable **per-content-mode control surface** — the set of practice tools, settings, and behaviors the agent can manipulate during a session. For repertoire, the surface includes:
+- **Song position** — where to place the user for the next take
+- **Tempo controls** — when and how much to adjust
+- **Metronome settings** — on/off; accent vs unaccented downbeats; flexible vs fixed count-in
+- **Hand assignment** — which hand(s) to play at any given time
+- **Accuracy controls** — track or not; which hand(s); real-time feedback on/off; color preservation across takes; success threshold (e.g., 95% / 85%)
+- **Audio playback** — silent / dueting / app-only / no MIDI
+- **Looping controls** — start/end points; seamless vs paused; takes-required; tempo adaptation per take
+- **Cursor toggle** — show/hide playhead cursor on sheet music
+- **Note names / finger numbers** — display either as overlay aids
+
+The agent's repertoire-practice orchestration is the policy by which it manipulates this surface in service of a Project goal (and possibly user preferences).
+
+**Implication.** Each content mode has its own control surface:
+- **Exercises:** training method selection, performance constraints, content scope, blueprint configuration
+- **Sight reading:** parameter generation, level construction, game-mode toggles, performance constraints
+
+The agentic system's job-per-content-mode is enumerable in terms of these surfaces. Phase 2 sketches the exercise and sight-reading surfaces; full enumeration follows in subsequent design work.
+
+**Reasoning:** Without enumerating the surface, the agent's repertoire-practice job is undefined. Enumeration also enables progressive implementation — each surface element is independently buildable, and the agent's policy can grow over time as the surface stabilizes. Auto-looping is a meta-policy that bundles several surface elements together; other meta-policies will emerge.
+
+**Phasing:** TBD. The repertoire surface enumeration is V1 documentation work; agent policy implementation phases independently. Exercise and sight-reading surfaces are sketched in Phase 2.
+
+**Cross-references:** Decision #42 (auto-looping as one capability within the surface), Decision #43 (cross-mode performance constraints — also part of each mode's surface), Doc 09 §6 (AI Surface) — should reference this as the operational scope.
+
+---
+
+## Decision 47: User-Modeling Layer Recognized as Foundational Architectural Commitment
+
+**Source:** May 7, 2026 brainstorm (the "Steven MD file" / "Patrick MD file" framing) + Steven's redline elevating the user-modeling layer's strategic significance.
+
+**Decision made:** The per-user accumulating user-model — the architectural layer that observes, synthesizes, stores, and retrieves user-specific context across sessions — is recognized as a **foundational architectural commitment**, on par with the content/path-mode architecture (Decision #41) and the AI augmentation of MAGE (Decision #44). Specifically:
+
+- The user-modeling layer is named explicitly as a vision pillar in Doc 09 §1 — not buried as auxiliary infrastructure under the LLM/agentic-layer framing in §10
+- It is the load-bearing capability that distinguishes MuseFlow structurally from competitor piano-learning products (Simply Piano, Yousician, Skoove, Flowkey), all of which treat the user as roughly anonymous within content
+- It is the technical substrate that justifies the "AI company" framing in front of technically literate investors — without it, the framing reads as positioning; with it, it reads as a defensible architectural claim
+- Its implementation pattern is closer to "per-user RAG layer over conversation history, exercise/repertoire/sight-reading event data, and AI-extracted summaries" than to a single growing markdown file (the "Steven MD file" / "Patrick MD file" analogy is a user-facing metaphor, not implementation spec — see Doc 10 §3.9)
+
+**Reasoning:** The May 7 call surfaced this as a strategic claim, and Steven's redlines elevated its significance. Recognizing it as a numbered Decision (rather than only as a Doc 09 §1 vision-pillar update) makes the commitment load-bearing in the Decision Log, where downstream architectural decisions can reference it explicitly. It also signals to the team that the user-modeling layer is a first-class architectural concern, not an emergent property of LLM choices.
+
+**What this Decision does NOT do:**
+- It does not specify the implementation architecture in detail. The implementation pattern is sketched in Doc 09 §10.5 and Doc 10 §3.9; concrete schema and retrieval logic are out of scope for this Decision.
+- It does not assign team ownership. The LLM-layer vs user-modeling-layer ownership question remains open per Doc 10 §6 #13 — that is a team-organization question separate from this architectural commitment.
+- It does not commit pricing or unit-economics implications. Those flow downstream once the user-modeling layer's compute profile is concrete.
+
+**Phasing:** N/A — architectural framing, not a feature. The vision-pillar update in Doc 09 §1 is V1 documentation work. Implementation phasing is a downstream question once team ownership is resolved.
+
+**Cross-references:** Doc 09 §1 (vision pillar to add), §5.3 (persistence and reusability), §10.5 (RAG architecture sketch). Doc 10 §3.7 and §3.9 (substantive analysis and the metaphor-vs-implementation distinction). Decision #41 (the architecture this layer operates within). Doc 10 §6 #13 (open question on team ownership).
 
 ---

@@ -38,11 +38,11 @@ The three-flow pattern and four authorship origins apply identically across cont
 - **Repertoire** — free-choice performance of real music
 
 **Anticipated content modes** (evolution paths under design):
-- **Sight Reading** — currently bound to Curriculum; envisioned as a custom-level generator with full parameter control over difficulty, complexity metrics, musical parameters, and performance constraints, plus preset levels and AI-built custom levels
+- **Sight Reading** — currently bound to Curriculum; envisioned as a custom-level generator with full parameter control over difficulty, complexity metrics, musical parameters, performance constraints, and completion criteria. The four authorship origins apply: MuseFlow preset levels, user-constructed levels (the user-generated authorship origin within Sight Reading — see Decision #45), AI-built levels (e.g., for a Project), and community-shared levels (future). User-generated levels may carry "no completion criteria, just play endlessly" as one configurable option.
 
 **Candidate future content modes** (not committed):
 - **Theory** — pending evaluation of whether theory practice warrants its own mode or remains a substrate within Exercises (status TBD pending review of Patrick's Theory Library & Exercise Section design document)
-- **Free Play** — pending further design exploration; whether free play belongs as a content mode, a path-construction primitive, or its own non-mode category is open
+- **Free Play** — refers to user improvisation without notation guidance — open-ended musical exploration. Status: deferred indefinitely. Whether Free Play belongs as a content mode, a path-construction primitive, or its own non-mode category is open. Note: this is distinct from user-generated sight-reading levels with no completion criteria, which live in the Sight Reading content mode (Decision #45). Free Play's deferral is independent of, and unaffected by, Decision #45's resolution of the user-generated sight-reading question.
 
 #### 2.1.2 Path Modes
 

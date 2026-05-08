@@ -146,6 +146,9 @@ The accuracy threshold required for exercise completion. Strict error tolerance 
 ### External Conditions
 Environmental and physiological factors that affect performance: time of day, session duration, break frequency, fatigue level, recent practice history. These are inputs to the adaptive difficulty system and to AI-generated warmup ritual design.
 
+### Cross-Mode Performance Constraints
+Performance constraints (time-based pass conditions, accuracy thresholds, memory-chain length, error tolerance, etc.) treated as a primitive that applies across content modes — not exclusive to exercises. Any "completable" engagement (exercise atom session, sight-reading level attempt, repertoire practice session) carries performance constraints that determine pass conditions and shape the practice experience. Exercise atoms already carry them (Architecture Doc §5); sight-reading levels gain a parallel schema entry; repertoire practice sessions may carry them (e.g., "play this passage at 80% accuracy or higher for 5 minutes to clear"). Provides the agentic system a unified vocabulary for prescribing practice intensity. See Decision #43.
+
 ---
 
 ## Exercise Architecture
@@ -281,6 +284,9 @@ The provenance of a piece of content (or a path). Four values are anticipated: *
 ### Browse-by-Origin
 A primary filter axis available in both content-mode browsing and path-mode browsing experiences. Allows users to view all content/paths together or filter to a specific authorship origin. Supports AI-averse users explicitly: a user who never wants to see AI-generated content can filter it out. See Decision #41.
 
+### Interactive Tutorial
+A current canonical content class in MuseFlow. Each tutorial is an animated video with embedded live-action hand clips and Phaser-JS interactive exercises gated mid-flow — concept introduction → guided exercise → continuation. Each Sight Reading curriculum level is preceded by one. Architectural placement within the content/path-mode framing is open: candidate placements include its own content mode, a path-mode primitive embedded in Curriculum (matches current state), a roadmap node type prescribable by the agent, or a hybrid. Production is currently human-bottlenecked (live-action hand clips are the slowest step); AI-generation is hard, expensive, and deferred. The architectural placement question clusters with the broader open question of what content classes exist beyond the core three (Exercise, Repertoire, Sight Reading), alongside Theory, Free Play (original sense), and Video Library. See Doc 10 §4.3, §6 #15–#16.
+
 ---
 
 ## Agentic System (Projects, Goals, Paths)
@@ -308,6 +314,18 @@ An exercise atom that is not part of MuseFlow's preset catalog. May be authored 
 
 ### Engagement Layer
 A cross-cutting layer (orthogonal to the three flows) that reads from Project goals, free-exploration patterns, and aggregate skill-progression data, surfacing re-engagement signals and proactive nudges. Andrew Urbanowicz's proposed proactive notification system is the leading anticipated implementation. Specific design TBD. See Decision #19 (amended), Decision #41.
+
+### User-Modeling Layer
+The architectural layer that observes, synthesizes, stores, and retrieves user-specific context across sessions. The per-user accumulating user-model is the load-bearing capability that distinguishes MuseFlow structurally from competitor piano-learning products (Simply Piano, Yousician, Skoove, Flowkey), all of which treat the user as roughly anonymous within content. Implementation pattern is closer to a per-user RAG layer over conversation history, exercise/repertoire/sight-reading event data, and AI-extracted summaries than to a single growing markdown file (the "Steven MD file" / "Patrick MD file" framing from the May 7 brainstorm is a user-facing metaphor, not implementation spec). Recognized as a foundational architectural commitment per Decision #47. Distinct from the LLM/agentic-orchestration layer; the two are separable engineering investments. Team ownership is open. See Decision #47, Doc 09 §5.3, §10.5.
+
+### Agent Control Surface
+The enumerable set of practice tools, settings, and behaviors the agentic system can manipulate during a session within a given content mode. Each content mode has its own surface. The repertoire surface is enumerated in Decision #46: song position, tempo controls, metronome settings, hand assignment, accuracy controls, audio playback, looping controls, cursor toggle, note names / finger numbers. The exercise surface (training method selection, performance constraints, content scope, blueprint configuration) and sight-reading surface (parameter generation, level construction, game-mode toggles, performance constraints) are sketched. The agent's per-content-mode job is a *policy* over its surface — given Project goal, performance data, and user preferences, decide which surface elements to engage and how to set them. Specific algorithmic patterns (such as auto-looping) bundle several surface elements together. See Decision #46.
+
+### Auto-Looping Algorithm / Perfect-Practice Tree
+A first-class algorithmic capability for repertoire practice. Reads the green-note JSON history, identifies the first section with two-or-three-notes-in-a-row errors, dynamically determines loop boundaries (one or two measures before/after the errored section), perfects that section, auto-progresses to the next errored section, and combines perfected sections in a tree structure (small section → small section → combined → next pair → combined → larger combination, recursively). Largely algorithmic; the LLM acts as voice/text "sugar on top" and may override the algorithm for "break the rules" cases (e.g., the actual issue is the previous measure, not the errored one). One capability within the broader repertoire control surface (Agent Control Surface) — not a standalone primitive. Distinct from Optimal Grip (session-level adaptive difficulty operating at a different level) and Game Mode (sight-reading-specific pass-condition mechanics). The load-bearing capability for the engineering-critical step 4 of the integrated investor demo. See Decision #42.
+
+### Diagnostic Agent / Auto-Engaged Plan Mode
+The agentic system's behavior of firing follow-up questions until enough context exists to construct a roadmap, when goal-articulation signals are present from the user. The team's framing references Claude Code's auto-engagement of plan mode when a goal is detected. The behavior the team wants is clear; the implementation pattern is open. Two candidate implementations have very different cost / control / failure-mode profiles: **prompt-level** (the system prompt has a "diagnostic" section that activates when the model classifies the user's message as goal-articulation — cheap, flexible, depends on LLM zero-shot classification reliability) and **application-level** (explicit modes between which the user or system navigates, gating available actions/tools — more deterministic, requires explicit UI affordances). Used as a behavioral spec, not an implementation specification. See Doc 09 §4.3, Doc 10 §3.6.
 
 ---
 
