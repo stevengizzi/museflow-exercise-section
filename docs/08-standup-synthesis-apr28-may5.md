@@ -52,8 +52,8 @@ And Steven's investor-deck-ready line:
 
 ### Status vs. existing documentation
 
-- **Decision #29 (Agentic Vision)** in `05_Design_Decisions_Log.md` documented this as a future architectural consideration.
-- **Section 8 of `07_UX_Navigation_Spec.md`** ("Future Vision: Agentic Exercise System") laid out the architectural implications — atoms as the right granularity for an agent to prescribe, the hierarchy as agent-navigable, custom atom creation as a generative architecture upside.
+- **Decision #29 (Agentic Vision)** in `05-design-decisions-log.md` documented this as a future architectural consideration.
+- **Section 8 of `07-ux-navigation-spec.md`** ("Future Vision: Agentic Exercise System") laid out the architectural implications — atoms as the right granularity for an agent to prescribe, the hierarchy as agent-navigable, custom atom creation as a generative architecture upside.
 
 These documents anticipated this turn correctly. **What's new is the timeline**: this is now an active R&D track and investor demo target, not a V3+ consideration.
 
@@ -98,7 +98,7 @@ Steven's position (April 28), unchanged:
 
 > "Complexity in the exercise section may be a V2 feature, essentially because complexity is not a feature anywhere else in the app yet. So we probably need to make sure that there's the capacity for it, but if we build it into V1 it just wouldn't serve much of a function yet."
 
-This **confirms** the existing phasing in `05_Design_Decisions_Log.md` Decision #17 (V1 = filter/browse, V2 = adaptive difficulty / Optimal Grip / ELO).
+This **confirms** the existing phasing in `05-design-decisions-log.md` Decision #17 (V1 = filter/browse, V2 = adaptive difficulty / Optimal Grip / ELO).
 
 The team agreed: schema must accommodate complexity, but V1 ships without it.
 
@@ -150,7 +150,7 @@ In the May 5 meeting, Patrick referred to "Opus Modus" when he meant Mage. Steve
 
 > "Opus Modus is purely just an engine. It does nothing other than what it's told to do. Mage is the codebase where all the logic is that decides what to do, and then Opus Modus just prints it. That's all."
 
-**This is the second time this confusion has come up.** Recommend reinforcing the distinction in `04_Glossary.md` and possibly in the Project Bible — the team is conflating these terms in design conversations and it's slowing things down.
+**This is the second time this confusion has come up.** Recommend reinforcing the distinction in `04-glossary.md` and possibly in the Project Bible — the team is conflating these terms in design conversations and it's slowing things down.
 
 ### LLM technical thinking (Staley)
 
@@ -483,17 +483,17 @@ Items in this synthesis that connect directly to existing project documentation:
 
 | Item | Existing Reference |
 |---|---|
-| Agentic vision | `05_Design_Decisions_Log.md` Decision #29; `07_UX_Navigation_Spec.md` §8 |
-| Cross-section complexity language | Decision #18; `02_System_Architecture.md` |
+| Agentic vision | `05-design-decisions-log.md` Decision #29; `07-ux-navigation-spec.md` §8 |
+| Cross-section complexity language | Decision #18; `02-system-architecture.md` |
 | V1/V2/V3 phasing (V2 = complexity in exercise section) | Decision #17 |
 | Exercises + Repertoire as universal pillars | Decision #16 |
 | Exercise Result schema | Decision #19 |
 | GMTF as existing complexity system | Decision #23 |
-| Atom-as-prescribable-unit, hierarchy, custom atom creation | `07_UX_Navigation_Spec.md` §2, §8 |
-| Mage / Opus Modus terminology | `04_Glossary.md` (worth reinforcing) |
-| Asif as implementer | `00_Handoff_Brief.md` §5 |
-| Mobile parity per blueprint / atom | Open question in `07_UX_Navigation_Spec.md` §9 |
-| Teacher tools and assignment flows | Open future item in `00_Handoff_Brief.md` §4 |
+| Atom-as-prescribable-unit, hierarchy, custom atom creation | `07-ux-navigation-spec.md` §2, §8 |
+| Mage / Opus Modus terminology | `04-glossary.md` (worth reinforcing) |
+| Asif as implementer | `00-handoff-brief.md` §5 |
+| Mobile parity per blueprint / atom | Open question in `07-ux-navigation-spec.md` §9 |
+| Teacher tools and assignment flows | Open future item in `00-handoff-brief.md` §4 |
 | Pricing gating | Not currently in any document (new gap) |
 
 ---

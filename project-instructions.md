@@ -48,16 +48,16 @@ A note on the metarepo: its protocols are largely engineering-sprint-shaped. Thi
 
 | Doc | Purpose |
 |---|---|
-| `00_Handoff_Brief.md` | Pre-A1 handoff. Mostly historical now; still in canon for backstory. |
-| `01_Project_Bible.md` | Vision, content/path mode architecture, foundational frameworks (PTA Loop, FTA Field), design principles |
-| `02_System_Architecture.md` | Substrate catalog, training methods, performance constraints, atom schema |
-| `03_Exercise_Taxonomy.md` | Combinatorial exercise matrix, pruning rules, competitive audit |
-| `04_Glossary.md` | Vocabulary canon |
-| `05_Design_Decisions_Log.md` | Numbered decisions; consult before acting on anything that may be settled |
-| `06_Exercise_Blueprints.md` | 13 UI/interaction templates |
-| `07_UX_Navigation_Spec.md` | Atom hierarchy, navigation model, configuration, agentic-system reframe (§8), open questions register (§9) |
-| `08_Standup_Synthesis_Apr28_May5.md` | Synthesis of two May 2026 team meetings |
-| `09_Agentic_MuseFlow_Vision.md` | Freestanding agentic-system vision document |
+| `00-handoff-brief.md` | Pre-A1 handoff. Mostly historical now; still in canon for backstory. |
+| `01-project-bible.md` | Vision, content/path mode architecture, foundational frameworks (PTA Loop, FTA Field), design principles |
+| `02-system-architecture.md` | Substrate catalog, training methods, performance constraints, atom schema |
+| `03-exercise-taxonomy.md` | Combinatorial exercise matrix, pruning rules, competitive audit |
+| `04-glossary.md` | Vocabulary canon |
+| `05-design-decisions-log.md` | Numbered decisions; consult before acting on anything that may be settled |
+| `06-exercise-blueprints.md` | 13 UI/interaction templates |
+| `07-ux-navigation-spec.md` | Atom hierarchy, navigation model, configuration, agentic-system reframe (§8), open questions register (§9) |
+| `08-standup-synthesis-apr28-may5.md` | Synthesis of two May 2026 team meetings |
+| `09-agentic-museflow-vision.md` | Freestanding agentic-system vision document |
 
 **For most questions, search project knowledge first** (`project_knowledge_search`) or clone the repo. The canon is the authoritative source. Web search and other tools are secondary.
 
@@ -82,7 +82,7 @@ Long Tracks split into Phases. Steven approves at phase boundaries; deliverables
 
 ### Decision Log discipline
 
-Every architecturally consequential decision goes in `05_Design_Decisions_Log.md` with a number. Conventions:
+Every architecturally consequential decision goes in `05-design-decisions-log.md` with a number. Conventions:
 - New decisions append at the highest number
 - Existing decisions are amended (not replaced) when refined; amendments are dated and labeled
 - Consult the relevant entry before re-deriving or re-deciding
@@ -161,7 +161,7 @@ The GitHub repo is the canonical source of truth. Steven commits manually after 
 
 The workflow metarepo (`stevengizzi/claude-workflow`) includes a `document-seeding.md` protocol that prescribes a specific 8-document canon (`project-knowledge.md`, `decision-log.md`, `dec-index.md`, `risk-register.md`, `architecture.md`, `roadmap.md`, `sprint-history.md`, `CLAUDE.md`). That canon is shaped for engineering-sprint workflows.
 
-This project's canon (10 numbered docs from `00_Handoff_Brief.md` through `09_Agentic_MuseFlow_Vision.md`) is different and was built for design-first work. **The metarepo's canon does not apply to this project as a wholesale prescription.** Its disciplines (numbered decisions, explicit risk surfacing, sprint history) are useful in spirit and partially adopted (e.g., the numbered Decision Log).
+This project's canon (10 numbered docs from `00-handoff-brief.md` through `09-agentic-museflow-vision.md`) is different and was built for design-first work. **The metarepo's canon does not apply to this project as a wholesale prescription.** Its disciplines (numbered decisions, explicit risk surfacing, sprint history) are useful in spirit and partially adopted (e.g., the numbered Decision Log).
 
 If we move into pure sprint-cycle implementation in the future, adding metarepo-shaped artifacts (especially `CLAUDE.md` for Claude Code, possibly `project-knowledge.md` as a synthesis layer) would be reasonable. Until then, the existing canon remains canonical.
 
