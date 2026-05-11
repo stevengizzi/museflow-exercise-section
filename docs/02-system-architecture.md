@@ -227,6 +227,8 @@ A user might start with Recognition (multiple choice) for a new substrate, advan
 
 Performance constraints model the technical limitations and capabilities of the user's cognitive system. They are the parameters that make the same exercise easier or harder without changing the musical content.
 
+**Cross-mode scope (Decision #43).** Although this section catalogs performance constraints in their exercise-section formulation (their original home), the constraints generalize to a **cross-content-mode primitive**. Sight-reading levels carry performance constraints (accuracy thresholds, time pressure, completion criteria — including the user-configurable "no completion criteria" option per Decision #45); repertoire practice sessions can carry them (e.g., success threshold, tempo target, takes-required); any "completable" engagement with content has performance constraints that determine pass conditions. The Tech Spec model below is the canonical catalog; specific mappings to non-exercise modes are sketched in Doc 09 §6A (Agent Control Surfaces per Content Mode). The exercise-section formulation here is the most developed; sight-reading and repertoire formulations will follow as those modes' design progresses. See also Bible §2.3 and §6.3 for the framing-level treatment.
+
 ### 5.2 Constraint Definitions and Exercise Parameters
 
 | Tech Spec Concept | Exercise Parameter(s) | What It Measures |

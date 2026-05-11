@@ -519,7 +519,7 @@ The following questions are unresolved and should be addressed in subsequent des
 24. **Project flow entry points**: A top-level Projects dashboard, an entry point inside each content mode, both, or some other configuration? Lean is "both."
 25. **Generation-on-demand UX**: User-triggered, teacher-triggered, and agent-triggered generation are likely distinct flows. Specific UX is unspecified.
 26. **Custom atom authoring UI**: how does the editor → atom flow work? Where do custom atoms live (private library, shareable, gradeable)? How are user-authored atoms validated for pedagogical coherence?
-27. **MAGE's long-term role**: Open architectural question — augmentation (Steven's working position) vs. training-data scaffolding-then-replacement (Staley's framing). See Decision #39.
+27. **MAGE's long-term role**: *Resolving toward augmentation per Decision #44.* The May 7, 2026 Emergent Curriculum brainstorm produced directional alignment across Steven, Patrick, and Staley toward the augmentation framing — MAGE persists as a permanent algorithmic generation engine, with the AI adjusting MAGE's music-XML output. Full closure of Decision #39's open status awaits Staley's explicit retirement of the training-data-then-replacement framing. See Doc 09 §10.3.
 
 ### Teacher Tools (added May 2026)
 28. **Teacher → student data visibility**: Teachers should see student progress per atom / molecule / strand / cluster. Specific UX (per-student dashboard, class roster view, etc.) is unspecified.
@@ -529,3 +529,15 @@ The following questions are unresolved and should be addressed in subsequent des
 ### Cross-cutting (added May 2026)
 31. **Lit-Keys Mode applicability**: Which atoms and blueprints support Lit-Keys assistance? Default values per blueprint are unspecified. See Decision #38.
 32. **Completion handicap behavior**: When the user invokes any non-default assistance, the session is flagged as assisted. How does this affect display (asterisk, visual flag, separate "assisted-clear" state) and downstream computation (does an assisted clear count toward molecule completion)? Open.
+33. **Cross-mode performance-constraints UI**: Per Decision #43, performance constraints are a cross-content-mode primitive (exercises, sight reading, repertoire). The UI vocabulary should be consistent enough that a user recognizes a constraint they've configured in one mode when they encounter it in another, but specific enough to each mode that the affordances make sense locally. The shared-vs-mode-specific UX pattern is open. See Bible §6.3, Architecture Doc §5.1, Doc 09 §6A.
+
+### Agentic UX & Onboarding (added May 2026 — post-May-7 brainstorm)
+34. **Voice/text default modality for AI feedback**: Voice vs. text vs. both, configurable per user, configurable per content mode? Steven OK with text-first per Doc 09 §6.5. Default behavior in V1 of voice-feedback capability is undefined.
+35. **Vertical roadmap visualization details**: Working direction is vertical tree with branching (Doc 09 §7.2). Specific rendering details remain open: pan/zoom across long roadmaps, mobile rendering, progress indicators, node-state visualization.
+36. **Onboarding path-split logic**: Multiple onboarding paths exist (Projects-first per Staley's May 7 framing; exploration-first; possibly others). How does the system decide which path to surface to which user? Chooser, default rule, declared user type at signup, or some combination? See Doc 09 §12.2 item 5.
+37. **Token-based pricing surfacing**: Do users see token meters directly (Staley: "we could even surface tokens directly")? Or opaque "AI generations remaining"? Different UX implications. See Doc 09 §13.9 #46, Doc 09 §16.
+38. **Game Mode / Free Play toggle collapse**: Current Sight Reading curriculum levels have Game Mode and Free Play toggles (existing app functionality). As the new content/path mode architecture is implemented, these may subsume into other functionality (e.g., performance constraints per #33 above, user-generated mode per Decision #45). UX consolidation pattern open. Distinct from Free Play original-sense status (deferred per Decision #41).
+
+### Content Class Placement (added May 2026 — post-May-7 brainstorm)
+39. **Interactive Tutorial UX placement**: Per Doc 09 §13.11 #52. Interactive Tutorials are existing canonical content (animated video + live-action hand clips + Phaser-JS exercises gated mid-flow), but their architectural placement is open. The UX question: where do tutorials live in navigation? Inside Curriculum only (current state)? Browsable as their own content surface? Surfaced as roadmap nodes within Projects (per Doc 09 §5.2 candidate node type)? Hybrid? Clusters with #40.
+40. **Tutorial-as-roadmap-node UX**: If Interactive Tutorials become a roadmap-node type, how is the node rendered, how is mid-tutorial state persisted across sessions, and how do completion criteria interact with surrounding nodes? Sub-question of #39. See Doc 09 §13.11 #55.

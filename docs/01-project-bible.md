@@ -102,6 +102,8 @@ This design ensures that getting any individual mode right has outsized leverage
 
 All modes — content and path — must share a **common complexity language** (see Architecture Doc §9) so that skills trained or content engaged with in one mode can be recognized, measured, and connected in the others. This complexity language is what allows a Project's AI to assess current skill state from Exercise mastery data and prescribe Repertoire targets at appropriate difficulty, what allows Curriculum to draw from a shared progression vocabulary, and what eventually enables cross-section recommendations.
 
+A second cross-cutting primitive runs through the content modes: **performance constraints** (Decision #43). What §6.3 describes for the Exercise Section — that performance constraints are not just difficulty levers but replayability multipliers, with the same content yielding meaningfully distinct experiences as different constraints tighten — generalizes. Sight-reading levels carry performance constraints (accuracy thresholds, time pressure, completion criteria); repertoire practice sessions can carry them (e.g., "play this passage at 80% accuracy or higher for 5 minutes to clear"); any "completable" engagement with content has constraints that determine pass conditions. Treating performance constraints as a cross-content-mode primitive — rather than an exercise-section-internal concept — avoids reinventing similar mechanics per mode and gives the agentic system a unified vocabulary for prescribing practice intensity across modes. See §6.3 for the Exercise Section treatment, Architecture Doc §5 for the constraint catalog, and Doc 09 §6A for the agent's per-mode control surfaces.
+
 ---
 
 ## 3. Foundational Frameworks
@@ -290,6 +292,12 @@ Performance constraints are not just difficulty levers — they are **replayabil
 - **Delay stress**: "Recall the chord quality you heard" becomes "recall the chord quality you heard 30 seconds ago while completing other tasks in between."
 
 This means a single exercise definition can yield dozens of distinct, meaningfully different practice experiences. The exercise system gets enormous mileage from a relatively compact catalog because constraint variation is orthogonal to content variation.
+
+**The principle generalizes beyond exercises (Decision #43).** Per §2.3, performance constraints are a cross-content-mode primitive. The same replayability dynamic applies in other modes:
+- **Sight reading**: the same parameterized level (notes, rhythms, time signature) becomes a different challenge under different accuracy thresholds, time pressure, or completion criteria — including the configurable "no completion criteria, just play endlessly" option per Decision #45.
+- **Repertoire**: the same piece, with the same arrangement, becomes a different practice experience under different success thresholds (95% vs 85%), tempo targets, looping policies, or hand-isolation constraints — the broader repertoire control surface per Doc 09 §6A.1.
+
+In each case, content-and-constraint orthogonality is the architectural lever: the catalog scales by constraint variation, not just by content volume. The agentic system inherits this lever — prescribing constraint tightness is one of its operational levers per content mode (Doc 09 §6A).
 
 ---
 
