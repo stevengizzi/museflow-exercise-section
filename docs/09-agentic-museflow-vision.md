@@ -20,7 +20,21 @@ This goal-bound, AI-mediated layer is called **Projects**. The name is borrowed 
 
 Projects are not a wrapper that subsumes the rest of MuseFlow. They are a **first-class path mode** that sits alongside the existing Curriculum and a forthcoming "User Paths" feature that lets users author their own custom progressions without AI involvement. All three path modes are sibling experiences in the UI. The design explicitly respects users who do not want AI involvement and ensures they can engage fully with content and paths through MuseFlow without ever invoking the agentic surface.
 
-### 1.2 The Pitch Lines
+### 1.2 The User-Modeling Layer
+
+The strategic claim above is load-bearing only if the system can actually build a personalized journey for *this* user — which means the system needs to know who *this* user is, deeply, accumulating across sessions. **The per-user accumulating user-model is the technical capability that makes Projects work,** and it is recognized as a foundational architectural commitment (Decision #47), on par with the content/path-mode architecture (Decision #41) and the AI augmentation of MAGE (Decision #44).
+
+**What it is.** The user-modeling layer is the architectural layer that observes, synthesizes, stores, and retrieves user-specific context across sessions: skill state, practice history, preferences, prior goals, prior generated content, conversational history, audio/MIDI performance signals, and AI-extracted summaries derived from all of the above. The agentic system reads from this layer to construct roadmaps, prescribe next steps, generate custom content tailored to the user, and conduct conversations that remember what was said before.
+
+**What it is not.** It is not a single growing markdown file, despite team-internal framings like "Steven MD file" / "Patrick MD file" that surfaced in the May 7 brainstorm. Those framings are user-facing metaphors; the actual implementation pattern is closer to a per-user RAG layer over conversation history, structured event data from exercise/repertoire/sight-reading sessions, and curated AI-extracted summaries — with retrieval, summarization, and drift-correction logic that a single growing file does not provide. See §10.5 for the implementation sketch and §10.7 for the metaphor-vs-implementation distinction.
+
+**Why it matters strategically.** Every other piano-learning product (Simply Piano, Yousician, Skoove, Flowkey) treats the user as roughly anonymous within content — the content is the product; the user consumes it. MuseFlow's per-user accumulating model is structurally different. It compounds over time. A user's MuseFlow account becomes more valuable to them the longer they use it, in a way competitors cannot easily replicate without the same architectural commitment from day one. This is the same dynamic that makes ChatGPT memory a stickiness lever, applied to a domain (skill development) where the per-user data is genuinely unique and pedagogically rich. It is not a feature comparison; it is a positional difference in what the product fundamentally *is*.
+
+**Why it matters for "MuseFlow as AI company."** Two distinct interpretations of that framing exist, and they imply different team focuses. **LLM-layer expertise** — prompt design, model selection, inference cost optimization, fine-tuning — is the competitive edge under one reading. **User-modeling-layer expertise** — the data structures, retrieval logic, and synthesis pipelines that turn MuseFlow's playing/practice data into actionable agent decisions — is the competitive edge under the other. Both are defensible and they can coexist, but they are substantively different engineering investments. The implicit assumption that they are the same job will create gaps; team ownership of the user-modeling layer is a separate question from LLM-layer ownership and is currently open. See Doc 10 §6 #13 (open question on team ownership) and §13 of this document (where the question lands when Session 3 lands the open-question update).
+
+**Cross-references.** §5.3 (persistence and reusability of generated content — the user-model's content-side substrate). §10.5 (the LLM and RAG architecture — the user-model's compute-side substrate). §10.7 (metaphor vs implementation discipline). Doc 10 §6 #13 (team-ownership question).
+
+### 1.3 The Pitch Lines
 
 Two lines that have crystallized in team conversations capture the essence of what MuseFlow is building:
 
@@ -32,7 +46,7 @@ This line operates on two levels. The surface reading is positional: in an AI-ec
 
 This is the customer-facing version of the value proposition: the friction of "what do I practice today?" disappears, replaced by a system that has answered that question for you given your stated goals.
 
-### 1.3 Why Now
+### 1.4 Why Now
 
 The shift to AI-native consumer products has created an opening for music-learning experiences that previous generations of edtech could not deliver. Existing music-learning products (Simply Piano, Yousician, Skoove, etc.) are largely fixed-curriculum experiences with limited adaptation; existing music theory and ear-training tools (Tenuto, Musictheory.net, 4four, Beato Ear Training) are largely fixed-catalog drilling apps. None of them stitch together exercises, repertoire, sight reading, and goal-bound progression in a way that meets the user where they are, with content custom-built for their specific objectives.
 
@@ -42,7 +56,7 @@ MuseFlow is positioned to deliver this for three reasons:
 2. **The exercise framework is generative-first.** The MuseFlow Exercise Section is being designed from first principles as a combinatorial system (Project Bible §2; UX Spec §2): exercise atoms emerge from compositions of substrates, modalities, target variables, and content scopes. This means generation on demand is a natural extension of the existing architecture, not a parallel feature — the agentic system can inherit the exercise framework directly.
 3. **The team composition is unique.** Two engineers (one a classically trained pianist), one music educator and performer, one engineer who is also a pianist, plus product, marketing, and content perspectives. Per Patrick: "Nobody else can do what we're doing right now... and what we decide to build is inherently going to be very unique because we have an incredible amount of skill across the four of us."
 
-### 1.4 What This Document Is and Is Not
+### 1.5 What This Document Is and Is Not
 
 **This document is** an articulation of MuseFlow's current thinking about the agentic layer, written to be useful for team alignment, investor conversations, and seeding follow-on design work.
 
@@ -211,19 +225,23 @@ Several node types are anticipated. This list is not exhaustive — it represent
 
 **Content reference nodes**:
 - **Exercise atom node** — points at a specific atom (from the system catalog or AI-generated)
-- **Repertoire node** — points at a specific piece (preset, user-uploaded, or AI-arranged simplification)
-- **Sight-reading node** — points at a sight-reading target (preset level or AI-generated custom level)
+- **Repertoire node** — points at a specific piece (preset, user-uploaded, or AI-arranged simplification). When the agent prescribes a repertoire node, it can also prescribe a *practice mode* — the orchestration policy the agent applies during the session. The auto-looping / perfect-practice tree algorithm (Decision #42) is one such practice mode: identify problem sections from green-note history, set up looping with specific start/end and takes-required, optionally adjust tempo and accuracy threshold. Other practice modes will emerge as the broader repertoire control surface (Decision #46; see §6A) is built out.
+- **Sight-reading node** — points at a sight-reading target (preset level, user-generated custom level per Decision #45, or AI-generated custom level)
 
 **Structural nodes**:
 - **Milestone marker** — a non-executable node that represents an achievement or checkpoint ("you've completed the foundation phase")
 - **Conditional gate** — a node whose advancement depends on demonstrating mastery of preceding nodes ("clear molecule X at REC level before advancing")
-- **Free-play interlude** — [Speculative] a node that prompts unstructured play between drill blocks; status as a content mode vs. roadmap primitive vs. neither is open (see Bible §2.1.1, Decisions #40 deferred indefinitely)
+- **Free-play interlude** — [Speculative] a node that prompts unstructured play between drill blocks; status as a content mode vs. roadmap primitive vs. neither is open. Free Play (original sense — improvisation without notation guidance) is deferred indefinitely per Decision #41's candidate-content-modes list. See Bible §2.1.1.
 
 **Adaptation nodes**:
 - **Reassessment node** — a moment where the agent re-evaluates the user's state and may modify the remaining roadmap
 - **Branch point** — a node where the user chooses between alternative paths (rare, but useful when goals admit multiple valid sequences)
 
-The set of node types is open. New types should be added as they're discovered to be needed.
+**Candidate node types (deferred / placement open)**:
+- **Tutorial node** — points at an Interactive Tutorial (animated video + live-action hand clips + Phaser-JS exercises gated mid-flow; see Glossary). Each Sight Reading curriculum level is preceded by one in current canon. Whether tutorials should be prescribable as roadmap nodes by the agent — vs. living only inside Curriculum, vs. having their own content mode — is open. Per Staley's framing in the May 7 brainstorm: "those would actually fit very well into these custom generated paths or road maps or like plans, but like as single nodes that are just like, okay, here's like a concept that this person needs to know." See Doc 10 §4.3, §6 #15–#16.
+- **Video node** — points at a video-only resource (no interactive component). Surfaced as a candidate during the May 7 brainstorm; placement open and clusters with the broader open question of what content classes exist beyond the core three (Exercise, Repertoire, Sight Reading). See Doc 10 §6 #11, §6 #15.
+
+The set of node types is open. New types should be added as they're discovered to be needed. The architectural placement of Tutorial and Video nodes — whether they are roadmap primitives, members of a separate content class, or both — clusters with the broader content-classes-beyond-the-core-three question and is tracked as an open architectural cluster in §13.
 
 ### 5.3 Persistence and Reusability of Generated Content
 
@@ -269,12 +287,18 @@ The mechanics of adaptation — how often the agent re-evaluates, how much it ca
 
 The AI surface is the conversational layer where the user interacts with the agentic system. Anticipated functions:
 
-- **Goal articulation and refinement** — taking the user's stated goal and clarifying it
+- **Goal articulation and refinement** — taking the user's stated goal and clarifying it. When goal-articulation signals are present, the agent operates in a "diagnostic" or "auto-engaged plan" mode (a behavioral analogy borrowed from Claude Code's plan mode): it fires follow-up questions until enough context exists to construct a roadmap. The behavior is clear; the implementation pattern (prompt-level vs application-level) is open and the analogy works at the behavior level only — see §10.7. Cross-reference §4.3.
 - **Roadmap construction** — building the initial plan
 - **Roadmap review** — explaining why specific nodes are in the plan and how they serve the goal
 - **Roadmap adjustment** — accommodating user requests ("I don't want to spend so much time on theory" / "Can we add more sight-reading?" / "I'm tired of this piece, can we work on something else?")
 - **Status reporting** — answering questions about progress, projecting time-to-goal, surfacing recent achievements
 - **Custom content commands** — letting the user explicitly request a generated exercise, simplified piece, or custom sight-reading level outside the roadmap context
+- **Real-time interruptive cues during practice** — short instructions while the user is playing ("slow down," "louder," "breathe"). Highest UX risk; voice-only or lightweight visual.
+- **Notification + spoken/text prompt** — chime followed by spoken or text cue tied to existing notification messages (auto-tempo, flexible metronome). Patrick's framing from the May 7 brainstorm.
+- **End-of-round feedback with action proposal** — between attempts: "here's what I noticed; here's what I'd recommend; I'm setting up the loop for you right now." Closely paired with the agent's manipulation of the practice control surface (§6A).
+- **Conversational dialogue** — Socratic / tutor-mode persona for understanding theory and concepts: "you can just ask every stupid ass question you want and it will keep talking to you until you actually get it." (Steven, May 7.)
+
+The functions above describe *what* the agent does at the conversational layer. The mechanical actions the agent takes during a practice session — what tools it manipulates, what settings it changes — are described in §6A (Agent Control Surfaces per Content Mode). The two are tightly coupled: voice and text feedback are typically firing *about* surface manipulations the agent is performing in parallel.
 
 ### 6.2 Levels of Agency
 
@@ -304,6 +328,78 @@ It is essential that the AI surface feel **optional**, not central. Users who do
 - **AI-averse users** may never use Projects and want a product that respects that
 
 All three are first-class. See §12.
+
+### 6.5 Modality and Phasing
+
+The AI surface can present in two modalities — **text** and **voice/audio** — with distinct phasing implications.
+
+**Text-first.** V1 of the AI surface ships text. Steven's framing from the May 7 brainstorm: "I'm okay starting with text, especially like I understand the tricky part about that if it's trying to tell you things literally while you're playing, but if we're talking about this feedback in between plays, like I'm okay starting with text." Text is cheaper to build, easier to render reliably, and avoids the latency and reliability problems of real-time voice.
+
+**Voice/audio later.** The four voice-feedback patterns enumerated in §6.1 (real-time interruptive cues, notification+spoken prompt, end-of-round feedback, conversational dialogue) constitute a parallel modality with phasing TBD. Per Staley's framing on May 7, voice-LLM latency is the central technical hurdle: "the technical hurdle is literally just figuring out how to get the voice LLM thing going... and after that, the hard part is the automatic looping." Once voice infrastructure is reliable, the four patterns can ship incrementally — the conversational and end-of-round patterns being easier and lower-risk than real-time interruptive cues during play.
+
+**Parallel-track framing across content modes.** The AI session-management capability (AI-generated content + AI-driven session orchestration + voice/text feedback) is **not** repertoire-only. It is a parallel mechanic for both repertoire AND exercises, and arguably faster to build for exercises (smaller content space, simpler completion criteria, less performance variability) than for repertoire. Repertoire's lead is incidental — driven by the substrate that exists in the app today (audio recognition, MAGE, looping infrastructure) — not architectural. The two tracks should be built in parallel rather than strictly sequenced. Sight reading is a third surface where the same mechanic applies. See §6A for the per-content-mode control surfaces the agent operates over.
+
+**Phasing summary:** text in V1, voice in V2+. Repertoire and exercise AI session management built in parallel rather than sequenced, with sight reading following. Specific UX details (when each pattern fires, how the user toggles, per-content-mode default modality) are open.
+
+---
+
+## 6A. Agent Control Surfaces per Content Mode
+
+The AI surface (§6) describes *what the user perceives* — the conversational and feedback layer. The control surface described here is the orthogonal question: *what mechanical actions can the agent take* during a session within a given content mode? The agentic system's per-content-mode job is a **policy over its control surface** — given the Project goal, the user's performance data, and user preferences, the agent decides which surface elements to engage and how to set them. Specific algorithmic patterns (such as auto-looping, Decision #42) bundle several surface elements together into recognizable practice modes.
+
+This section enumerates the repertoire surface and sketches the surfaces for exercises and sight reading. The repertoire surface is defined in detail because the team has the most concrete picture of it (May 7 brainstorm, Decision #46, Patrick's PRD); the others are sketched and will be elaborated as design progresses.
+
+### 6A.1 The Repertoire Control Surface
+
+Per Decision #46, the agent-controllable repertoire practice control surface consists of the following tools:
+
+- **Song position** — where exactly to place the user in the song to start the next take
+- **Tempo controls** — when to speed up or slow down, and by how much
+- **Metronome settings** — on/off; accent vs unaccented downbeats; flexible vs fixed count-in (whether the metronome buffers vs counts exact beats)
+- **Hand assignment** — which hand(s) to play at any given time
+- **Accuracy controls** — track or not; which hand(s) to track for; show real-time color feedback or not (red/yellow/green for wrong-pitch / right-pitch-wrong-timing / correct); preserve note-color feedback across takes or reset; success threshold (e.g., 95% / 85%)
+- **Audio playback** — silent / dueting (app plays alongside user) / app-only / no MIDI
+- **Looping controls** — start/end points; seamless back-to-back vs paused between takes; takes-required threshold; tempo adaptation per take
+- **Cursor toggle** — show/hide the playhead cursor moving along sheet music
+- **Note names / finger numbers** — display either as overlay aids
+
+The agent's repertoire-practice job is a *policy over this surface*: given Project goal, current performance data, and user preferences, decide which surface elements to engage and how to set them. **Auto-looping (Decision #42) is one such policy** — identify problem sections from green-note history, set up looping with specific start/end and takes-required, optionally adjust tempo, optionally adjust accuracy threshold, optionally engage hand-by-hand isolation. The algorithm bundles several surface elements into a coherent practice mode. Other meta-policies will emerge as the surface stabilizes and the agent's behaviors are extended.
+
+Each surface element is independently buildable. The agent's policy can grow over time as elements are added; auto-looping can ship before the full surface is wired up, and additional practice modes can be layered in.
+
+### 6A.2 The Exercise Control Surface (sketched)
+
+The exercise control surface is parallel in shape to the repertoire surface but operates over different primitives. Initial enumeration (to be elaborated as design progresses):
+
+- **Training method selection** — choosing among the seven training methods (Verification, Recognition, Selection, Assembly, Alteration, Recall, Performance) per the spectrum in Bible §7
+- **Performance constraints** — time-based pass conditions, accuracy thresholds, memory-chain length, error tolerance (Decision #43, treating performance constraints as cross-content-mode primitive; see Bible §6.2)
+- **Content scope** — which substrate combinations, which target variables, which difficulty axes are active for the session
+- **Blueprint configuration** — selecting and configuring the appropriate UI/interaction template (per Doc 06)
+- **Configurable assistance** — Lit-Keys Mode, Completion Handicap, and other cross-atom assistance settings (Decision #38)
+
+The agent's exercise-practice job is a policy over this surface: given the user's Project goal and skill state, choose training method, set performance constraints, select content scope, configure the blueprint, and decide whether assistance is enabled. Generation-on-demand (Decision #33) is invoked when no existing atom matches the policy's needs.
+
+### 6A.3 The Sight-Reading Control Surface (sketched)
+
+The sight-reading surface is similarly parallel:
+
+- **Parameter generation** — selecting musical parameters (notes, rhythms, time signature, complexity metrics) for level construction
+- **Level construction** — invoking the Sight Reading Generate flow to build a level matching the parameters; the resulting level is stored with appropriate `authoring_origin` (per Decision #45)
+- **Game-mode toggles** — which sight-reading game modes are active for the session
+- **Performance constraints** — accuracy thresholds, time pressure, completion criteria (Decision #43); user-generated levels may carry "no completion criteria, just play endlessly" as a configurable option
+- **Difficulty controls** — chevron count (Optimal Grip), tempo, error tolerance
+
+The agent's sight-reading-practice job is a policy over this surface in the same shape as exercises and repertoire.
+
+### 6A.4 Why Surface Enumeration Matters
+
+Enumerating the per-content-mode control surface has three consequences:
+
+1. **It defines the agent's job.** Without enumeration, the phrase "the AI manages the practice session" is undefined. With enumeration, the agent's job becomes specifiable — and testable — element by element.
+2. **It enables progressive implementation.** Each surface element is independently buildable. The agent's policy can grow over time as elements are added; the team doesn't have to ship the complete surface before shipping any agent behavior.
+3. **It clarifies what the demo requires.** Step 4 of the integrated investor demo (the AI-driven repertoire session — see §15.2 when Session 3 lands the demo rewrite) requires the repertoire surface implemented to the point where the agent can engage looping, tempo, and accuracy controls live. The demo's engineering-critical path is the implementation of the repertoire surface plus the auto-looping policy on top of it.
+
+The surface enumeration is V1 documentation work; specific agent policies and UI implementations phase independently.
 
 ---
 
@@ -455,16 +551,21 @@ The piece-simplification capability central to the investor demo (upload a piece
 
 ### 10.3 The Augmentation Question
 
-[Open architectural question — see Decision #39.] The team has not yet aligned on MAGE's long-term role:
+[Open architectural question — see Decision #39, amended per Decision #44.] The team's working position has converged toward **augmentation**, with the question formally still open pending Staley's explicit retirement of the training-data-then-replacement framing.
 
-**Steven's working position (May 5):**
+**Steven's position (May 5):**
 > "It is not obvious to me that MAGE would just be for training data, and that's not the assumption that I'm working on… If a more AI-based approach were to replace MAGE, it would integrate MAGE into it. It would be an upgraded AI-enhanced version of MAGE to me. It wouldn't just be a separate thing that we build."
 
-**Staley's framing (May 5):** MAGE exists primarily to generate training data for an eventual fine-tuned LLM; once enough data exists, the LLM replaces MAGE.
+**Staley's earlier framing (May 5):** MAGE exists primarily to generate training data for an eventual fine-tuned LLM; once enough data exists, the LLM replaces MAGE.
 
-These framings are not the same and have different implications for roadmap, cost, and how the schema is designed. Patrick aligned with Steven's position in the May 5 standup ("I think that's not necessarily going to be the case for MAGE"), but the question was not resolved.
+**The May 7 Emergent Curriculum brainstorm produced directional alignment.** Patrick articulated a concrete mechanism for the augmentation framing:
+> "The AI would probably be adjusting the mage output to make it more musical or to fit the like genre that they're trying to learn or to specifically work specific techniques that are in the piece of repertoire that they want to learn... There's like many reasons why the AI would adjust the music XML outputed by Mage."
 
-This document records Steven's working position as the current default — AI augments MAGE rather than replacing it — while flagging that the question is genuinely open and will be addressed in a future architectural conversation.
+Steven concurred. Staley did not push back; his earlier articulations during the call ("I love mage. Yeah") and his agreement with Patrick's framing position him in alignment. **The team's working framing is now: MAGE persists as a permanent algorithmic generation engine, with the AI adjusting MAGE's music-XML output for musicality, stylistic fitness, and goal-specific shaping.** The training-data-then-replacement framing is no longer the team's working framing.
+
+**What remains open.** Staley has not explicitly retired the training-data-then-replacement framing in writing, so Decision #39's open status remains until that confirmation. Cost implications of the augmentation framing differ from the replacement framing (per §10.4): MAGE+AI is a hybrid stack, not a single LLM. This is a feature, not a bug, but architectural commitment must reflect it.
+
+This document records the augmentation framing as the current working position; the question is documented as resolving rather than fully resolved.
 
 ### 10.4 What an AI Augmentation Looks Like
 
@@ -479,25 +580,67 @@ In this model, MAGE provides the deterministic, structured musical operations; t
 
 ### 10.5 The LLM Choices
 
-[Speculative — Staley's R&D track.] The fine-tuning approach Staley described in the May 5 standup involves:
+[Speculative — Staley's R&D track.] Staley's exploration direction crystallized at the end of the May 7 call:
 
-- **Fine-tuning a smaller open-source model** rather than calling proprietary frontier models. Rationale: cost, control, on-prem deployment.
-- **Quantization** to reduce inference cost.
-- **Caching** — the same piece simplified into the same arrangement should be generated once and cached.
-- **Sparing use of inference** — LLM calls only where they materially help (piece-simplification, goal-decomposition), not per-keypress.
-- **Possible RAG layer** over user historical play data and current-song context, with a vector DB on user data.
+> "I'm just going to start digging into like how to do LLM. I've watched some videos from AWS on using their like AWS bedrock stuff and that might be like the step one. I've also heard stuff about that being expensive. Maybe there's a way we can make calls to some external API that's like I don't know..."
 
-The cost model is genuinely uncertain. Whether quantized open-source models can hit the quality bar at acceptable inference cost is the central engineering question Staley is exploring; there is no fallback plan if the answer is "no."
+The direction is **AWS Bedrock first, external-API alternatives if cost is prohibitive**. This is the first explicit tooling-exploration commitment per Decision #32 (Agentic Projects elevated to near-term R&D). The exploration includes:
+
+- **AWS Bedrock as the primary substrate** — managed inference for fine-tuned and frontier models; potential for fine-tuning a smaller open-source model rather than calling proprietary frontier models (rationale: cost, control, on-prem-adjacent deployment)
+- **External-API alternatives** as a near-term fallback distinct from the deeper "build out MAGE algorithmically" alternative — calls to providers like Claude API or OpenAI API if Bedrock economics don't work
+- **Quantization** to reduce inference cost
+- **Caching** — the same piece simplified into the same arrangement should be generated once and cached
+- **Sparing use of inference** — LLM calls only where they materially help (piece-simplification, goal-decomposition, agent orchestration), not per-keypress
+- **A RAG layer over user historical play data, conversation history, and current-song context**, with a vector DB on user data — this is the implementation surface for the user-modeling layer (§1.2) and a structural moat distinct from the LLM-layer choices above
+
+The cost model is genuinely uncertain. Whether quantized open-source models can hit the quality bar at acceptable inference cost is the central engineering question Staley is exploring; the external-API path is the near-term fallback. Cost considerations are summarized in §17 (when Session 3 lands the Cost Considerations section).
+
+**A note on framing.** The LLM choices in this section are LLM-layer concerns. They are distinct from the user-modeling-layer concerns (data structures, retrieval logic, synthesis pipelines that turn MuseFlow's playing/practice data into actionable agent decisions). Both are AI-company concerns; both need owners. See §1.2.
 
 ### 10.6 Alternative Architectures
 
-Other paths exist if the fine-tuning approach doesn't work:
+Other paths exist if both the Bedrock-fine-tuning direction and the external-API fallback (per §10.5) prove untenable:
 
-- **Hybrid frontier-model + MAGE** — use a frontier model (e.g., Claude or a music-specific model) for the high-stakes generation calls, accept the cost
+- **Hybrid frontier-model + MAGE as architecture, not fallback** — adopt frontier-model API calls (e.g., Claude or a music-specific model) as the committed long-term architecture for the high-stakes generation calls, accept the cost, and build the cost model around it from the start
 - **MAGE-only** — skip the LLM entirely, build out MAGE's musical-similarity logic algorithmically (slower to ship, cheaper to operate)
 - **Crowd-sourced augmentation** — let teachers and advanced users hand-author the simplifications and custom content the system needs, treating AI generation as one source among several
 
-These are not committed alternatives; they are options that exist if the primary path encounters obstacles.
+These are not committed alternatives; they are options that exist if the primary path encounters obstacles. The first option overlaps in shape with the §10.5 external-API fallback but differs in commitment level: §10.5's fallback is "we use frontier APIs while we figure out the right home"; this option is "we commit to frontier APIs as the architecture."
+
+### 10.7 Metaphor vs Implementation
+
+The team uses analogies to communicate the agentic vision: "diagnostic agent" / "auto-engaged plan mode" (Claude Code's plan mode), "Steven MD file" / "Patrick MD file" (Claude's CLAUDE.md), "large music model" (large language models). These analogies are useful for team-internal communication and pitch language — they're vivid, they rhyme with patterns the team already knows, and they help externalize what the system is supposed to feel like.
+
+**Analogies are not architectural specifications.** They can mislead in two specific ways: by hiding implementation complexity, and by implying implementation patterns that are not actually right for the underlying problem. Two examples from the May 7 brainstorm illustrate the pattern.
+
+**Example 1: Diagnostic agent / auto-engaged plan mode.** The Claude Code plan-mode analogy works at the *behavior* level — when goal-articulation signals are present, the system fires follow-up questions until enough context exists to construct a roadmap. The analogy underspecifies the *implementation*. Two candidates with very different cost / control / failure-mode profiles:
+
+- **Prompt-level**: the system prompt has a "diagnostic" section that activates when the model classifies the user's message as goal-articulation. Cheap and flexible. The load-bearing step is the LLM's reliability at zero-shot classifying "this is a goal-articulation moment." Failure modes: too-eager (user gets interrogated unnecessarily), too-slow (the conversation drifts).
+- **Application-level**: the app has explicit modes between which the user (or the system) navigates, gating available actions/tools. Claude Code's plan mode specifically is this kind. More deterministic but requires explicit UI affordances and probably an explicit "start a Project" entry point that puts the user into diagnostic mode.
+
+These are different to build. The team should pick deliberately, not adopt the analogy as if it specified the implementation.
+
+**Example 2: "Steven MD file" / "Patrick MD file."** This analogy is more structurally misleading. CLAUDE.md is *human-authored, human-maintained* — Steven writes the file; Claude reads it. What the May 7 call described is *AI-authored, AI-maintained* — the system observes the user and writes notes about them. This is a fundamentally different problem class. AI-authored persistent memory has at least four real engineering challenges that the CLAUDE.md analogy hides:
+
+- A **synthesis problem** — the LLM has to decide what's worth remembering from each interaction
+- A **recency-vs-relevance retrieval problem** — which past observations should fire on the current context
+- A **drift problem** — AI-encoded mistaken beliefs about the user compound over time and become hard to correct without explicit user-correction affordances
+- A **context-window problem** — a growing file eventually exceeds budget and needs compression / summarization passes
+
+These are real engineering problems with real solutions: vector stores with embedding-based retrieval, periodic LLM-driven summarization, explicit user-visible memory management, possibly user-correctable memory entries. **The shape is closer to "per-user RAG layer over conversation history, exercise/repertoire/sight-reading event data, and curated AI-extracted summaries"** — the architecture §10.5 sketches and §1.2 names as the user-modeling layer. Treating the CLAUDE.md analogy as implementation-spec could lead engineering toward a single growing markdown file when the real architecture is a structured store with retrieval logic.
+
+**Example 3: "Large music model."** This framing is somewhat different — it's positioning rather than implementation specification. As positioning, it's powerful (it implicitly claims MuseFlow is doing for music what foundation models did for text). As implementation, it could imply "we are training a single foundation model on music," which is not the team's current direction. Worth being deliberate about whether this language enters customer- or investor-facing material.
+
+**The discipline.** When an AI-product analogy is adopted, the team should:
+
+1. Identify what behavior the analogy specifies (usually clear)
+2. Identify what implementation the analogy implies (often unclear, sometimes wrong)
+3. Decide deliberately whether to follow the implied implementation or pick a different one
+4. Document the implementation choice separately from the user-facing metaphor
+
+The analogies are good for team alignment and external communication. They are not architectural specifications. This subsection exists to make that distinction explicit and to establish it as a documentation discipline going forward.
+
+**Cross-references.** Doc 10 §3.6 (diagnostic-agent / auto-engaged-plan-mode evaluation, full text). Doc 10 §3.9 (Steven MD file / Patrick MD file evaluation, full text). §1.2 (the user-modeling layer as the architectural commitment behind the "MD file" metaphor). §6.1 (diagnostic-agent behavior at the AI-surface layer).
 
 ---
 
