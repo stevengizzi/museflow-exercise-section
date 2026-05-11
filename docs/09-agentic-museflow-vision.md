@@ -30,9 +30,9 @@ The strategic claim above is load-bearing only if the system can actually build 
 
 **Why it matters strategically.** Every other piano-learning product (Simply Piano, Yousician, Skoove, Flowkey) treats the user as roughly anonymous within content — the content is the product; the user consumes it. MuseFlow's per-user accumulating model is structurally different. It compounds over time. A user's MuseFlow account becomes more valuable to them the longer they use it, in a way competitors cannot easily replicate without the same architectural commitment from day one. This is the same dynamic that makes ChatGPT memory a stickiness lever, applied to a domain (skill development) where the per-user data is genuinely unique and pedagogically rich. It is not a feature comparison; it is a positional difference in what the product fundamentally *is*.
 
-**Why it matters for "MuseFlow as AI company."** Two distinct interpretations of that framing exist, and they imply different team focuses. **LLM-layer expertise** — prompt design, model selection, inference cost optimization, fine-tuning — is the competitive edge under one reading. **User-modeling-layer expertise** — the data structures, retrieval logic, and synthesis pipelines that turn MuseFlow's playing/practice data into actionable agent decisions — is the competitive edge under the other. Both are defensible and they can coexist, but they are substantively different engineering investments. The implicit assumption that they are the same job will create gaps; team ownership of the user-modeling layer is a separate question from LLM-layer ownership and is currently open. See Doc 10 §6 #13 (open question on team ownership) and §13 of this document (where the question lands when Session 3 lands the open-question update).
+**Why it matters for "MuseFlow as AI company."** Two distinct interpretations of that framing exist, and they imply different team focuses. **LLM-layer expertise** — prompt design, model selection, inference cost optimization, fine-tuning — is the competitive edge under one reading. **User-modeling-layer expertise** — the data structures, retrieval logic, and synthesis pipelines that turn MuseFlow's playing/practice data into actionable agent decisions — is the competitive edge under the other. Both are defensible and they can coexist, but they are substantively different engineering investments. The implicit assumption that they are the same job will create gaps; team ownership of the user-modeling layer is a separate question from LLM-layer ownership and is currently open. See §13.7 #33.
 
-**Cross-references.** §5.3 (persistence and reusability of generated content — the user-model's content-side substrate). §10.5 (the LLM and RAG architecture — the user-model's compute-side substrate). §10.7 (metaphor vs implementation discipline). Doc 10 §6 #13 (team-ownership question).
+**Cross-references.** §5.3 (persistence and reusability of generated content — the user-model's content-side substrate). §10.5 (the LLM and RAG architecture — the user-model's compute-side substrate). §10.7 (metaphor vs implementation discipline). §13.7 #33 (team-ownership question). §13.7 #34 (user-modeling-layer implementation architecture).
 
 ### 1.3 The Pitch Lines
 
@@ -174,7 +174,9 @@ A goal is a statement of user intent, expressed in natural language, that anchor
 
 ### 4.2 Types of Goals
 
-Goals span a wide range of specificity and ambition. Some examples:
+Goals span a wide range of specificity and ambition. The conceptual types below are the primary categorization; the May 7 brainstorm surfaced five concrete categories that drive demo and Track D / E prioritization, mapped to the conceptual types where each fits.
+
+**Conceptual types:**
 
 - **Repertoire-bound**: "I want to learn this piece" (with an upload of the score, or a search for an existing piece in the MuseFlow library)
 - **Curriculum-bound**: "I need to pass the music theory portion of my college audition exam" / "I want to prepare for Grade 5 ABRSM"
@@ -183,7 +185,15 @@ Goals span a wide range of specificity and ambition. Some examples:
 - **Experience-bound**: "I want to spend 30 minutes a day doing music in a way that feels like progress"
 - **Open-ended**: any natural-language statement of musical intent
 
-Goals can be specific (a single piece, a single skill) or broad (general improvement). They can have explicit deadlines (an audition date) or be open-ended. The agent's job is to take whatever the user states and decompose it into a roadmap that's actionable.
+**The five demo-relevant categories (per May 7 brainstorm).** These are the user-story shapes the team is targeting for the integrated demo and for near-term Track D / E prioritization. They map onto the conceptual types but cut differently:
+
+1. **"I want to learn this specific piece"** — Repertoire-bound. Same as canonical.
+2. **"I'm studying for this specific exam"** — Curriculum-bound. Same as canonical. (ABRSM grades, audition prep, music-theory exam, etc.)
+3. **"I want to get better at this specific technique"** — narrower than Skill-bound; targets a specific named technique (e.g., Alberti bass, ornamentation, scales-in-thirds).
+4. **"I want to play like this specific musician/artist"** — new framing not exactly in the conceptual types. Goal is style-matching, often blending Repertoire- and Skill-bound elements (e.g., "play like Bill Evans" implies both specific pieces and stylistic techniques like rootless voicings).
+5. **"I'm really interested in this specific genre"** — new framing. Genre-bound exploration (e.g., "I want to learn bluegrass"); typically blends Repertoire-, Skill-, and Curriculum-bound elements depending on whether the user wants pieces, technique mastery, or theory understanding.
+
+Patrick (May 7, line 1540): "all of those will be a combination of exercises, sight reading and repertoire." Steven adds theory and (per Patrick) videos. Goals can be specific (a single piece, a single skill) or broad (general improvement). They can have explicit deadlines (an audition date) or be open-ended. The agent's job is to take whatever the user states and decompose it into a roadmap that's actionable.
 
 ### 4.3 Goal Articulation
 
@@ -195,6 +205,15 @@ The user articulates a goal through the conversational surface. The agent may as
 - "Do you want this Project to focus only on this piece, or should it also work on related skills you'll need?" → bounds the scope
 
 This is a design surface, not a rigid script. The conversation should feel like talking to a knowledgeable teacher who's helping you shape a practice plan — not like filling out a form.
+
+**The diagnostic-agent / auto-engaged-plan-mode behavior.** When goal-articulation signals are present in the user's message, the agent operates in a "diagnostic" or "auto-engaged plan" mode — it fires follow-up questions until enough context exists to construct a roadmap. The behavior is borrowed by analogy from Claude Code's plan mode (the system enters a planning posture before acting). The behavioral specification is clear: when the user signals goal-articulation, the agent prioritizes context-gathering over immediate action; once enough context is gathered, the agent transitions to roadmap construction.
+
+**Behavioral spec, not implementation spec.** The implementation pattern is open and has at least two candidate shapes with very different cost / control / failure-mode profiles:
+
+- **Prompt-level** — the system prompt has a "diagnostic" section that activates when the model classifies the user's message as goal-articulation. Cheap, flexible, depends on LLM zero-shot classification reliability. Failure modes: too-eager (the user gets interrogated when they just wanted to chat) or too-slow (the conversation drifts before transitioning to planning).
+- **Application-level** — the app has explicit modes between which the user (or the system) navigates, gating available actions and tools. More deterministic, requires explicit UI affordances and probably an explicit "start a Project" entry point that puts the user into diagnostic mode.
+
+The two are different to build, with different cost profiles and failure modes. The team should pick deliberately rather than adopt the analogy as if it specified the implementation. See §10.7 for the broader metaphor-vs-implementation discipline this exemplifies, and §13.4 for the open question.
 
 ### 4.4 Goal Decomposition
 
@@ -397,7 +416,7 @@ Enumerating the per-content-mode control surface has three consequences:
 
 1. **It defines the agent's job.** Without enumeration, the phrase "the AI manages the practice session" is undefined. With enumeration, the agent's job becomes specifiable — and testable — element by element.
 2. **It enables progressive implementation.** Each surface element is independently buildable. The agent's policy can grow over time as elements are added; the team doesn't have to ship the complete surface before shipping any agent behavior.
-3. **It clarifies what the demo requires.** Step 4 of the integrated investor demo (the AI-driven repertoire session — see §15.2 when Session 3 lands the demo rewrite) requires the repertoire surface implemented to the point where the agent can engage looping, tempo, and accuracy controls live. The demo's engineering-critical path is the implementation of the repertoire surface plus the auto-looping policy on top of it.
+3. **It clarifies what the demo requires.** Step 4 of the integrated investor demo (the AI-driven repertoire session — see §15.2) requires the repertoire surface implemented to the point where the agent can engage looping, tempo, and accuracy controls live. The demo's engineering-critical path is the implementation of the repertoire surface plus the auto-looping policy on top of it.
 
 The surface enumeration is V1 documentation work; specific agent policies and UI implementations phase independently.
 
@@ -418,7 +437,7 @@ The Projects dashboard is the navigation home for path-mode-Project content. It 
 Tapping into a specific Project opens its individual view. This view contains:
 
 - **The goal**, prominently displayed and editable
-- **The roadmap**, rendered as a navigable artifact (specific UX TBD — list, tree, graph, timeline are all candidates)
+- **The roadmap**, rendered as a **vertical tree with branching** (current working direction; specific design TBD). The May 7 brainstorm narrowed visualization candidates toward this shape, inspired by Fez's branching-progression aesthetic. The vertical orientation supports long roadmaps better than horizontal layouts; branching accommodates conditional paths, multi-track sequences, and optional sections that the agent may surface. Specific rendering details — pan/zoom behavior across long roadmaps, mobile rendering, progress indicators, node-state visualization — remain open (see §13.6).
 - **Progress indicators** — what's been completed, what's next, what's coming up
 - **The conversational AI surface**, accessible in-context for asking questions, requesting changes, or reviewing the agent's reasoning
 
@@ -593,7 +612,7 @@ The direction is **AWS Bedrock first, external-API alternatives if cost is prohi
 - **Sparing use of inference** — LLM calls only where they materially help (piece-simplification, goal-decomposition, agent orchestration), not per-keypress
 - **A RAG layer over user historical play data, conversation history, and current-song context**, with a vector DB on user data — this is the implementation surface for the user-modeling layer (§1.2) and a structural moat distinct from the LLM-layer choices above
 
-The cost model is genuinely uncertain. Whether quantized open-source models can hit the quality bar at acceptable inference cost is the central engineering question Staley is exploring; the external-API path is the near-term fallback. Cost considerations are summarized in §17 (when Session 3 lands the Cost Considerations section).
+The cost model is genuinely uncertain. Whether quantized open-source models can hit the quality bar at acceptable inference cost is the central engineering question Staley is exploring; the external-API path is the near-term fallback. Cost considerations are summarized in §16.
 
 **A note on framing.** The LLM choices in this section are LLM-layer concerns. They are distinct from the user-modeling-layer concerns (data structures, retrieval logic, synthesis pipelines that turn MuseFlow's playing/practice data into actionable agent decisions). Both are AI-company concerns; both need owners. See §1.2.
 
@@ -691,7 +710,7 @@ This is both a values statement and a design principle. It commits MuseFlow to t
 
 **4. Notifications and nudges are configurable.** The engagement layer's notifications can be toned down or turned off entirely. Users who don't want to be nudged about Projects don't get nudged about Projects.
 
-**5. Onboarding is calibrated.** When a new user opens MuseFlow, the onboarding doesn't assume they want to start with a Project. It introduces the content modes, mentions Projects as one option among several, and lets the user start where they want.
+**5. Onboarding offers multiple paths, not a single default.** When a new user opens MuseFlow, the onboarding doesn't assume they want to start with a Project — and equally, doesn't assume they want to start with exploration. The chat-first goal-articulation pathway (Staley, May 7: "the first thing you do when you log into MuseFlow is you get a chat screen that says like what are your goals, like what would you like to learn") is a legitimate onboarding path for users who arrive with a goal in mind. The exploration-first pathway (introducing content modes, mentioning Projects as one option among several) is the legitimate path for users who arrive curious but undirected. Both exist. How the system decides which path to surface to which user — chooser, default rule, declared user type at signup, or some combination — is open (see §13.4).
 
 ### 12.3 What This Costs
 
@@ -723,55 +742,79 @@ The following questions are open and shape ongoing design work. They are cluster
 
 ### 13.3 Roadmap Structure and Adaptation
 
-9. **Node types completeness** — Are the node types listed in §5.2 sufficient, or are others needed?
+9. **Node types completeness** — Are the node types listed in §5.2 sufficient, or are others needed? Tutorial-node and Video-node placement is open (clusters with §13.11).
 10. **Roadmap topology** — Is a roadmap always linear, or can it have branches, parallel tracks, optional sections?
 11. **Adaptation cadence** — How often does the agent re-evaluate and update the roadmap?
 12. **User vs. agent edits** — When the user edits the roadmap and the agent adapts, who has authority on conflicts?
+13. **Auto-looping AI-judgment override** — The auto-looping / perfect-practice tree algorithm (Decision #42) is largely algorithmic. Steven flagged that AI judgment may need to override the algorithm in "break the rules" cases (e.g., the actual issue is the previous measure, not the errored one). When does the AI override the algorithm? How does the user perceive that override?
+14. **Auto-looping ⟷ Optimal Grip relationship** — Both are forms of adaptive difficulty operating at different levels (Optimal Grip session-level; auto-looping practice-section-level). Are there situations where Optimal Grip's logic should drive auto-looping's parameters (e.g., when Optimal Grip lowers tempo, does auto-looping inherit that)? Not pressing; worth defining when both are V1+.
 
 ### 13.4 The AI Surface
 
-13. **Levels of agency default** — What's the default level of agent autonomy in V1? (Suggest-only, approve-by-default, or mixed?)
-14. **AI surface UI** — Where does the conversational surface live? Dedicated panel, in-Project, both, persistent vs. summoned?
-15. **Conversation persistence** — Are AI conversations preserved across sessions? Are they searchable? Can the user reference past conversations?
-16. **Multi-session memory** — Does the agent remember what it said before? How is this implemented (RAG over conversation history, fine-tuned context, ephemeral)?
+15. **Levels of agency default** — What's the default level of agent autonomy in V1? (Suggest-only, approve-by-default, or mixed?)
+16. **AI surface UI** — Where does the conversational surface live? Dedicated panel, in-Project, both, persistent vs. summoned?
+17. **Conversation persistence** — Are AI conversations preserved across sessions? Are they searchable? Can the user reference past conversations?
+18. **Multi-session memory** — Does the agent remember what it said before? How is this implemented? Sub-question of §13.7 #29 (user-modeling-layer implementation).
+19. **Voice/text default modality** — Voice vs. text vs. both, configurable per user, configurable per content mode? Steven OK with text-first per §6.5. Default behavior in V1 of voice-feedback capability is undefined.
+20. **End-of-round AI feedback timing** — Steven's "in between plays" feedback (per §6.1) — specific UX for the pause / feedback / setup-loop flow needs design. When does the agent fire? What's the user's affordance to dismiss or accept the agent's proposed action?
+21. **Exercise and sight-reading control surfaces enumeration** — Per §6A, the repertoire surface is enumerated (Decision #46). Exercise and sight-reading surfaces are sketched but not enumerated to the same depth. Worth completing as design progresses.
+22. **AI-analogy implementation choices** — Per §10.7. Diagnostic-agent / auto-engaged-plan-mode is prompt-level or application-level (§4.3)? Per-user "MD file" memory — single growing markdown vs structured RAG store with retrieval logic (§1.2, §10.5)? Decide deliberately during agentic system design rather than letting the analogy specify the implementation by default.
+23. **Onboarding path-split logic** — Per §12.2 item 5. How does the system decide which onboarding path (Projects-first vs exploration-first) to surface to which user? Configurable? Default rule? Tied to declared user type at signup?
 
 ### 13.5 Custom Content Generation
 
-17. **Generation cost limits** — Is on-demand generation unlimited, rate-limited, or premium-gated? (See §10.5 and Decision #37.)
-18. **Generation provenance** — When generated content is shared (e.g., via marketplace), how is provenance preserved?
-19. **Pedagogical safety** — What guardrails prevent the agent from generating pedagogically unsound combinations? (§9.6)
-20. **Authoring UI for non-agent custom content** — How does the user author atoms manually via the editor? Where's the UI?
+24. **Generation cost limits** — Is on-demand generation unlimited, rate-limited, or premium-gated? (See §10.5 and Decision #37.)
+25. **Generation provenance** — When generated content is shared (e.g., via marketplace), how is provenance preserved?
+26. **Pedagogical safety** — What guardrails prevent the agent from generating pedagogically unsound combinations? (§9.6)
+27. **Authoring UI for non-agent custom content** — How does the user author atoms manually via the editor? Where's the UI?
 
 ### 13.6 Dashboard and Navigation
 
-21. **Dashboard rendering** — How are Projects rendered on the dashboard? List, grid, tree, or some other structure?
-22. **Cross-project view** — Is there a unified "what to do today" view that draws across Projects?
-23. **Project flow entry from content modes** — What does the in-content-mode entry point look like? Button, command, AI summon?
+28. **Dashboard rendering** — How are Projects rendered on the dashboard? List, grid, tree, or some other structure?
+29. **Vertical roadmap visualization details** — Per §7.2, working direction is vertical tree with branching. Specific rendering details remain open: pan/zoom across long roadmaps, mobile rendering, progress indicators, node-state visualization.
+30. **Cross-project view** — Is there a unified "what to do today" view that draws across Projects?
+31. **Project flow entry from content modes** — What does the in-content-mode entry point look like? Button, command, AI summon?
 
 ### 13.7 MAGE, AI, and Cost
 
-24. **MAGE long-term role** — Augmentation (Steven) vs. training-data scaffolding-then-replacement (Staley). (Decision #39.)
-25. **Fine-tuning quality threshold** — Can quantized open-source models hit the quality bar at acceptable cost?
-26. **Frontier-model fallback** — If fine-tuning doesn't work, do we fall back to frontier-model API calls? Cost ceiling?
-27. **Cache strategy** — What gets cached, for how long, with what invalidation rules?
+32. **MAGE long-term role** — *Resolving toward augmentation per Decision #44 (working position).* Full closure of Decision #39's open status awaits Staley's explicit retirement of the training-data-then-replacement framing. See §10.3.
+33. **Team ownership of LLM-layer vs user-modeling-layer** — Per §1.2 and Doc 10 §6 #13. Two interpretations of "we're an AI company" — LLM-layer expertise (Staley's current direction, §10.5) and user-modeling-layer expertise (data structures, retrieval logic, AI-driven user-context store, currently nobody's explicit territory). Both defensible; both need explicit ownership. The implicit assumption that they are the same job will create gaps.
+34. **User-modeling-layer implementation architecture** — Per §1.2, §10.5, §10.7. The user-model's actual shape — RAG over which data, with what retrieval logic, what summarization cadence, what user-correction affordances — needs concrete design.
+35. **Fine-tuning quality threshold** — Can Bedrock-hosted models (or external API fallbacks per §10.5) hit the quality bar at acceptable cost?
+36. **Frontier-model fallback commitment level** — Per §10.6, the line between "external-API fallback while we figure out the architecture" and "commit to frontier APIs as the architecture" needs to be drawn deliberately if cost forces it.
+37. **Cache strategy** — What gets cached, for how long, with what invalidation rules?
+38. **Cost amortization model granularity** — The team's "heavy generation periods amortize" framing needs a concrete mental model — at what generation rate do unit economics break? Per-Project, per-month, per-account? See §16.
+39. **"Large Music Model" framing** — Per §10.7. As positioning, it's powerful. As implementation, it could imply training a single foundation model on music — which is not the team's direction. Whether this language enters customer- or investor-facing material warrants deliberate decision.
 
 ### 13.8 Engagement and Notifications
 
-28. **Notification policy** — Frequency, opt-in/opt-out granularity, message variation logic
-29. **Project-driven vs. activity-driven nudges** — How does the engagement layer balance these?
-30. **Re-engagement targeting** — Which user states trigger which messages? (Trial-conversion vs. churn-prevention, e.g.)
+40. **Notification policy** — Frequency, opt-in/opt-out granularity, message variation logic
+41. **Project-driven vs. activity-driven nudges** — How does the engagement layer balance these?
+42. **Re-engagement targeting** — Which user states trigger which messages? (Trial-conversion vs. churn-prevention, e.g.)
 
 ### 13.9 Pricing, Access, and Tiering
 
-31. **Pricing model** — Not designed (Decision #37). Implications for which Project capabilities are free vs. paid?
-32. **Generation volume tiers** — How many AI-generated exercises does a free user get?
-33. **Project count limits** — Is there a limit on active Projects per user? Per tier?
+43. **Pricing model** — Not designed (Decision #37). Implications for which Project capabilities are free vs. paid?
+44. **Generation volume tiers** — How many AI-generated exercises does a free user get?
+45. **Project count limits** — Is there a limit on active Projects per user? Per tier?
+46. **Token-based pricing surfacing** — Do users see token meters directly (Staley: "we could even surface tokens directly")? Or opaque "AI generations remaining"? Different UX implications. See §16.
+47. **MAGE pricing under augmentation framing** — Under the augmentation framing (Decision #44), even MAGE-only generation could be charged for "tokens" since the AI adjusts MAGE's output. This conflates LLM compute with MAGE compute for billing purposes. Is that right or wrong?
 
 ### 13.10 Teacher/Institutional Integration
 
-34. **Teacher-assigned Projects** — Can a teacher assign a Project to a student? Is the student then in a "managed Project" with different controls?
-35. **Curriculum-as-Project** — Could a teacher's structured curriculum be expressed as a Project the system manages? Or is that a separate path mode (User Path with assigned attribution)?
-36. **Institutional Projects** — Could a school assign Projects across cohorts? How does multi-user Project authorship work?
+48. **Teacher-assigned Projects** — Can a teacher assign a Project to a student? Is the student then in a "managed Project" with different controls?
+49. **Curriculum-as-Project** — Could a teacher's structured curriculum be expressed as a Project the system manages? Or is that a separate path mode (User Path with assigned attribution)?
+50. **Institutional Projects** — Could a school assign Projects across cohorts? How does multi-user Project authorship work?
+
+### 13.11 Content Classes Beyond the Core Three
+
+This sub-cluster captures one of the foundational architectural questions for the agentic vision: what content classes exist beyond Exercise / Repertoire / Sight Reading, and how do they relate to the content/path-mode architecture (Decision #41)?
+
+51. **Content classes inventory** — What content classes exist beyond the core three? Candidates surfaced to date: **Theory** (Bible §2.1.1, A2 evaluation pending), **Free Play original sense** (deferred indefinitely per Decision #41 candidate list), **Video / Video Library** (May 7 brainstorm raised; placement open), **Interactive Tutorial** (existing canonical content, placement open). Some may collapse or overlap. Resolving this cluster is prerequisite to several downstream design decisions about node types, roadmap composition, and Browse-by-mode UX.
+52. **Interactive Tutorial architectural placement** — Per Doc 10 §4.3 and §6 #16. Existing canonical content class (animated video + live-action hand clips + Phaser-JS exercises gated mid-flow) with no clean home in the current architecture. Candidates: its own content mode, a path-mode primitive embedded in Curriculum (matches current state), a roadmap-node type prescribable by the agent (§5.2 candidate), or a hybrid. Sub-question of #51.
+53. **Video Library architectural placement** — Per Doc 10 §6 #11. Patrick's framing ("video library") leans content-mode-like; Staley's framing ("node-as-tutorial") leans roadmap-primitive. A2 evaluation (Patrick's Theory Library & Exercise Section doc) will inform. Sub-question of #51.
+54. **Game Mode / Free Play toggle collapse** — Current Sight Reading curriculum levels have Game Mode and Free Play toggles (existing app functionality). As the new content/path mode architecture is implemented, these may subsume into other functionality (e.g., performance constraints per Decision #43, user-generated mode per Decision #45). UX consolidation pattern open. Distinct from Free Play original-sense status (deferred per Decision #41).
+55. **Tutorial-as-roadmap-node phasing** — Per Doc 10 §6 #3. Even if AI-generated tutorials are deferred, does the architecture allow human-authored tutorials as roadmap nodes in the meantime? This sub-question doesn't depend on resolving #51 fully — it's about near-term schema accommodation. See §5.2 candidate node types.
 
 ---
 
@@ -822,15 +865,32 @@ MuseFlow is targeting a **$1.5M raise**. The pitch deck is being developed by Pa
 
 ### 15.2 The Demo Flow
 
-Per the May 5 standup, the canonical demo flow is:
+The May 7 brainstorm refined the demo flow from the May 5 single-walkthrough version into a **6-step integrated flow** that hits the major capabilities of the enhanced MuseFlow vision. The integrated flow surfaces the content/path-mode architecture (Decision #41), the agentic system's per-content-mode control surfaces (Decision #46, §6A), and the user-modeling layer's outputs (§1.2). It is aspirational; not every step is equally feasible on the demo timeline. The team's current understanding of feasibility and risk:
 
-1. **User uploads a piece of repertoire.** A real piece, the user's actual goal.
-2. **MuseFlow generates a "Mario path" roadmap.** The agent decomposes the goal: "to play this piece, you'll need to develop these specific skills, work through these simplified intermediate arrangements, address these technical gaps."
-3. **The walkthrough.** Demo continues through the roadmap: example exercises tailored to the piece, simplified repertoire phases (MAGE-driven), looping and slow-practice tools, accuracy heat-map, audio-recognition feedback.
-4. **The conclusion.** "This is what MuseFlow does. The user states a goal; MuseFlow figures out the path."
+| Step | Demo content | Demonstrates | Feasibility | Risk profile |
+|------|--------------|--------------|-------------|--------------|
+| 1 | AI conversation / diagnostic / goal planning | Agentic conversation, diagnostic-agent behavior (§4.3), four authorship origins surface, the user-modeling layer beginning to populate | High — chat UI + LLM call | Latency risk; goal-classification accuracy risk |
+| 2 | AI-driven visual roadmap construction featuring nodes for all main content types | Project flow, content/path-mode architecture, multimodal roadmap rendered as a vertical tree with branching (§7.2) | Medium — vertical-tree UI component + LLM JSON output | Vertical-tree component needs to exist; LLM consistent JSON output is non-trivial |
+| 3 | Zoomed-in demo on a sight-reading component | Sight-reading integration, parameter-generated content (Decision #45), sight-reading control surface (§6A.3) | High — substrate exists | Choose existing content; agent links to it |
+| 4 | Zoomed-in demo on an AI-driven repertoire session | Agentic repertoire orchestration, perfect-practice tree algorithm in action (Decision #42), audio recognition, AI feedback layer | **Engineering-critical path** | Live performance demo cannot be faked; voice-LLM latency; audio recognition reliability |
+| 5 | Zoomed-in demo on an exercise component | Exercise framework, generation-on-demand (Decision #33), AI-prescribed practice (exercise control surface §6A.2) | Medium — exercise schema needs build-out + AI selection from matrix | Match what's discussed in Doc 10 §4.5 reverse-engineering methodology |
+| 6 | Zoomed-out view of broader UI/UX with assorted Paths/Projects, dedicated content-pillar areas, aggregated metrics, suggested practice routines/plans | The integrated product surface, the user-modeling layer's outputs (§1.2), the long-term cohesion | Medium — UI scaffolding work | Aggregated-metrics dashboard not yet built |
 
-Per Staley:
+**Step 4 is the engineering-critical path.** It's the only step that cannot be faked because the user is *playing* during it. Everything else can be partially scaffolded — links can be pre-built, screens can be rendered statically, the LLM can be primed with example responses. Step 4 requires the live substrate of audio recognition (Andrew's track), the auto-looping algorithm orchestrating repertoire controls (Patrick's PRD; Decision #42), and ideally text or voice feedback firing in response to performance data — all live. That makes step 4 the gating commitment for the integrated demo. Step 4's load-bearing components per Doc 10 §8.6:
+
+- Voice-LLM latency under control (Staley: the technical hurdle)
+- Repertoire perfect-practice toolset implemented to the point that the AI can engage tools (loop, slow-down, accuracy heat-map — per the §6A.1 surface)
+- Auto-looping algorithm with UI integration (Decision #42)
+- An LLM that can reliably emit JSON (problem-section locations) plus script (text/spoken cues) per Staley's two-output framing
+
+**Incremental construction path.** Realistic demo construction is incremental — steps 1–3 + 5–6 are achievable on a near-term timeline with light scaffolding; step 4 is the gating commitment. The team can ship 1–3 + 5–6 as a "demo-without-the-killer-moment" if step 4 isn't ready, or hold the full demo until step 4 lands. Steven's read on the integrated flow: "I'm not sure if all of that's feasible, but this ideal would probably encompass most of the key features of the newly enhanced version of MuseFlow we're targeting." The aspiration is right; the phasing is a question for the pitch-deck timeline.
+
+**Demo vs V1 scope.** The demo can be more polished than V1 for the specific capabilities demonstrated, while V1 is lighter on those same capabilities. This is normal and not a problem if the team is explicit about it. The exercise schema's full matrix is demo-buildable but does not need to be V1-ship-buildable; the auto-looping algorithm exists in Patrick's PRD but for V1 it needs documentation and the broader control-surface scaffolding; the visual roadmap needs polish for demo but V1 may ship a simpler list-style surface initially with the visual coming in V2. The pitch document should distinguish demo-state, V1-ship-state, and long-term-vision-state clearly.
+
+Per Staley on the demo's strategic value:
 > "The hitch and the demo — being able to say, yeah, upload a piece and here's your learning pathway to it. I think that would be a pretty killer demo."
+
+The upload-piece-and-get-a-pathway moment is the gravitational center of the demo. Steps 1–6 are how the team makes that moment land with the full architecture visible behind it.
 
 ### 15.3 The 3-5 Year Plan
 
@@ -864,25 +924,53 @@ Several properties make the agentic system a strong demo wedge:
 
 ---
 
-## 16. Document Status & Evolution
+## 16. Cost Considerations
 
-### 16.1 Version
+The May 7 brainstorm advanced the team's vocabulary for thinking about unit economics. This section captures the framework the team aligned on. **It is not pricing.** Pricing is still not designed (Decision #37). This is the cost-and-economics scaffolding the team uses to think about pricing when the design conversation begins.
+
+### 16.1 The Six Principles
+
+1. **Token-based pricing is customer-familiar.** Steven (May 7, line 1781): in AI products, token-based pricing is "basically expected." Users have been trained by ChatGPT, Claude, and Cursor to understand that AI-heavy actions consume measurable units. MuseFlow can reuse this vocabulary rather than inventing a parallel one.
+2. **The average user is covered by subscription, profitable per user.** Steven (May 7, lines 1730–1734): the baseline-engagement user generates enough usage to be served within the subscription envelope while remaining profitable. Outliers — heavy generation, heavy custom content — are handled by upsells rather than absorbed by the platform.
+3. **MAGE is a cost reducer relative to LLM-only architectures.** Patrick (May 7, line 1759): MAGE generates content algorithmically rather than via expensive LLM tokens. The augmentation framing (Decision #44) keeps this cost advantage intact: the LLM adjusts MAGE's output rather than replacing MAGE entirely. A pure-LLM architecture would lose this advantage. See §10.5.
+4. **Heavy-generation periods amortize over engagement.** Steven (May 7, line 1770): a user's roadmap-building phase is generation-heavy (LLM calls to decompose goals, generate custom content, build the initial roadmap); the execution phase is generation-light (the user is practicing prebuilt content, with occasional adaptation). Per-user lifetime token cost is front-loaded; the user-modeling layer (§1.2) amplifies this by making earlier generations reusable across later Projects (§5.3).
+5. **Per-month curriculum-generation limits with token-purchase upsell.** Patrick (May 7, lines 1771–1773): the subscription includes a monthly allotment of curriculum-generation budget; heavy users buy additional tokens à la carte. This pattern matches industry conventions (ChatGPT Plus message limits with paid overages, GitHub Copilot's hosted-model tiers, etc.).
+6. **No subsidizing usage with investor money long-term.** Patrick (May 7, lines 1743–1749): "I would hate to have to get investments to be able to provide a service to our users who are paying for it, but not fully paying for it. We're like subsidizing it with like investor costs. I don't like that." The cost model must work at unit-economic equilibrium for sustainably-engaged users, even if early growth requires temporary subsidization.
+
+### 16.2 What These Principles Imply Structurally
+
+- **MAGE is a structural advantage, not just an engineering convenience.** Cost competitiveness against AI-first competitors depends on keeping MAGE in the loop. The augmentation framing makes this defensible because MAGE remains the bulk-generation engine and the LLM is the targeted-adjustment layer.
+- **The user-modeling layer compounds.** Reusable generated content (§5.3) reduces re-generation costs over a user's lifetime. The longer a user engages, the better the user-model gets and the cheaper subsequent agent actions become — both because the AI has more context to work with and because the user's content library grows. This is a defensible long-run cost structure.
+- **Pricing UX is its own design problem.** Whether users see token meters directly or opaque "AI generations remaining" affordances is a UX decision with downstream pricing implications (§13.9 #46). Whether MAGE-only generations get charged for "tokens" under the augmentation framing — where the AI adjusts MAGE's output — conflates LLM and MAGE compute for billing purposes; that's a question to settle deliberately (§13.9 #47).
+- **The cost amortization model needs concrete grain.** At what generation rate do unit economics break? Per-Project, per-month, per-account? The framework above is qualitative; concretizing it for the pitch deck and for V1 capacity planning is open work (§13.7 #38).
+
+### 16.3 What This Section Is Not
+
+This section is not a pricing model. The team has explicitly deferred pricing design (Decision #37). What this section gives the team is a **defensible narrative for the pitch deck**: "MAGE makes generation cheap; LLM tokens are the variable cost; heavy generation is front-loaded per-user and amortizes over engagement; token upsells handle outliers; the user-modeling layer compounds over time." That narrative is investor-ready in shape. Concrete numbers come once Staley's LLM-cost exploration (§10.5) lands data and the team can model unit economics with real inputs.
+
+---
+
+## 17. Document Status & Evolution
+
+### 17.1 Version
 
 **Version 0.1 (May 7, 2026)** — Initial draft. Synthesized from the April 28 and May 5 MuseFlow standing meetings, the Emergent Curriculum brainstorm follow-up, and the A1 doc-sync conversation that produced canonical document updates across the Exercise Section project (Decisions #32–#41, Glossary expansion, Architecture schema additions, UX Spec §8 reframe, Bible §2 reframe).
 
-### 16.2 What Comes Next
+**Version 0.2 (May 8, 2026)** — Phase 2 of the May 7 brainstorm doc-sync. Substantial additions: §1.2 (user-modeling layer as foundational architectural commitment, per Decision #47); §6 reframed with voice/audio modality and parallel-track framing across content modes; new §6A (Agent Control Surfaces per Content Mode, per Decision #46); new §10.7 (Metaphor vs Implementation discipline); §10.3 amended toward augmentation framing per Decision #44; §10.5 updated with Staley's exploration direction (Bedrock first, external API alternatives); §15.2 rewritten with 6-step integrated demo flow; new §16 (Cost Considerations); §4.2, §4.3, §5.2, §7.2, §12.2 sharpened; §13 substantially expanded with new open questions and §13.11 sub-cluster on Content Classes Beyond the Core Three. Cross-reference pass for Decisions #42–#47.
+
+### 17.2 What Comes Next
 
 Anticipated near-term work that this document should be updated to reflect:
 
-- **The Emergent Curriculum brainstorm outputs.** Steven, Staley, and Patrick scheduled a working session post May 5; whatever crystallizes there should land here.
-- **Patrick's existing Theory Library & Exercise Section design document.** The A2 phase of the current MuseFlow doc-sync work involves reviewing this document and integrating relevant material; some of its agentic content may inform this document.
-- **The MAGE long-term role conversation.** When the team aligns on whether MAGE persists or is replaced, this document records the decision (currently §10.3 holds the question open).
-- **The exercise section PRD.** Once the PRD lands (target EOW May 9, possibly slipped), this document can reference its specific scope and align language.
-- **Agentic system V1/V2/V3 phasing.** All phasing in this document is currently TBD. When phasing is decided, this document should be updated.
-- **UX design exploration.** As Project dashboard, conversational surface, and roadmap-rendering UX are designed, this document should be updated with concrete decisions.
-- **Cost-and-quality testing of the LLM approach.** Once Staley has data on whether quantized open-source models can hit the quality bar, this document should reflect what was learned and what the resulting architectural choices are.
+- **Patrick's existing Theory Library & Exercise Section design document (Track A2).** Reviewing this document and integrating relevant material; some of its agentic content may inform this document.
+- **Staley's LLM exploration outputs.** As Staley's Bedrock + external-API exploration (§10.5) produces data on cost, quality, and latency, §10 should be updated with what was learned and what the resulting architectural choices are.
+- **MAGE long-term role conversation (Staley confirmation).** When Staley explicitly retires the training-data-then-replacement framing, Decision #39 can be closed and §10.3 updated to reflect full resolution.
+- **Exercise section PRD.** Once the PRD lands, this document can reference its specific scope and align language.
+- **Agentic system V1/V2/V3 phasing.** Most phasing in this document is currently TBD. When phasing is decided, this document should be updated.
+- **UX design exploration.** As Project dashboard (§7), conversational surface (§6), roadmap-rendering UX (§7.2 vertical tree with branching), and per-content-mode control surfaces (§6A) are designed, this document should be updated with concrete decisions.
+- **Content-classes-beyond-the-core-three resolution.** §13.11's sub-cluster captures the foundational question; resolution feeds back into §5.2 (node types), §3 (architectural foundation), and possibly a new §-level treatment of content classes.
 
-### 16.3 Maintenance
+### 17.3 Maintenance
 
 This document is **canon-class** — it is the team's reference for how the agentic system is currently understood. As such:
 
@@ -892,7 +980,7 @@ This document is **canon-class** — it is the team's reference for how the agen
 - Questions move from §13 to canonical sections when they're resolved
 - Resolved questions get a Decision entry in the Exercise Section Decisions Log if they cross the exercise-section boundary, or are recorded here if they're agentic-system-internal
 
-### 16.4 Doc 09's Eventual Independence
+### 17.4 Doc 09's Eventual Independence
 
 This document currently lives in the MuseFlow Exercise Section canonical document set. As the agentic system matures and accumulates its own design surfaces, design decisions, and reference material, it may warrant its own dedicated Claude project, with its own canonical document set. When that move happens:
 
@@ -904,4 +992,4 @@ That move is not yet imminent. For now, this document is the agentic system's ho
 
 ---
 
-*End of MuseFlow Agentic Vision (Doc 09), Version 0.1.*
+*End of MuseFlow Agentic Vision (Doc 09), Version 0.2.*
