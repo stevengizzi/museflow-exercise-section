@@ -58,6 +58,10 @@ A note on the metarepo: its protocols are largely engineering-sprint-shaped. Thi
 | `07-ux-navigation-spec.md` | Atom hierarchy, navigation model, configuration, agentic-system reframe (§8), open questions register (§9) |
 | `08-standup-synthesis-apr28-may5.md` | Synthesis of two May 2026 team meetings |
 | `09-agentic-museflow-vision.md` | Freestanding agentic-system vision document |
+| `10-may7-brainstorm-synthesis.md` | Synthesis of the May 7, 2026 agentic-system brainstorm (Steven, Staley, Patrick); source of committed Decisions #42–#47 |
+| `11-patrick-doc-integration-memo.md` | A2 deliverable — evaluation of Patrick's Theory Library & Exercise Section brainstorm against current canon, with proposed Decisions #48–#52 (v0.3, current) |
+
+Prior versions of canon docs that have been substantially revised are archived under `docs/archive/` (e.g., `11-patrick-doc-integration-memo-v0.1.md`, `-v0.2.md`). Archived versions are retained for audit-trail but are not canon — the unversioned filename in `docs/` is always the canonical current state.
 
 **For most questions, search project knowledge first** (`project_knowledge_search`) or clone the repo. The canon is the authoritative source. Web search and other tools are secondary.
 
@@ -68,7 +72,7 @@ A note on the metarepo: its protocols are largely engineering-sprint-shaped. Thi
 Work is organized into named Tracks, each producing specific deliverables:
 
 - **A1** — Doc-sync (integrate standup outputs into canon). **Done.**
-- **A2** — Patrick's "Theory Library & Exercise Section" doc evaluation, producing an integration memo
+- **A2** — Patrick's "Theory Library & Exercise Section" doc evaluation, producing an integration memo. **Done** — v0.3 committed as Doc 11; v0.1/v0.2 archived under `docs/archive/`. Five proposed Decisions (#48–#52) await Steven's review before commit to the Decision Log.
 - **B** — Open-question triage (sort the ~32 open questions plus newly-surfaced ones into decide-now / V1-deferrable / V2+ / explicit-punt)
 - **C** — Taxonomy reconciliation (update Doc 03 to align atom identity with Doc 07's framework)
 - **D** — V1 atom catalog authoring (the actual ship list)
