@@ -14,7 +14,7 @@ The two standups produced **one major strategic pivot**, **several adjacent feat
 
 2. **Staley is reorienting away from repertoire engineering toward AI/ML infrastructure** (LLM fine-tuning, training pipelines, music gen). Andrew is taking over repertoire workstreams (custom upload, social/sharing). This redistribution unblocks Steven on the exercise section, since the cross-team complexity pipeline conversation now has a clearer owner.
 
-3. **The Mage / Opus Modus terminology confusion surfaced again** and Steven had to re-establish that Mage is the logic/generator and Opus Modus is just the printing engine. There's an unresolved framing dispute about whether Mage exists *only* to generate training data for a future LLM (Staley's framing) or as a permanent generative engine that AI would augment, not replace (Steven's position).
+3. **The Mage / Opusmodus terminology confusion surfaced again** and Steven had to re-establish that Mage is the logic/generator and Opusmodus is just the printing engine. There's an unresolved framing dispute about whether Mage exists *only* to generate training data for a future LLM (Staley's framing) or as a permanent generative engine that AI would augment, not replace (Steven's position).
 
 4. **Exercise section deliverable**: Steven set a soft deadline of EOW May 2 (optimistic) / EOW May 9 (pessimistic) for the PRD/design spec. Format is open ("30, 45, 50 pages — however long you need it to be"). Patrick volunteered to handle MVP decomposition once the macro spec lands. Asif (the "a sieve" / "see" in transcripts) remains the likely implementer.
 
@@ -144,11 +144,11 @@ Steven walked through what Mage can already do (May 5):
 
 This is the **piece-simplification capability** that's central to the Project demo (upload piece → simplified version → roadmap). It already exists in algorithmic form; what's missing is musical-similarity preservation, which is where AI augmentation would help most directly.
 
-### Opus Modus / Mage terminology confusion — recurring
+### Opusmodus / Mage terminology confusion — recurring
 
-In the May 5 meeting, Patrick referred to "Opus Modus" when he meant Mage. Steven had to clarify multiple times:
+In the May 5 meeting, Patrick referred to "Opusmodus" when he meant Mage. Steven had to clarify multiple times:
 
-> "Opus Modus is purely just an engine. It does nothing other than what it's told to do. Mage is the codebase where all the logic is that decides what to do, and then Opus Modus just prints it. That's all."
+> "Opusmodus is purely just an engine. It does nothing other than what it's told to do. Mage is the codebase where all the logic is that decides what to do, and then Opusmodus just prints it. That's all."
 
 **This is the second time this confusion has come up.** Recommend reinforcing the distinction in `04-glossary.md` and possibly in the Project Bible — the team is conflating these terms in design conversations and it's slowing things down.
 
@@ -388,7 +388,7 @@ Compiled as a list of things the next conversation may need to resolve or at lea
 3. **Who owns the agentic Project system long-term**: Staley wants to build it; Patrick agrees. But where is the line between Staley's R&D scope and Steven's exercise-section scope, given that exercises are the primary assembly component of any agent-built path?
 4. **Distribution / marketing ownership**: agreed to be ~25% of team time; nobody assigned.
 5. **Pricing structure**: floated, not designed. Needed before exercise section gating decisions.
-6. **Mage / Opus Modus terminology**: confused twice now. Worth a glossary reinforcement.
+6. **Mage / Opusmodus terminology**: confused twice now. Worth a glossary reinforcement.
 7. **Instructor portal slip risk**: Staley's stated priorities don't fully align with Patrick's pressure on shipping for Earnest.
 8. **Five exercises that cover 90% of pieces** (Staley's question to Steven): not answered. Could be answered as part of the next design iteration.
 9. **Mobile parity for exercises**: which atoms/blueprints work on mobile? Currently undefined.
@@ -429,7 +429,7 @@ Distilled implications the next conversation should weigh:
 
 4. **Teacher tools and assignment flows should be elevated from "open future item" to "designed for V1 or V2."** Earnest is paying. The Arizona teacher's two needs (student data + audio rec) are now both in sight. This is a near-term commercial driver.
 
-5. **Mage / Opus Modus terminology should be reinforced in the Glossary.** Recurring source of confusion that's slowing design conversations.
+5. **Mage / Opusmodus terminology should be reinforced in the Glossary.** Recurring source of confusion that's slowing design conversations.
 
 6. **The Mage-future question should be flagged as an open architectural decision.** Steven's position (Mage persists; AI augments it) and Staley's framing (Mage is training-data scaffolding) are not the same. The next design iteration shouldn't bake in either assumption silently.
 
@@ -490,7 +490,7 @@ Items in this synthesis that connect directly to existing project documentation:
 | Exercise Result schema | Decision #19 |
 | GMTF as existing complexity system | Decision #23 |
 | Atom-as-prescribable-unit, hierarchy, custom atom creation | `07-ux-navigation-spec.md` §2, §8 |
-| Mage / Opus Modus terminology | `04-glossary.md` (worth reinforcing) |
+| Mage / Opusmodus terminology | `04-glossary.md` (worth reinforcing) |
 | Asif as implementer | `00-handoff-brief.md` §5 |
 | Mobile parity per blueprint / atom | Open question in `07-ux-navigation-spec.md` §9 |
 | Teacher tools and assignment flows | Open future item in `00-handoff-brief.md` §4 |
