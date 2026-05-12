@@ -209,7 +209,7 @@ The following decisions were made after reviewing the transcript from the March 
 
 **Reasoning:** This framing was clearly important to Steven and was agreed to by the team. It elevates the exercise section from "supplementary feature" to "core product pillar," which affects how much design investment it deserves.
 
-**Amendment (May 2026, post-standup integration):** The "two universal pillars" framing has been refined to a content modes vs. path modes architecture (see Decision #41). The original argument that Exercises and Repertoire are level-agnostic foundational content surfaces still holds — they are now described as the two confirmed *content modes*. The architecture additionally accommodates anticipated content modes (Sight Reading) and candidate future content modes (Theory, Free Play), and distinguishes content modes from path modes (Curriculum, User Paths, Projects). The leverage argument for investing in Exercises is unaffected by the refinement.
+**Amendment (May 2026, post-standup integration):** The "two universal pillars" framing has been refined to a content modes vs. path modes architecture (see Decision #41). The original argument that Exercises and Repertoire are level-agnostic foundational content surfaces still holds — they are now described as the two confirmed *content modes*. The architecture additionally accommodates anticipated content modes (Sight Reading) and a candidate future content mode (Open Play — open-ended improvisation; deferred indefinitely; renamed from "Free Play" by Decision #49 Part 2), and distinguishes content modes from path modes (Curriculum, User Paths, Projects). The previously-listed "Theory" candidate was resolved by Decision #48 as a substrate family within Exercises rather than a separate content mode. The leverage argument for investing in Exercises is unaffected by the refinement.
 
 ---
 
@@ -542,7 +542,7 @@ Generated exercises are first-class citizens of the Exercise content mode, tagge
 **Content modes** are surfaces where musical material lives and is engaged with directly:
 - Confirmed: **Exercises** (targeted skill drilling), **Repertoire** (free-choice performance)
 - Anticipated: **Sight Reading** (currently within Curriculum; envisioned as a custom-level generator)
-- Candidate: **Theory** (status TBD per A2 / Patrick's doc review), **Free Play** (deferred indefinitely)
+- Candidate: **Open Play** (open-ended improvisation without notation guidance; deferred indefinitely; renamed from "Free Play" by Decision #49 Part 2). Note: "Theory" was previously listed here as a candidate pending A2 evaluation; that evaluation resolved it as a substrate family within Exercises rather than a separate content mode — see Decision #48.
 
 **Path modes** are structured progressions through content modes:
 - **Curriculum** (preset, MuseFlow-authored, used by many)
@@ -649,13 +649,13 @@ The schema impact:
 - The level is stored with `authoring_origin = user`
 - The level may carry "no completion criteria, just play endlessly" as one of the configurable options
 
-**Crucial scope clarification:** This decision does **not** resolve "Free Play" in the original A1 sense. Free Play (original) refers to user improvisation without notation guidance — open-ended musical exploration. That capability remains deferred (per Decision #41's candidate content modes list, Free Play is "deferred indefinitely"); status unchanged. An earlier draft of this decision conflated user-generated sight-reading with Free Play; this decision narrows to the sight-reading capability only.
+**Crucial scope clarification:** This decision does **not** resolve "Open Play" in the original A1 sense (renamed from "Free Play" by Decision #49 Part 2). Open Play (original) refers to user improvisation without notation guidance — open-ended musical exploration. That capability remains deferred (per Decision #41's candidate content modes list, Open Play is "deferred indefinitely"); status unchanged. An earlier draft of this decision conflated user-generated sight-reading with what was then called "Free Play"; this decision narrows to the sight-reading capability only. *(Amended by Decision #49 Part 2 to use the renamed term "Open Play" in place of "Free Play original sense" throughout.)*
 
-**Reasoning:** The May 7 articulation closes the long-standing ambiguity for the specific capability of user-parameterizable sight-reading. The user-generated authorship origin (Decision #41) provides the primitive. No new content mode is required for this specific capability. Free Play original sense remains a separate question with its own deferral status.
+**Reasoning:** The May 7 articulation closes the long-standing ambiguity for the specific capability of user-parameterizable sight-reading. The user-generated authorship origin (Decision #41) provides the primitive. No new content mode is required for this specific capability. Open Play original sense (renamed from "Free Play original sense" by Decision #49 Part 2) remains a separate question with its own deferral status.
 
 **Phasing:** N/A — architectural framing. Specific UI labels and Generate-flow UX are V1+ design questions.
 
-**Cross-references:** Decision #41 (user-generated authorship origin, and Free Play deferral within candidate content modes — unchanged). Bible §2.1.1 (status update for sight-reading-mode clarity, NOT Free Play status).
+**Cross-references:** Decision #41 (user-generated authorship origin, and Open Play deferral within candidate content modes — unchanged in substance, renamed in vocabulary by Decision #49 Part 2). Decision #49 Part 2 (amended this Decision's scope clarification to use "Open Play" in place of "Free Play original sense"). Bible §2.1.1 (status update for sight-reading-mode clarity, NOT Open Play status).
 
 ---
 
@@ -711,5 +711,139 @@ The agentic system's job-per-content-mode is enumerable in terms of these surfac
 **Phasing:** N/A — architectural framing, not a feature. The vision-pillar update in Doc 09 §1 is V1 documentation work. Implementation phasing is a downstream question once team ownership is resolved.
 
 **Cross-references:** Doc 09 §1 (vision pillar to add), §5.3 (persistence and reusability), §10.5 (RAG architecture sketch). Doc 10 §3.7 and §3.9 (substantive analysis and the metaphor-vs-implementation distinction). Decision #41 (the architecture this layer operates within). Doc 10 §6 #13 (open question on team ownership).
+
+---
+
+## Decision 48: Theory Naming Resolution (Path c)
+
+**Source:** A2 evaluation of Patrick Boylan's "Theory Library & Exercise Section: Comprehensive Feature Brainstorm & Design Specification" (Doc 11). Patrick's doc uses "Theory" to name a separate video-content surface (Theory Library); Bible §2.1.1 had "Theory" as a candidate content mode for theory-practice exercises. The collision required resolution.
+
+**Decision made:** Resolve the "Theory" naming collision via Path (c) — neither Patrick's framing nor the candidate content mode framing keeps the name "Theory" alone:
+
+1. **Remove "Theory" from Bible §2.1.1's candidate future content modes list.** Theory practice exercises are correctly handled as Semantic-output exercises across multiple existing substrate clusters (Frequency-Domain, Time-Domain) within the Exercises content mode. Adding a separate "Theory" content mode would either duplicate atoms or fragment clusters; both are worse than absorbing the pattern into Exercises.
+
+2. **Rename Patrick's video-library surface to "Knowledge Library"** (working name). Patrick's surface scope is broader than music theory — it explicitly includes technique videos, genre, performance psychology, sight-reading tips, and repertoire-context videos. "Theory Library" was misnamed in his own doc. "Knowledge Library" is the working name for the surface; the final naming call is deferred until the feature actually enters scope (user testing or brand work will inform it better than committing now).
+
+3. **The renamed Knowledge Library is deferred beyond V1** — see Decision #51.
+
+4. **Glossary "Content Mode" entry updates accordingly** — Theory is removed from the candidate list; the renamed Open Play candidate (formerly "Free Play original sense" per Decision #49 Part 2) replaces it.
+
+5. **Doc 09 §13.11 #51 marks Theory as resolved by this Decision.** The remaining cluster questions (#52 Interactive Tutorial placement, #53 Video Library placement, #55 Tutorial-as-roadmap-node phasing) remain open within the cluster.
+
+**Reasoning:** Patrick's "Theory Library" is misnamed in his own doc — its scope is broader than music theory and includes technique, genre, performance psychology, and song-context videos. Theory-practice exercises don't warrant a separate content mode because they decompose cleanly into Semantic-output atoms across existing substrate clusters. Adding a "Theory" content mode would either duplicate atoms or fragment clusters; both are worse than absorbing the pattern into Exercises. The candidate content mode entry was always conditional on this doc review, and Path (c) is the resolution that doc review converged on.
+
+**Phasing:** V1 documentation work (Bible §2.1.1, Glossary, Doc 09 §13.11 updates). The renamed Knowledge Library feature itself is deferred beyond V1 per Decision #51.
+
+**Cross-references:** Bible §2.1.1 (candidate content modes list — updated by this Decision); Glossary "Content Mode" (updated by this Decision, paired with Decision #49 Part 2); Decision #41 (content/path mode architecture); Decision #45 (clarified for the renamed Improvisation candidate per Decision #49 Part 2); Decision #49 Part 2 (paired update — Improvisation rename); Decision #51 (Knowledge Library deferral); Doc 09 §13.11 (cluster home); Doc 11 §7 (full reasoning).
+
+---
+
+## Decision 49: Free Play as Completion-Policy Element of the Exercise Control Surface (with Naming-Collision Resolution)
+
+**Source:** A2 evaluation (Doc 11) of Patrick's Game Mode / Free Play framing (his §2.1), corrected to recognize the pattern's existing MuseFlow Sight Reading precedent. The Game / Free Play toggle ships in production today as a top-of-screen tab in the SRT — Patrick is echoing an established pattern into the exercise context, not inventing it.
+
+**Decision made (two parts):**
+
+**Part 1 — Absorb Free Play into the Exercise content mode as a completion-policy element of the exercise control surface (Doc 09 §6A.2).** Extend the existing Sight Reading Game / Free Play pattern into the Exercise content mode. The exercise control surface gains a `completion_policy` element with two values:
+- **`practice`** (default) — assessable, contributes to mastery thresholds, produces ExerciseResult with completion status
+- **`free_play`** — non-assessable, no completion contribution, but stats (accuracy, tempo, errors) are still tracked and displayed
+
+The completion-policy element is **live-toggleable during a session**, preserving the existing SRT affordance where the user flips between Game and Free Play mid-exercise without backing out and reconfiguring. Whether the agent can also flip the toggle mid-session is a separate question per Decision #46 (the agent's policy operates over the surface elements; live-toggle by user and by agent are not mutually exclusive) and remains open pending further agent-policy design.
+
+Free Play is available on any atom that supports a continuous-practice interaction (most PRF atoms; some REC/RCL atoms). Specific applicability per blueprint is open and is a Track D scoping concern.
+
+This placement parallels Decision #45's "no completion criteria, just play endlessly" option for user-generated sight-reading; both are completion-policy settings within their respective mode's control surface, not new content modes.
+
+**Part 2 — Rename the deferred candidate content mode currently called "Free Play (original sense)" to "Open Play."** "Free Play" as completion-policy collides with "Free Play" as the deferred candidate content mode for open-ended improvisation. Sharing the name is unworkable. Since the deferred candidate is uncommitted and not yet user-visible, renaming it costs nothing in production-vocabulary terms; renaming the completion-policy would fight established SRT terminology.
+
+"Open Play" (rather than "Improvisation," considered and rejected) is selected to keep future-feature naming space clean. "Improvisation" has a loaded meaning in music-pedagogy contexts that implies structured improvisation (over chord changes, in a key) — closer to Patrick's F category (Decision #13 territory). If a structured-improvisation feature emerges later, "Improvisation" should remain available for it. "Open Play" accurately captures the original-sense intent (open-ended musical exploration without notation guidance) without pre-committing pedagogically loaded terminology.
+
+Specific changes:
+- **Bible §2.1.1**: rename the deferred candidate from "Free Play" to "Open Play"
+- **Glossary "Content Mode"**: updated entry refers to "Open Play" as the candidate (paired with Decision #48 Theory removal)
+- **Decision #45's scope clarification** is amended to refer to "Open Play (formerly 'Free Play original sense')"
+- **Doc 09 §13.11 #54** updates to refer to "Open Play original-sense status" rather than "Free Play original-sense"
+
+**Reasoning:** Free Play is a real practice need (warm-up, experimentation, indefinite practice without pass/fail pressure), and a pattern already ships in production via the SRT. Placing it in the exercise control surface (an architecture that already exists per Decision #46 and Doc 09 §6A.2) is the smallest change with the most reusability. The live-toggle requirement preserves what users expect from the existing SRT pattern. The naming-collision resolution removes a real ambiguity that would otherwise confuse users, the team, and downstream design work; selecting "Open Play" over "Improvisation" keeps future-feature naming space clean.
+
+**Phasing:** V1 for Part 1 — the control surface element addition is non-breaking; the UI surface for Free Play in exercises mirrors the existing SRT toggle UI. V1 for Part 2 — a documentation/naming change with no implementation cost.
+
+**Cross-references:** Doc 09 §6A.2 (exercise control surface); Decision #46 (control surface enumeration; agent-driven toggle scope remains open); Decision #45 (parallel for sight-reading; scope clarification amended by Part 2); Decision #48 (paired update — Theory removal from candidate list); Bible §2.1.1 (candidate list updated by Part 2); Glossary "Content Mode" (updated by Part 2); Doc 09 §13.11 #54 (Open Play original-sense status); Standup Synthesis §1 (Staley's "free-play interlude as part of the path"); Doc 11 §5.1 (full reasoning).
+
+---
+
+## Decision 50: Patrick's Mastery-Threshold Patterns as Candidate Starting Baselines
+
+**Source:** A2 evaluation (Doc 11 §5.4, §8.3) of Patrick's passing criteria across his ~50 exercise templates. The criteria are remarkably consistent and suggest a recurring pattern shape worth absorbing — but the specific numbers are one possible configuration in the n-dimensional matrix of cross-mode performance-constraint settings (per Decision #43), not committed canon defaults.
+
+**Decision made:** Atoms in the V1 preset inventory carry `mastery_thresholds` (the schema field added by Decision #40), populated during catalog authoring. Patrick's recurring passing-criteria patterns are recognized as **candidate starting baselines for Track D**, easily overridable per atom by AI generation, preset judgment, or user input.
+
+Candidate starting baselines by atom shape:
+
+| Atom shape | Candidate starting threshold |
+|---|---|
+| PRF on note-reading exercises (most BP-05 atoms) | 4 consecutive phrases at 95% accuracy + goal tempo |
+| REC on identification tasks (BP-01, BP-02 atoms) | 4 consecutive correct |
+| REC on flashcard-style atoms (BP-10 candidate) | 20 correct in a row, avg response time < 3 seconds |
+| PRF on cross-domain / sight-reading atoms (X-*) | 4 consecutive phrases at 90% accuracy |
+| PRF on rhythm-only atoms (BP-06) | 4 consecutive patterns at 95% accuracy |
+
+**What this Decision commits.** The *methodology* of having defaults at all — atoms in the V1 preset inventory carry `mastery_thresholds` populated during catalog authoring, with Patrick's patterns as one defensible starting baseline. Catalog authors (Track D) can override per atom based on substrate, method, or pedagogical reasoning. AI-generated atoms (per Decision #33) may compute thresholds dynamically based on user state, goal, or pedagogical inference. User input via the exercise control surface (Doc 09 §6A.2) may adjust per-session.
+
+**What this Decision does not commit.** The specific numbers above as the *right* numbers. The n-dimensional matrix of cross-mode performance-constraint settings (per Decision #43) supports many valid configurations; Patrick's patterns are *a* defensible region of that space, not *the* region. Track D may converge on different patterns once authoring begins in earnest.
+
+Per Decision #43 (Performance Constraints Generalize Across Content Modes), these patterns are the **exercise-section instantiation of the cross-mode performance-constraints primitive**. The same shape (N consecutive at X% accuracy, optional tempo or time targets) will inform sight-reading and repertoire performance-constraint defaults as those modes' design progresses.
+
+**Reasoning:** Patrick's templates are consistent enough to suggest a recurring pattern, and that pattern gives Track D a defensible starting point. Treating the specific numbers as committed defaults would over-constrain Track D and pre-empt judgment that's better made during atom-level authoring. Treating the methodology as committed (defaults exist; Patrick's patterns are the baseline) gives Track D a working scaffold without prematurely closing decisions.
+
+**Phasing:** V1, applied during catalog authoring (Track D).
+
+**Cross-references:** Decision #40 (`mastery_thresholds` field); Decision #43 (cross-mode performance constraints); Decision #33 (generation on demand — agent may compute thresholds dynamically); Bible §2.3 (cross-mode primitive framing); Doc 02 §5.1 (cross-mode tech spec scope); Architecture Doc §8.1; Doc 11 §5.4 and §8.3 (full pattern derivation).
+
+---
+
+## Decision 51: Knowledge Library / Video Resource Surface — Deferred Beyond V1
+
+**Source:** A2 evaluation (Doc 11 §4.6 and §10) of Patrick's Theory Library proposal (his Part 1, lines 9–164). The video-library concept is well-developed (Smart Feed / Quick Theory / Deep Dives sub-surfaces, with curation logic and a proactive suggestion modal), but its V1 implementation cost is high relative to its V1 value, and the right architectural placement remains formally open.
+
+**Decision made:** The renamed video-resource surface (working name: "Knowledge Library" per Decision #48) is **deferred beyond V1**. Patrick's design — Smart Feed / Quick Theory / Deep Dives architecture with curation logic and proactive suggestion modal — is preserved as design input for the deferred feature.
+
+**Architectural placement remains formally open** at Doc 09 §13.11 #53 (Video Library architectural placement). Two framings are tracked:
+- Patrick's framing: content-mode-like (a top-level browsable video surface)
+- Staley's framing: roadmap-node primitive (agent-surfaced video as a node type within Project roadmaps)
+
+The current team-recommendation lean is toward Staley's framing — agent-surfaced video parallels how Interactive Tutorial is positioned and matches the 2024+ pattern of agent-surfaced contextual content over standalone browsable libraries. But this is a *lean*, not a *commitment*; the §13.11 #53 placement question stays open pending more development of both framings.
+
+**Two specific elements are absorbed earlier (not deferred):**
+
+- **Patrick's Proactive Suggestion System** (his §1.5) is absorbed as candidate engagement-layer behavior, scaffolded against three canon layers: the **user-modeling layer** (Decision #47, Doc 09 §1.2) as the substrate that detects the patterns Patrick's triggers depend on; the **per-mode agent control surfaces** (Decision #46, Doc 09 §6A) as the action vocabulary for interventions the modal can offer (suggesting an exercise atom, starting a repertoire session with auto-looping engaged, opening the Sight Reading Generate flow with parameters pre-filled, etc., not just videos); and the **engagement layer** (Decision #19 amendment, Glossary "Engagement Layer") as the interaction surface where the modal pattern lives. Trigger conditions and modal pattern apply generically; the content surfaced by the modal generalizes from "video" to "any helpful intervention available on the relevant control surface."
+
+- **Patrick's content tagging vocabulary** (concept tags, instrument focus tags, genre tags — his §1.3) is flagged as candidate metadata extension for catalog authoring conversations. Genre tags in particular are high-priority given Doc 10 §5.4 goal-category alignment — goal categories 3 (specific technique), 4 (play like specific artist), 5 (specific genre) all depend on genre/style tagging for Projects to assemble coherent goal-bound roadmaps.
+
+**The Knowledge Library as a top-level content surface waits until:** (a) the engagement layer ships, (b) Projects ships and the "agent surfaces a relevant video as part of a Project node" pattern is testable, (c) compliance / licensing for embedded video is cleared, and (d) the §13.11 #53 placement question resolves.
+
+**Reasoning:** Patrick's Theory Library design is well-considered but its V1 build effort is large relative to its V1 value, and the proactive-suggestion innovation in his design — the most generically valuable piece — applies equally to non-video interventions and is better absorbed once into the engagement layer than built twice. Deferring the surface itself preserves Patrick's design as input without committing V1 scope to it.
+
+**Phasing:** V1 documentation (this Decision); the feature itself deferred beyond V1 with no committed phase.
+
+**Cross-references:** Decision #19 amendment (engagement layer); Decision #41 (content/path mode architecture); Decision #46 (per-mode control surfaces — the agent's action vocabulary for suggested interventions); Decision #47 (user-modeling layer — the substrate the suggestion system depends on); Decision #48 (paired update — the renaming this Decision references); Doc 09 §13.11 #53 (formal cluster home for Video Library placement); Doc 09 (Projects as the natural home for agent-surfaced video); Doc 11 §4.6 and §5.2 (full reasoning).
+
+---
+
+## Decision 52: B/I/A as a Candidate Derived Label (Not a Schema Axis)
+
+**Source:** A2 evaluation (Doc 11 §4.3) of Patrick's flat Beginner / Intermediate / Advanced difficulty axis (applied across most of his templates). The flat axis conflicts with our 3-axis difficulty model (Decision #7), and the conflict is sharper post-Phase-2 given Decision #43's cross-mode promotion of performance constraints.
+
+**Decision made:** **B/I/A is not added to the atom schema as a primary difficulty field.** The 3-axis difficulty model (Decision #7: substrate complexity × training method scaffolding × constraint tightness) remains the difficulty engine.
+
+If the UX exploration later determines a user-facing summary label is needed (per UX Spec §9 Open Question #5: "Named presets vs. individual sliders"), B/I/A or a similar label can be **derived from atom configuration at filter time** — it does not exist as a stored schema field.
+
+Per Decision #43 (cross-mode performance constraints), if a B/I/A-style summary label is wanted across content modes (exercises, sight reading, repertoire), the derivation rules are likely **per-mode rather than shared** — the same B/I/A bucket means materially different things for an exercise atom (substrate complexity + method + constraints) vs. a sight-reading level (parameter difficulty + accuracy thresholds + time pressure) vs. a repertoire practice session (success threshold + tempo target + hand-isolation settings). When the UX exploration happens, per-mode derivation rules will need to be designed deliberately.
+
+**Reasoning:** Flat B/I/A is a brittle simplification of our richer 3-axis model, and the brittleness compounds across content modes per Decision #43. Storing it as a schema field would require ongoing maintenance to keep B/I/A in sync with the underlying axes, and the mapping isn't deterministic anyway (a Compound substrate at REC method with loose constraints is "easier" than an Atomic substrate at PRF method with tight constraints, but in different ways). Derive-on-filter is the right level of commitment. The job of this Decision is to *prevent* a future bad schema commitment, not to enable a future feature.
+
+**Phasing:** V1 — at the schema level, this is a non-decision (don't add the field). UX exploration may surface B/I/A or alternatives later, at which point per-mode derivation rules are designed.
+
+**Cross-references:** Decision #7 (3-axis difficulty model); Decision #43 (cross-mode performance constraints — sharpens the case against a flat schema label); UX Spec §9 Open Question #5; Doc 11 §4.3 (full reasoning).
 
 ---

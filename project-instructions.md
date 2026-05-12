@@ -59,7 +59,7 @@ A note on the metarepo: its protocols are largely engineering-sprint-shaped. Thi
 | `08-standup-synthesis-apr28-may5.md` | Synthesis of two May 2026 team meetings |
 | `09-agentic-museflow-vision.md` | Freestanding agentic-system vision document |
 | `10-may7-brainstorm-synthesis.md` | Synthesis of the May 7, 2026 agentic-system brainstorm (Steven, Staley, Patrick); source of committed Decisions #42–#47 |
-| `11-patrick-doc-integration-memo.md` | A2 deliverable — evaluation of Patrick's Theory Library & Exercise Section brainstorm against current canon, with proposed Decisions #48–#52 (v0.3, current) |
+| `11-patrick-doc-integration-memo.md` | A2 deliverable — evaluation of Patrick's Theory Library & Exercise Section brainstorm against current canon (v0.3, current). Decisions #48–#52 derived from this memo are committed to Doc 05. |
 
 Prior versions of canon docs that have been substantially revised are archived under `docs/archive/` (e.g., `11-patrick-doc-integration-memo-v0.1.md`, `-v0.2.md`). Archived versions are retained for audit-trail but are not canon — the unversioned filename in `docs/` is always the canonical current state.
 
@@ -72,11 +72,12 @@ Prior versions of canon docs that have been substantially revised are archived u
 Work is organized into named Tracks, each producing specific deliverables:
 
 - **A1** — Doc-sync (integrate standup outputs into canon). **Done.**
-- **A2** — Patrick's "Theory Library & Exercise Section" doc evaluation, producing an integration memo. **Done** — v0.3 committed as Doc 11; v0.1/v0.2 archived under `docs/archive/`. Five proposed Decisions (#48–#52) await Steven's review before commit to the Decision Log.
-- **B** — Open-question triage (sort the ~32 open questions plus newly-surfaced ones into decide-now / V1-deferrable / V2+ / explicit-punt)
-- **C** — Taxonomy reconciliation (update Doc 03 to align atom identity with Doc 07's framework)
-- **D** — V1 atom catalog authoring (the actual ship list)
-- **E** — PRD authoring (the macro spec for Patrick's MVP decomposition)
+- **A2** — Patrick's "Theory Library & Exercise Section" doc evaluation, producing an integration memo. **Done** — v0.3 committed as Doc 11 (v0.1/v0.2 archived under `docs/archive/`); Decisions #48–#52 committed to the Decision Log with dependent doc-sync to Bible §2.1.1/§2.2, Glossary, Doc 09 §13.11/§5.2, UX Spec §9, and amendments to Decisions #16, #41, #45.
+- **B** — Open-question triage (sort the ~32 open questions plus newly-surfaced ones into decide-now / V1-deferrable / V2+ / explicit-punt). **Queued.** Inventory now includes the nine questions from Doc 11 §11.1–§11.10, with §11.4 priority elevated (blocking ~6 V1 preset candidates) and §11.10 new (exercise UI session structure — natural lead-in to C2).
+- **C** — Taxonomy reconciliation (update Doc 03 to align atom identity with Doc 07's framework). **Queued.**
+- **C2** — Exercise UI shape design pass (resolve §11.10 — SRT-style continuous vs. tutorial-style discrete prompt-and-perform vs. other; likely needs sketches/mockups). **Queued.** Precursor to D and E.
+- **D** — V1 preset atom catalog authoring (the actual ship list of `authoring_origin = preset` atoms). **Queued.** Depends on C, C2, and partial B.
+- **E** — PRD authoring (the macro spec for Patrick's MVP decomposition). **Queued.** Depends on D substantially complete.
 
 Conversations should know which Track they're in and stay in scope. If a conversation surfaces work that belongs to a different Track, log it for that Track rather than absorbing it.
 

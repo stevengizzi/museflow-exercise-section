@@ -41,8 +41,9 @@ The three-flow pattern and four authorship origins apply identically across cont
 - **Sight Reading** — currently bound to Curriculum; envisioned as a custom-level generator with full parameter control over difficulty, complexity metrics, musical parameters, performance constraints, and completion criteria. The four authorship origins apply: MuseFlow preset levels, user-constructed levels (the user-generated authorship origin within Sight Reading — see Decision #45), AI-built levels (e.g., for a Project), and community-shared levels (future). User-generated levels may carry "no completion criteria, just play endlessly" as one configurable option.
 
 **Candidate future content modes** (not committed):
-- **Theory** — pending evaluation of whether theory practice warrants its own mode or remains a substrate within Exercises (status TBD pending review of Patrick's Theory Library & Exercise Section design document)
-- **Free Play** — refers to user improvisation without notation guidance — open-ended musical exploration. Status: deferred indefinitely. Whether Free Play belongs as a content mode, a path-construction primitive, or its own non-mode category is open. Note: this is distinct from user-generated sight-reading levels with no completion criteria, which live in the Sight Reading content mode (Decision #45). Free Play's deferral is independent of, and unaffected by, Decision #45's resolution of the user-generated sight-reading question.
+- **Open Play** — refers to user improvisation without notation guidance — open-ended musical exploration. Status: deferred indefinitely. Whether Open Play belongs as a content mode, a path-construction primitive, or its own non-mode category is open. Note: this is distinct from user-generated sight-reading levels with no completion criteria, which live in the Sight Reading content mode (Decision #45). Also distinct from the `free_play` completion-policy element of the exercise control surface (Decision #49 Part 1), which is a session-level setting within Exercises, not a content mode. Open Play's deferral is independent of, and unaffected by, Decision #45's or Decision #49 Part 1's resolutions. *(Renamed from "Free Play" by Decision #49 Part 2 to resolve the naming collision with the completion-policy element.)*
+
+*(Note: "Theory" was previously listed here as a candidate content mode pending evaluation of Patrick's Theory Library & Exercise Section design document. That evaluation resolved Theory as a substrate family within Exercises rather than a separate content mode — see Decision #48.)*
 
 #### 2.1.2 Path Modes
 
@@ -81,7 +82,7 @@ Each mode in MuseFlow's architecture has a distinct functional role:
 - **Exercises** is the targeted, configurable skill-drilling mode. Users practice specific musical substrates (intervals, chords, rhythms, scales, etc.) in isolation or in controlled combinations, with full configuration over training method, performance constraints, and session shape.
 - **Repertoire** is the free-choice performance mode. Users practice real musical works at their chosen pace and complexity, with looping, transposition, and other practice tools available.
 - **Sight Reading** (anticipated) is the fluency-with-new-material mode. Users develop the capacity to read and play music they've never seen before, with adjustable difficulty parameters and AI-built custom levels.
-- **Theory** (candidate) and **Free Play** (candidate) are placeholders for future modes whose status is open.
+- **Open Play** (candidate, deferred indefinitely) is a placeholder for a future mode of open-ended improvisation without notation guidance. Status open. *(Renamed from "Free Play" by Decision #49 Part 2; "Theory" was previously listed here but resolved as a substrate family within Exercises per Decision #48.)*
 
 **Path Modes:**
 

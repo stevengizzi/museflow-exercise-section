@@ -26,7 +26,7 @@ docs/
 ├── 08-standup-synthesis-apr28-may5.md   # May 2026 team meetings synthesis
 ├── 09-agentic-museflow-vision.md   # Freestanding agentic-system vision
 ├── 10-may7-brainstorm-synthesis.md # May 7, 2026 brainstorm synthesis; source of Decisions #42–#47
-├── 11-patrick-doc-integration-memo.md  # A2 deliverable; proposes Decisions #48–#52
+├── 11-patrick-doc-integration-memo.md  # A2 deliverable; source of Decisions #48–#52
 └── archive/                        # Prior versions of substantially-revised canon docs (audit trail)
 ```
 
@@ -37,12 +37,12 @@ The canon evolves through a tracked sequence of conversations on claude.ai (Trac
 For a fresh session, read in this order:
 
 1. `docs/01-project-bible.md` — vision, content/path modes, foundational frameworks (PTA Loop, FTA Field)
-2. `docs/05-design-decisions-log.md` — 47 numbered decisions through #47 (with #48–#52 proposed in Doc 11, pending Steven's review); this is the operational truth about what's been settled
+2. `docs/05-design-decisions-log.md` — 52 numbered decisions; this is the operational truth about what's been settled
 3. `docs/07-ux-navigation-spec.md` — atom hierarchy, navigation model, open questions register
 4. `docs/02-system-architecture.md` — schema definitions, substrate catalog
 5. `docs/09-agentic-museflow-vision.md` — agentic system context
 6. `docs/10-may7-brainstorm-synthesis.md` — most recent strategic synthesis; source of Decisions #42–#47 and several new open-question clusters
-7. `docs/11-patrick-doc-integration-memo.md` — A2 evaluation of Patrick's brainstorm doc; proposes Decisions #48–#52
+7. `docs/11-patrick-doc-integration-memo.md` — A2 evaluation of Patrick's brainstorm doc; source of committed Decisions #48–#52
 
 `docs/04-glossary.md` is reference-on-demand. `docs/03`, `docs/06`, `docs/08`, `docs/00` are read when relevant to the task. `docs/archive/` holds prior versions of substantially-revised canon docs (audit-trail only; not canon).
 
@@ -62,7 +62,7 @@ Older canon docs sometimes misattribute Staley's contributions to "Austin Clifto
 
 ### Decision Log discipline
 
-- New decisions append to `docs/05-design-decisions-log.md` at the highest number (currently 47, with #48–#52 proposed in Doc 11 awaiting Steven's review)
+- New decisions append to `docs/05-design-decisions-log.md` at the highest number (currently 52)
 - Existing decisions are amended (not replaced) when refined; amendments are dated and labeled
 - Consult the relevant entry before re-deriving or re-deciding
 - If you find yourself about to argue something the Log already settled, **stop and reference the decision** — don't relitigate without explicit cause
@@ -100,11 +100,12 @@ Work is organized into named Tracks:
 | Track | Purpose | Status |
 |---|---|---|
 | A1 | Doc-sync (integrate standup outputs) | Done |
-| A2 | Patrick's "Theory Library & Exercise Section" doc evaluation | Done — Doc 11 v0.3; Decisions #48–#52 proposed, await commit |
+| A2 | Patrick's "Theory Library & Exercise Section" doc evaluation | Done — Doc 11 v0.3; Decisions #48–#52 committed |
 | B | Open-question triage | Queued |
 | C | Taxonomy reconciliation (Doc 03 ↔ Doc 07) | Queued |
-| D | V1 atom catalog authoring | Queued |
-| E | PRD authoring | Queued |
+| C2 | Exercise UI shape design pass (resolve Doc 11 §11.10) | Queued — precursor to D and E |
+| D | V1 preset atom catalog authoring | Queued — depends on C, C2 |
+| E | PRD authoring | Queued — depends on D substantially complete |
 
 A session should know which Track it's in. If a session surfaces work belonging to a different Track, log it for that Track rather than absorbing it.
 
