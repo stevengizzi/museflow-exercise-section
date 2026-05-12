@@ -1,17 +1,17 @@
 # Open-Question Triage — Inventory
 
 **Track:** B (open-question triage)
-**Phase:** 1 — Inventory + dedupe + stale check
-**Status:** Draft for Steven's review (not yet committed)
+**Phase:** 2 — Disposition pass (extends Phase 1 inventory + dedupe + stale check)
+**Status:** Draft for Steven's review (Phase 1 committed 2026-05-12; Phase 2 not yet committed)
 **Date:** 2026-05-12
 
 ---
 
 ## 1. What this document is
 
-This document is the Phase 1 deliverable of Track B. It is the **unified deduplicated inventory** of all open questions accumulated across the four primary registers plus the Decision Log, with provenance for each entry and stale-by-canon-evolution flags where Decisions #42–#52 (or earlier resolutions not formally retired) have answered or partially answered an entry.
+This document is the Track B inventory + disposition. Phase 1 produced the unified deduplicated inventory of all open questions accumulated across the four primary registers plus the Decision Log, with provenance for each entry and stale-by-canon-evolution flags. Phase 2 adds bucket assignment (decide-now / V1-decide-soon / V2-defer / explicit-punt / already-resolved) to each entry, with reasoning.
 
-It is **not yet a disposition**. Bucket assignment (decide-now / V1-decide-soon / V2-defer / explicit-punt / formally-retired) is Phase 2 work.
+Phase 3 will work through the decide-now bucket inline and propose specific Decision Log entries or amendments for each. This document will continue to live as the working backlog for Tracks C2, C, D, E, and the agentic plan.
 
 ---
 
@@ -82,30 +82,81 @@ Any additional registers encountered during reading are noted in §6.
 
 ---
 
+## 4.5 Phase 2 disposition summary
+
+**Bucket totals:**
+
+| Bucket | Count | Definition |
+|---|---|---|
+| Decide-now | 4 | Mechanical-given-canon calls; resolved inline in Phase 3 |
+| Already-resolved | 1 | Canon already answered; recommend formal retirement in Phase 3 |
+| V1-decide-soon | 43 | Needs deliberate design work in this Track's near-term — blocks V1 exercise section ship and/or investor demo |
+| V2-defer | 31 | Out of V1 scope; will resolve when V2 / agentic-track work ramps |
+| Explicit-punt | 17 | Long-horizon, gated on external events (pricing-design start, Knowledge Library entering scope, post-V2) |
+| **Total** | **96** | |
+
+**Bucket-grouped T-ID listings:**
+
+### Decide-now (4)
+- **T-026** — Pedaling exercises placement (proposed: distinct substrate)
+- **T-067** — MAGE long-term role caveat (proposed: formally close Decision #39 by #44)
+- **T-074** — "Large Music Model" framing (proposed: don't use externally until architecture justifies)
+- **T-085** — Atom-gating vs. generation-gating framing (proposed: confirm Doc 11 §11.9 lean — generation-gating wins)
+
+### Already-resolved (1)
+- **T-022** — Micro-PTA exercises in V1 scope (Decision #24 deferred; recommend retirement)
+
+### V1-decide-soon (43)
+- **Track C2 anchor:** T-008
+- **Exercise UX (Track C2 / C):** T-001, T-002, T-003, T-004, T-005, T-006, T-007
+- **Configuration UI:** T-009, T-010, T-011
+- **Progress / completion UI:** T-012, T-013, T-014, T-015
+- **Catalog (Track D):** T-016, T-017, T-018, T-019, T-021, T-023, T-024
+- **Substrate edge cases:** T-025, T-027, T-028
+- **Catalog-time defaults:** T-030, T-031, T-032
+- **Agentic — demo-blocking:** T-038, T-039, T-042, T-043, T-049, T-052, T-053, T-054, T-057, T-058, T-062
+- **Agentic — team-org / infra:** T-068, T-069
+- **Content classes:** T-093, T-095
+
+### V2-defer (31)
+- T-020, T-029, T-033, T-034, T-035, T-037, T-040, T-044, T-045, T-046, T-048, T-050, T-051, T-055, T-056, T-060, T-061, T-063, T-064, T-066, T-075, T-076, T-077, T-078, T-086, T-087, T-089, T-090, T-091, T-092, T-096
+
+### Explicit-punt (17)
+- T-036, T-041, T-047, T-059, T-065, T-070, T-071, T-072, T-073, T-079, T-080, T-081, T-082, T-083, T-084, T-088, T-094
+
+---
+
 ## 5. Unified inventory
 
 ### C-01 — Exercise Section UX (hierarchy, navigation, card design, naming)
 
 **T-001 — *Universe visual metaphor.*** What does the cluster/strand/molecule/atom hierarchy look like visually? Planetary orbits, constellation map, skill tree, folder structure, or something else? Needs design exploration.
   Sources: UX §9 #1
+  **Bucket:** V1-decide-soon. **Reasoning:** Track C2 design exploration; blocks the visual library UI. Needs design sketches before any cluster/strand/molecule/atom view can be built.
 
 **T-002 — *Zoom vs. flat library view.*** Should the Library zone always start at the cluster level and require progressive zoom-in, or should users be able to toggle between hierarchical and flat/filtered list views?
   Sources: UX §9 #2
+  **Bucket:** V1-decide-soon. **Reasoning:** Library nav design choice; affects every entry into the exercise section. Track C2.
 
 **T-003 — *Substrate-grouped vs. modality-grouped toggle UX.*** How does the toggle between these two organizations work in the UI — tabs, dropdown, page restructure, or re-sort?
   Sources: UX §9 #3
+  **Bucket:** V1-decide-soon. **Reasoning:** UI pattern affecting library page structure. Track C2.
 
 **T-004 — *Exercise card design.*** What information does each card show at each level of the hierarchy? How much progress detail is visible before tapping in?
   Sources: UX §9 #4
+  **Bucket:** V1-decide-soon. **Reasoning:** Card design blocks every level of the library UI. Track C2.
 
 **T-005 — *Atom/Molecule/Strand/Cluster naming for users.*** Internal vocabulary is set; user-facing equivalents are not. Users should never see "atom" or "molecule."
   Sources: UX §9 #13
+  **Bucket:** V1-decide-soon. **Reasoning:** User-facing terminology — doesn't block engineering but blocks user-facing copy and design conversations. Track C2.
 
 **T-006 — *Default Browse view: preset-default vs. all-mixed.*** When a user enters a content mode's Browse flow, do they see all content together (with origin tags) or only MuseFlow presets, with custom/AI/community opt-in? AI-averse vs. full-power user tension.
   Sources: UX §9 #18
+  **Bucket:** V1-decide-soon. **Reasoning:** AI-averse user constraint demands a careful call; affects every content mode's Browse landing. Track C2/C with cross-cutting implications.
 
 **T-007 — *User Paths naming.*** "User Paths" is a placeholder. Alternatives: "Playlists," "Plans." User-facing name TBD.
   Sources: UX §9 #19
+  **Bucket:** V1-decide-soon. **Reasoning:** Naming call that affects design conversations. Could be elevated to decide-now if Steven wants to pick fast (Plans vs. Playlists vs. User Paths); flagged as ambiguous in §8.
 
 ---
 
@@ -114,6 +165,7 @@ Any additional registers encountered during reading are noted in §6.
 **T-008 — *Exercise UI session structure: SRT-style continuous vs. tutorial-style discrete vs. other.*** Patrick's framing collapses all reading/playing exercises onto the SRT UI (continuous scroll, chevron gate, Game/Free Play toggle). The Interactive Tutorial UI presents a different shape (single-line prompt, prompt banner, discrete prompt-and-perform). Which session structure applies to which atom is undecided. Likely needs sketches/mockups; warrants its own design conversation. **This is the Track C2 anchor question.**
   Sources: Doc 11 §11.10
   Cross-refs: T-001 / T-002 / T-004 (general UX); T-024–T-026 (catalog scope, since session structure may constrain which atoms ship)
+  **Bucket:** V1-decide-soon. **Reasoning:** Track C2 anchor question. Per Doc 11 v0.3 priority elevation, blocks ~6 V1 preset candidates and is precursor to Tracks C, D, E. Resolution venue: dedicated Track C2 design conversation with sketches/mockups.
 
 ---
 
@@ -122,14 +174,17 @@ Any additional registers encountered during reading are noted in §6.
 **T-009 — *Named presets vs. individual sliders for performance constraints.*** Presets simpler; sliders give more control. Default + "Advanced" toggle revealing sliders is a candidate pattern. Connects to Decision #52 (B/I/A as candidate derived label, not schema axis) — the user-facing summary label, if needed, can be derived from atom configuration at filter time.
   Sources: UX §9 #5
   Cross-refs: Decision #52 (the schema side is resolved; this is the UI side)
+  **Bucket:** V1-decide-soon. **Reasoning:** UX call affecting every atom's config screen. Decision #52 settled the schema side (B/I/A as derived label, not stored axis); this is the UI side.
 
 **T-010 — *Configuration persistence per atom.*** When a user adjusts settings for an atom, do those settings persist for next time, or reset to defaults? Per-atom persistence adds data storage complexity.
   Sources: UX §9 #6
+  **Bucket:** V1-decide-soon. **Reasoning:** UX call with modest data-storage implications. Not strictly blocking, but defaults matter for first-impression quality.
 
 **T-011 — *Cross-mode performance-constraints UI pattern.*** Per Decision #43, performance constraints are a cross-content-mode primitive. Shared-vs-mode-specific UI vocabulary is open: consistent enough for recognition across modes, specific enough that affordances make sense locally.
   Sources: UX §9 #33
   Cross-refs: Decision #43 (principle resolved; UI pattern still open)
   Status: **PARTIALLY STALE** — principle resolved by Decision #43; cross-mode UI pattern itself remains open.
+  **Bucket:** V1-decide-soon. **Reasoning:** Cross-mode UI pattern needed for Exercise content mode launch. PARTIALLY STALE on principle (Decision #43); UI specifics still need design.
 
 ---
 
@@ -137,16 +192,20 @@ Any additional registers encountered during reading are noted in §6.
 
 **T-012 — *Mastery tier system within atoms.*** Simple cleared/not-cleared per training method, or sub-tiers within each method (e.g., "cleared Multiple Choice at Easy" vs. "cleared Multiple Choice at Hard")? More tiers = more granularity, more visual complexity.
   Sources: UX §9 #7
+  **Bucket:** V1-decide-soon. **Reasoning:** Affects mastery schema slightly and the progress UI substantially. Track C2/D.
 
 **T-013 — *Completion incentive visual system.*** Stars, badges, checkmarks, fill colors, numeric scores? Needs design exploration aligned with MuseFlow's brand.
   Sources: UX §9 #8
+  **Bucket:** V1-decide-soon. **Reasoning:** UX/brand design work. Track C2.
 
 **T-014 — *Streak and gamification interaction with atom system.*** Daily streak across any exercise? Per-strand streaks? Per-atom consistency tracking?
   Sources: UX §9 #9
+  **Bucket:** V1-decide-soon. **Reasoning:** UX call tied to engagement layer (C-13). Affects whether streaks are atom-, strand-, or session-scoped.
 
 **T-015 — *Completion handicap behavior with non-default assistance.*** When the user invokes any non-default assistance, the session is flagged as assisted. Display treatment (asterisk, visual flag, separate "assisted-clear" state) and downstream computation (does an assisted clear count toward molecule completion?) are open. Per Decision #38.
   Sources: UX §9 #32
   Cross-refs: Decision #38 (assistance-flagging principle set; per-atom/per-blueprint specifics open)
+  **Bucket:** V1-decide-soon. **Reasoning:** Schema and UX call. Decision #38 set the assistance-flag principle; this is the downstream-treatment design.
 
 ---
 
@@ -154,36 +213,45 @@ Any additional registers encountered during reading are noted in §6.
 
 **T-016 — *Content scope progression authoring.*** Difficulty ladders per substrate family need authoring and pedagogical review. Who authors — Steven, partially automated, mixed?
   Sources: UX §9 #10
+  **Bucket:** V1-decide-soon. **Reasoning:** Authorship decision (Steven, partially automated via MAGE, hybrid) blocks Track D. Worth deciding deliberately rather than defaulting.
 
 **T-017 — *Distractor selection quality.*** Generation rules give structure; specific distractor selection within rules affects exercise quality. Random within valid options vs. curated to target common confusions?
   Sources: UX §9 #11
+  **Bucket:** V1-decide-soon. **Reasoning:** Track D scoping; distractor quality directly affects exercise pedagogy.
 
 **T-018 — *V1 atom enumeration / total count.*** How many atoms does V1 contain across substrate families × modality combinations × content scope levels × target variable sets? Enumeration exercise needed. (Track D directly.)
   Sources: UX §9 #12, UX §9 #16 *(these are effectively the same question — total count emerges from the V1 catalog decisions)*
   Cross-refs: T-024 (V1 catalog scope question proper); T-022 (Five-exercises question)
+  **Bucket:** V1-decide-soon. **Reasoning:** Emerges from T-021 (V1 catalog scope). Track D direct deliverable.
 
 **T-019 — *GMTF integration with exercise atom framework.*** GMTF complexity scoring needs mapping to atoms. Score derived from content scope? Target variables? Both? How does it attach?
   Sources: UX §9 #14
   Cross-refs: Decision #23 (use existing GMTF; don't reinvent — sets the principle; integration mechanic still open)
+  **Bucket:** V1-decide-soon. **Reasoning:** Track D blocker — atoms can't ship without a GMTF score attached. Decision #23 set the use-don't-reinvent principle; mechanic still open.
 
 **T-020 — *Atom-creation validation rules.*** For the agentic future, the system needs to support creating new atoms outside the standard catalog. Can any valid combination of identity dimensions produce an atom, or are additional validation rules needed? *(Distinct from authoring-UI question T-046 — this is the schema-level constraint question.)*
   Sources: UX §9 #15
+  **Bucket:** V2-defer. **Reasoning:** Tied to custom-atom authoring (post-V1 per Decision #34 phasing-TBD). V1 preset catalog won't need user-validation rules.
 
 **T-021 — *V1 exercise catalog scope.*** Which substrate families, modality combinations, and content scope levels ship in V1? Single most important scoping question; determines build effort. (Track D direct deliverable.)
   Sources: UX §9 #16
   Cross-refs: T-018, T-022, T-024–T-029 (substrate-fit edge cases all feed this)
+  **Bucket:** V1-decide-soon. **Reasoning:** Most important V1 scoping call; determines build effort across the entire exercise section. Track D direct deliverable.
 
 **T-022 — *Micro-PTA exercises in V1 scope.*** Should exercises explicitly training the endogenous micro-PTA loop (play with eyes closed, error recovery drills) be V1 or deferred? Current lean: deferred (per Decision #24).
   Sources: UX §9 #17
   Cross-refs: Decision #24 (deferred — directional resolution; V1 inclusion remains open as the deferred-by-default position)
   Status: **PARTIALLY STALE** — Decision #24 deferred beyond V1; entry stays in inventory in case V1 scope reopens this.
+  **Bucket:** Already-resolved. **Reasoning:** Decision #24 deferred Micro-PTA exercises beyond V1. The original question was 'V1 or deferred'; that's been answered. Recommend formal retirement in Phase 3.
 
 **T-023 — *Reverse-engineered catalog merger with bottom-up enumeration methodology.*** Track D will have two methodologies — top-down agent-demand and bottom-up substrate enumeration. What's the merge/triage process?
   Sources: Doc 10 §6 #4
+  **Bucket:** V1-decide-soon. **Reasoning:** Track D methodology choice; affects how the V1 catalog gets built.
 
 **T-024 — *Five-exercises-cover-90% question.*** Staley asked Steven what five exercises could apply to ~90% of pieces. Patrick's catalog provides a partial answer. Worth answering deliberately as curriculum primitive and investor-demo framing?
   Sources: Doc 11 §11.8
   Cross-refs: T-021 (V1 catalog), T-023 (reverse-engineering methodology)
+  **Bucket:** V1-decide-soon. **Reasoning:** Curriculum primitive + investor-demo framing. Worth deliberate answer in Track D or PRD authoring.
 
 ---
 
@@ -191,20 +259,25 @@ Any additional registers encountered during reading are noted in §6.
 
 **T-025 — *Arpeggio cluster shape.*** Separate cluster parallel to Chords, sub-strand within Chords, or atoms with a "performance mode = arpeggiated" content-scope configuration? Real classification question per Patrick's A2.
   Sources: Doc 11 §11.2
+  **Bucket:** V1-decide-soon. **Reasoning:** Track D classification call. Three candidate framings; no canon lean yet.
 
 **T-026 — *Pedaling exercises placement.*** Pedal substrate isn't in the current substrate catalog. Add as distinct substrate (likely under new "Articulation/Pedal" cluster), or treat as constraint/configuration on existing atoms? Probably distinct substrate; worth catalog-authoring conversation.
   Sources: Doc 11 §11.3
+  **Bucket:** Decide-now. **Reasoning:** Doc 11 §11.3 leans 'distinct substrate'; the call is mechanical given that lean. Proposed Phase 3 decision: add Pedal as distinct substrate under a new 'Articulation/Pedal' cluster, slated for catalog authoring at next opportunity.
 
 **T-027 — *Technique drills: exercises or distinct content class.*** Patrick's E category is pedagogically valid but doesn't fit the substrate-driven model. Candidates: V2 Exercise cluster, distinct content mode, blueprint variant with substrate="motor pattern", or performance-method atoms. **Priority elevated in Doc 11 v0.3** — blocks ~6 V1 preset candidates (A4 Hanon-style and E1–E5 finger independence / hand coordination / thumb crossing / hand position shifts / wrist rotation).
   Sources: Doc 11 §11.4
   Cross-refs: Decision #13 (improvisation+fingering placeholder — adjacent territory); T-094 (Content classes inventory)
+  **Bucket:** V1-decide-soon. **Reasoning:** Priority-elevated in Doc 11 v0.3; blocks ~6 V1 preset candidates. The decision may itself be 'defer to V2' (resulting in those candidates being deferred), but the *decision needs to be made* in V1 timeframe to unblock Track D.
 
 **T-028 — *Genre tag granularity.*** Patrick's H category implies 5 genre buckets; his Quick Theory tagging implies more. Canonical list and granularity? Priority raised given Doc 10 §5.4 goal-category alignment — genre tags are load-bearing for Projects targeting "I'm interested in [genre]" or "play like [artist]" goals.
   Sources: Doc 11 §11.5
+  **Bucket:** V1-decide-soon. **Reasoning:** Load-bearing for Projects targeting genre-anchored goals (Doc 10 §5.4); also a Track D filter-UX decision.
 
 **T-029 — *Improvisation and creative exercises path.*** Patrick's F category exposes a real gap. As Projects mature and the exercise control surface stabilizes, does creative exercise design re-enter scope, or stay deferred indefinitely? Adjacent to renamed "Open Play" candidate content mode (deferred per Decision #41 + Decision #49 Part 2).
   Sources: Doc 11 §11.6
   Cross-refs: Decision #13 (defer); Decision #41 (Open Play candidate); Decision #49 Part 2 (renaming); T-094 (content classes)
+  **Bucket:** V2-defer. **Reasoning:** Decision #13 deferred improvisation; Doc 11 §11.6 explicitly frames as 'as Projects mature, does creative exercise design re-enter scope?' — long-horizon.
 
 ---
 
@@ -213,13 +286,16 @@ Any additional registers encountered during reading are noted in §6.
 **T-030 — *Mobile parity per blueprint defaults.*** Each of the 13 blueprints needs a `mobile_supported` value (`full` / `partial` / `none`). Default values per blueprint unspecified; will be set during catalog authoring.
   Sources: UX §9 #20
   Cross-refs: Decision #36, Decision #40
+  **Bucket:** V1-decide-soon. **Reasoning:** Track D bookkeeping per Decision #36/#40. Defaults must be set during catalog authoring.
 
 **T-031 — *Lit-Keys Mode applicability per blueprint defaults.*** Which atoms and blueprints support Lit-Keys assistance? Default values per blueprint unspecified.
   Sources: UX §9 #31
   Cross-refs: Decision #38
+  **Bucket:** V1-decide-soon. **Reasoning:** Track D bookkeeping per Decision #38. Per-atom/per-blueprint defaults set during catalog authoring.
 
 **T-032 — *Free Play (completion-policy) per-blueprint applicability defaults.*** Free Play is available on any atom that supports continuous-practice interaction (most PRF atoms; some REC/RCL atoms). Specific applicability per blueprint is open; Track D scoping concern.
   Sources: Decision #49 Part 1 (sub-question explicitly flagged open)
+  **Bucket:** V1-decide-soon. **Reasoning:** Track D bookkeeping per Decision #49 Part 1. Per-blueprint applicability set during catalog authoring.
 
 ---
 
@@ -228,6 +304,7 @@ Any additional registers encountered during reading are noted in §6.
 **T-033 — *Cross-section Master Roadmap appetite.*** Patrick's §3.2 reveals team appetite for cross-section preset paths (Curriculum spanning Sight Reading + Repertoire + Exercises + Knowledge). Bible §2.2 anticipates Curriculum either dissolving into Projects or broadening into a multi-content-mode preset path. Open: which evolution wins, on what timeline? Does the team also want a non-AI-mediated, MuseFlow-authored, cross-content-mode Curriculum in addition to Projects?
   Sources: Doc 11 §11.7
   Cross-refs: Doc 09 §3.1 (architectural placement)
+  **Bucket:** V2-defer. **Reasoning:** Strategic positioning call about Curriculum's evolution. Not blocking V1 build; matters for V2+ direction and Project framing. Worth deliberate team conversation in V2 timeframe.
 
 ---
 
@@ -236,47 +313,61 @@ Any additional registers encountered during reading are noted in §6.
 **T-034 — *Multi-goal Projects.*** One Project per goal, or can a Project encompass multiple related goals?
   Sources: Doc 09 §13.1 #1
   Cross-refs: Doc 09 §4.5
+  **Bucket:** V2-defer. **Reasoning:** Agentic-track scope; not demo-critical (demo can show single-goal Projects).
 
 **T-035 — *Project termination.*** When does a Project end? On goal completion, user dismissal, agent declaration, or timeout? Does it persist as "completed" archive?
   Sources: Doc 09 §13.1 #2
+  **Bucket:** V2-defer. **Reasoning:** Agentic-track scope; demo doesn't terminate Projects.
 
 **T-036 — *Project sharing.*** Can a user share a Project (goal + roadmap) with another user? With a teacher? Its own object, or a snapshot?
   Sources: Doc 09 §13.1 #3
+  **Bucket:** Explicit-punt. **Reasoning:** Post-V2 social/collaboration feature; not on near-term roadmap.
 
 **T-037 — *Project pause/resume semantics.*** How are Projects paused and resumed? Does the agent reassess on resume?
   Sources: Doc 09 §13.1 #4
+  **Bucket:** V2-defer. **Reasoning:** Agentic-track scope.
 
 **T-038 — *Goal type taxonomy.*** Discrete categories the system reasons over, or everything free-form natural-language input?
   Sources: Doc 09 §13.2 #5
+  **Bucket:** V1-decide-soon. **Reasoning:** Demo Step 1 (goal planning) requires either discrete categories or free-form input handling. Decision needed before demo build, even if demo scaffolds with primed examples.
 
 **T-039 — *Goal decomposition logic.*** How does the agent get from a goal to a roadmap? What's the model of musical skill composition?
   Sources: Doc 09 §13.2 #6
+  **Bucket:** V1-decide-soon. **Reasoning:** Demo Step 1+2 hinge on the AI getting from goal → roadmap. Decision needed in scaffolded form for demo; full model is post-V1.
 
 **T-040 — *Skill assessment for goal-relevant capabilities.*** How does the agent measure current state on the skills a goal requires? Direct atom mastery? Inferred from repertoire? Asked of the user?
   Sources: Doc 09 §13.2 #7
+  **Bucket:** V2-defer. **Reasoning:** Agentic-track; demo uses primed example, doesn't require full assessment mechanism.
 
 **T-041 — *Time-to-goal estimation.*** How does the agent project completion time? What does it base this on?
   Sources: Doc 09 §13.2 #8
+  **Bucket:** Explicit-punt. **Reasoning:** Speculative UX feature; not demo-critical, not V1-critical.
 
 **T-042 — *Roadmap node types completeness.*** Are the node types listed in Doc 09 §5.2 sufficient, or are others needed? Tutorial-node and Video-node placement is open. *(Clusters with C-16 content classes — but it's also a roadmap-structure question, hence here.)*
   Sources: Doc 09 §13.3 #9
   Cross-refs: T-095, T-096 (content-class placements); T-098 (tutorial-as-roadmap-node phasing)
+  **Bucket:** V1-decide-soon. **Reasoning:** Demo Step 2 shows roadmap with all main content types — the enumeration must exist for demo. Full agent-driven choice mechanism is post-V1.
 
 **T-043 — *Roadmap topology.*** Is a roadmap always linear, or can it have branches, parallel tracks, optional sections?
   Sources: Doc 09 §13.3 #10
+  **Bucket:** V1-decide-soon. **Reasoning:** Demo Step 2 shows branching. Need at least a working topology model for demo.
 
 **T-044 — *Roadmap adaptation cadence.*** How often does the agent re-evaluate and update the roadmap?
   Sources: Doc 09 §13.3 #11
+  **Bucket:** V2-defer. **Reasoning:** Agentic-track scope; demo is a single snapshot, doesn't show adaptation cadence.
 
 **T-045 — *User vs. agent edit authority on conflicts.*** When the user edits the roadmap and the agent adapts, who has authority on conflicts?
   Sources: Doc 09 §13.3 #12
+  **Bucket:** V2-defer. **Reasoning:** Agentic-track scope; conflict resolution is post-demo work.
 
 **T-046 — *Auto-looping AI-judgment override.*** Steven flagged the algorithmic perfect-practice tree may need AI judgment to "break the rules" (e.g., actual issue is the previous measure, not the errored one). When does AI override the algorithm? How does the user perceive the override?
   Sources: Doc 09 §13.3 #13, Doc 10 §6 #2
   Cross-refs: Decision #42 (algorithm itself); Decision #44 (augmentation framing supports this pattern)
+  **Bucket:** V2-defer. **Reasoning:** Decision #42 algorithm is V1 / engineering-track; AI override is post-V1 capability.
 
 **T-047 — *Auto-looping ⟷ Optimal Grip relationship.*** Both are adaptive difficulty at different levels (Optimal Grip session-level; auto-looping practice-section-level). Are there situations where Optimal Grip's logic should drive auto-looping's parameters? Not pressing; worth defining when both are V1+.
   Sources: Doc 09 §13.3 #14, Doc 10 §6 #17
+  **Bucket:** Explicit-punt. **Reasoning:** Doc 09 §13.3 #14 explicitly notes 'not pressing; worth defining when both are V1+'.
 
 ---
 
@@ -284,47 +375,61 @@ Any additional registers encountered during reading are noted in §6.
 
 **T-048 — *Levels-of-agency default for V1.*** Suggest-only, approve-by-default, or mixed?
   Sources: Doc 09 §13.4 #15
+  **Bucket:** V2-defer. **Reasoning:** Agentic-track UX call; demo can be scripted at one agency level.
 
 **T-049 — *AI surface UI location.*** Dedicated panel, in-Project, both, persistent vs. summoned?
   Sources: Doc 09 §13.4 #16
+  **Bucket:** V1-decide-soon. **Reasoning:** Demo Steps 1, 4, 5 show the AI surface — UI must exist. Affects every demo screen with AI.
 
 **T-050 — *Conversation persistence and searchability.*** Are AI conversations preserved across sessions? Searchable? Can the user reference past conversations?
   Sources: Doc 09 §13.4 #17
+  **Bucket:** V2-defer. **Reasoning:** Agentic-track scope; demo is single-session.
 
 **T-051 — *Multi-session agent memory.*** Does the agent remember what it said before? How implemented? Sub-question of user-modeling-layer (T-064).
   Sources: Doc 09 §13.4 #18
   Cross-refs: T-064 (user-modeling implementation)
+  **Bucket:** V2-defer. **Reasoning:** Sub-question of T-069 (user-modeling implementation); demo can primed.
 
 **T-052 — *Voice/text default modality for AI feedback.*** Voice vs. text vs. both; configurable per user; configurable per content mode? Steven OK with text-first per Doc 09 §6.5. Default behavior in V1 of voice-feedback capability is undefined.
   Sources: Doc 09 §13.4 #19, UX §9 #34, Doc 10 §6 #1
+  **Bucket:** V1-decide-soon. **Reasoning:** Demo Step 4 voice-LLM-latency is engineering-critical; voice vs. text choice gates feasibility. Affects which version of Step 4 the team commits to building.
 
 **T-053 — *End-of-round AI feedback timing.*** Steven's "in between plays" feedback per Doc 09 §6.1 — specific UX for the pause / feedback / setup-loop flow needs design. When does the agent fire? User's affordance to dismiss or accept?
   Sources: Doc 09 §13.4 #20, Doc 10 §6 #9
+  **Bucket:** V1-decide-soon. **Reasoning:** Demo Step 4 explicitly the pause/feedback/setup-loop UX. Affects the engineering-critical-path build.
 
 **T-054 — *Exercise and Sight Reading control surfaces enumeration.*** Per Doc 09 §6A, repertoire surface is enumerated (Decision #46). Exercise and sight-reading surfaces are sketched but not enumerated to the same depth.
   Sources: Doc 09 §13.4 #21, Doc 10 §6 #18
+  **Bucket:** V1-decide-soon. **Reasoning:** Demo Step 3 (SR control surface) + Step 5 (Exercise control surface). Doc 10 §6 #18 flagged 'worth completing in Phase 2'. Repertoire side is enumerated (Decision #46); Exercise and SR sides need parallel enumeration.
 
 **T-055 — *AI-analogy implementation choices.*** Per Doc 09 §10.7. Diagnostic-agent / auto-engaged-plan-mode is prompt-level or application-level? Per-user "MD file" memory — single growing markdown vs. structured RAG store with retrieval logic? Decide deliberately rather than letting the analogy specify the implementation by default.
   Sources: Doc 09 §13.4 #22, Doc 10 §6 #14
+  **Bucket:** V2-defer. **Reasoning:** Agentic-track implementation; demo can scaffold around the analogy.
 
 **T-056 — *Onboarding path-split logic.*** How does the system decide which onboarding path (Projects-first vs. exploration-first vs. others) to surface to which user? Chooser, default rule, declared user type at signup, combination?
   Sources: Doc 09 §13.4 #23, UX §9 #36, Doc 10 §6 #19
+  **Bucket:** V2-defer. **Reasoning:** Agentic-track UX; demo can default to one onboarding path.
 
 **T-057 — *Dashboard rendering structure.*** How are Projects rendered on the dashboard? List, grid, tree, other?
   Sources: Doc 09 §13.6 #28
+  **Bucket:** V1-decide-soon. **Reasoning:** Demo Step 6 shows the zoomed-out integrated UI including Projects dashboard. UI component must exist.
 
 **T-058 — *Vertical roadmap visualization details.*** Working direction is vertical tree with branching. Specific rendering: pan/zoom across long roadmaps, mobile rendering, progress indicators, node-state visualization.
   Sources: Doc 09 §13.6 #29, UX §9 #35, Doc 10 §6 #8
+  **Bucket:** V1-decide-soon. **Reasoning:** Demo Step 2 explicitly the visual roadmap; Doc 09 §7.2 sets direction (vertical tree with branching). Rendering details must resolve for demo.
 
 **T-059 — *Cross-project "what to do today" view.*** Unified view that draws across Projects?
   Sources: Doc 09 §13.6 #30
+  **Bucket:** Explicit-punt. **Reasoning:** Post-V2 cross-Project orchestration UX; not demo-critical.
 
 **T-060 — *Project flow entry from content modes.*** What does the in-content-mode entry point look like? Button, command, AI summon? *(The "where does Project flow live in nav" lean is "both top-level dashboard + per-content-mode entry" per UX §8.6 #1 — this entry is about the per-content-mode entry point UX.)*
   Sources: Doc 09 §13.6 #31, UX §9 #24, UX §8.6 #1
+  **Bucket:** V2-defer. **Reasoning:** Agentic-track UX; in-content-mode entry point is post-demo polish.
 
 **T-061 — *Agent live-toggle scope for Free Play completion-policy.*** Whether the agent can flip the Free Play toggle mid-session is open per Decision #46 (user live-toggle is established; agent live-toggle is separate). Sub-question of agent-policy capability design.
   Sources: Decision #49 Part 1 (sub-question explicitly flagged open), Decision #46
   Cross-refs: T-054 (exercise control surface enumeration)
+  **Bucket:** V2-defer. **Reasoning:** Agentic-policy capability question; post-V1, parallels broader agent live-toggle design.
 
 ---
 
@@ -333,20 +438,25 @@ Any additional registers encountered during reading are noted in §6.
 **T-062 — *Generation-on-demand UX flows.*** User-triggered, teacher-triggered, and agent-triggered generation are likely distinct flows. Specific UX unspecified for any of them.
   Sources: UX §9 #25, UX §8.6 #3
   Cross-refs: Decision #33 (capability committed; UX open)
+  **Bucket:** V1-decide-soon. **Reasoning:** Demo Step 5 shows generation-on-demand. UX flow must be designed for demo.
 
 **T-063 — *Custom atom authoring UI.*** How does the editor → atom flow work? Where do custom atoms live (private library, shareable, gradeable)? How are user-authored atoms validated for pedagogical coherence?
   Sources: UX §9 #26, UX §8.6 #4, Doc 09 §13.5 #27
   Cross-refs: Decision #34 (custom authoring path committed); T-020 (validation rules — schema-level)
+  **Bucket:** V2-defer. **Reasoning:** Custom authoring UI per Decision #34 is post-V1; not demo-critical.
 
 **T-064 — *Generation cost limits.*** Is on-demand generation unlimited, rate-limited, or premium-gated? *(Architectural mechanism — distinct from the pricing-tier-design question in C-14.)*
   Sources: Doc 09 §13.5 #24
   Cross-refs: T-082 (Generation volume tiers — pricing side); Decision #37
+  **Bucket:** V2-defer. **Reasoning:** Mechanism for cost limits is post-V1; pricing-side question is in C-14.
 
 **T-065 — *Generation provenance preservation.*** When generated content is shared (e.g., via marketplace), how is provenance preserved?
   Sources: Doc 09 §13.5 #25
+  **Bucket:** Explicit-punt. **Reasoning:** Marketplace-related; long-horizon.
 
 **T-066 — *Pedagogical safety guardrails for AI-generated exercises.*** What guardrails or review layers prevent the agent from generating pedagogically unsound combinations?
   Sources: Doc 09 §13.5 #26, UX §8.6 #8
+  **Bucket:** V2-defer. **Reasoning:** Critical for production agentic generation but not demo-blocking (demo uses curated content).
 
 ---
 
@@ -356,29 +466,37 @@ Any additional registers encountered during reading are noted in §6.
   Sources: Doc 09 §13.7 #32, UX §9 #27, UX §8.6 #5
   Cross-refs: Decision #39 (logged open), Decision #44 (direction confirmed)
   Status: **PARTIALLY STALE** — direction resolved by Decision #44; full closure pending Staley framing-retirement.
+  **Bucket:** Decide-now. **Reasoning:** Direction substantively resolved by Decision #44 (augmentation). The Staley-framing-retirement caveat is procedural. Proposed Phase 3 decision: formally close Decision #39 by Decision #44; remove the Staley-caveat from canon's open-question status (Staley can still note framing-retirement independently).
 
 **T-068 — *LLM-layer vs. user-modeling-layer ownership.*** Two interpretations of "we're an AI company" — LLM-layer expertise (Staley's current direction) and user-modeling-layer expertise (data structures, retrieval logic, AI-driven user-context store). Both defensible; both need explicit ownership. The implicit assumption that they're the same job will create gaps.
   Sources: Doc 09 §13.7 #33, Doc 10 §6 #13
   Cross-refs: Decision #47 (user-modeling layer recognized as foundational; ownership explicitly noted as separate question still open)
+  **Bucket:** V1-decide-soon. **Reasoning:** Team-org question Steven needs to push Staley/Patrick to resolve. Agentic-track work won't progress cleanly without explicit ownership. Doesn't block exercise section, but blocks agentic-track scaling.
 
 **T-069 — *User-modeling-layer implementation architecture.*** The user-model's actual shape — RAG over which data, with what retrieval logic, what summarization cadence, what user-correction affordances — needs concrete design.
   Sources: Doc 09 §13.7 #34
   Cross-refs: Decision #47 (architectural commitment made; implementation architecture explicitly out of scope of that Decision)
+  **Bucket:** V1-decide-soon. **Reasoning:** Decision #47 made the architectural commitment; the implementation architecture (RAG over what data, with what retrieval, what summarization cadence) needs concrete design for demo Step 6 to land. Demo could scaffold with hand-coded outputs, but real architecture work is near-term.
 
 **T-070 — *Fine-tuning quality threshold.*** Can Bedrock-hosted models (or external API fallbacks) hit the quality bar at acceptable cost?
   Sources: Doc 09 §13.7 #35
+  **Bucket:** Explicit-punt. **Reasoning:** Cost/quality engineering work gated on Staley's LLM-infra track.
 
 **T-071 — *Frontier-model fallback commitment level.*** The line between "external-API fallback while we figure out the architecture" and "commit to frontier APIs as the architecture" needs to be drawn deliberately if cost forces it.
   Sources: Doc 09 §13.7 #36
+  **Bucket:** Explicit-punt. **Reasoning:** Architecture commitment level gated on cost forcing the call.
 
 **T-072 — *Cache strategy.*** What gets cached, for how long, with what invalidation rules?
   Sources: Doc 09 §13.7 #37
+  **Bucket:** Explicit-punt. **Reasoning:** LLM-infra engineering detail; not architectural-policy question.
 
 **T-073 — *Cost amortization model granularity.*** The team's "heavy generation periods amortize" framing needs a concrete mental model — at what generation rate do unit economics break? Per-Project, per-month, per-account?
   Sources: Doc 09 §13.7 #38, Doc 10 §6 #5
+  **Bucket:** Explicit-punt. **Reasoning:** Cost-modeling work gated on real generation volume data.
 
 **T-074 — *"Large Music Model" framing for external use.*** As positioning, powerful. As implementation, it could imply training a single foundation model on music — not the team's direction. Whether this language enters customer- or investor-facing material warrants deliberate decision.
   Sources: Doc 09 §13.7 #39, Doc 10 §6 #10
+  **Bucket:** Decide-now. **Reasoning:** Positioning call. Doc 09 §13.7 #39 explicitly flagged 'warrants deliberate decision'. Proposed Phase 3 decision: do not use 'Large Music Model' framing in customer or investor material until architecture commitments justify it; reserve as internal/aspirational vocabulary only.
 
 ---
 
@@ -386,16 +504,20 @@ Any additional registers encountered during reading are noted in §6.
 
 **T-075 — *Notification policy.*** Frequency, opt-in/opt-out granularity, message variation logic.
   Sources: Doc 09 §13.8 #40
+  **Bucket:** V2-defer. **Reasoning:** Andrew's nudging track; engagement layer ships post-V1.
 
 **T-076 — *Project-driven vs. activity-driven nudges balance.*** How does the engagement layer balance these?
   Sources: Doc 09 §13.8 #41
+  **Bucket:** V2-defer. **Reasoning:** Andrew's nudging track.
 
 **T-077 — *Re-engagement targeting per user state.*** Which user states trigger which messages? (Trial-conversion vs. churn-prevention, e.g.)
   Sources: Doc 09 §13.8 #42
+  **Bucket:** V2-defer. **Reasoning:** Andrew's nudging track.
 
 **T-078 — *Engagement layer × Project goals integration.*** How do Project goals and roadmap progress interact with the engagement/nudging layer? Re-engagement triggered by Project deadlines vs. by Project-agnostic activity patterns?
   Sources: UX §8.6 #7
   Cross-refs: Decision #19 amendment (the engagement layer itself); T-076
+  **Bucket:** V2-defer. **Reasoning:** Engagement × Projects interaction is post-V1 (both layers ship post-V1 by default).
 
 ---
 
@@ -404,26 +526,33 @@ Any additional registers encountered during reading are noted in §6.
 **T-079 — *Pricing model design.*** Not yet designed (Decision #37). Implications for which Project capabilities are free vs. paid?
   Sources: Doc 09 §13.9 #43, UX §9 #21, UX §8.6 #9
   Cross-refs: Decision #37 (deferred)
+  **Bucket:** Explicit-punt. **Reasoning:** Decision #37 deferred pricing; this entry is gated on pricing-design work beginning.
 
 **T-080 — *Are exercises gated by tier?*** If so, by atom, by blueprint, by training method, by feature category, combination? Open until pricing structure exists.
   Sources: UX §9 #22
+  **Bucket:** Explicit-punt. **Reasoning:** Gated on T-079 (pricing model) being designed.
 
 **T-081 — *Generation volume tiers per pricing tier.*** How many AI-generated exercises does a free user get?
   Sources: Doc 09 §13.9 #44, UX §9 #23
   Cross-refs: T-064 (architectural mechanism for limits)
+  **Bucket:** Explicit-punt. **Reasoning:** Gated on T-079.
 
 **T-082 — *Project count limits per tier.*** Is there a limit on active Projects per user? Per tier?
   Sources: Doc 09 §13.9 #45
+  **Bucket:** Explicit-punt. **Reasoning:** Gated on T-079.
 
 **T-083 — *Token-based pricing surfacing UX.*** Do users see token meters directly (Staley: "we could even surface tokens directly")? Or opaque "AI generations remaining"? Different UX implications.
   Sources: Doc 09 §13.9 #46, UX §9 #37, Doc 10 §6 #6
+  **Bucket:** Explicit-punt. **Reasoning:** Gated on T-079.
 
 **T-084 — *MAGE pricing under augmentation framing.*** Under the augmentation framing, even MAGE-only generation could be charged for "tokens" since the AI adjusts MAGE's output. This conflates LLM compute with MAGE compute for billing. Right or wrong?
   Sources: Doc 09 §13.9 #47, Doc 10 §6 #7
+  **Bucket:** Explicit-punt. **Reasoning:** Gated on T-079; also depends on whether MAGE compute and LLM compute are billed distinctly.
 
 **T-085 — *Patrick's atom-gating framing vs. Doc 09 §16 generation-cost framing.*** Patrick's "50% atom gating" treats exercises as scarce/curated; Doc 09 §16 treats generation cost (LLM tokens) as the variable expense. Resolution: pick a gating framing for the pricing conversation. Two candidate resolutions: (a) atom-gating wins; (b) generation-gating wins. Recommended lean from Doc 11: (b). Team-alignment question, not just a memo recommendation.
   Sources: Doc 11 §11.9
   Cross-refs: Decision #37; Doc 09 §16
+  **Bucket:** Decide-now. **Reasoning:** Doc 11 §11.9 recommended (b) generation-gating framing wins; Patrick's atom-gating becomes pre-§16 framing we superseded. Doc 11 flagged this as 'team-alignment question, not just a memo recommendation'. Proposed Phase 3 decision: confirm (b) and align team.
 
 ---
 
@@ -431,21 +560,27 @@ Any additional registers encountered during reading are noted in §6.
 
 **T-086 — *Teacher-assigned Projects.*** Can a teacher assign a Project to a student? Student then in a "managed Project" with different controls?
   Sources: Doc 09 §13.10 #48
+  **Bucket:** V2-defer. **Reasoning:** Teacher-tools track; tied to Patrick/Staley's instructor portal. Schema hooks per Decision #35; full UX is V2+.
 
 **T-087 — *Curriculum-as-Project.*** Could a teacher's structured curriculum be expressed as a Project the system manages? Or is that a separate path mode (User Path with assigned attribution)?
   Sources: Doc 09 §13.10 #49
+  **Bucket:** V2-defer. **Reasoning:** Teacher-tools track; depends on Projects existing first.
 
 **T-088 — *Institutional / multi-user Projects.*** Could a school assign Projects across cohorts? How does multi-user Project authorship work?
   Sources: Doc 09 §13.10 #50
+  **Bucket:** Explicit-punt. **Reasoning:** Multi-user/institutional scope is long-horizon.
 
 **T-089 — *Teacher → student data visibility UX.*** Teachers should see student progress per atom / molecule / strand / cluster. Specific UX (per-student dashboard, class roster view) unspecified.
   Sources: UX §9 #28
+  **Bucket:** V2-defer. **Reasoning:** Instructor-portal UX; Patrick/Staley track.
 
 **T-090 — *Assignment flow first-class-ness.*** Teachers should assign atoms / molecules / strands / paths to specific students. Whether assignment is first-class (deadlines, completion tracking, feedback) or lighter-weight ("recommended" tag) is open.
   Sources: UX §9 #29
+  **Bucket:** V2-defer. **Reasoning:** Instructor-portal UX; tied to assignment-flow first-class-ness.
 
 **T-091 — *Teacher-authored exercise sharing scope.*** Can teacher-authored exercises be shared with all of a teacher's students? All teachers? Public marketplace? Per-student only?
   Sources: UX §9 #30
+  **Bucket:** V2-defer. **Reasoning:** Sharing-scope question; not blocking V1 schema.
 
 ---
 
@@ -455,23 +590,28 @@ Any additional registers encountered during reading are noted in §6.
   Sources: Doc 09 §13.11 #51, Doc 10 §6 #15
   Cross-refs: T-027 (Technique drills as candidate class); Decision #48 (Theory resolved); Decision #41 (Open Play deferred)
   Status: **PARTIALLY STALE** — Theory resolved by Decision #48; rest of cluster genuinely open.
+  **Bucket:** V2-defer. **Reasoning:** Umbrella inventory question. Theory portion resolved by #48; Technique sub-question is in T-027; Video Library in T-094; Interactive Tutorial in T-093; Open Play deferred by #41/#49 Part 2. Effectively a 'review after sub-entries resolve' item.
 
 **T-093 — *Interactive Tutorial architectural placement.*** Existing canonical content class (animated video + live-action hand clips + Phaser-JS exercises gated mid-flow) with no clean home in current architecture. Candidates: own content mode, path-mode primitive in Curriculum (matches current state), roadmap-node type prescribable by the agent, hybrid.
   Sources: Doc 09 §13.11 #52, Doc 10 §6 #16, UX §9 #39
   Cross-refs: T-042 (roadmap node types), T-098 (tutorial-as-roadmap-node phasing)
+  **Bucket:** V1-decide-soon. **Reasoning:** Existing canonical content (Interactive Tutorials are in production today) needs an architectural home. Affects Doc 06 blueprint mapping and Doc 09 §5.2 roadmap node types. Demo Step 2 might show tutorial nodes; if so, becomes demo-blocking.
 
 **T-094 — *Video Library / Knowledge Library architectural placement.*** Patrick's framing ("video library") leans content-mode-like; Staley's framing ("node-as-tutorial") leans roadmap-primitive. Decision #51 resolved deferral beyond V1 but not placement; current team-lean is Staley's framing, but placement remains formally open.
   Sources: Doc 09 §13.11 #53, Doc 10 §6 #11, Doc 11 §11.1
   Cross-refs: Decision #51 (deferral resolved; placement open)
   Status: **PARTIALLY STALE** — deferral-status resolved by Decision #51; architectural placement formally still open.
+  **Bucket:** Explicit-punt. **Reasoning:** Decision #51 deferred Knowledge Library beyond V1; placement question is gated on the feature entering scope. Current team-lean per Decision #51 is Staley's framing, but formal placement awaits feature design.
 
 **T-095 — *Game Mode / Free Play toggle collapse pattern across modes.*** Current Sight Reading curriculum levels have Game Mode and Free Play toggles. As the content/path mode architecture is implemented, these may subsume into other functionality. Decision #49 Part 1 specifically extends Free Play into Exercise content mode; UX consolidation pattern across modes remains open. Distinct from Open Play (renamed; deferred indefinitely per Decision #49 Part 2).
   Sources: Doc 09 §13.11 #54, Doc 10 §6 #12, UX §9 #38
   Cross-refs: Decision #49 Part 1 (Free Play in Exercise mode resolved); Decision #49 Part 2 (Open Play renaming)
+  **Bucket:** V1-decide-soon. **Reasoning:** Decision #49 Part 1 specifically extends Free Play to Exercise content mode; consolidation pattern across modes affects how Sight Reading mode reconciles its existing Game Mode/Free Play toggles with the new architecture. Track C2 / cross-mode UX work.
 
 **T-096 — *Tutorial-as-roadmap-node phasing.*** If Interactive Tutorials become a roadmap-node type, near-term schema accommodation question: does the architecture allow human-authored tutorials as roadmap nodes in the meantime, even if AI-generated tutorials are deferred? This sub-question doesn't depend on resolving T-093 fully.
   Sources: Doc 09 §13.11 #55, Doc 10 §6 #3, UX §9 #40
   Cross-refs: T-093 (placement parent); T-042 (roadmap node types)
+  **Bucket:** V2-defer. **Reasoning:** Schema-accommodation question for human-authored tutorials as roadmap nodes; not pressing if tutorials stay in Curriculum for V1.
 
 ---
 
@@ -635,15 +775,40 @@ All 9 §8.6 entries absorbed: #1→T-060, #3→T-062, #4→T-063, #5→T-067, #7
 
 ---
 
+---
+
+## 8.5 Phase 2 ambiguities flagged for input
+
+Calls where I want Steven's input before Phase 3 begins:
+
+**A1 — V1-decide-soon scope interpretation.** I'm reading "V1-decide-soon" as *near-term required* — including questions that block the investor demo (Doc 09 §15.2) even when they don't block V1 product ship. That's why 11 agentic-cluster questions (T-038, T-039, T-042, T-043, T-049, T-052, T-053, T-054, T-057, T-058, T-062) are V1-decide-soon: they all surface in the 6-step demo flow. Push back if you want a separate "demo-blocking" bucket or want these moved to V2-defer.
+
+**A2 — Decide-now picks.** Four entries (T-026, T-067, T-074, T-085) are proposed for Phase 3 resolution. Each has a recommended resolution drawn from existing canon. Confirm or redirect on the four picks themselves and on the recommendations:
+- T-026 — Pedal as distinct substrate (per Doc 11 §11.3 lean).
+- T-067 — Formally close Decision #39 by Decision #44 (remove the Staley-caveat from canon's open-question status).
+- T-074 — Don't use "Large Music Model" externally until architecture justifies (per Doc 09 §13.7 #39).
+- T-085 — Confirm generation-gating (b) per Doc 11 §11.9 lean.
+
+**A3 — T-022 retirement.** Already-resolved bucket. Recommend formal retirement (remove from inventory) since Decision #24's deferral fully answers the original question. Alternative: keep as a STALE flag for audit-trail. Confirm preference.
+
+**A4 — T-027 V1-decide-soon framing.** Priority-elevated per Doc 11 v0.3. I have it V1-decide-soon because it blocks ~6 V1 preset candidates — but the *answer* may well be "defer Technique to V2." That outcome is fine; the *decision needs to be made* in V1 timeframe to unblock Track D. Confirm framing.
+
+**A5 — T-068 placement.** LLM-layer vs. user-modeling-layer ownership is a Staley/Patrick team-org question. I have it V1-decide-soon because agentic-track work won't progress cleanly without explicit ownership, but it's not exercise-section-blocking. Alternatives: V2-defer (Staley/Patrick conversation outside Track B), or upgrade to decide-now if Steven wants to push it inline. Confirm.
+
+**A6 — T-069 demo-scaffolding.** User-modeling layer implementation architecture is V1-decide-soon in my disposition. Demo Step 6 shows the user-modeling layer's outputs, which could be scaffolded with hand-coded outputs (per Doc 09 §15.2 "the LLM can be primed"). If you'd rather treat this as V2-defer with demo using scaffolded outputs, that's defensible too. Confirm.
+
+**A7 — C-15 teacher cluster split.** Per §7 from Phase 1, this cluster splits between exercise-section schema obligations and Patrick/Staley's instructor-portal track. I bucketed all of C-15 as V2-defer (except T-088 explicit-punt) on the read that V1 just needs schema-and-hook stubs. If you'd rather have the schema-obligation entries lifted to V1-decide-soon and routed to Patrick or Staley specifically, flag and I'll re-bucket.
+
+**A8 — Cluster thinning.** Phase 1 already flagged C-07 (3 entries) and C-08 (1 entry) as thin clusters. Disposition pass confirms they're tight clusters but small. Not pushing for change; flagging in case Phase 2 review surfaces a desire to merge.
+
 ## 9. Approval gate
 
-This is the Phase 1 deliverable. Phase 2 begins on approval.
+This is the Phase 2 deliverable. Phase 3 (decide-now session) begins on approval.
 
-If approved as-is, the suggested file commit name is `12-open-question-triage.md` per the kickoff. Phase 2 disposition will add bucket assignments (decide-now / V1-decide-soon / V2-defer / explicit-punt / formally-retired) per unified entry, and Phase 3 will work through the decide-now bucket inline.
+If approved as-is, the next steps are:
+1. Steven commits the Phase 2 revision to GitHub (same path: `docs/12-open-question-triage.md`).
+2. Phase 3 works through the decide-now bucket (T-026, T-067, T-074, T-085) inline, proposing specific Decision Log entries or amendments for each. Each Phase 3 resolution requires Steven's sign-off before being committed.
+3. T-022 is formally retired per A3 (pending confirmation).
+4. The V1-decide-soon bucket becomes the working backlog for Tracks C2, C, D, E.
 
-Items I'd want input on if you'd like to redirect:
-
-- **Cluster shape**: any clusters that should merge, split, or rename. C-07 (3 entries, "Per-blueprint catalog-time defaults") and C-08 (1 entry, "Cross-section Master Roadmap appetite") are the thinnest; flagging in case you'd rather fold them into C-05 and the strategic/agentic clusters respectively.
-- **Stale handling**: §6.1 has zero formally-retire candidates. If you'd like a more aggressive stale interpretation (e.g., calling fully-resolved-by-direction items STALE rather than PARTIALLY STALE), I can re-pass.
-- **Decision Log scope confirmation**: I added two Decision-Log-only entries (T-032, T-061). If those should not get their own T-IDs and should instead be tracked only as Decision sub-question notes, easy to remove.
-- **Sub-question splitting**: T-018 collapses UX §9 #12 and §9 #16 (atom count and V1 catalog) since one resolves the other. If you prefer keeping them split, the count grows by 1.
+If redirected, see §8.5 for the eight ambiguities I'd most want input on.
