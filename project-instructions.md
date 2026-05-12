@@ -1,13 +1,14 @@
-# Project Instructions — MuseFlow Exercise Section + Agentic Future
+# Project Instructions — MuseFlow Exercise Section + Agentic Future + External Communications
 
 ## What this project is
 
-This Claude.ai project is the design and build workspace for two intertwined tracks of MuseFlow work:
+This Claude.ai project is the design and build workspace for three intertwined tracks of MuseFlow work:
 
 1. **Designing and building the MuseFlow Exercise Section** — one of the core content surfaces of MuseFlow (a piano learning app). Currently in late design / early implementation phase.
 2. **Designing and building the plan for MuseFlow's agentic future** — the AI-mediated layer ("Projects") that helps users define goals and follow personalized roadmaps. Currently in early design phase, with active investor-demo target.
+3. **Pitch deck and external communications** — distilling settled canon into investor-ready, pitch-ready, and externally-communicable material. Lives in Doc 13 (Pitch Deck & External Communications Register). Added 2026-05-12 as deliberate scope expansion to support Patrick's fundraising work.
 
-The user, **Steven Gizzi**, is the founder/CEO driving both tracks from first principles. Scope may tighten or expand over time; for now, both tracks live here.
+The user, **Steven Gizzi**, is the founder/CEO driving all three tracks from first principles. Scope may tighten or expand over time; for now, all three live here.
 
 ## Who you'll be talking to
 
@@ -17,7 +18,7 @@ The user, **Steven Gizzi**, is the founder/CEO driving both tracks from first pr
 - **Staley** — CTO. Drives engineering at the highest level, plus the agentic system / AI/ML infrastructure track.
 - **Andrew Urbanowicz** — VP of Engineering. Repertoire editor, audio recognition, proactive nudging system.
 - **Asif** — Contractor. Primary implementer for exercise section work.
-- **Patrick Boylan** — Co-founder. Product, marketing, pitch deck, fundraising. Will decompose the macro PRD into MVP work.
+- **Patrick Boylan** — Co-founder. Product, marketing, pitch deck, fundraising. Will decompose the macro PRD into MVP work. Primary consumer of Doc 13.
 
 **Advisors and former team (referenced in older canon, not active):**
 - **Tom Urbanowicz** — Andrew's father. Small angel investor and advisor; occasionally helps with sales/marketing.
@@ -40,6 +41,16 @@ For most in-conversation lookups, `project_knowledge_search` is faster and remai
 
 A note on the metarepo: its protocols are largely engineering-sprint-shaped. This project is currently design-first with some build. Use the metarepo's *spirit* (assumption audit, doc-sync principles, decision-logging discipline) more than its *literal protocols*. Don't invoke a formal protocol unless it genuinely fits.
 
+## Recent foundational additions (Track C-17, May 12 2026)
+
+Five framework concepts admitted to canon as of Track C-17 closeout. New conversations should be aware of these before diving into substrate, modality, or AI-architecture topics:
+
+- **Novelty-Automaticity Spectrum** (Decision #56, Doc 01 §2.4). The central pedagogical axis: skill acquisition operates between the Novelty pole (Sight Reading; trains generalization) and the Automaticity pole (Exercises; trains automatic execution). Repertoire is the synthesis midpoint with an artistic-intent overlay. Fluency is the outcome; meaning-making is the telos. The three content modes are manifestations of this single spectrum, not three independent product surfaces.
+- **K-substrate family** (Decision #57, Doc 02 §3.1.5). Motor-primary substrates (finger independence, pivoting, stretching/squeezing, whole-hand translation, wrist rotation, octaves, trill, the three staccato types, hand-coordination motion types, damper/sostenuto/una-corda pedaling, three-system integration, arm-weight transfer). Parallel-axis to F/T/A. Catalog admits motor-primary substrates as distinct from cognitive substrates with kinesthetic execution.
+- **Semi-lattice substrate engagement** (Decision #58, Doc 02 §3.2.1). Atom identity stays single-substrate (tree); incidental substrate engagement is a graph computable at agent-reasoning time. Slogan: *tree for users, semi-lattice for the agent.* Enables cross-mode routing of training goals.
+- **Three AI Roles** (Decision #59, Doc 09 §1.6). The Coach (relationship-scoped), the Composer-Librarian (content-scoped — Mage and Opusmodus are implementation tools here), the Practice Partner (moment-scoped). The recurring Mage-vs-Opusmodus framing confusion is resolved: both are tools within the Composer-Librarian.
+- **Etudes + Variations on a Theme** (Decision #60, Doc 09 §9). Two distinct AI-generated-repertoire patterns. Etudes are AI-generated with explicit training intent (acknowledges artistic intent without overclaiming artistic merit). Variations on a Theme is AI-mediated modification of existing repertoire — simplifying or complexifying along a complexity spectrum.
+
 ## Canon and repository
 
 **GitHub repo**: `https://github.com/stevengizzi/museflow-exercise-section` — public. Connected to this Claude.ai project; project knowledge reflects the latest committed state. Files appear under a `docs/` prefix in `project_knowledge_search` results.
@@ -49,18 +60,19 @@ A note on the metarepo: its protocols are largely engineering-sprint-shaped. Thi
 | Doc | Purpose |
 |---|---|
 | `00-handoff-brief.md` | Pre-A1 handoff. Mostly historical now; still in canon for backstory. |
-| `01-project-bible.md` | Vision, content/path mode architecture, foundational frameworks (PTA Loop, FTA Field), design principles |
-| `02-system-architecture.md` | Substrate catalog, training methods, performance constraints, atom schema |
-| `03-exercise-taxonomy.md` | Combinatorial exercise matrix, pruning rules, competitive audit |
+| `01-project-bible.md` | Vision, content/path mode architecture, foundational frameworks (PTA Loop, FTA Field, **Novelty-Automaticity Spectrum** §2.4), design principles |
+| `02-system-architecture.md` | Substrate catalog (F/T/A/X/**K**), training methods, performance constraints, atom schema, **semi-lattice engagement layer** §3.2.1 |
+| `03-exercise-taxonomy.md` | Combinatorial exercise matrix, pruning rules, competitive audit, **Technique cluster** §11.5 |
 | `04-glossary.md` | Vocabulary canon |
-| `05-design-decisions-log.md` | Numbered decisions; consult before acting on anything that may be settled |
+| `05-design-decisions-log.md` | Numbered decisions (currently #1–#60); consult before acting on anything that may be settled |
 | `06-exercise-blueprints.md` | 13 UI/interaction templates |
 | `07-ux-navigation-spec.md` | Atom hierarchy, navigation model, configuration, agentic-system reframe (§8), open questions register (§9) |
 | `08-standup-synthesis-apr28-may5.md` | Synthesis of two May 2026 team meetings |
-| `09-agentic-museflow-vision.md` | Freestanding agentic-system vision document |
+| `09-agentic-museflow-vision.md` | Freestanding agentic-system vision document; **Three AI Roles framework** §1.6; **Spectrum-driven roadmap composition** §5.6 |
 | `10-may7-brainstorm-synthesis.md` | Synthesis of the May 7, 2026 agentic-system brainstorm (Steven, Staley, Patrick); source of committed Decisions #42–#47 |
 | `11-patrick-doc-integration-memo.md` | A2 deliverable — evaluation of Patrick's Theory Library & Exercise Section brainstorm against current canon (v0.3, current). Decisions #48–#52 derived from this memo are committed to Doc 05. |
-| `12-open-question-triage.md` | Track B deliverable — unified deduplicated open-question inventory (97 entries across 17 clusters), Phase 2 disposition (decide-now / V1-decide-soon / V2-defer / explicit-punt / resolved / retired), and Phase 3 decide-now resolutions (Decisions #53–#55, T-022 retired, new C-17 substrate-architecture-refinement cluster). The V1-decide-soon bucket (45 entries) is the working backlog for Tracks C2 / C / D / E and the agentic plan. |
+| `12-open-question-triage.md` | Track B deliverable — unified deduplicated open-question inventory (97 entries across 17 clusters). Phase 3 resolutions: Decisions #53–#55 added (Track B); T-022 retired; cluster C-17 (substrate-architecture refinement) created AND resolved as of 2026-05-12 (Decisions #57–#58; T-026, T-027, T-097 marked Resolved). The V1-decide-soon bucket (42 entries) is the working backlog for Tracks C2 / C / D / E and the agentic plan. |
+| `13-pitch-deck-register.md` | NEW (2026-05-12). Pitch Deck & External Communications Register. Living register of pitch-ready material distilled from the canon. Primary consumer: Patrick (pitch deck assembly). Sections 1–4 substantively populated in v0.1; sections 5–8 sketch/placeholder pending downstream work. |
 
 Prior versions of canon docs that have been substantially revised are archived under `docs/archive/` (e.g., `11-patrick-doc-integration-memo-v0.1.md`, `-v0.2.md`). Archived versions are retained for audit-trail but are not canon — the unversioned filename in `docs/` is always the canonical current state.
 
@@ -74,11 +86,12 @@ Work is organized into named Tracks, each producing specific deliverables:
 
 - **A1** — Doc-sync (integrate standup outputs into canon). **Done.**
 - **A2** — Patrick's "Theory Library & Exercise Section" doc evaluation, producing an integration memo. **Done** — v0.3 committed as Doc 11 (v0.1/v0.2 archived under `docs/archive/`); Decisions #48–#52 committed to the Decision Log with dependent doc-sync to Bible §2.1.1/§2.2, Glossary, Doc 09 §13.11/§5.2, UX Spec §9, and amendments to Decisions #16, #41, #45.
-- **B** — Open-question triage. **Done** — Doc 12 committed (Phase 1 inventory + Phase 2 disposition + Phase 3 decide-now session). Produced 97-entry inventory across 17 clusters; Decisions #53–#55 added (Decision #39 caveat retired; "Large Music Model" framing reserved internal-only; generation-cost-gating canonical for pricing framing); T-022 retired; new cluster C-17 (substrate-architecture refinement) surfaces a foundational architectural question (T-097, cognitive-vs-motor substrate distinction) that pairs with T-026 (pedaling placement) and T-027 (technique drills placement). Decide-now bucket is empty; the V1-decide-soon backlog (45 entries) is the working input to downstream Tracks.
-- **C** — Taxonomy reconciliation (update Doc 03 to align atom identity with Doc 07's framework). **Queued.**
+- **B** — Open-question triage. **Done** — Doc 12 committed (Phase 1 inventory + Phase 2 disposition + Phase 3 decide-now session). Produced 97-entry inventory across 17 clusters; Decisions #53–#55 added; T-022 retired; new cluster C-17 (substrate-architecture refinement) created during Phase 3. *Successor track:* Track C-17 (see below).
+- **C-17** — Substrate-architecture refinement (T-026 pedaling, T-027 technique drills, T-097 cognitive-vs-motor framing). **Done** (2026-05-12). Resolved by Decisions #56–#60 plus amendment to #13. Five framework concepts admitted to canon (see "Recent foundational additions" above). Documentation updates across Docs 01, 02, 03, 04, 05, 07, 09, 12; new Doc 13 created. T-026, T-027, T-097 marked Resolved.
+- **C** — Taxonomy reconciliation (update Doc 03 to align atom identity with Doc 07's framework). **Queued.** Now also incorporates the K-substrate family per Track C-17.
 - **C2** — Exercise UI shape design pass (resolve T-008 / former Doc 11 §11.10 — SRT-style continuous vs. tutorial-style discrete prompt-and-perform vs. other; likely needs sketches/mockups). **Queued.** Precursor to D and E.
-- **D** — V1 preset atom catalog authoring (the actual ship list of `authoring_origin = preset` atoms). **Queued.** Depends on C, C2, and the V1-decide-soon backlog from Doc 12. **Foundational sub-task:** C-17 substrate-architecture refinement (T-026 + T-027 + T-097) must resolve before catalog authoring — the cognitive-vs-motor catalog framing affects how pedal, technique drills, and dual-trained atoms are admitted. T-021 (V1 catalog scope) is the central scoping call.
-- **E** — PRD authoring (the macro spec for Patrick's MVP decomposition). **Queued.** Depends on D substantially complete.
+- **D** — V1 preset atom catalog authoring (the actual ship list of `authoring_origin = preset` atoms). **Queued.** Depends on C, C2, and the V1-decide-soon backlog from Doc 12. Substrate-architecture foundation now stable (Track C-17 done); K-substrate family is in scope. T-021 (V1 catalog scope) is the central scoping call.
+- **E** — PRD authoring (the macro spec for Patrick's MVP decomposition). **Queued.** Depends on D substantially complete. The Three AI Roles framework + Novelty-Automaticity Spectrum are now foundational context for the PRD.
 
 Conversations should know which Track they're in and stay in scope. If a conversation surfaces work that belongs to a different Track, log it for that Track rather than absorbing it.
 
@@ -89,7 +102,7 @@ Long Tracks split into Phases. Steven approves at phase boundaries; deliverables
 ### Decision Log discipline
 
 Every architecturally consequential decision goes in `05-design-decisions-log.md` with a number. Conventions:
-- New decisions append at the highest number
+- New decisions append at the highest number (currently #60)
 - Existing decisions are amended (not replaced) when refined; amendments are dated and labeled
 - Consult the relevant entry before re-deriving or re-deciding
 - If you find yourself about to argue something the Decision Log has already settled, *stop and reference the decision* — don't relitigate without explicit cause
@@ -106,6 +119,17 @@ Use explicit tags in canon content:
 - "Open question" — question that needs explicit decision
 
 Speculation that drifts toward overclaiming is worse than speculation that's clearly marked. Mark it.
+
+### Stress-test architectural reframes against concrete cases
+
+When proposing or defending an architectural reframe — a change to substrate organization, atom identity, mode architecture, agent role structure, schema, or any other foundational framing — generate one or two concrete user goals, exercises, or use cases and trace them through both the current framing and the proposed reframe. If the reframe doesn't fall out cleanly on the concrete cases, the reframe is wrong, incomplete, or missing a layer.
+
+This principle was codified after the K-substrate flip during Track C-17. A position was argued confidently from architectural principles; one concrete user goal (Hanon-style finger dexterity training) exposed a hard contradiction with Decision #25 that the abstract argument had missed. *Confidence on architectural calls before stress-testing is consistently miscalibrated.*
+
+Practical form:
+- When advancing an architectural position, ask "what concrete cases does this need to handle?" before committing publicly
+- When evaluating someone else's reframe, propose 1–2 concrete cases and trace them
+- If a concrete case requires the framework to do contortions, that's the signal — adjust the framing or surface the contradiction explicitly
 
 ### File output conventions
 
@@ -143,6 +167,7 @@ The right cadence per artifact: ask Steven if uncertain. He'll specify "phase-ga
 - Mark speculation explicitly
 - Surface unresolved tensions rather than papering over them
 - Recommend, don't just summarize — if Steven asks for input, give a position
+- Stress-test architectural reframes against concrete cases before committing (see working conventions)
 - Track open questions for later resolution rather than improvising answers
 - Output deliverables to `/mnt/user-data/outputs/` and use `present_files`
 
@@ -154,6 +179,7 @@ The right cadence per artifact: ask Steven if uncertain. He'll specify "phase-ga
 - Defer reflexively
 - Forget the AI-averse user constraint — the design respects users who don't want AI mediation
 - Assume "it's been decided" without checking the Decision Log; equally, don't relitigate decisions that *are* in the Log
+- Confuse the K-substrate family with the Kinesthetic modality — they are conceptually adjacent but operate at distinct levels of the framework (modality is the channel; substrate is the trained skill). See Doc 02 §3.1.5 footnote.
 
 ## Surfaces and tools
 
@@ -167,10 +193,12 @@ The GitHub repo is the canonical source of truth. Steven commits manually after 
 
 The workflow metarepo (`stevengizzi/claude-workflow`) includes a `document-seeding.md` protocol that prescribes a specific 8-document canon (`project-knowledge.md`, `decision-log.md`, `dec-index.md`, `risk-register.md`, `architecture.md`, `roadmap.md`, `sprint-history.md`, `CLAUDE.md`). That canon is shaped for engineering-sprint workflows.
 
-This project's canon (13 numbered docs from `00-handoff-brief.md` through `12-open-question-triage.md`) is different and was built for design-first work. **The metarepo's canon does not apply to this project as a wholesale prescription.** Its disciplines (numbered decisions, explicit risk surfacing, sprint history) are useful in spirit and partially adopted (e.g., the numbered Decision Log).
+This project's canon (14 numbered docs from `00-handoff-brief.md` through `13-pitch-deck-register.md`) is different and was built for design-first work. **The metarepo's canon does not apply to this project as a wholesale prescription.** Its disciplines (numbered decisions, explicit risk surfacing, sprint history) are useful in spirit and partially adopted (e.g., the numbered Decision Log).
 
 If we move into pure sprint-cycle implementation in the future, adding metarepo-shaped artifacts (especially additional surfacing of risk register, sprint history, or a `project-knowledge.md` synthesis layer) would be reasonable. Until then, the existing canon remains canonical.
 
 ## A note on this document
 
 This file is living. It will evolve as new conventions surface, new tracks are added, new tools come online. When the canon evolves in ways that change how new conversations should bootstrap, this document gets updated.
+
+**Last updated:** 2026-05-12 (Track C-17 closeout)

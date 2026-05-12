@@ -343,6 +343,33 @@ These exercises combine substrates across multiple FTA dimensions.
 | X-006 | Chord chart reading | F + T | Chord symbols + Rhythm → Voiced chord performance | Real-time chord realization |
 | X-007 | Improvisation exercises | F + T + A | Open-ended creative transformation | Sandbox/Workshop territory — scored on constraint adherence (stay in key, maintain rhythm, etc.) |
 
+### 11.5 K-Substrate-Driven Exercises (Technique Cluster)
+ 
+K-substrate atoms — admitted per Decision #57 — are motor-primary substrates that catalog physical-execution skills (finger patterns, hand coordination, pedal coordination). Unlike F-, T-, and A-substrate exercises, whose training value is in cognitive transformation, K-substrate exercises train *motor execution* as the primary skill. Many K-substrate atoms incidentally engage cognitive substrates (notation reading via Visual input; pitch-key mapping via content scope), but the *primary* engagement is the motor pattern. See Doc 02 §3.1.5 for the full K-family catalog and §3.2.1 for the primary-vs-engagement distinction.
+ 
+K-substrate exercises form what is informally called the **Technique cluster** within the Exercise content mode. Catalog enumeration of K-driven exercises (analogous to the P-, INT-, CH-, etc. cluster enumerations above) is Track D work; this section establishes the cluster's existence and structural pattern.
+ 
+**Indicative exercise types within the Technique cluster:**
+ 
+| Exercise type | K-substrate(s) | Notation example |
+|---|---|---|
+| Finger-independence drill (Hanon-style) | K-A1, K-A3 | TEC-001+ (numbering TBD) |
+| Pivoting drill (thumb-under / finger-over) | K-A4 | TEC-002+ |
+| Stretching/squeezing drill | K-A5, K-A6 | TEC-003+ |
+| Hand-translation drill (jumps, leaps) | K-A7 | TEC-004+ |
+| Octave drill | K-A9 | TEC-005+ |
+| Staccato technique drill (three types) | K-A11, K-A12, K-A13 | TEC-006+ |
+| Hands-together motion drill (six types) | K-M1 through K-M6 | TEC-010+ |
+| Hand independence drill (rhythm or dynamics) | K-M7, K-M8 | TEC-020+ |
+| Polyrhythm drill | K-M10 | TEC-025+ |
+| Damper pedal drill (pulse, chord-change, legato, half-pedal) | K-M11, K-M12, K-M13, K-M14 | TEC-030+ |
+| Sostenuto / una corda drill | K-M15, K-M16 | TEC-040+ |
+| Three-system integration | K-C1 | TEC-050+ |
+ 
+**Exercise format and assessment for the Technique cluster** require dedicated design (Track D) — the substrate-driven generation pipeline (§7) applies, but the assessment dimensions for motor work differ from cognitive substrates (evenness, tempo compliance, articulation crispness, pedal-change cleanness, etc., rather than pitch/quality accuracy). Performance-constraint parameters (§5) translate cleanly; new motor-specific constraints may be needed for V1.
+ 
+**Phasing.** Decision #57 admits K-substrates to the catalog. V1 inclusion of specific Technique-cluster atoms is a separate phasing decision per Track D scope work — likely lean toward minimal V1 coverage of foundational motor skills (Hanon-style basics, basic pedaling) given their pedagogical centrality, but the cut is Track D's call.
+
 ---
 
 ## 12. Competitive Audit Mapping
@@ -414,12 +441,15 @@ The following table maps exercises from existing products onto the MuseFlow fram
 - **Performance constraint parameterization**: No competitor offers the granularity of difficulty tuning that the tech spec model enables
 
 ### 13.2 Remaining Gaps to Address
-
-- **Fingering exercises**: The substrate exists (X-004) but the exercise format and assessment method need detailed specification
-- **Improvisation/free-play templates**: X-007 is a placeholder — needs detailed design for how open-ended exercises are structured, constrained, and scored
-- **Multi-voice / polyphonic exercises**: Exercises involving two independent voices (left hand + right hand) are not yet fully specified
-- **Transposition exercises**: Transforming music from one key to another is a compound substrate that cuts across many exercise types but isn't yet broken out as a dedicated exercise family
-- **Notation-to-notation transformation**: Some exercises involve converting between notation systems (standard notation ↔ chord chart ↔ Roman numerals ↔ Nashville numbers) — this is a Visual → Visual patch with non-trivial transformation
+ 
+- **Fingering exercises**: The cognitive substrate exists (X-004 — fingering *selection* is an algorithmic-aesthetic-biomechanical decision) but the exercise format and assessment method need detailed specification. Decision #13 (with 2026-05-12 amendment) clarifies that motor execution of selected fingerings is a separate question from fingering selection itself; the selection substrate remains a placeholder pending dedicated design.
+- **Improvisation/free-play templates**: X-007 is a placeholder — needs detailed design for how open-ended exercises are structured, constrained, and scored. Decision #13 defers indefinitely.
+- **Multi-voice / polyphonic exercises**: Exercises involving two independent voices (left hand + right hand) are not yet fully specified. Note that the K-M7 (hand independence — rhythm) and K-M8 (hand independence — dynamics) substrates now provide partial coverage for the *motor* side; the cognitive coordination side (e.g., reading two independent voices) remains a gap.
+- **Transposition exercises**: Transforming music from one key to another is a compound substrate that cuts across many exercise types but isn't yet broken out as a dedicated exercise family.
+- **Notation-to-notation transformation**: Some exercises involve converting between notation systems (standard notation ↔ chord chart ↔ Roman numerals ↔ Nashville numbers) — this is a Visual → Visual patch with non-trivial transformation.
 - **Contextual embedding exercises**: Exercises where a trained substrate appears embedded within a larger musical context rather than in isolation. For example, identifying an interval that appears mid-phrase in a melody, or recognizing a chord quality within a progression where harmonic context creates ambiguity. These exercises operationalize the Contextual Transfer design principle (see Project Bible, Section 8.8) and bridge the gap between isolated drilling and real-world repertoire performance.
 - **Amplitude exercises (deferred)**: The AMP-### family is fully specified in this document and in the substrate catalog but is deferred beyond V1 pending reliable programmatic dynamics assessment.
+- **Technique cluster (K-substrate-driven exercises) enumeration**: Decision #57 admits the K-substrate family (motor-primary substrates). Concrete catalog enumeration of Technique-cluster exercises — analogous to the P-, INT-, CH-, etc. enumerations in §§3–11 — is Track D work. See §11.5 for cluster structure and indicative exercise types.
+
+*(REMOVED: The previous "Fingering exercises" bullet implied the substrate identity was the open question; the cognitive substrate X-004 is well-defined, and motor execution is now addressed via K-A4 Pivoting and related K-substrates. Replaced with clearer scoping.)*
 

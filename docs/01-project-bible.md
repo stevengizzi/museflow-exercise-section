@@ -105,6 +105,65 @@ All modes — content and path — must share a **common complexity language** (
 
 A second cross-cutting primitive runs through the content modes: **performance constraints** (Decision #43). What §6.3 describes for the Exercise Section — that performance constraints are not just difficulty levers but replayability multipliers, with the same content yielding meaningfully distinct experiences as different constraints tighten — generalizes. Sight-reading levels carry performance constraints (accuracy thresholds, time pressure, completion criteria); repertoire practice sessions can carry them (e.g., "play this passage at 80% accuracy or higher for 5 minutes to clear"); any "completable" engagement with content has constraints that determine pass conditions. Treating performance constraints as a cross-content-mode primitive — rather than an exercise-section-internal concept — avoids reinventing similar mechanics per mode and gives the agentic system a unified vocabulary for prescribing practice intensity across modes. See §6.3 for the Exercise Section treatment, Architecture Doc §5 for the constraint catalog, and Doc 09 §6A for the agent's per-mode control surfaces.
 
+### 2.4 The Novelty-Automaticity Spectrum
+ 
+The three content modes (Sight Reading, Exercises, Repertoire) are not three independent product surfaces — they are distinct manifestations of a single pedagogical philosophy. The philosophy is the Novelty-Automaticity Spectrum.
+ 
+#### 2.4.1 The Two Poles
+ 
+Skill acquisition operates between two poles:
+ 
+- **Novelty pole.** Content never repeats. Trains *generalization* — the ability to apply skills to unseen material. Pedagogical research on contextual interference (Shea & Morgan 1979 forward) establishes that high contextual variation produces worse immediate performance but stronger retention and transfer.
+- **Automaticity pole.** Content (or near-content) repeats with varied performance constraints. Trains *automatic execution* — skills performed without conscious load. Low contextual interference produces faster immediate gains but weaker transfer if practiced exclusively.
+A learner needs both. Pure novelty produces frustrated, unautomatized players who can read anything but execute nothing fluently. Pure repetition produces context-bound performers who play their drills perfectly but can't transfer those skills to new music. Mastery requires deliberate interleaving along the spectrum.
+ 
+#### 2.4.2 Fluency Is the Outcome
+ 
+**Fluency** is what the spectrum produces when both poles are engaged. It is the integration of novelty-trained generalization and automaticity-trained execution — the ability to encounter unseen music and play it with the embodied confidence that only repetition can build. Decision #16 calls Exercises and Repertoire "universal pillars" because they serve all users; the Spectrum frames *why*: every user, at every level, needs to operate at both poles to reach fluency.
+ 
+#### 2.4.3 The Three-Mode Manifestation
+ 
+The three content modes manifest the spectrum at distinct points:
+ 
+| Mode | Spectrum position | Scheduling policy | Bounding policy |
+|---|---|---|---|
+| **Sight Reading** | Novelty pole | Each piece served at most once per session; often once ever | Drawn from an effectively infinite generator constrained by complexity parameters |
+| **Exercises** | Automaticity pole | Same atom-content served repeatedly across sessions until mastery thresholds clear | Drawn from a finite atom's content scope with varying performance constraints |
+| **Repertoire** | Synthesis midpoint | Same piece across many sessions, with internal looping and sectioning | Drawn from a curated library (human-composed or AI-mediated) of finite works |
+ 
+Repertoire is the synthesis but is also more than the midpoint. It introduces a second axis that pure novelty and pure repetition lack: **artistic intent**. A piece has internal novelty (themes, transitions, surprises), internal repetition (recurring themes; finite content rehearsed across sessions), and *composed structure* — difficulties cluster intentionally, the arc rewards practice with aesthetic insight, the piece is a coherent thing. This is what makes repertoire pedagogically distinct from "60% novel, 40% repeated content" and what makes it the medium for sustained engagement and meaning-making.
+ 
+#### 2.4.4 Shapeless Content
+ 
+At the level of raw musical material, all three modes generate or reference the same underlying content: notation, audio, complexity parameters. They differ in **scheduling and bounding policy**, not in content type. *Steel is shapeless until you give it form. Music is shapeless until we manifest it into Sight Reading, Exercises, or Repertoire.*
+ 
+Architecturally, this means **one content generator, three scheduling/bounding policies** — not three generators. The same generative pipeline produces material for all three modes; the mode determines how that material is scheduled, bounded, and presented. This extends what Decisions #33 (exercise generation on demand) and #34 (custom authoring via repertoire editor) already imply, and gives the agentic system a clean factoring: generate content from a unified pipeline, route through the policy layer appropriate to the user's training intent.
+ 
+The Shapeless Content principle also explains why mode boundaries are pedagogically meaningful rather than arbitrary: the *act of shaping* — the policy applied — is where the pedagogical value differentiates, not the raw material.
+ 
+#### 2.4.5 Meaning-Making as Telos
+ 
+Fluency is the outcome the spectrum produces, but it is not the end in itself. *We train and we even get obsessed with training technique insofar as it serves the goal of removing limitations on movement.* Fluency removes limitations on movement; movement freedom enables expression; expression enables the user to make meaning through music.
+ 
+This is the telos the spectrum serves. The framework's commitment to operating both poles deliberately — its refusal to over-index on either novelty or automaticity — is in service of this end. Pedagogical efficiency that produces fluent-but-disengaged players, or artistic engagement that produces inspired-but-unfluent players, both fall short.
+ 
+The product implication: the agentic system, in composing roadmaps, must hold meaning-making as the user's eventual destination even when surface goals (pass an exam, master a technique, learn a specific piece) point at narrower outcomes. The Spectrum is the mechanism; meaning-making is the why.
+ 
+#### 2.4.6 How the Spectrum Drives Agentic Roadmap Composition
+ 
+The Spectrum gives the agentic system (Doc 09) a principled reasoning axis. A strong roadmap rotates along the Spectrum deliberately:
+ 
+- Block practice through **Exercise** to build a skill (Automaticity pole)
+- Mixed practice through **Repertoire** to integrate the skill in artistic context (midpoint)
+- Random practice through **Sight Reading** to generalize the skill to unseen material (Novelty pole)
+This is contextual interference applied as design philosophy. Without the Spectrum, the agent has no principled way to decide *when to switch modes*; with the Spectrum, mode-switching becomes a deliberate pedagogical operation rather than an arbitrary product navigation.
+ 
+The semi-lattice substrate-engagement layer (Decision #58) is what makes cross-mode routing possible: the same training goal can be served via different modes because each mode's atoms incidentally engage substrates beyond their primary. See Doc 09 §5 for full treatment of spectrum-driven roadmap composition.
+ 
+#### 2.4.7 Positioning Note
+ 
+MuseFlow's pitch positioning has evolved along this axis. The original framing was "songs vs. skills" — implicitly a critique of competitors that over-index on automaticity (drill apps, ear-training trainers) without sufficient novelty exposure. The matured framing is broader: *MuseFlow operates the entire Spectrum deliberately*. We no longer pitch as "the song-based alternative to drill apps"; we pitch as the system that interleaves novelty and automaticity in service of fluency and meaning-making. (See Doc 13 for pitch deck register.)
+
 ---
 
 ## 3. Foundational Frameworks

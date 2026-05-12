@@ -78,6 +78,12 @@ For rhythms: pattern identification, beat counting, subdivision identification, 
 
 **Content Scope**: The specific musical material in the pool, arranged as a difficulty level within a strand. For chords: major/minor only → all triads → 7th chords → extended. For intervals: perfect intervals → diatonic intervals → all intervals → compound intervals.
 
+#### 2.1.5 Atom Identity Confirmed Single-Substrate (per Decisions #25, #57, #58)
+ 
+The atom-identity model defined above carries **exactly one primary substrate** per atom. This is preserved across the K-substrate family admission (Decision #57): K-substrate atoms have a K-substrate as their primary substrate; cognitive substrate atoms (F-, T-, A-, X-) have a cognitive substrate as their primary substrate. No atom has two primary substrates. Multi-substrate engagement is handled at a separate architectural layer (the **semi-lattice substrate-engagement layer**, Decision #58), which is computable at agent-reasoning time from existing atom identity dimensions and is NOT stored as a schema field. See Architecture Doc §3.2.1 for full treatment.
+ 
+The slogan: **tree for users, semi-lattice for the agent.** Navigation, mastery tracking, and atom identity stay tree-structured for human comprehensibility. The agentic system reasons over the richer semi-lattice for cross-mode roadmap composition. Both layers coexist; neither dominates.
+
 ### 2.2 Exercise Molecule
 
 A cluster of atoms that share the same substrate family, input modality, output modality, and content scope. Atoms within a molecule differ only on target variables and pitch reference mode.
@@ -369,6 +375,14 @@ Within each strand, content scope levels are ordered by pedagogical difficulty. 
 6. Add tuplets
 
 These progressions need review and refinement by Steven and the team.
+
+### 6.4 K-Substrate Atoms — Distractor Pattern Differs
+ 
+The distractor generation logic in §6.2 is designed for cognitive substrates with multiple-choice or constructive output (Recognition, Verification, Alteration training methods). For **K-substrate atoms** (motor-primary; Decision #57), the training method is almost exclusively Performance (PRF), and assessment is on motor execution quality — evenness, tempo compliance, articulation crispness, pedal-change cleanness — rather than on selection among distractors.
+ 
+K-substrate atoms therefore do not generate distractors in the §6.2 sense. They are assessed against execution criteria appropriate to the motor pattern being trained. Specific assessment dimensions for each K-substrate are Track D catalog-authoring work; this section flags the general principle.
+ 
+Cross-references: Architecture Doc §3.1.5 (K-substrate family); Architecture Doc §5 (Performance Constraint Architecture — the assessment-dimension catalog will likely extend here); Decision #57 (K-substrate family admission).
 
 ---
 

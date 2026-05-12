@@ -93,19 +93,20 @@ Any additional registers encountered during reading are noted in §6.
 |---|---|---|---|---|
 | Decide-now | 4 | T-026 withdrawn + re-bucketed; T-067, T-074, T-085 resolved | 0 | Mechanical-given-canon calls; resolved inline in Phase 3 |
 | Already-resolved | 1 | T-022 retired | 0 | Canon already answered; formally retired in Phase 3 |
-| V1-decide-soon | 43 | T-026 added (re-bucketed); T-097 added (new) | 45 | Needs deliberate design work in this Track's near-term — blocks V1 exercise section ship and/or investor demo |
+| V1-decide-soon | 43 | T-026 added (re-bucketed); T-097 added (new) | 42 | Needs deliberate design work in this Track's near-term — blocks V1 exercise section ship and/or investor demo |
 | V2-defer | 31 | — | 31 | Out of V1 scope; will resolve when V2 / agentic-track work ramps |
 | Explicit-punt | 17 | — | 17 | Long-horizon, gated on external events |
-| Resolved (Phase 3) | — | T-067 → #53; T-074 → #54; T-085 → #55 | 3 | Resolved by a specific Decision in Phase 3 |
+| Resolved (Phase 3) | — | T-067 → #53; T-074 → #54; T-085 → #55; T-026, T-027, T-097 — resolved by Decisions #57 + #58 | 6 | Resolved by a specific Decision in Phase 3 |
 | Retired | — | T-022 | 1 | Formally retired from inventory (canon already answered) |
 | **Total** | **96** | +1 (T-097) | **97** | |
 
 **Bucket-grouped T-ID listings (post-Phase-3):**
 
-### Resolved in Phase 3 (3)
+### Resolved in Phase 3 (6)
 - **T-067** — MAGE long-term role caveat → **Decision #53** (Staley-caveat retired; Decision #39 formally closed)
 - **T-074** — "Large Music Model" framing → **Decision #54** (internal-only until architecture justifies)
 - **T-085** — Atom-gating vs. generation-gating framing → **Decision #55** (generation-gating canonical)
+- **T-026, T-027, T-097** — resolved by **Decisions #57 + #58**
 
 ### Retired in Phase 3 (1)
 - **T-022** — Micro-PTA exercises in V1 scope (Decision #24 fully answered; formally retired)
@@ -117,7 +118,6 @@ Any additional registers encountered during reading are noted in §6.
 - **Progress / completion UI:** T-012, T-013, T-014, T-015
 - **Catalog (Track D):** T-016, T-017, T-018, T-019, T-021, T-023, T-024
 - **Substrate edge cases:** T-025, T-028
-- **Substrate-architecture refinement (C-17, paired):** T-026, T-027, T-097
 - **Catalog-time defaults:** T-030, T-031, T-032
 - **Agentic — demo-blocking:** T-038, T-039, T-042, T-043, T-049, T-052, T-053, T-054, T-057, T-058, T-062
 - **Agentic — team-org / infra:** T-068, T-069
@@ -619,22 +619,29 @@ Any additional registers encountered during reading are noted in §6.
 
 This cluster groups questions about the substrate catalog's architecture itself — how substrates are organized, what kinds of substrates the catalog admits, and how the catalog handles the cognitive-vs-motor distinction that has not been explicitly modeled. The three entries here are tightly coupled: any answer to one constrains the others. Resolution venue is Track D substrate-architecture refinement work.
 
-**T-026 — *Pedaling exercises placement.*** Pedal substrate isn't in the current substrate catalog. Add as distinct substrate (likely under new "Articulation/Pedal" cluster), or treat as constraint/configuration on existing atoms? Probably distinct substrate; worth catalog-authoring conversation.
+**T-026 — *Pedaling exercises placement.*** **RESOLVED 2026-05-12 by Decision #57.** Pedaling is admitted into the substrate catalog under the K-substrate family — specifically as K-M11 (damper pedal — pulse), K-M12 (damper pedal — chord change), K-M13 (damper pedal — legato change), K-M14 (damper pedal — half-pedal / flutter), K-M15 (sostenuto pedal coordination), and K-M16 (una corda usage). Pedaling is NOT treated as a single substrate but as a cluster of motor-coordination substrates within the K-M (molecular) tier, reflecting that different pedal-coordination tasks are biomechanically and pedagogically distinct. Resolution venue: Track C-17 substrate-architecture refinement work (May 12). Catalog admission is immediate; V1 inclusion of specific pedaling atoms is a Track D phasing decision per Decision #57 phasing terms.
   Sources: Doc 11 §11.3
-  Cross-refs: T-027 (Technique drills — paired); T-097 (cognitive-vs-motor catalog framing — parent architectural question)
-  Phase 3 update (2026-05-12): Originally bucketed Decide-now in Phase 2 with a proposed "distinct substrate" Decision. Phase 3 review withdrew the proposed Decision after surfacing the architectural pairing with T-027 (which presents four candidate framings for technique drills, each of which binds T-026 differently) and a deeper architectural question (T-097, cognitive-vs-motor catalog organization). Re-bucketed V1-decide-soon; moved from C-06 to C-17.
-  **Bucket:** V1-decide-soon. **Reasoning:** Pedaling's catalog placement is a sub-question of T-097 (cognitive-vs-motor framing) and pairs with T-027 (Technique drills). Resolution venue: Track D substrate-architecture refinement work, where all three of T-026 / T-027 / T-097 get decided together.
+  Cross-refs: T-027 (Technique drills — paired, also resolved); T-097 (cognitive-vs-motor framing — parent architectural question, resolved); Decision #57; Decision #58.
+  **Status:** RESOLVED.
 
-**T-027 — *Technique drills: exercises or distinct content class.*** Patrick's E category is pedagogically valid but doesn't fit the substrate-driven model. Candidates: V2 Exercise cluster, distinct content mode, blueprint variant with substrate="motor pattern", or performance-method atoms. **Priority elevated in Doc 11 v0.3** — blocks ~6 V1 preset candidates (A4 Hanon-style and E1–E5 finger independence / hand coordination / thumb crossing / hand position shifts / wrist rotation).
+**T-027 — *Technique drills: exercises or distinct content class.*** **RESOLVED 2026-05-12 by Decision #57.** Technique drills are admitted as **K-substrate-driven exercises within the Exercise content mode**, not a parallel content class. The K-substrate family (motor-primary substrates) provides catalog homes for finger-independence (K-A1), finger strength (K-A2), five-finger coordination (K-A3), pivoting (K-A4), stretching/squeezing (K-A5/K-A6), whole-hand translation (K-A7), wrist rotation (K-A8), octave technique (K-A9), trill (K-A10), the three staccato types (K-A11/K-A12/K-A13), and hand-coordination substrates (K-M1 through K-M10). Patrick's E1–E5 cluster maps directly: E1 finger independence → K-A1; E2 hand coordination → K-M1 through K-M6 (motion types); E3 thumb crossing → K-A4 Pivoting; E4 hand position shifts → K-A7 Whole-hand translation or K-A5/K-A6 Stretching/Squeezing depending on motion; E5 wrist rotation → K-A8 Wrist rotation. A4 (Hanon-style) maps to K-A1 + K-A3.
+ 
+Doc 11 §11.4's framework-fit ambiguity is resolved: K-substrates extend the framework to accommodate motor-primary exercises without forcing them into cognitive substrate categories or requiring a separate content class. Technique-as-content-class is therefore NOT adopted (see Doc 09 §13.11 status update). Decision #13's fingering-and-improvisation placeholder status is unaffected (see Decision #13 amendment).
+ 
   Sources: Doc 11 §11.4
-  Cross-refs: Decision #13 (improvisation+fingering placeholder — adjacent territory); T-092 (Content classes inventory); T-026 (paired — pedaling); T-097 (cognitive-vs-motor catalog framing — parent architectural question)
-  Phase 3 move (2026-05-12): Moved from C-06 to C-17 to group with T-026 and T-097 as a tightly-coupled substrate-architecture refinement cluster. Bucket unchanged (V1-decide-soon).
-  **Bucket:** V1-decide-soon. **Reasoning:** Priority-elevated in Doc 11 v0.3; blocks ~6 V1 preset candidates. The decision may itself be 'defer to V2' (resulting in those candidates being deferred), but the *decision needs to be made* in V1 timeframe to unblock Track D.
+  Cross-refs: Decision #57; Decision #13 (amended — fingering and improvisation placeholder status unchanged); T-026 (Pedaling — paired, also resolved); T-097 (cognitive-vs-motor framing — parent architectural question, resolved); T-092 (Content classes inventory — Technique removed as a candidate distinct class).
+  **V1 phasing:** Decision #57 admits K-substrates to the catalog; V1 inclusion of specific Technique-cluster atoms (including the ~6 previously blocked V1 preset candidates: A4 Hanon-style and E1–E5 motor techniques) is a separate Track D phasing decision. Lean: at least minimal V1 coverage given foundational pedagogical value, but the cut is Track D's call.
+  **Status:** RESOLVED.
 
-**T-097 — *Cognitive-vs-motor substrate distinction and dual-training representation.*** The substrate catalog (Architecture Doc §3.1) treats substrates as cognitive transformations — each substrate's "Input → Output" column always describes a mental mapping (Pitch ↔ Name, Chord symbol → Pitch set, Duration → Beat count, etc.). Motor-execution skills (finger independence, hand coordination, pedaling, wrist rotation) are not represented as substrates. Whether and how the catalog should distinguish or accommodate motor/technique substrates is open. Cross-cutting: a single exercise can train both a cognitive substrate (chord recognition) and a motor pattern (chord-playing technique); the catalog does not currently model this dual-training. Paired with T-027 (Technique drills placement) and T-026 (Pedaling placement).
+**T-097 — *Cognitive-vs-motor substrate distinction and dual-training representation.*** **RESOLVED 2026-05-12 by Decisions #57 + #58.** The substrate catalog as previously defined treated substrates as cognitive transformations exclusively. Working through the Hanon goal (finger dexterity/independence/strength) and the pedaling goal (foot coordination across complexity) exposed a contradiction with Decision #25: under cognitive-only substrate framing, a Hanon atom and a beginner-sight-reading atom were indistinguishable on every identity dimension, despite training fundamentally different skills.
+ 
+Resolution: the substrate catalog admits a parallel K-substrate family (Decision #57) for motor-primary substrates. Dual-training is handled via the **semi-lattice substrate-engagement layer** (Decision #58): atom identity remains single-substrate (tree-structured, per Decision #25), while substrate engagement is treated as a graph computable at agent-reasoning time from existing atom identity dimensions. Slogan: *tree for users, semi-lattice for the agent.* Engagement is NOT stored as a schema field; it is computed by the agentic system's recommendation engine when composing roadmaps that route training goals across modes.
+ 
+The original C-17 framing ("cognitive vs. motor substrate distinction") is partially superseded by the resolution: the substrate catalog admits *both* cognitive-primary and motor-primary substrates; the framework's existing modality (Decision #5), micro-PTA (Doc 02 §6), and performance-constraint (Doc 02 §5) layers continue to handle cognitive-motor coupling at their respective architectural levels. Resolution venue: Track C-17 substrate-architecture refinement work (May 12).
+ 
   Sources: Surfaced in Phase 3 review (2026-05-12), during T-026 / T-027 architectural pairing discussion.
-  Cross-refs: T-026 (Pedaling — sub-question), T-027 (Technique drills — sub-question), Decision #13 (fingering placeholder — adjacent); Architecture Doc §3.1 (substrate catalog target for refinement).
-  **Bucket:** V1-decide-soon. **Reasoning:** Foundational substrate-architecture refinement work; pairs with T-026 and T-027 as a single Track D conversation. Resolution venue: Track D substrate-architecture refinement.
+  Cross-refs: Decision #25 (atom identity — preserved); Decision #57 (K-substrate family); Decision #58 (semi-lattice engagement layer); Decision #5 (Kinesthetic modality — adjacent and reinforcing, but distinct from K-substrate family); T-026, T-027 (sub-questions, also resolved); Doc 02 §3.1.5 (canonical catalog home); Doc 02 §3.2.1 (semi-lattice layer).
+  **Status:** RESOLVED.
 
 ---
 
@@ -647,6 +654,8 @@ This cluster groups questions about the substrate catalog's architecture itself 
 | T-022 | Micro-PTA exercises in V1 scope | Decision #24 (deferral) + Phase 3 retirement (2026-05-12) |
 
 *(Phase 1 found no clean retirement candidates beyond partially-stale items. Phase 3 retired T-022 after confirming Decision #24 fully answers the V1-or-deferred question.)*
+
+**Closure note** The C-17 cluster (Substrate-architecture refinement) — T-026, T-027, T-097 — is fully resolved as of 2026-05-12 by Decisions #57 + #58 (Track C-17 substrate-architecture refinement work). The C-17 cluster is now empty of open questions but is retained in §5's cluster index for audit trail. The substrate-architecture refinement work also produced Decisions #56 (Novelty-Automaticity Spectrum), #59 (Three AI Roles), and #60 (Etudes + Variations) as adjacent canon additions; those decisions do not resolve specific T-NNN entries but recontextualize broader framing across multiple clusters.
 
 ### 6.2 `PARTIALLY STALE` entries (kept in inventory; resolution status noted)
 

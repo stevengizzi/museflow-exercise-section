@@ -163,6 +163,13 @@ This document tracks every significant decision made autonomously while drafting
 
 **Alternative:** You could ask me to attempt a first-pass specification for either or both. I can, but I wanted to flag them as genuinely different from the other exercise types rather than pretending the framework handles them naturally in their current state.
 
+**Amendment (2026-05-12, per Decision #57):** Decision #57 admits a K-substrate family for motor-primary substrates (finger independence, pivoting, pedal coordination, etc.). This does NOT pull fingering and improvisation back into scope. The placeholder status of this Decision applies specifically to:
+ 
+- **Fingering selection** (X-4) — *cognitive* substrate (choosing which finger goes on which key is an algorithmic-aesthetic-biomechanical decision). Motor execution of the selected fingering is the Kinesthetic action layer over it, but the substrate identity is cognitive. X-4 remains a placeholder pending dedicated design.
+- **Improvisation** (X-7) — open-ended creative transformation. Inherently challenges the exercise template (what is the "correct" output?). Remains deferred per Decision #45 framing and this Decision.
+
+K-substrate family admission resolves the *adjacent* question of motor-execution exercises (Hanon-style, pedal drills, technique drills generally), which now have catalog homes. The placeholder status of fingering and improvisation is unchanged by Decision #57.
+
 ---
 
 ## Decision 14: Data Model — Added Exercise Definition and Instance Schemas
@@ -578,6 +585,8 @@ Browse-by-authorship-origin is a primary filter axis in both content-mode and pa
 
 **Cross-references:** Decisions #16 (amended), #29 (Agentic Vision — superseded in framing by this entry, though the underlying intent persists), #32 (Agentic Projects elevated), #33 (generation on demand), #34 (custom authoring), #40 (`authoring_origin` field on atom schema).
 
+**Note (2026-05-12, per Decision #56):** Decision #56 (Novelty-Automaticity Spectrum) recontextualizes the three confirmed and anticipated content modes (Exercises, Repertoire, Sight Reading) as **manifestations of the Spectrum at distinct points**: Sight Reading at the Novelty pole, Exercises at the Automaticity pole, Repertoire at the synthesis midpoint with an artistic-intent overlay. The mode architecture defined in this Decision is unchanged; the Spectrum framing explains *why* this particular three-mode structure is pedagogically principled rather than arbitrary. The architectural principle ("content lives in content modes; paths reference content; authorship is a property of content and of paths, not of mode") is reinforced by the Spectrum's Shapeless Content corollary: at the level of raw musical material, all three modes generate or reference the same underlying content, differing only in scheduling and bounding policy.
+
 ---
 ## Decision 42: The Auto-Looping / Perfect-Practice Tree Algorithm
 
@@ -893,5 +902,137 @@ Per Decision #43 (cross-mode performance constraints), if a B/I/A-style summary 
 **Phasing:** V1 documentation work. Pricing structure design (Decision #37) remains deferred — this Decision is the framing-vocabulary commitment that pricing-design work will operate within. T-079 through T-084 (the C-14 pricing cluster open questions) remain explicit-punt pending pricing-design start; Decision #55 sets the framing they will be answered within.
 
 **Cross-references:** Decision #37 (pricing structure deferred); Doc 09 §16 (cost framework, the basis for generation-gating); Doc 11 §11.9 (full reasoning); Doc 12 T-085 (formally resolves); related open questions T-079–T-084 (pricing cluster).
+
+---
+
+## Decision 56: The Novelty-Automaticity Spectrum as Foundational Pedagogy
+ 
+**Source:** Track C-17 substrate-architecture refinement work; D23 framework conversation (May 12); the recognition that the three content modes (Sight Reading, Exercises, Repertoire) are not independent product surfaces but distinct manifestations of a single pedagogical spectrum.
+ 
+**Decision made:** The **Novelty-Automaticity Spectrum** is canonical pedagogical philosophy. Skill acquisition operates between two poles:
+ 
+- **Novelty pole** — content never repeats; trains *generalization* (the ability to apply skills to unseen material). Pedagogical research (contextual interference effect; Shea & Morgan 1979 forward) establishes that high contextual variation produces worse immediate performance but stronger retention and transfer.
+- **Automaticity pole** — content repeats with varied performance constraints; trains *automatic execution* (skills performed without conscious load). Low contextual interference produces faster immediate gains but weaker transfer if practiced exclusively.
+**Fluency** is the outcome the spectrum produces when both poles are engaged. A learner needs both: pure novelty produces frustrated, unautomatized players; pure repetition produces context-bound performers who can't generalize. Mastery requires deliberate interleaving.
+ 
+The three content modes are **manifestations of the spectrum**:
+- **Sight Reading** manifests the Novelty pole (each piece served at most once; drawn from an infinite generator)
+- **Exercises** manifests the Automaticity pole (same atom-content served repeatedly until mastery; finite content scope with varying constraints)
+- **Repertoire** manifests synthesis (finite content with internal novelty and internal repetition, with composed artistic structure as a second axis)
+Two supporting principles attach:
+- **Shapeless Content** — at the level of raw musical material, all three modes generate or reference the same underlying content. They differ in *scheduling and bounding policy*, not in content type. One generator, three policies.
+- **Meaning-making as telos** — fluency removes limitations on movement, which removes limitations on expression, which enables the user to make meaning through music. The spectrum serves this end; it is not an end in itself.
+**Reasoning:** The spectrum framing resolves several latent architectural tensions simultaneously. It explains why the three modes are level-agnostic (Decision #16) — they're orthogonal pedagogical axes, not separate user tiers. It justifies one-content-many-policies architecture (consistent with Decisions #33 generation-on-demand and #34 custom authoring). It gives the agentic system a principled reasoning axis for roadmap composition (interleave deliberately along the spectrum, not pick a single mode). It explains the existing "songs vs. skills" pitch evolution: the original framing critiqued competitors over-indexing on automaticity; the matured framing is that MuseFlow operates the entire spectrum deliberately. Without this philosophy, the three-mode architecture reads as three independent product surfaces with arbitrary boundaries; with it, the architecture is a single coherent pedagogical system.
+ 
+**Phasing:** Foundational and immediate. Codified in Doc 01 §2.4 (new section). Cross-referenced across Doc 02 (substrate-engagement framing), Doc 09 (agentic roadmap composition), and Doc 13 (pitch deck register). Does not commit V1 implementation work directly; it commits the framing all subsequent design work operates within.
+ 
+**Cross-references:** Decision #16 (Exercises + Repertoire as universal pillars — Sight Reading now joins as the third pillar at the Novelty pole); Decision #20 (Contextual Transfer — Spectrum makes the mechanism explicit); Decision #33 (generation-on-demand — Shapeless Content corollary); Decision #41 (Content Mode and Path Mode Architecture — modes refined as spectrum manifestations); Decision #57 (K-substrate family — admitted under the spectrum's content-shape neutrality); Doc 01 §2.4 (canonical home); Doc 09 §5 (spectrum-driven roadmap composition).
+ 
+---
+ 
+## Decision 57: K-Substrate Family — Motor-Primary Substrates Admitted to the Catalog
+ 
+**Source:** Track C-17 cluster (T-026, T-027, T-097). The realization, surfaced by working through the Hanon goal (finger dexterity/independence/strength) and the pedaling goal (foot coordination across complexity), that the substrate catalog as previously defined had no way to distinguish a Hanon atom from a beginner-sight-reading atom at the schema level — a clear contradiction with Decision #25's atom-identity principle.
+ 
+**Decision made:** Admit a **K-substrate family** (Kinesthetic / motor-primary substrates) parallel-axis to F (Frequency), T (Time), and A (Amplitude). The substrate catalog admits any substrate whose **primary training value is motor** (physical execution: finger patterns, hand coordination, pedal coordination, etc.), where:
+ 
+- **Primary** means the trained skill is motor, not cognitive. Cognitive substrates with kinesthetic *execution* (any current substrate with a Kinesthetic output modality — playing a scale from name SC-006, playing a chord CH-006, etc.) stay in their F/T/A homes.
+- **Substrate (not constraint)** means the entry has its own learning curve, recognizable identity ("the X technique"), and isn't adequately covered as a modulation on an existing cognitive substrate.
+The K- family is structured by the same atomic/molecular/compound levels as F/T/A. Concrete catalog (full tables in Doc 02 §3.1):
+ 
+**K-A (atomic):** K-A1 Finger independence; K-A2 Finger strength (weak fingers); K-A3 Five-finger coordination pattern; K-A4 Pivoting (thumb-under ascending, finger-over descending); K-A5 Stretching (anchored finger, others expand); K-A6 Squeezing (anchored finger, others contract); K-A7 Whole-hand translation (jumps, leaps, slides); K-A8 Wrist rotation; K-A9 Octave technique; K-A10 Trill technique; K-A11 Finger staccato; K-A12 Wrist staccato; K-A13 Arm/forearm staccato; K-A14 Single-hand chord voicing (motor).
+ 
+**K-M (molecular):** K-M1 Parallel-oblique motion (both hands stationary on their respective notes); K-M2 Parallel motion (same direction, same interval); K-M3 Strict contrary motion (mirrored exactly); K-M4 Similar motion (same direction, different intervals); K-M5 Contrary motion (opposite directions, intervals may differ); K-M6 Oblique motion (one hand stationary, other moves); K-M7 Hand independence (rhythm); K-M8 Hand independence (dynamics); K-M9 Hand-crossing; K-M10 Polyrhythm execution; K-M11 Damper pedal — pulse; K-M12 Damper pedal — chord change; K-M13 Damper pedal — legato change; K-M14 Damper pedal — half-pedal / flutter; K-M15 Sostenuto pedal coordination; K-M16 Una corda usage.
+ 
+**K-C (compound):** K-C1 Three-system integration (LH + RH + pedal); K-C2 Arm-weight transfer; K-C3 Forearm rotation in extended passages.
+ 
+**Reasoning:** Decision #25 established that atoms differing on any identity dimension are different atoms because they train fundamentally different skills. The Hanon case exposed a contradiction: under the cognitive-only substrate model, a Hanon atom and a beginner five-finger sight-reading atom were identical on every identity dimension (substrate F-A1/F-A2, Visual input, Kinesthetic+Aural output, etc.). They are manifestly different skills with different training values. The cleanest resolution is to recognize that the substrate catalog serves two functions: (a) naming the Transformation stage of PTA (cognitive operations), and (b) indexing what an exercise *trains*. For cognitive-primary exercises these coincide; for motor-primary exercises they diverge, and the catalog must index by *what is trained*, not by *what the cognitive Transformation is*. K-substrates extend the catalog along that axis.
+ 
+Alternative considered: tagging cognitive substrates with a motor-skill attribute. Rejected because pure motor drills (E1–E5 in Patrick's catalog, K-A2 finger strength) have no meaningful cognitive substrate to tag — the whole exercise IS the motor skill. Tagging cannot create a home where there is none.
+ 
+Alternative considered: treating motor work as a distinct content class (Technique) outside Exercise. Rejected because once motor-primary substrates exist in the framework, technique drills are exercises like any other — their substrate is K- rather than F/T/A. Patrick's E category becomes a filterable cluster within Exercise ("Technique"), not a parallel content class. This collapses T-027 cleanly.
+ 
+**Phasing:** Catalog admission is immediate (Doc 02 §3.1 amendment). V1 scope inclusion of specific K-atoms is a separate decision for Track D — phasing-TBD per project conventions. Likely lean: at least minimal K- coverage in V1 given how foundational finger-independence and pedaling are to early learners, but the actual V1 cut is Track D's call.
+ 
+**Cross-references:** Decision #4 (substrate catalog formal ID system — K- follows same convention); Decision #5 (Kinesthetic modality — K-substrate family and Kinesthetic modality are conceptually adjacent and reinforce each other, but are distinct: modality is the channel, substrate is the trained skill); Decision #13 (fingering and improvisation placeholders — see amendment below; motor-primary substrates do NOT pull fingering-selection back into scope, which remains a cognitive substrate placeholder); Decision #25 (atom identity — preserved; single-substrate identity remains canonical); Decision #56 (Novelty-Automaticity Spectrum — K-atoms manifest at the Automaticity pole within the Exercise mode); Decision #58 (semi-lattice engagement — explains how K-atoms incidentally engage F/T substrates and vice versa); Doc 02 §3.1 (canonical catalog); Doc 03 §12 (taxonomy parallel); Doc 12 T-026, T-027, T-097 (resolved).
+ 
+**Naming note:** "K-" letter chosen to reinforce conceptual link with Kinesthetic modality (Decision #5). K-substrate family and Kinesthetic-modality are NOT the same thing — modality is the perception/action channel; substrate is the trained skill. They reinforce each other (K-substrate atoms are typically executed via Kinesthetic output modality) but operate at different levels of the framework. Footnote in Doc 02 §3.1 makes this distinction explicit.
+ 
+---
+ 
+## Decision 58: Substrate Engagement as a Semi-Lattice Overlay
+ 
+**Source:** Track C-17 work; the recognition (informed by Christopher Alexander's "A City is Not a Tree") that single-substrate atom identity is correct for navigation and mastery but misses the architectural reality that every kinesthetic-output atom engages multiple substrates simultaneously.
+ 
+**Decision made:** Two distinct architectural layers govern substrate relationships:
+ 
+1. **Atom identity (tree).** An atom has exactly one **primary substrate**. This defines the atom, indexes navigation, and serves as the axis for mastery tracking. Single-substrate identity preserves Decision #25's clean atom typing; user-facing catalog stays tree-structured.
+2. **Substrate engagement (semi-lattice).** An atom *engages* other substrates derivatively — through its input modality (Visual input engages reading substrates F-A2 + T-A2), through its output modality (Kinesthetic output engages relevant K-substrates appropriate to the content), and through its content scope (e.g., Hanon-style content engages five-finger coordination K-A3 even when the primary substrate is F-A2 sight-reading). Engagement is a graph (semi-lattice in Alexander's sense — overlapping membership without strict tree containment), not a tree.
+3. **Engagement is computable, not stored.** Given an atom's existing identity dimensions, incidental engagement is derivable at runtime by the agentic system. The atom schema does NOT carry an engagement field. Computation rules (e.g., "Visual input → F-A2 + T-A2 engaged; Kinesthetic output + content scope encoding motor pattern → relevant K-substrates engaged") live in the agent's recommendation engine, not in stored atom metadata.
+**Reasoning:** Two functions are in tension:
+- Atom identity wants to be **clean and singular** so users can navigate, so mastery is single-axis trackable, and so the schema stays simple. Decision #25 settled this.
+- Substrate relationships are **inherently overlapping** — a Hanon atom is K-A3 primary AND incidentally engages F-A2 (notation reading) and T-A2 (rhythm reading); a five-finger-position sight-reading level is the *inverse*: F-A2/T-A2 primary, K-A3 incidental. Same training value mix, different primary.
+The semi-lattice overlay resolves the tension by separating layers. **Tree for users, semi-lattice for the agent.** Users see a clean hierarchy; the agent reasons over the richer graph to compose roadmaps that route the same training goal through multiple modes (e.g., for "improve finger independence": primary route is Exercise K-A1 atoms; alternative routes include Sight Reading scoped to five-finger positions and Repertoire pieces rich in finger-independence demands).
+ 
+Computed-not-stored avoids three failure modes: (a) schema bloat from a field that's redundant with existing identity dimensions, (b) staleness if the computation rule evolves but stored values don't, (c) inconsistency if some atoms have engagement metadata and others don't.
+ 
+**Open question deferred:** Whether engagement-weights (intensity of incidental engagement — Hanon engages F-A2 lightly because pitches are repetitive; sight-reading engages F-A2 intensely) need to be encoded in the computation rule, or whether qualitative engagement (engaged / not engaged) is sufficient. Leaning qualitative for V1; revisit if the agent's recommendation engine needs weighted indexing for ranking quality.
+ 
+**Phasing:** Conceptual canon now (Doc 02 §3.1 footnote + Doc 09 §5 agentic roadmap composition). Implementation phasing: engagement-graph computation lands when the agentic system's recommendation engine is built; not a V1 commitment for the static catalog.
+ 
+**Cross-references:** Decision #25 (atom identity preserved); Decision #57 (K-substrate family — engagement layer is what makes K-atoms interoperable with F/T/A atoms in agent reasoning); Decision #56 (Spectrum — the engagement graph is what enables cross-mode routing of training goals along the Spectrum); Doc 02 §3.1 (canonical home); Doc 09 §5 (agentic roadmap composition); Doc 12 T-097 (resolved).
+ 
+---
+ 
+## Decision 59: The Three AI Roles Framework
+ 
+**Source:** Track C-17 conversation; the recognition that MuseFlow AI is multi-purpose across multiple levels of scope, and that articulating these roles explicitly serves both internal prioritization and external pitch communication.
+ 
+**Decision made:** MuseFlow AI operates across three role scopes, layered from broadest to narrowest:
+ 
+**The Coach** — relationship-scoped AI, operating across the user's journey:
+- Skill model maintenance (continuously updates a model of user's skill profile across all substrate families, performance-constraint capacity, motor competencies, repertoire history)
+- Goal interpretation (translates user-stated natural-language goals into pedagogically actionable directives)
+- Pedagogical dialogue (conversational coaching partner)
+- Curriculum / roadmap generation (composes sequenced practice plans deliberately interleaving along the Novelty-Automaticity Spectrum)
+- Plan adaptation (repairs the roadmap when the user goes off-plan)
+- Cross-mode orchestration (decides when to switch modes)
+**The Composer-Librarian** — content-scoped AI, operating within each content mode:
+- Sourcing (selects from existing libraries — Repertoire library, preset exercise catalog, etc.)
+- Generating (creates new content on demand: sight-reading material, exercise instances, etudes — AI-generated repertoire with training intent)
+- Modifying (transforms existing content: simplifying/complexifying repertoire, transposing, generating variations on a theme)
+- Evaluating (judges whether existing or generated content matches a pedagogical need)
+**The Practice Partner** — moment-scoped AI, operating within a single content piece in a single session:
+- Performance constraint control (real-time tempo, accuracy thresholds, mastery thresholds, loop boundaries)
+- Insight surfacing (contextual observations, hints, advice)
+- App orchestration (automates auto-looping, start-position movement, next-step decisions — the way a teacher in the room would)
+- Engagement sensing (detects frustration, boredom, flow state; signals up to the Coach for journey-level adaptation)
+**Reasoning:** Without an explicit role framework, AI capability discussions become surface-level and unprioritized. Each role has different latency requirements, different data dependencies, different infrastructure, and different cost profiles. The Coach is high-context, low-frequency, and can be expensive per call. The Composer-Librarian is medium-context, medium-frequency, and benefits from caching and reuse. The Practice Partner is low-context, high-frequency, and must be cheap and fast. Conflating them produces poor engineering decisions (e.g., using Coach-grade reasoning for Practice-Partner-scoped decisions, or trying to make the Practice Partner stateful in ways that should live in the Coach).
+ 
+The role framework also clarifies the Mage/Opusmodus positioning question (Decision #39, #44, #53): both are implementation tools within the **Composer-Librarian** role. Mage is the algorithmic generator; Opusmodus is a renderer Mage uses. The team's recurring confusion about their relationship dissolves when both are placed inside a single role-scoped layer.
+ 
+The framework also gives the pitch deck a clean three-line summary: *"MuseFlow's AI plays three roles you'd recognize from any great teacher: a coach who knows your goals and journey, a composer-librarian who creates and curates the right music for you, and a practice partner who's in every session with you."* Each role decomposes into 4–6 specific capabilities, so the pitch can drill from three-line summary to specific functionality without losing the through-line.
+ 
+**Phasing:** Conceptual canon now (Doc 09 §1.6 new subsection + Doc 09 §10 MAGE/Opusmodus recontextualization). Implementation phasing per-role: Practice Partner functionality is partially present today (auto-looping, etc.) under non-AI logic; AI-mediated Practice Partner is V2+. Composer-Librarian generation capabilities are R&D-active (Mage, Decision #44). Coach is the most ambitious; demo-defensible scope for the investor demo (Doc 09 §15.2) is the V1 target.
+ 
+**Cross-references:** Decision #29 (Agentic Vision documented); Decision #32 (Projects elevated to near-term R&D); Decision #33 (Exercise Generation on Demand — Composer-Librarian capability); Decision #34 (Custom Authoring — Composer-Librarian capability); Decision #44 (MAGE augmentation direction — clarified as Composer-Librarian-role implementation); Decision #46 (Agent-Controllable Repertoire Practice Control Surface — Practice Partner capability); Decision #47 (User-Modeling Layer — foundational to the Coach role); Decision #60 (Etudes + Variations — Composer-Librarian generation modes); Doc 09 §1.6 (canonical home for role framework); Doc 09 §10 (MAGE/Opusmodus recontextualized); Doc 13 (pitch deck register).
+ 
+---
+ 
+## Decision 60: Etudes and Variations on a Theme as AI-Generated Repertoire Modes
+ 
+**Source:** D23 framework conversation (May 12); the question of whether AI should generate repertoire and, if so, in what form to avoid pretending machine-generated music is art for its own sake.
+ 
+**Decision made:** AI-generated content in the Repertoire content mode takes two distinct forms:
+ 
+1. **Etudes** — AI-generated repertoire designed with explicit training intent. Sits between Exercise and Repertoire: enough artistic shape to be playable as music; a fundamental guiding principle behind the composition is to train a target technique or substrate. "No one plays an etude and is like, *huh? this is a masterpiece.* Of course not — it's an etude." The framing acknowledges artistic intent without overclaiming artistic merit.
+2. **Variations on a Theme** — AI-mediated *modification* of existing repertoire (not generation from scratch). Takes a known piece and simplifies it or complexifies it along a complexity spectrum, enabling accessibility (adapt Chopin to a beginner's current level) and progression (rebuild toward the original as skill grows). Operates on user-selected source repertoire; output is the variant, with the source preserved for eventual return.
+**Reasoning:** Naïvely framing AI-generated repertoire as "AI-composed music" creates a positioning trap: it implicitly competes with human composers on artistic merit, a domain where AI music is currently weak and likely to remain pedagogically suspect for some time. The etude framing reframes the question: AI generates content where artistic intent is *subordinate* to training intent, in a category that musical tradition already accepts on those terms. Czerny etudes are not Chopin nocturnes; nobody confuses them; both have value.
+ 
+Variations on a Theme is the second use case because it does NOT require AI to compose music from scratch — it operates on a human-composed source. This neatly sidesteps the artistic-merit question entirely while delivering substantial pedagogical value (a learner can engage with real repertoire at their current level instead of waiting until they "deserve" it). User feedback informed this choice: "people have come to you" (Speaker B in the D23 transcript) with this need.
+ 
+**Phasing:** Both are Composer-Librarian role capabilities (Decision #59). Phasing per Decision #59: R&D-active under Mage's generation work. Investor demo scope (Doc 09 §15.2) is the V1 target for at least Variations on a Theme; full etude generation is V1–V2 depending on Mage's generation maturity.
+ 
+**Cross-references:** Decision #33 (Generation on Demand — etudes are repertoire-scope generation); Decision #34 (Custom Authoring — Variations is the repertoire-mode custom-authoring path); Decision #44 (MAGE augmentation — the generation engine); Decision #56 (Novelty-Automaticity Spectrum — etudes manifest near the synthesis midpoint; Variations are scheduling/complexity transforms over repertoire); Decision #59 (Three AI Roles — both are Composer-Librarian capabilities); Doc 09 §9 (Custom Content Generation — canonical home); Doc 13 (pitch deck register).
 
 ---

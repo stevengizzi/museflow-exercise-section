@@ -17,6 +17,34 @@ The design rule that any input modality can be connected to any output modality 
 
 ---
 
+## Pedagogical Philosophy
+ 
+### Novelty-Automaticity Spectrum
+The central pedagogical axis of MuseFlow's design. Skill acquisition operates between two poles — novelty (content never repeats; trains generalization) and automaticity (content repeats with varied constraints; trains automatic execution). Fluency requires both. See Doc 01 §2.4 (canonical home) and Decision #56.
+ 
+### Novelty Pole
+The end of the Spectrum where content never repeats. Trains generalization — the ability to apply skills to unseen material. Manifested in MuseFlow as the Sight Reading content mode.
+ 
+### Automaticity Pole
+The end of the Spectrum where content repeats with varied performance constraints. Trains automatic execution — skills performed without conscious load. Manifested in MuseFlow as the Exercises content mode.
+ 
+### Fluency
+The outcome the Spectrum produces when both poles are deliberately engaged. The integration of novelty-trained generalization and automaticity-trained execution. The goal of MuseFlow's pedagogical work; not an end in itself but a means to meaning-making.
+ 
+### Three-Mode Manifestation
+The principle that MuseFlow's three content modes are distinct manifestations of the Novelty-Automaticity Spectrum: Sight Reading at the Novelty pole, Exercises at the Automaticity pole, Repertoire at the synthesis midpoint with an artistic-intent overlay. See Doc 01 §2.4.3.
+ 
+### Shapeless Content
+The architectural corollary of the Spectrum: at the level of raw musical material, all three modes generate or reference the same underlying content. Modes differ in scheduling and bounding policy, not in content type. *One content generator, three policies.* See Doc 01 §2.4.4 and Decision #56.
+ 
+### Meaning-Making (telos)
+The end the Spectrum serves. Fluency removes limitations on movement; movement freedom enables expression; expression enables the user to make meaning through music. Held by the agentic system as the user's eventual destination even when surface goals point at narrower outcomes. See Doc 01 §2.4.5.
+ 
+### Contextual Interference Effect
+The pedagogical research finding (Shea & Morgan 1979 forward) that high contextual variation in practice produces worse immediate performance but stronger retention and transfer. The mechanism underlying the Novelty pole. Deliberate interleaving along the Spectrum applies this principle as design philosophy.
+
+---
+
 ## PTA Loop Components
 
 ### Perception Stage
@@ -42,13 +70,16 @@ Perception: reading notation, chord charts, staff symbols, key signature diagram
 Perception: hearing pitched sounds, rhythms, chords, scales, dynamics, timbres. Action: producing sound — playing piano keys, singing, humming, clapping, tapping.
 
 ### Kinesthetic Modality
-Perception: spatial/tactile information from the body and instrument — key positions, hand shapes, finger span, topographic keyboard orientation. In the app context, also includes seeing highlighted keys on an onscreen keyboard processed as positional information. Action: pressing physical piano keys, tapping onscreen keyboard, performing motor patterns.
+Perception: spatial/tactile information from the body and instrument — key positions, hand shapes, finger span, topographic keyboard orientation. In the app context, also includes seeing highlighted keys on an onscreen keyboard processed as positional information. Action: pressing physical piano keys, tapping onscreen keyboard, performing motor patterns. See also K-Substrate Family for the related-but-distinct framework element addressing motor-primary trained skills.
 
 ### Semantic Modality
 Perception: reading symbolic/linguistic representations — pitch names, interval names, chord symbols, rhythm value names, music theory terminology. Action: producing symbolic/linguistic output — naming, selecting from named options, writing verbal answers, specifying identities or categories.
 
 ### Multi-Modal Input/Output
 The combination of two or more modalities at the perception or action stage of a single exercise. Example: reading notation while hearing playback (Visual + Aural input). Treated as a composition of atomic modalities.
+
+### K-Substrate Family vs. Kinesthetic Modality (terminological distinction)
+The K-substrate family (Decision #57) and the Kinesthetic modality (Decision #5) are conceptually adjacent but operate at distinct levels of the framework. *Modality* is the perception/action channel (how the user receives a prompt or produces a response). *Substrate* is the trained skill (what the exercise develops). K-substrate atoms are typically executed via Kinesthetic output modality, but a cognitive substrate atom with Kinesthetic output (e.g., CH-006 "play a chord from name") is not a K-substrate. See Doc 02 §3.1.5 footnote.
 
 ---
 
@@ -71,6 +102,21 @@ The interconnection pattern of compound substrates. Unlike a strict hierarchy wh
 
 ### Substrate Hierarchy
 The organizational model for substrates: Atomic → Molecular → Compound, with rhizomatic interconnections at the compound level.
+
+### K-Substrate Family
+The motor-primary substrate family in MuseFlow's catalog, parallel-axis to F (Frequency), T (Time), and A (Amplitude). Admitted per Decision #57. Catalogs substrates whose primary training value is physical execution (finger patterns, hand coordination, pedal coordination) rather than cognitive transformation. See Doc 02 §3.1.5.
+ 
+### Motor-Primary Substrate
+A substrate whose primary training value is physical execution rather than cognitive transformation. Belongs in the K-substrate family. Distinguished from cognitive substrates with kinesthetic *execution* (which remain in F/T/A — e.g., SC-006 "play a scale from name" is cognitive F-C2 substrate with Kinesthetic output, not a K-substrate).
+ 
+### Primary Substrate
+The single substrate that defines an exercise atom's identity. Per Decision #25 (preserved by Decision #58), atoms have exactly one primary substrate. Distinct from substrate engagement, which can be multiple.
+ 
+### Substrate Engagement (Semi-Lattice Layer)
+The set of substrates an atom *engages* derivatively beyond its primary substrate — through its input modality, output modality, and content scope. Engagement is a graph (semi-lattice in Christopher Alexander's sense), not a tree. Computable from existing atom identity dimensions at agent-reasoning time; not a stored schema field. Per Decision #58. See Doc 02 §3.2.1.
+ 
+### Tree-for-Users, Semi-Lattice-for-the-Agent
+The architectural slogan capturing Decision #58. User-facing navigation presents the substrate catalog as a tree organized by primary substrate; the agentic system reasons over the richer semi-lattice engagement graph to compose roadmaps that route the same training goal through multiple modes.
 
 ---
 
@@ -177,6 +223,27 @@ A reusable UI/interaction template that defines the screen layout, prompt presen
 
 ### Exercise Result
 The atomic measurement unit for exercise analytics. A record of what happened when a user completed a specific exercise instance: completion status, accuracy score, response time, errors made, constraint values, and session context. Exercise Results feed the analytics layer, the adaptive difficulty system (V2), and the User Skill Rating (V2).
+
+### Pivoting
+The motor pattern of thumb-under (ascending) and finger-over (descending). The same fundamental motion for extending the hand's reach along the keyboard. Substrate K-A4. In MuseFlow curriculum, this is the canonical term for what is sometimes called "thumb-under transition" in pedagogical literature.
+ 
+### Stretching
+The motor pattern of one finger anchored on the keyboard while others expand the hand's range. Substrate K-A5. Often co-occurs with squeezing within the same exercise; remains a distinct substrate for taxonomic clarity.
+ 
+### Squeezing
+The motor pattern of one finger anchored on the keyboard while others contract the hand's range. Substrate K-A6. Often co-occurs with stretching within the same exercise; remains a distinct substrate for taxonomic clarity.
+ 
+### Whole-Hand Translation
+The motor pattern of moving the entire hand in tandem across the keyboard — jumps, leaps, slides. Substrate K-A7. Distinct from stretching/squeezing in that no finger anchors.
+ 
+### Parallel-Oblique Motion
+The motor pattern where both hands stay on their respective notes — in parallel AND neither hand moving. Unison/octave-doubled sustained chords are the canonical case. Substrate K-M1. Coined within MuseFlow's curriculum vocabulary.
+ 
+### Six Hand-Motion Types
+The full taxonomy of two-hand motion in MuseFlow's catalog: parallel-oblique (K-M1, simplest — neither hand moves), parallel (K-M2), strict contrary (K-M3), similar (K-M4), contrary (K-M5), and oblique (K-M6 — one hand stationary). Approximate complexity ordering K-M1 < K-M2 < K-M3 < K-M4 < K-M5; oblique unranked.
+ 
+### Three Staccato Types
+The full taxonomy of staccato articulation techniques as distinct motor substrates: finger staccato (K-A11 — finger flick alone, hand still), wrist staccato (K-A12 — wrist drop-and-rebound, fingers firm), arm/forearm staccato (K-A13 — arm motion, wrist firm). Biomechanically distinct; teachers explicitly drill them as separate techniques.
 
 ---
 
@@ -287,6 +354,12 @@ A primary filter axis available in both content-mode browsing and path-mode brow
 ### Interactive Tutorial
 A current canonical content class in MuseFlow. Each tutorial is an animated video with embedded live-action hand clips and Phaser-JS interactive exercises gated mid-flow — concept introduction → guided exercise → continuation. Each Sight Reading curriculum level is preceded by one. Architectural placement within the content/path-mode framing is open: candidate placements include its own content mode, a path-mode primitive embedded in Curriculum (matches current state), a roadmap node type prescribable by the agent, or a hybrid. Production is currently human-bottlenecked (live-action hand clips are the slowest step); AI-generation is hard, expensive, and deferred. The architectural placement question clusters with the broader open question of what content classes exist beyond the core three (Exercise, Repertoire, Sight Reading), alongside Open Play (formerly "Free Play original sense"; renamed per Decision #49 Part 2) and Video Library. Theory was previously in this cluster but resolved per Decision #48 as a substrate family within Exercises rather than a separate content mode. See Doc 09 §13.11, Doc 10 §4.3, §6 #15–#16.
 
+### Etudes (MuseFlow sense)
+AI-generated repertoire designed with explicit training intent. Sits between Exercise and Repertoire content modes. Enough artistic shape to be playable as music; a fundamental guiding principle behind the composition is training a target technique or substrate. The framing acknowledges artistic intent without overclaiming artistic merit — etudes are not masterpieces, and that's the point. Per Decision #60.
+ 
+### Variations on a Theme
+AI-mediated *modification* of existing repertoire (not generation from scratch). Takes a known piece and simplifies or complexifies it along a complexity spectrum. Enables accessibility (adapt advanced repertoire to a learner's current level) and progression (rebuild toward the original as skill grows). One of two AI-generated repertoire use cases per Decision #60.
+
 ---
 
 ## Agentic System (Projects, Goals, Paths)
@@ -326,6 +399,21 @@ A first-class algorithmic capability for repertoire practice. Reads the green-no
 
 ### Diagnostic Agent / Auto-Engaged Plan Mode
 The agentic system's behavior of firing follow-up questions until enough context exists to construct a roadmap, when goal-articulation signals are present from the user. The team's framing references Claude Code's auto-engagement of plan mode when a goal is detected. The behavior the team wants is clear; the implementation pattern is open. Two candidate implementations have very different cost / control / failure-mode profiles: **prompt-level** (the system prompt has a "diagnostic" section that activates when the model classifies the user's message as goal-articulation — cheap, flexible, depends on LLM zero-shot classification reliability) and **application-level** (explicit modes between which the user or system navigates, gating available actions/tools — more deterministic, requires explicit UI affordances). Used as a behavioral spec, not an implementation specification. See Doc 09 §4.3, Doc 10 §3.6.
+
+### The Three AI Roles
+The role-based framework for understanding MuseFlow AI's multi-purpose nature. Three role scopes layered from broadest to narrowest: The Coach (relationship-scoped, journey-level), The Composer-Librarian (content-scoped, per-mode), The Practice Partner (moment-scoped, in-session). Each role decomposes into 4–6 specific capabilities. Per Decision #59. See Doc 09 §1.6 (canonical home).
+ 
+### The Coach
+Relationship-scoped AI role. Operates across the user's journey. Functions: skill model maintenance, goal interpretation, pedagogical dialogue, curriculum/roadmap generation (deliberately interleaving along the Novelty-Automaticity Spectrum), plan adaptation, cross-mode orchestration. Per Decision #59.
+ 
+### The Composer-Librarian
+Content-scoped AI role. Operates within each content mode. Functions: sourcing (selecting from existing libraries), generating (creating new content on demand — sight-reading material, exercise instances, etudes), modifying (transforming existing content — simplifying/complexifying, transposing, generating variations on a theme), evaluating (judging whether content matches pedagogical need). Mage and Opusmodus are implementation tools within this role. Per Decision #59.
+ 
+### The Practice Partner
+Moment-scoped AI role. Operates within a single content piece in a single session. Functions: performance constraint control (real-time tempo, accuracy, mastery thresholds, loop boundaries), insight surfacing (contextual observations and advice), app orchestration (auto-looping, start-position movement, next-step decisions — the way a teacher in the room would), engagement sensing. Per Decision #59.
+ 
+### Spectrum-Driven Roadmap Composition
+The agentic system's roadmap-composition discipline: deliberately interleave atoms along the Novelty-Automaticity Spectrum — block practice in Exercise to build skills, mixed practice in Repertoire to integrate them in artistic context, random practice in Sight Reading to generalize them to unseen material. Made possible by the semi-lattice substrate-engagement layer (Decision #58), which lets the same training goal route through multiple modes. See Doc 09 §5.
 
 ---
 

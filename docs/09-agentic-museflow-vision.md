@@ -62,6 +62,62 @@ MuseFlow is positioned to deliver this for three reasons:
 
 **This document is not** a finished spec. The agentic system is in early-design state. UX is unspecified, schema details are minimal, the AI architecture is genuinely open (see §10), and many of the most interesting questions are explicitly listed as open in §13. Readers should treat the architectural framing in §3 and the conceptual boundaries laid out in §2 as committed thinking, and treat most everything else as **subject to revision**.
 
+### 1.6 The Three AI Roles
+ 
+MuseFlow AI is not a single agent. It is a system that plays **three distinct roles**, each operating at a different scope, with different latency requirements, different data dependencies, different infrastructure, and different cost profiles. Articulating the roles explicitly serves two ends: internal prioritization (each role has different engineering paths and cost economics) and external communication (the role framework gives the pitch a clean three-line summary that decomposes into specific capabilities). Per Decision #59.
+ 
+The three roles, layered from broadest scope to narrowest:
+ 
+#### 1.6.1 The Coach (Relationship-Scoped)
+ 
+The Coach operates across the user's entire journey with MuseFlow — weeks, months, years. It is the role most analogous to a human teacher who knows the student and their goals over time.
+ 
+**Functions:**
+ 
+- **Skill model maintenance.** Continuously builds and updates a model of the user's current skill profile across all dimensions: substrate mastery (per the catalog in Doc 02 §3.1, including the K-substrate family per Decision #57), performance-constraint capacity, motor competencies, repertoire history, learning rate, characteristic struggles. The user-modeling layer (Decision #47) is foundational to this function.
+- **Goal interpretation.** Translates user-stated natural-language goals into pedagogically actionable directives. ("I want to play Clair de Lune" → inferred prerequisite skills, current gaps, realistic timeline, modular sub-goals.)
+- **Pedagogical dialogue.** Converses with the user about goals, progress, struggles, and adjustments. The non-judgmental coaching partner. Lives in the AI Surface (§6).
+- **Curriculum / roadmap generation.** Composes a sequenced practice plan — the Roadmap (§5) — deliberately interleaving along the Novelty-Automaticity Spectrum (see §5.6). Per Decisions #56 and #59.
+- **Plan adaptation.** When the user goes off-plan (skips sessions, plateaus, jumps ahead, gets bored), repairs the roadmap rather than failing rigidly. Per §5.5.
+- **Cross-mode orchestration.** Decides when to switch modes — when to move the user from Exercise drilling to Repertoire practice to Sight Reading challenge. This decision is the Coach's Spectrum-routing operation; without it, the user gets a mode-pinned experience that misses the Spectrum's interleaving discipline.
+**Characteristics:** High-context, low-frequency, can be expensive per call. Acceptable latency: seconds to tens of seconds. Cost profile: most expensive AI calls in the system are Coach-level reasoning; users should not invoke them frequently. (See §16 Cost Considerations.)
+ 
+#### 1.6.2 The Composer-Librarian (Content-Scoped)
+ 
+The Composer-Librarian operates within each content mode, producing or selecting the actual musical content the user practices with. It is the role analogous to a teacher choosing or composing the right material for a specific lesson.
+ 
+**Functions:**
+ 
+- **Sourcing.** Selects from existing content libraries — most prominently the Repertoire library (likely external sources curated for MuseFlow); also the preset Exercise atom catalog, and increasingly the user's own previously-generated content as it accumulates.
+- **Generating.** Creates new content on demand. Three concrete sub-cases: (a) sight-reading material matched to parameters; (b) exercise instances within an atom's content scope per Decision #33; (c) **etudes** — AI-generated repertoire designed with explicit training intent per Decision #60.
+- **Modifying.** Transforms existing content. Concrete sub-cases: (a) **variations on a theme** — simplifying or complexifying existing repertoire along a complexity spectrum per Decision #60; (b) transposing; (c) isolating sections; (d) generating drill-friendly versions of repertoire excerpts.
+- **Evaluating.** Judges whether existing or generated content matches a pedagogical need — necessary for sourcing to work intelligently and for the Coach to specify content requirements abstractly without micromanaging every detail.
+**Characteristics:** Medium-context, medium-frequency, benefits from caching and reuse. Acceptable latency: seconds. Cost profile: middle-cost; benefits enormously from content reuse across users (a generated etude that proves pedagogically valuable for one user is likely valuable for others with similar profiles — see Decision #33's downstream implications).
+ 
+Mage and Opusmodus are implementation tools within this role — see §10.
+ 
+#### 1.6.3 The Practice Partner (Moment-Scoped)
+ 
+The Practice Partner operates within a single content piece in a single session — the next few seconds to the next few minutes. It is the role analogous to a teacher physically in the room with the student during practice.
+ 
+**Functions:**
+ 
+- **Performance constraint control.** Real-time modulation of tempo, accuracy thresholds, mastery thresholds, loop boundaries. Per Decision #46 (Agent-Controllable Repertoire Practice Control Surface) and the parallel control surfaces for Exercise and Sight Reading (§6A).
+- **Insight surfacing.** Contextual observations, hints, advice delivered at the right moment. *"Your left hand is rushing at bar 12." "Try this section with a slower tempo first." "You've nailed this; let's add the pedal."*
+- **App orchestration.** Automates the interaction layer the way a teacher in the room would: triggers auto-looping, moves the user's start position automatically, makes decisions about next steps, manages the session arc. Akin to having an actual music teacher controlling the app's repertoire controls on the user's behalf.
+- **Engagement sensing.** Detects frustration, boredom, flow state from interaction patterns (latency, error patterns, session abandonment). Signals up to the Coach for journey-level adaptation; signals laterally to the Composer-Librarian when content-fit appears off.
+**Characteristics:** Low-context (per call — though built on top of skill-model state from the Coach), high-frequency, must be cheap and fast. Acceptable latency: milliseconds to a second. Cost profile: lowest per-call cost; aggregate cost can dominate if naively implemented (called every few seconds during practice); benefits from local-execution models, on-device inference, or cached decision policies generated by the Coach in advance.
+ 
+#### 1.6.4 Why This Framing Matters
+ 
+**For engineering:** The three roles have fundamentally different infrastructure requirements. Conflating them produces poor decisions — using Coach-grade reasoning for Practice-Partner-scoped decisions, or trying to make the Practice Partner stateful in ways that should live in the Coach. Explicit role-scoping prevents this category of error.
+ 
+**For prioritization:** Each role has its own R&D path. The Practice Partner is partially present today (auto-looping, basic constraint control) under non-AI logic; AI-mediated Practice Partner is a future expansion. The Composer-Librarian is R&D-active (Mage generation work, Decision #44). The Coach is the most ambitious; demo-defensible scope for the investor demo (§15.2) is the V1 target.
+ 
+**For pitch:** *"MuseFlow's AI plays three roles you'd recognize from any great teacher: a coach who knows your goals and journey, a composer-librarian who creates and curates the right music for you, and a practice partner who's in every session with you."* Each role decomposes into 4–6 specific capabilities, so the pitch can drill from the three-line summary down to specific functionality without losing the through-line. See Doc 13.
+ 
+**For team alignment:** The recurring "Mage vs. Opusmodus" framing tension dissolves under role-scoping. Both are implementation tools within the Composer-Librarian role; their relationship is renderer-and-generator within a single layer, not a competition. See §10.
+
 ---
 
 ## 2. The Project Concept
@@ -297,6 +353,47 @@ These questions are tracked in §13.
 - **Reassessment** — the agent's initial gap estimate was wrong; the goal needs more or less work than originally planned
 
 The mechanics of adaptation — how often the agent re-evaluates, how much it can change without consulting the user, how the user is informed — are open design surfaces.
+
+### 5.6 Spectrum-Driven Roadmap Composition
+ 
+The Coach role's roadmap generation function (§1.6.1) is not arbitrary content sequencing. It is **deliberate interleaving along the Novelty-Automaticity Spectrum** (Doc 01 §2.4; Decision #56). This section specifies the discipline.
+ 
+#### 5.6.1 The Composition Principle
+ 
+A strong roadmap rotates content along the Spectrum:
+ 
+- **Block practice through Exercise** to build a skill (Automaticity pole). The user repeats atom content with varied performance constraints until mastery thresholds clear.
+- **Mixed practice through Repertoire** to integrate the skill in artistic context (synthesis midpoint). The user plays real music where the skill recurs alongside others, in composed structure.
+- **Random practice through Sight Reading** to generalize the skill to unseen material (Novelty pole). The user encounters the skill in unfamiliar contexts, forcing transfer.
+This is **contextual interference applied as design philosophy**. Pedagogical research (Shea & Morgan 1979 forward) establishes that high-interference practice produces worse immediate performance but stronger retention and transfer. Pure block practice (one mode only, repeated drilling) feels efficient but generalizes poorly; pure random practice (sight-reading only) builds adaptable skill but no fluent execution. The Spectrum framework prescribes deliberate mixing.
+ 
+#### 5.6.2 What Makes Cross-Mode Routing Possible
+ 
+The same training goal can be served via different modes because each mode's atoms incidentally engage substrates beyond their primary. This is the **semi-lattice substrate-engagement layer** (Decision #58). Per Doc 02 §3.2:
+ 
+- A Hanon atom (primary K-A3) incidentally engages F-A2 (notation reading) and T-A2 (rhythm reading) via Visual input modality
+- A five-finger sight-reading level (primary F-A2 / T-A2) incidentally engages K-A3 via content scope + Kinesthetic output
+Same training value mix, different primary. The Coach reasons over the engagement graph to compose routes:
+ 
+| User goal | Primary route | Alternative routes via incidental engagement |
+|---|---|---|
+| Improve finger independence (K-A1) | Exercise K-A1 atoms (Automaticity pole) | Sight Reading scoped to five-finger positions (Novelty pole); Repertoire pieces rich in finger-independence demands (synthesis midpoint) |
+| Improve pedaling (K-M12 / K-M13) | Exercise K-M12/13 atoms (Automaticity pole) | Sight Reading scoped to chorale-textured content with pedal markings (Novelty pole); Repertoire excerpts from pedaling-rich literature (synthesis midpoint) |
+| Improve chord recognition (F-C5) | Exercise F-C5 atoms (Automaticity pole) | Sight Reading with chord-symbol content (Novelty pole); Repertoire with analytical practice — "identify the chords as you play" (synthesis midpoint) |
+ 
+#### 5.6.3 The Discipline in Practice
+ 
+The Coach's roadmap-composition routine, when serving a specific training goal:
+ 
+1. **Identify primary substrate(s) for the goal.** Translate the natural-language goal into a primary substrate or cluster.
+2. **Compose along the Spectrum.** Allocate roadmap nodes across the three modes per the user's current proficiency, the goal's nature, and the user's pacing preferences. Early goals lean Automaticity-heavy (build the skill); midstream goals balance the three; late-stage goals lean Novelty + Repertoire (consolidate transfer).
+3. **Route alternatives via engagement.** When the goal admits cross-mode routing (most do, per §5.6.2), include atoms from secondary modes whose engagement graph touches the primary substrate. This is what makes the roadmap a coherent training plan rather than a single-mode drill list.
+4. **Respect user preferences and constraints.** Some users prefer block practice (slower transfer but feels productive); some want maximum variety. The Coach has a default interleaving discipline but adapts to user-stated preferences.
+5. **Hold meaning-making as the destination.** Even when surface goals are utilitarian (exam prep, specific technique), the roadmap should eventually surface Repertoire engagement — the act of making meaning through music. Per Doc 01 §2.4.5.
+
+#### 5.6.4 Why This Differentiates MuseFlow
+ 
+Most existing music-learning products operate at a single Spectrum pole. Drill apps (ear trainers, theory trainers, scale practice apps) live at the Automaticity pole. Sight-reading-only apps live at the Novelty pole. Repertoire-only apps (curated piece libraries) live near the synthesis midpoint but lack pedagogical interleaving. **MuseFlow's positioning is that it operates the entire Spectrum deliberately, and the agentic system composes practice along it.** This is the matured "songs vs. skills → entire spectrum" pitch evolution. See Doc 13 for pitch deck register.
 
 ---
 
@@ -553,6 +650,20 @@ This is unresolved.
 ---
 
 ## 10. MAGE and the AI Layer
+
+### 10.0 MAGE and Opusmodus Within the Three AI Roles
+ 
+Per Decision #59, MuseFlow AI operates across three role scopes: the Coach (relationship-scoped), the Composer-Librarian (content-scoped), and the Practice Partner (moment-scoped). MAGE and Opusmodus are **implementation tools within the Composer-Librarian role**. Both serve content production and modification functions; neither operates at Coach scope (relationship-level reasoning) or Practice Partner scope (in-session moment-to-moment decisions).
+ 
+The role-scoped placement clarifies a recurring framing tension:
+ 
+- **MAGE** is the algorithmic content generation engine. It produces music — exercise content, sight-reading material, etude candidates — via algorithmic-pedagogical logic. Per Decision #44 (Augmentation direction), MAGE persists as a permanent generation engine with AI-mediated adjustment for musicality, stylistic fitness, and goal-specific shaping. MAGE is the Composer-Librarian's *generation function*.
+- **Opusmodus** is a music-printing/rendering tool. It renders MAGE-output music-XML into the actual notation the user sees. Opusmodus is a tool MAGE uses to produce final renderable output; it is not a parallel generation system.
+The relationship is **generator + renderer within a single role**, not two competing systems. The recurring "Mage vs. Opusmodus" team confusion (logged across Decisions #39, #44, #53, multiple standups) resolves when both are placed inside the Composer-Librarian layer with their respective sub-functions.
+ 
+The remainder of §10 — MAGE's current capabilities, the augmentation question, alternative architectures, the metaphor-vs-implementation question — is unchanged by this recontextualization. It is a refinement of framing, not a change in technical commitments. The "Large Music Model" framing question (Decision #54 — internal-only pending architecture justification) is also unaffected; the framing is preserved for internal aspiration without compromising the Three Roles' practical scoping.
+ 
+For the pitch deck (Doc 13), MAGE and Opusmodus are introduced as **what powers the Composer-Librarian** rather than as standalone systems. This avoids the technical-detail overload that surfacing MAGE first would create, and lets the role framework carry the narrative weight.
 
 ### 10.1 What MAGE Is
 
@@ -815,6 +926,8 @@ This sub-cluster captures one of the foundational architectural questions for th
 53. **Video Library architectural placement** — Per Doc 10 §6 #11. Patrick's framing ("video library") leans content-mode-like; Staley's framing ("node-as-tutorial") leans roadmap-primitive. A2 evaluation (Doc 11 §4.6, Decision #51) resolved deferral but not placement; current team-recommendation lean per Decision #51 is toward Staley's framing, but the placement question remains formally open pending more development of both framings. Sub-question of #51.
 54. **Game Mode / Free Play toggle collapse** — Current Sight Reading curriculum levels have Game Mode and Free Play toggles (existing app functionality). As the new content/path mode architecture is implemented, these may subsume into other functionality — Decision #49 Part 1 specifically extends the Free Play side of this pattern into the Exercise content mode as a completion-policy element of the exercise control surface. UX consolidation pattern across modes remains open. Distinct from Open Play original-sense status (deferred per Decision #41; renamed from "Free Play original-sense" by Decision #49 Part 2).
 55. **Tutorial-as-roadmap-node phasing** — Per Doc 10 §6 #3. Even if AI-generated tutorials are deferred, does the architecture allow human-authored tutorials as roadmap nodes in the meantime? This sub-question doesn't depend on resolving #51 fully — it's about near-term schema accommodation. See §5.2 candidate node types.
+
+**2026-05-12 update (per Decisions #57 + #58):** The Technique-as-content-class hypothesis (Doc 11 §11.4) is resolved as **NOT a distinct content class**. Decision #57 admits a K-substrate family within the Exercise content mode; Technique becomes a filterable cluster within Exercise driven by K-substrate atoms, not a parallel content class. The content-class question for content classes *other than* Technique (Improvisation, Aural Skills as a possible distinct mode, etc.) remains open per the original §13.11 framing.
 
 ---
 

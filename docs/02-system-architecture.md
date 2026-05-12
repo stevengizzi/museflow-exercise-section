@@ -34,6 +34,8 @@ The system defines four modalities that function as both input (perception) and 
 
 **Kinesthetic input scope.** In the context of this system's UI, kinesthetic input most commonly means a highlighted key on an onscreen keyboard that the user visually perceives but cognitively processes as a *spatial/positional* input (which key is it?) rather than a *notational* input. In physical playing contexts, kinesthetic input includes proprioceptive feedback — but this falls under the endogenous micro-PTA loop architecture (see Section 6).
 
+**Note on K-substrate family.** Decision #57 admits a K-substrate family for motor-primary substrates (see §3.1.5). The K-family and Kinesthetic modality are conceptually adjacent but distinct: modality is the perception/action channel; substrate is the trained skill. K-substrate atoms are *typically* executed via Kinesthetic output modality, but the two operate at different levels of the framework. A cognitive substrate atom with Kinesthetic output is not a K-substrate.
+
 **Multi-modal inputs.** Some exercises combine modalities at the input stage (e.g., reading notation while hearing playback simultaneously). These are treated as compositions: `Visual + Aural → Substrate → Output`. The framework supports multi-modal input and output natively.
 
 ### 2.3 The Patch Matrix
@@ -171,14 +173,107 @@ Substrates are organized by structural complexity (atomic → molecular → comp
 | X-4 | Fingering selection | Choosing optimal finger assignments for a passage | F + T + Kinesthetic |
 | X-5 | Expressive performance | Integrating dynamics, timing, and tone quality | F + T + A |
 
+#### 3.1.5 K-Domain Substrates (Motor-Primary)
+ 
+The F-, T-, A-, and X- substrate families catalog *cognitive* transformations — operations performed on perceived musical input to produce a response. The K-domain catalogs **motor-primary substrates**: substrates whose primary training value is physical execution rather than cognitive transformation. K-substrates are admitted per Decision #57 (Track C-17 substrate-architecture refinement).
+ 
+**Admission criteria:**
+1. Primary training value is motor (physical execution), not cognitive transformation
+2. Coherent identity — recognizable as "the X technique"
+3. Has its own learning curve as a discrete skill
+4. Not adequately covered as a performance constraint on an existing cognitive substrate
+**Exclusion criteria:**
+1. Pure tempo or stamina effects (performance constraints, not substrates)
+2. Cognitive substrates with kinesthetic execution (those remain in F/T/A — e.g., SC-006 "play a scale from name" is cognitive substrate F-C2 with Kinesthetic output modality, NOT a K-substrate)
+3. Hybrid skills where cognitive component is primary (those remain in F/T/A or move to X-)
+> **K-substrate family vs. Kinesthetic modality — terminological distinction.** The K-substrate family and the Kinesthetic modality (§2.1) are related but distinct framework elements. *Modality* is the perception/action channel (how the user receives a prompt or produces a response). *Substrate* is the trained skill (what the exercise develops). K-substrate atoms are *typically* executed via Kinesthetic output modality, but the two concepts operate at different levels of the framework. A cognitive substrate atom (e.g., CH-006 "play a chord from name") also uses Kinesthetic output modality but is not a K-substrate. See Decision #5 (Kinesthetic modality definition) and Decision #57 (K-substrate family admission) for the distinction.
+ 
+**Atomic (K-A):**
+ 
+| Substrate ID | Substrate Name | What it trains |
+|---|---|---|
+| K-A1 | Finger independence | Moving one finger while others remain still or relaxed |
+| K-A2 | Finger strength (weak fingers) | Targeted strengthening of 4th and 5th fingers; rebalancing hand |
+| K-A3 | Five-finger coordination pattern | Hanon-style sequences within a stationary hand position |
+| K-A4 | Pivoting | Thumb-under (ascending) and finger-over (descending) — the same fundamental motor pattern for extending the hand's reach along the keyboard |
+| K-A5 | Stretching | One finger anchored, others expand the hand's range |
+| K-A6 | Squeezing | One finger anchored, others contract the hand's range |
+| K-A7 | Whole-hand translation | Entire hand moves in tandem across the keyboard (jumps, leaps, slides) — distinct from stretching/squeezing in that no finger anchors |
+| K-A8 | Wrist rotation | Rotational forearm motion for broken-third figures, tremolos |
+| K-A9 | Octave technique | Span and execution of single-hand octaves |
+| K-A10 | Trill technique | Rapid alternation between two adjacent pitches |
+| K-A11 | Finger staccato | Crisp single-note articulation by finger motion alone; hand stays still |
+| K-A12 | Wrist staccato | Crisp articulation by wrist drop-and-rebound; fingers held firm |
+| K-A13 | Arm/forearm staccato | Articulation by arm or forearm motion; wrist firm; heaviest staccato type |
+| K-A14 | Single-hand chord voicing (motor) | Differentiated finger pressure within a chord to bring out a voice |
+ 
+Footnotes on the K-A inventory:
+- K-A5 (Stretching) and K-A6 (Squeezing) often co-occur in real exercises; an atom's content scope may require both. They remain separate substrates for taxonomic clarity; content scope determines combination.
+- K-A11/K-A12/K-A13 are three biomechanically distinct staccato techniques. Teachers explicitly drill them as separate techniques. Whether MuseFlow curriculum surfaces all three or treats them under an umbrella is a content-design call (Track D).
+- K-A14 (motor chord voicing) is paired with the cognitive substrate A-C2 (Dynamic balance — voicing) at the semi-lattice level: recognizing voicing balance is cognitive; producing it is motor. Both substrates valid; see Decision #58.
+**Molecular (K-M):**
+ 
+| Substrate ID | Substrate Name | What it trains |
+|---|---|---|
+| K-M1 | Parallel-oblique motion | Both hands stay on their respective notes — in parallel AND neither moving. Unison/octave-doubled sustained chords are the canonical case. |
+| K-M2 | Parallel motion | Both hands move in the same direction by the same interval |
+| K-M3 | Strict contrary motion | Hands mirror exactly (same intervals, opposite directions) |
+| K-M4 | Similar motion | Hands move in the same direction but by different intervals |
+| K-M5 | Contrary motion | Hands move in opposite directions; intervals may differ |
+| K-M6 | Oblique motion | One hand stays stationary while the other moves |
+| K-M7 | Hand independence (rhythm) | Different rhythmic patterns in each hand |
+| K-M8 | Hand independence (dynamics) | Different volumes/touch in each hand |
+| K-M9 | Hand-crossing | Crossing one hand over the other |
+| K-M10 | Polyrhythm execution | 2-against-3, 3-against-4, etc. |
+| K-M11 | Damper pedal — pulse | Depress/release on pulse beats |
+| K-M12 | Damper pedal — chord change | Clean change synchronized to harmonic boundary |
+| K-M13 | Damper pedal — legato change | Delayed change preventing harmonic bleed |
+| K-M14 | Damper pedal — half-pedal / flutter | Partial-depression continuous control |
+| K-M15 | Sostenuto pedal coordination | Selective sustain (grands only) |
+| K-M16 | Una corda usage | Timbral pedal coordination (grands only) |
+ 
+K-M1–K-M6 motion-type ordering (approximate complexity, not strict): K-M1 Parallel-oblique (simplest — neither hand moves) < K-M2 Parallel < K-M3 Strict contrary < K-M4 Similar < K-M5 Contrary. K-M6 Oblique sits unranked — conceptually it engages only one hand in motion, but the coordination challenge of suppressing motion in one hand while executing in the other can rival the harder coordinated-motion types. Treat as judgment call per atom.
+ 
+**Compound (K-C):**
+ 
+| Substrate ID | Substrate Name | What it trains |
+|---|---|---|
+| K-C1 | Three-system integration (LH + RH + pedal) | Full motor coordination in normal playing texture |
+| K-C2 | Arm-weight transfer | Cantabile tone production through arm relaxation/engagement |
+| K-C3 | Forearm rotation in extended passages | Sustained rotational technique over time |
+ 
+K-C2 and K-C3 are more "technique-class concepts" than discrete drillable atoms. They may collapse or restructure during catalog authoring (Track D); they are admitted here as substrates pending validation through V1 catalog work.
+
 ### 3.2 Substrate Interaction Model
-
+ 
 Substrates do not exist in isolation. A single exercise may engage multiple substrates in sequence or in parallel:
-
+ 
 - **Sequential chaining**: A chord progression exercise chains F-C5 (chord quality recognition) → F-C11 (functional analysis) → F-C12 (progression recognition).
 - **Parallel loading**: Sight-reading engages F-A2 (pitch-notation mapping) + T-A2 (rhythm-value notation) + F-A3 (pitch-key mapping) simultaneously, which is a core driver of cognitive load.
-
 The number and complexity of substrates engaged in an exercise directly maps to the "multithreading" performance constraint.
+ 
+#### 3.2.1 Primary Substrate vs. Substrate Engagement (the Semi-Lattice Layer)
+ 
+Per Decision #58, two distinct architectural layers govern substrate relationships:
+ 
+1. **Atom identity (tree).** Each atom has exactly one **primary substrate** that defines it. This is what the user navigates by, what mastery is tracked against, and what the schema records. Atom identity stays single-substrate per Decision #25.
+2. **Substrate engagement (semi-lattice).** An atom *engages* other substrates derivatively — through its input modality (Visual input engages F-A2 + T-A2 reading substrates), through its output modality (Kinesthetic output engages relevant K-substrates appropriate to the content), and through its content scope. Engagement is a graph (semi-lattice in Christopher Alexander's sense — overlapping membership without strict tree containment), not a tree.
+**Concrete example.** A Hanon atom (primary substrate K-A3, Visual input, Kinesthetic+Aural output, content scope "Hanon #1 in C major") has:
+- *Primary engagement:* K-A3 (five-finger coordination pattern) — this is its identity
+- *Incidental engagement* via Visual input: F-A2 (pitch-notation mapping), T-A2 (rhythm-notation mapping)
+- *Incidental engagement* via content scope: F-A3 (pitch-key mapping) — playing the right key for the right notated pitch
+A five-finger-position sight-reading level (primary substrate F-A2, Visual input, Kinesthetic+Aural output, content scope "C major five-finger positions") has:
+- *Primary engagement:* F-A2 — this is its identity
+- *Incidental engagement* via content scope + output modality: K-A3 (five-finger coordination) — playing the patterns develops the same motor skill
+Same training value mix, different *primary*. The semi-lattice captures the overlap; the tree of primary-substrate identity stays clean.
+ 
+#### 3.2.2 Engagement Is Computable, Not Stored
+ 
+The atom schema (§8.1) does NOT carry an engagement field. Engagement is computable from existing identity dimensions at runtime by the agentic system's recommendation engine. Computation rules live in the agent, not in stored metadata. This avoids schema bloat, staleness, and inconsistency. See Decision #58 for full rationale and the deferred question of engagement-weight encoding.
+ 
+#### 3.2.3 Tree for Users, Semi-Lattice for the Agent
+ 
+User-facing navigation (Doc 07) presents the substrate catalog as a tree organized by primary substrate. The agentic system reasons over the semi-lattice graph to compose roadmaps that route the same training goal through multiple modes — for example, training finger independence (K-A1) can be served via Exercise K-A1 atoms (primary route), Sight Reading scoped to five-finger positions (alternative route via K-A1 incidental engagement), or Repertoire pieces rich in finger-independence demands (third route). This cross-mode routing is what Doc 09 §5 calls *spectrum-driven roadmap composition* — see Decision #56 for the Novelty-Automaticity Spectrum framing.
 
 ---
 
@@ -268,6 +363,8 @@ The Optimal Grip™ system uses performance data to position the user at the int
 ## 6. Endogenous Micro-PTA Loop Architecture
 
 > **Deferral note:** Exercises that explicitly train the micro-PTA loop (play with eyes closed, error recovery drills, motor automaticity drills) are **deferred beyond V1**. The micro-PTA loop is a valid theoretical component of the framework, but dedicated exercises targeting it add complexity that may not be warranted initially. The architecture is documented here for completeness; implementation is deferred pending validation of the core exercise system.
+
+**Cross-reference: K-substrate family.** Some K-substrate atoms (Decision #57; §3.1.5) explicitly train the micro-PTA loop — particularly the eyes-closed and error-recovery training implications listed in §6.2. Other K-substrate atoms train baseline motor patterns under normal-feedback conditions and do not invoke micro-PTA explicitly. The intersection of K-substrate work and micro-PTA training is real but not total. Lifting the V1 deferral on micro-PTA-targeted exercises is a separate phasing question from the K-substrate family admission.
 
 ### 6.1 Structure
 
