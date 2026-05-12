@@ -1,17 +1,17 @@
 # Open-Question Triage — Inventory
 
 **Track:** B (open-question triage)
-**Phase:** 2 — Disposition pass (extends Phase 1 inventory + dedupe + stale check)
-**Status:** Draft for Steven's review (Phase 1 committed 2026-05-12; Phase 2 not yet committed)
+**Phase:** 3 — Decide-now session complete (extends Phase 2 disposition pass and Phase 1 inventory)
+**Status:** Phase 1 and Phase 2 committed (ae9970c, 86a95a5); Phase 3 in this commit
 **Date:** 2026-05-12
 
 ---
 
 ## 1. What this document is
 
-This document is the Track B inventory + disposition. Phase 1 produced the unified deduplicated inventory of all open questions accumulated across the four primary registers plus the Decision Log, with provenance for each entry and stale-by-canon-evolution flags. Phase 2 adds bucket assignment (decide-now / V1-decide-soon / V2-defer / explicit-punt / already-resolved) to each entry, with reasoning.
+This document is the Track B inventory + disposition + Phase 3 decide-now resolutions. Phase 1 produced the unified deduplicated inventory of all open questions accumulated across the four primary registers plus the Decision Log, with provenance for each entry and stale-by-canon-evolution flags. Phase 2 added bucket assignment (decide-now / V1-decide-soon / V2-defer / explicit-punt / already-resolved) to each entry, with reasoning. Phase 3 worked through the decide-now bucket inline, producing three new Decisions (#53–#55), retiring T-022, and re-bucketing T-026 (along with new entry T-097) into a new C-17 cluster after Phase 3 review surfaced an architectural pairing problem with T-027.
 
-Phase 3 will work through the decide-now bucket inline and propose specific Decision Log entries or amendments for each. This document will continue to live as the working backlog for Tracks C2, C, D, E, and the agentic plan.
+This document continues to live as the working backlog for Tracks C2, C, D, E, and the agentic plan.
 
 ---
 
@@ -67,7 +67,7 @@ Any additional registers encountered during reading are noted in §6.
 | C-03 | Configuration & performance-constraints UI | 3 | C2 / D |
 | C-04 | Progress, completion, mastery (user-facing) | 4 | C2 / D |
 | C-05 | Catalog authoring & enumeration | 9 | D |
-| C-06 | Substrate-fit edge cases | 5 | C / D, partly B |
+| C-06 | Substrate-fit edge cases | 3 | C / D, partly B |
 | C-07 | Per-blueprint catalog-time defaults | 3 | D |
 | C-08 | Cross-section / Master Roadmap appetite | 1 | B / strategic |
 | C-09 | Agentic — Project / Goal / Roadmap structure | 14 | Agentic track |
@@ -78,41 +78,46 @@ Any additional registers encountered during reading are noted in §6.
 | C-14 | Pricing / Tiering / Gating | 7 | Patrick / strategic |
 | C-15 | Teacher / Institutional | 6 | Patrick + Staley |
 | C-16 | Content classes beyond core three | 5 | B / strategic |
-| | **Total** | **96** | |
+| C-17 | Substrate-architecture refinement *(added Phase 3, 2026-05-12)* | 3 | D + B |
+| | **Total** | **97** | |
 
 ---
 
 ## 4.5 Phase 2 disposition summary
 
-**Bucket totals:**
+*(Phase 2 bucket assignment; Phase 3 outcomes annotated. Phase 3 details in §11.)*
 
-| Bucket | Count | Definition |
-|---|---|---|
-| Decide-now | 4 | Mechanical-given-canon calls; resolved inline in Phase 3 |
-| Already-resolved | 1 | Canon already answered; recommend formal retirement in Phase 3 |
-| V1-decide-soon | 43 | Needs deliberate design work in this Track's near-term — blocks V1 exercise section ship and/or investor demo |
-| V2-defer | 31 | Out of V1 scope; will resolve when V2 / agentic-track work ramps |
-| Explicit-punt | 17 | Long-horizon, gated on external events (pricing-design start, Knowledge Library entering scope, post-V2) |
-| **Total** | **96** | |
+**Bucket totals (post-Phase-3):**
 
-**Bucket-grouped T-ID listings:**
+| Bucket | Phase 2 count | Phase 3 change | Final count | Definition |
+|---|---|---|---|---|
+| Decide-now | 4 | T-026 withdrawn + re-bucketed; T-067, T-074, T-085 resolved | 0 | Mechanical-given-canon calls; resolved inline in Phase 3 |
+| Already-resolved | 1 | T-022 retired | 0 | Canon already answered; formally retired in Phase 3 |
+| V1-decide-soon | 43 | T-026 added (re-bucketed); T-097 added (new) | 45 | Needs deliberate design work in this Track's near-term — blocks V1 exercise section ship and/or investor demo |
+| V2-defer | 31 | — | 31 | Out of V1 scope; will resolve when V2 / agentic-track work ramps |
+| Explicit-punt | 17 | — | 17 | Long-horizon, gated on external events |
+| Resolved (Phase 3) | — | T-067 → #53; T-074 → #54; T-085 → #55 | 3 | Resolved by a specific Decision in Phase 3 |
+| Retired | — | T-022 | 1 | Formally retired from inventory (canon already answered) |
+| **Total** | **96** | +1 (T-097) | **97** | |
 
-### Decide-now (4)
-- **T-026** — Pedaling exercises placement (proposed: distinct substrate)
-- **T-067** — MAGE long-term role caveat (proposed: formally close Decision #39 by #44)
-- **T-074** — "Large Music Model" framing (proposed: don't use externally until architecture justifies)
-- **T-085** — Atom-gating vs. generation-gating framing (proposed: confirm Doc 11 §11.9 lean — generation-gating wins)
+**Bucket-grouped T-ID listings (post-Phase-3):**
 
-### Already-resolved (1)
-- **T-022** — Micro-PTA exercises in V1 scope (Decision #24 deferred; recommend retirement)
+### Resolved in Phase 3 (3)
+- **T-067** — MAGE long-term role caveat → **Decision #53** (Staley-caveat retired; Decision #39 formally closed)
+- **T-074** — "Large Music Model" framing → **Decision #54** (internal-only until architecture justifies)
+- **T-085** — Atom-gating vs. generation-gating framing → **Decision #55** (generation-gating canonical)
 
-### V1-decide-soon (43)
+### Retired in Phase 3 (1)
+- **T-022** — Micro-PTA exercises in V1 scope (Decision #24 fully answered; formally retired)
+
+### V1-decide-soon (45)
 - **Track C2 anchor:** T-008
 - **Exercise UX (Track C2 / C):** T-001, T-002, T-003, T-004, T-005, T-006, T-007
 - **Configuration UI:** T-009, T-010, T-011
 - **Progress / completion UI:** T-012, T-013, T-014, T-015
 - **Catalog (Track D):** T-016, T-017, T-018, T-019, T-021, T-023, T-024
-- **Substrate edge cases:** T-025, T-027, T-028
+- **Substrate edge cases:** T-025, T-028
+- **Substrate-architecture refinement (C-17, paired):** T-026, T-027, T-097
 - **Catalog-time defaults:** T-030, T-031, T-032
 - **Agentic — demo-blocking:** T-038, T-039, T-042, T-043, T-049, T-052, T-053, T-054, T-057, T-058, T-062
 - **Agentic — team-org / infra:** T-068, T-069
@@ -241,7 +246,7 @@ Any additional registers encountered during reading are noted in §6.
 **T-022 — *Micro-PTA exercises in V1 scope.*** Should exercises explicitly training the endogenous micro-PTA loop (play with eyes closed, error recovery drills) be V1 or deferred? Current lean: deferred (per Decision #24).
   Sources: UX §9 #17
   Cross-refs: Decision #24 (deferred — directional resolution; V1 inclusion remains open as the deferred-by-default position)
-  Status: **PARTIALLY STALE** — Decision #24 deferred beyond V1; entry stays in inventory in case V1 scope reopens this.
+  Status: **RETIRED** (Phase 3, 2026-05-12) — Decision #24 fully answers the V1-or-deferred question; entry formally retired from open-question inventory. Decision #24 amended with retirement cross-ref.
   **Bucket:** Already-resolved. **Reasoning:** Decision #24 deferred Micro-PTA exercises beyond V1. The original question was 'V1 or deferred'; that's been answered. Recommend formal retirement in Phase 3.
 
 **T-023 — *Reverse-engineered catalog merger with bottom-up enumeration methodology.*** Track D will have two methodologies — top-down agent-demand and bottom-up substrate enumeration. What's the merge/triage process?
@@ -261,14 +266,7 @@ Any additional registers encountered during reading are noted in §6.
   Sources: Doc 11 §11.2
   **Bucket:** V1-decide-soon. **Reasoning:** Track D classification call. Three candidate framings; no canon lean yet.
 
-**T-026 — *Pedaling exercises placement.*** Pedal substrate isn't in the current substrate catalog. Add as distinct substrate (likely under new "Articulation/Pedal" cluster), or treat as constraint/configuration on existing atoms? Probably distinct substrate; worth catalog-authoring conversation.
-  Sources: Doc 11 §11.3
-  **Bucket:** Decide-now. **Reasoning:** Doc 11 §11.3 leans 'distinct substrate'; the call is mechanical given that lean. Proposed Phase 3 decision: add Pedal as distinct substrate under a new 'Articulation/Pedal' cluster, slated for catalog authoring at next opportunity.
-
-**T-027 — *Technique drills: exercises or distinct content class.*** Patrick's E category is pedagogically valid but doesn't fit the substrate-driven model. Candidates: V2 Exercise cluster, distinct content mode, blueprint variant with substrate="motor pattern", or performance-method atoms. **Priority elevated in Doc 11 v0.3** — blocks ~6 V1 preset candidates (A4 Hanon-style and E1–E5 finger independence / hand coordination / thumb crossing / hand position shifts / wrist rotation).
-  Sources: Doc 11 §11.4
-  Cross-refs: Decision #13 (improvisation+fingering placeholder — adjacent territory); T-094 (Content classes inventory)
-  **Bucket:** V1-decide-soon. **Reasoning:** Priority-elevated in Doc 11 v0.3; blocks ~6 V1 preset candidates. The decision may itself be 'defer to V2' (resulting in those candidates being deferred), but the *decision needs to be made* in V1 timeframe to unblock Track D.
+*(T-026 and T-027 moved to cluster C-17 in Phase 3; substrate-architecture refinement work is grouped there.)*
 
 **T-028 — *Genre tag granularity.*** Patrick's H category implies 5 genre buckets; his Quick Theory tagging implies more. Canonical list and granularity? Priority raised given Doc 10 §5.4 goal-category alignment — genre tags are load-bearing for Projects targeting "I'm interested in [genre]" or "play like [artist]" goals.
   Sources: Doc 11 §11.5
@@ -465,7 +463,7 @@ Any additional registers encountered during reading are noted in §6.
 **T-067 — *MAGE long-term role.*** Resolving toward augmentation per Decision #44 (MAGE persists as permanent algorithmic generation engine; AI adjusts MAGE's music-XML output). Full closure of Decision #39's open status awaits Staley's explicit retirement of the training-data-then-replacement framing.
   Sources: Doc 09 §13.7 #32, UX §9 #27, UX §8.6 #5
   Cross-refs: Decision #39 (logged open), Decision #44 (direction confirmed)
-  Status: **PARTIALLY STALE** — direction resolved by Decision #44; full closure pending Staley framing-retirement.
+  Status: **RESOLVED** (Phase 3, 2026-05-12) by **Decision #53** — Staley-caveat retired; Decision #39 formally closed.
   **Bucket:** Decide-now. **Reasoning:** Direction substantively resolved by Decision #44 (augmentation). The Staley-framing-retirement caveat is procedural. Proposed Phase 3 decision: formally close Decision #39 by Decision #44; remove the Staley-caveat from canon's open-question status (Staley can still note framing-retirement independently).
 
 **T-068 — *LLM-layer vs. user-modeling-layer ownership.*** Two interpretations of "we're an AI company" — LLM-layer expertise (Staley's current direction) and user-modeling-layer expertise (data structures, retrieval logic, AI-driven user-context store). Both defensible; both need explicit ownership. The implicit assumption that they're the same job will create gaps.
@@ -496,6 +494,7 @@ Any additional registers encountered during reading are noted in §6.
 
 **T-074 — *"Large Music Model" framing for external use.*** As positioning, powerful. As implementation, it could imply training a single foundation model on music — not the team's direction. Whether this language enters customer- or investor-facing material warrants deliberate decision.
   Sources: Doc 09 §13.7 #39, Doc 10 §6 #10
+  Status: **RESOLVED** (Phase 3, 2026-05-12) by **Decision #54** — framing reserved as internal-only until architecture justifies; not used in customer- or investor-facing material.
   **Bucket:** Decide-now. **Reasoning:** Positioning call. Doc 09 §13.7 #39 explicitly flagged 'warrants deliberate decision'. Proposed Phase 3 decision: do not use 'Large Music Model' framing in customer or investor material until architecture commitments justify it; reserve as internal/aspirational vocabulary only.
 
 ---
@@ -552,6 +551,7 @@ Any additional registers encountered during reading are noted in §6.
 **T-085 — *Patrick's atom-gating framing vs. Doc 09 §16 generation-cost framing.*** Patrick's "50% atom gating" treats exercises as scarce/curated; Doc 09 §16 treats generation cost (LLM tokens) as the variable expense. Resolution: pick a gating framing for the pricing conversation. Two candidate resolutions: (a) atom-gating wins; (b) generation-gating wins. Recommended lean from Doc 11: (b). Team-alignment question, not just a memo recommendation.
   Sources: Doc 11 §11.9
   Cross-refs: Decision #37; Doc 09 §16
+  Status: **RESOLVED** (Phase 3, 2026-05-12) by **Decision #55** — generation-cost-gating confirmed as canonical pricing framing.
   **Bucket:** Decide-now. **Reasoning:** Doc 11 §11.9 recommended (b) generation-gating framing wins; Patrick's atom-gating becomes pre-§16 framing we superseded. Doc 11 flagged this as 'team-alignment question, not just a memo recommendation'. Proposed Phase 3 decision: confirm (b) and align team.
 
 ---
@@ -615,19 +615,46 @@ Any additional registers encountered during reading are noted in §6.
 
 ---
 
+### C-17 — Substrate-architecture refinement *(added Phase 3, 2026-05-12)*
+
+This cluster groups questions about the substrate catalog's architecture itself — how substrates are organized, what kinds of substrates the catalog admits, and how the catalog handles the cognitive-vs-motor distinction that has not been explicitly modeled. The three entries here are tightly coupled: any answer to one constrains the others. Resolution venue is Track D substrate-architecture refinement work.
+
+**T-026 — *Pedaling exercises placement.*** Pedal substrate isn't in the current substrate catalog. Add as distinct substrate (likely under new "Articulation/Pedal" cluster), or treat as constraint/configuration on existing atoms? Probably distinct substrate; worth catalog-authoring conversation.
+  Sources: Doc 11 §11.3
+  Cross-refs: T-027 (Technique drills — paired); T-097 (cognitive-vs-motor catalog framing — parent architectural question)
+  Phase 3 update (2026-05-12): Originally bucketed Decide-now in Phase 2 with a proposed "distinct substrate" Decision. Phase 3 review withdrew the proposed Decision after surfacing the architectural pairing with T-027 (which presents four candidate framings for technique drills, each of which binds T-026 differently) and a deeper architectural question (T-097, cognitive-vs-motor catalog organization). Re-bucketed V1-decide-soon; moved from C-06 to C-17.
+  **Bucket:** V1-decide-soon. **Reasoning:** Pedaling's catalog placement is a sub-question of T-097 (cognitive-vs-motor framing) and pairs with T-027 (Technique drills). Resolution venue: Track D substrate-architecture refinement work, where all three of T-026 / T-027 / T-097 get decided together.
+
+**T-027 — *Technique drills: exercises or distinct content class.*** Patrick's E category is pedagogically valid but doesn't fit the substrate-driven model. Candidates: V2 Exercise cluster, distinct content mode, blueprint variant with substrate="motor pattern", or performance-method atoms. **Priority elevated in Doc 11 v0.3** — blocks ~6 V1 preset candidates (A4 Hanon-style and E1–E5 finger independence / hand coordination / thumb crossing / hand position shifts / wrist rotation).
+  Sources: Doc 11 §11.4
+  Cross-refs: Decision #13 (improvisation+fingering placeholder — adjacent territory); T-092 (Content classes inventory); T-026 (paired — pedaling); T-097 (cognitive-vs-motor catalog framing — parent architectural question)
+  Phase 3 move (2026-05-12): Moved from C-06 to C-17 to group with T-026 and T-097 as a tightly-coupled substrate-architecture refinement cluster. Bucket unchanged (V1-decide-soon).
+  **Bucket:** V1-decide-soon. **Reasoning:** Priority-elevated in Doc 11 v0.3; blocks ~6 V1 preset candidates. The decision may itself be 'defer to V2' (resulting in those candidates being deferred), but the *decision needs to be made* in V1 timeframe to unblock Track D.
+
+**T-097 — *Cognitive-vs-motor substrate distinction and dual-training representation.*** The substrate catalog (Architecture Doc §3.1) treats substrates as cognitive transformations — each substrate's "Input → Output" column always describes a mental mapping (Pitch ↔ Name, Chord symbol → Pitch set, Duration → Beat count, etc.). Motor-execution skills (finger independence, hand coordination, pedaling, wrist rotation) are not represented as substrates. Whether and how the catalog should distinguish or accommodate motor/technique substrates is open. Cross-cutting: a single exercise can train both a cognitive substrate (chord recognition) and a motor pattern (chord-playing technique); the catalog does not currently model this dual-training. Paired with T-027 (Technique drills placement) and T-026 (Pedaling placement).
+  Sources: Surfaced in Phase 3 review (2026-05-12), during T-026 / T-027 architectural pairing discussion.
+  Cross-refs: T-026 (Pedaling — sub-question), T-027 (Technique drills — sub-question), Decision #13 (fingering placeholder — adjacent); Architecture Doc §3.1 (substrate catalog target for refinement).
+  **Bucket:** V1-decide-soon. **Reasoning:** Foundational substrate-architecture refinement work; pairs with T-026 and T-027 as a single Track D conversation. Resolution venue: Track D substrate-architecture refinement.
+
+---
+
 ## 6. Stale / Resolved summary
 
-### 6.1 Recommended for formal retirement in Phase 2 (no remaining open sub-question)
+### 6.1 Formally retired in Phase 3
 
-None found in this pass. Every register entry I reviewed either has a genuinely-open sub-question (treated as `PARTIALLY STALE` and kept in inventory) or a non-retired direction that may still want explicit retirement language even if substantively answered.
+| T-ID | Topic | Retired by |
+|---|---|---|
+| T-022 | Micro-PTA exercises in V1 scope | Decision #24 (deferral) + Phase 3 retirement (2026-05-12) |
+
+*(Phase 1 found no clean retirement candidates beyond partially-stale items. Phase 3 retired T-022 after confirming Decision #24 fully answers the V1-or-deferred question.)*
 
 ### 6.2 `PARTIALLY STALE` entries (kept in inventory; resolution status noted)
 
 | T-ID | Topic | Resolved by | What remains open |
 |---|---|---|---|
 | T-011 | Cross-mode performance-constraints UI pattern | Decision #43 (principle) | UI pattern specifics |
-| T-022 | Micro-PTA exercises in V1 scope | Decision #24 (deferred) | Whether V1 scope reopens this |
-| T-067 | MAGE long-term role | Decision #44 (direction) | Full closure pending Staley framing-retirement |
+| T-022 | Micro-PTA exercises in V1 scope | Decision #24 (deferred) | *(Retired in Phase 3)* |
+| T-067 | MAGE long-term role | Decision #44 (direction) + Decision #53 (caveat retired) | *(Fully resolved in Phase 3)* |
 | T-092 | Content classes inventory | Decision #48 (Theory) | Rest of the cluster |
 | T-094 | Video Library architectural placement | Decision #51 (deferral) | Architectural placement formally open |
 
@@ -777,38 +804,46 @@ All 9 §8.6 entries absorbed: #1→T-060, #3→T-062, #4→T-063, #5→T-067, #7
 
 ---
 
-## 8.5 Phase 2 ambiguities flagged for input
+## 8.5 Phase 2 ambiguities flagged for input *(Phase 3 outcomes annotated)*
 
-Calls where I want Steven's input before Phase 3 begins:
-
-**A1 — V1-decide-soon scope interpretation.** I'm reading "V1-decide-soon" as *near-term required* — including questions that block the investor demo (Doc 09 §15.2) even when they don't block V1 product ship. That's why 11 agentic-cluster questions (T-038, T-039, T-042, T-043, T-049, T-052, T-053, T-054, T-057, T-058, T-062) are V1-decide-soon: they all surface in the 6-step demo flow. Push back if you want a separate "demo-blocking" bucket or want these moved to V2-defer.
+**A1 — V1-decide-soon scope interpretation.** I'm reading "V1-decide-soon" as *near-term required* — including questions that block the investor demo (Doc 09 §15.2) even when they don't block V1 product ship. That's why 11 agentic-cluster questions (T-038, T-039, T-042, T-043, T-049, T-052, T-053, T-054, T-057, T-058, T-062) are V1-decide-soon: they all surface in the 6-step demo flow. Push back if you want a separate "demo-blocking" bucket or want these moved to V2-defer. — **Confirmed in Phase 3.**
 
 **A2 — Decide-now picks.** Four entries (T-026, T-067, T-074, T-085) are proposed for Phase 3 resolution. Each has a recommended resolution drawn from existing canon. Confirm or redirect on the four picks themselves and on the recommendations:
-- T-026 — Pedal as distinct substrate (per Doc 11 §11.3 lean).
-- T-067 — Formally close Decision #39 by Decision #44 (remove the Staley-caveat from canon's open-question status).
-- T-074 — Don't use "Large Music Model" externally until architecture justifies (per Doc 09 §13.7 #39).
-- T-085 — Confirm generation-gating (b) per Doc 11 §11.9 lean.
+- T-026 — Pedal as distinct substrate (per Doc 11 §11.3 lean). **— Withdrawn in Phase 3 review; re-bucketed V1-decide-soon and moved to C-17.**
+- T-067 — Formally close Decision #39 by Decision #44 (remove the Staley-caveat from canon's open-question status). **— Resolved by Decision #53.**
+- T-074 — Don't use "Large Music Model" externally until architecture justifies (per Doc 09 §13.7 #39). **— Resolved by Decision #54.**
+- T-085 — Confirm generation-gating (b) per Doc 11 §11.9 lean. **— Resolved by Decision #55.**
 
-**A3 — T-022 retirement.** Already-resolved bucket. Recommend formal retirement (remove from inventory) since Decision #24's deferral fully answers the original question. Alternative: keep as a STALE flag for audit-trail. Confirm preference.
+**A3 — T-022 retirement.** Already-resolved bucket. Recommend formal retirement (remove from inventory) since Decision #24's deferral fully answers the original question. Alternative: keep as a STALE flag for audit-trail. Confirm preference. — **Retirement confirmed in Phase 3.**
 
-**A4 — T-027 V1-decide-soon framing.** Priority-elevated per Doc 11 v0.3. I have it V1-decide-soon because it blocks ~6 V1 preset candidates — but the *answer* may well be "defer Technique to V2." That outcome is fine; the *decision needs to be made* in V1 timeframe to unblock Track D. Confirm framing.
+**A4 — T-027 V1-decide-soon framing.** Priority-elevated per Doc 11 v0.3. I have it V1-decide-soon because it blocks ~6 V1 preset candidates — but the *answer* may well be "defer Technique to V2." That outcome is fine; the *decision needs to be made* in V1 timeframe to unblock Track D. Confirm framing. — **Confirmed in Phase 3; moved to C-17 as part of substrate-architecture refinement.**
 
-**A5 — T-068 placement.** LLM-layer vs. user-modeling-layer ownership is a Staley/Patrick team-org question. I have it V1-decide-soon because agentic-track work won't progress cleanly without explicit ownership, but it's not exercise-section-blocking. Alternatives: V2-defer (Staley/Patrick conversation outside Track B), or upgrade to decide-now if Steven wants to push it inline. Confirm.
+**A5 — T-068 placement.** LLM-layer vs. user-modeling-layer ownership is a Staley/Patrick team-org question. I have it V1-decide-soon because agentic-track work won't progress cleanly without explicit ownership, but it's not exercise-section-blocking. Alternatives: V2-defer (Staley/Patrick conversation outside Track B), or upgrade to decide-now if Steven wants to push it inline. Confirm. — **Confirmed V1-decide-soon in Phase 3.**
 
-**A6 — T-069 demo-scaffolding.** User-modeling layer implementation architecture is V1-decide-soon in my disposition. Demo Step 6 shows the user-modeling layer's outputs, which could be scaffolded with hand-coded outputs (per Doc 09 §15.2 "the LLM can be primed"). If you'd rather treat this as V2-defer with demo using scaffolded outputs, that's defensible too. Confirm.
+**A6 — T-069 demo-scaffolding.** User-modeling layer implementation architecture is V1-decide-soon in my disposition. Demo Step 6 shows the user-modeling layer's outputs, which could be scaffolded with hand-coded outputs (per Doc 09 §15.2 "the LLM can be primed"). If you'd rather treat this as V2-defer with demo using scaffolded outputs, that's defensible too. Confirm. — **Confirmed V1-decide-soon in Phase 3.**
 
-**A7 — C-15 teacher cluster split.** Per §7 from Phase 1, this cluster splits between exercise-section schema obligations and Patrick/Staley's instructor-portal track. I bucketed all of C-15 as V2-defer (except T-088 explicit-punt) on the read that V1 just needs schema-and-hook stubs. If you'd rather have the schema-obligation entries lifted to V1-decide-soon and routed to Patrick or Staley specifically, flag and I'll re-bucket.
+**A7 — C-15 teacher cluster split.** Per §7 from Phase 1, this cluster splits between exercise-section schema obligations and Patrick/Staley's instructor-portal track. I bucketed all of C-15 as V2-defer (except T-088 explicit-punt) on the read that V1 just needs schema-and-hook stubs. If you'd rather have the schema-obligation entries lifted to V1-decide-soon and routed to Patrick or Staley specifically, flag and I'll re-bucket. — **No redirect in Phase 3; C-15 remains V2-defer.**
 
-**A8 — Cluster thinning.** Phase 1 already flagged C-07 (3 entries) and C-08 (1 entry) as thin clusters. Disposition pass confirms they're tight clusters but small. Not pushing for change; flagging in case Phase 2 review surfaces a desire to merge.
+**A8 — Cluster thinning.** Phase 1 already flagged C-07 (3 entries) and C-08 (1 entry) as thin clusters. Disposition pass confirms they're tight clusters but small. Not pushing for change; flagging in case Phase 2 review surfaces a desire to merge. — **No change in Phase 3; thin clusters retained.**
+
+## 8.6 Phase 3 ambiguities surfaced and resolved
+
+**A9 — Decision #54 (now #53) Staley-caveat closure path.** Phase 3 proposal flagged two paths: (1) close Decision #39 unilaterally based on canon convergence; (2) Steven sends Staley a brief pre-confirm message before closing. Steven approved Path 1 directly; Decision #53 closes without a separate Staley check-in.
+
+**A10 — T-026 framing.** Initial Phase 3 proposal had Decision #53 as "Pedal added as distinct substrate." Steven redline surfaced that pedaling is structurally a sub-question of T-027 (Technique drills), which presents four candidate framings — each of which binds pedaling differently. The "distinct substrate" framing would have prejudged T-027 and ignored a deeper architectural question about cognitive-vs-motor substrate organization. Phase 3 outcome: withdraw the proposed Decision; re-bucket T-026 from Decide-now to V1-decide-soon; surface a new question T-097 (Cognitive-vs-motor substrate distinction); group T-026 / T-027 / T-097 into new cluster C-17 (Substrate-architecture refinement); resolve all three together in Track D.
+
+---
 
 ## 9. Approval gate
 
-This is the Phase 2 deliverable. Phase 3 (decide-now session) begins on approval.
+Phase 3 is complete pending this commit. Track B's working state going forward:
 
-If approved as-is, the next steps are:
-1. Steven commits the Phase 2 revision to GitHub (same path: `docs/12-open-question-triage.md`).
-2. Phase 3 works through the decide-now bucket (T-026, T-067, T-074, T-085) inline, proposing specific Decision Log entries or amendments for each. Each Phase 3 resolution requires Steven's sign-off before being committed.
-3. T-022 is formally retired per A3 (pending confirmation).
-4. The V1-decide-soon bucket becomes the working backlog for Tracks C2, C, D, E.
+1. **Three new Decisions** (#53–#55) added to Doc 05; **three existing Decisions** (#24, #39, #44) amended; cross-doc edits applied in this commit.
+2. **T-022 retired** from inventory; **T-097 added** as new entry; **T-026 re-bucketed** and **T-026 + T-027 moved** to new cluster C-17.
+3. **Decide-now bucket is empty.** All four Phase 2 decide-now items have been resolved (#53/#54/#55) or re-bucketed (T-026).
+4. **V1-decide-soon bucket (45 entries)** becomes the working backlog for Tracks C2, C, D, E, and the agentic plan. Highest-priority items per Phase 3 review:
+   - **C-02 (T-008):** Track C2 anchor — Exercise UI session structure design conversation
+   - **C-17 (T-026, T-027, T-097):** Substrate-architecture refinement — Track D conversation blocking ~6 V1 preset candidates
+   - **C-08 (T-021):** V1 catalog scope — single most consequential Track D call
 
-If redirected, see §8.5 for the eight ambiguities I'd most want input on.
+Doc 12 continues to live as the working backlog. Future amendments will append phases or update entries; the Phase 1 inventory + Phase 2 disposition + Phase 3 resolutions remain the durable audit trail.

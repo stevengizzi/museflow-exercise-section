@@ -777,14 +777,14 @@ The following questions are open and shape ongoing design work. They are cluster
 
 ### 13.7 MAGE, AI, and Cost
 
-32. **MAGE long-term role** — *Resolving toward augmentation per Decision #44 (working position).* Full closure of Decision #39's open status awaits Staley's explicit retirement of the training-data-then-replacement framing. See §10.3.
+32. **MAGE long-term role** — *Resolved by Decision #44 (augmentation direction) and Decision #53 (procedural caveat retired, 2026-05-12).* Augmentation framing is canon — MAGE persists as a permanent algorithmic generation engine, with the AI adjusting MAGE's music-XML output. Decision #53 closed Decision #39's open-question status. See §10.3.
 33. **Team ownership of LLM-layer vs user-modeling-layer** — Per §1.2 and Doc 10 §6 #13. Two interpretations of "we're an AI company" — LLM-layer expertise (Staley's current direction, §10.5) and user-modeling-layer expertise (data structures, retrieval logic, AI-driven user-context store, currently nobody's explicit territory). Both defensible; both need explicit ownership. The implicit assumption that they are the same job will create gaps.
 34. **User-modeling-layer implementation architecture** — Per §1.2, §10.5, §10.7. The user-model's actual shape — RAG over which data, with what retrieval logic, what summarization cadence, what user-correction affordances — needs concrete design.
 35. **Fine-tuning quality threshold** — Can Bedrock-hosted models (or external API fallbacks per §10.5) hit the quality bar at acceptable cost?
 36. **Frontier-model fallback commitment level** — Per §10.6, the line between "external-API fallback while we figure out the architecture" and "commit to frontier APIs as the architecture" needs to be drawn deliberately if cost forces it.
 37. **Cache strategy** — What gets cached, for how long, with what invalidation rules?
 38. **Cost amortization model granularity** — The team's "heavy generation periods amortize" framing needs a concrete mental model — at what generation rate do unit economics break? Per-Project, per-month, per-account? See §16.
-39. **"Large Music Model" framing** — Per §10.7. As positioning, it's powerful. As implementation, it could imply training a single foundation model on music — which is not the team's direction. Whether this language enters customer- or investor-facing material warrants deliberate decision.
+39. **"Large Music Model" framing** — *Resolved by Decision #54 (2026-05-12).* The framing is reserved as internal and aspirational vocabulary only; not used in customer-facing or investor-facing material until and unless architecture commitments justify it. Per §10.7. As positioning, it's powerful. As implementation, it could imply training a single foundation model on music — which is not the team's direction. Whether this language enters customer- or investor-facing material was a deliberate decision; Decision #54 set the canonical position.
 
 ### 13.8 Engagement and Notifications
 

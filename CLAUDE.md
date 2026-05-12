@@ -27,22 +27,24 @@ docs/
 ├── 09-agentic-museflow-vision.md   # Freestanding agentic-system vision
 ├── 10-may7-brainstorm-synthesis.md # May 7, 2026 brainstorm synthesis; source of Decisions #42–#47
 ├── 11-patrick-doc-integration-memo.md  # A2 deliverable; source of Decisions #48–#52
+├── 12-open-question-triage.md         # Track B deliverable; 97-entry open-question inventory with disposition and resolutions
 └── archive/                        # Prior versions of substantially-revised canon docs (audit trail)
 ```
 
-The canon evolves through a tracked sequence of conversations on claude.ai (Track A1 and A2 done; B/C/D/E queued). Steven commits to this repo manually after each phase. There is no programmatic write-back from Claude conversations.
+The canon evolves through a tracked sequence of conversations on claude.ai (Tracks A1, A2, B done; C/C2/D/E queued). Steven commits to this repo manually after each phase. There is no programmatic write-back from Claude conversations.
 
 ## Reading order for orientation
 
 For a fresh session, read in this order:
 
 1. `docs/01-project-bible.md` — vision, content/path modes, foundational frameworks (PTA Loop, FTA Field)
-2. `docs/05-design-decisions-log.md` — 52 numbered decisions; this is the operational truth about what's been settled
+2. `docs/05-design-decisions-log.md` — 55 numbered decisions; this is the operational truth about what's been settled
 3. `docs/07-ux-navigation-spec.md` — atom hierarchy, navigation model, open questions register
 4. `docs/02-system-architecture.md` — schema definitions, substrate catalog
 5. `docs/09-agentic-museflow-vision.md` — agentic system context
 6. `docs/10-may7-brainstorm-synthesis.md` — most recent strategic synthesis; source of Decisions #42–#47 and several new open-question clusters
 7. `docs/11-patrick-doc-integration-memo.md` — A2 evaluation of Patrick's brainstorm doc; source of committed Decisions #48–#52
+8. `docs/12-open-question-triage.md` — Track B deliverable; 97-entry open-question inventory with full disposition. Working backlog for Tracks C2 / C / D / E. Consult §4.5 disposition summary and §8.6 Phase 3 resolutions before starting work in any downstream Track; individual entry status lines (RESOLVED / RETIRED) live with each T-NNN entry in §5.
 
 `docs/04-glossary.md` is reference-on-demand. `docs/03`, `docs/06`, `docs/08`, `docs/00` are read when relevant to the task. `docs/archive/` holds prior versions of substantially-revised canon docs (audit-trail only; not canon).
 
@@ -62,7 +64,7 @@ Older canon docs sometimes misattribute Staley's contributions to "Austin Clifto
 
 ### Decision Log discipline
 
-- New decisions append to `docs/05-design-decisions-log.md` at the highest number (currently 52)
+- New decisions append to `docs/05-design-decisions-log.md` at the highest number (currently 55)
 - Existing decisions are amended (not replaced) when refined; amendments are dated and labeled
 - Consult the relevant entry before re-deriving or re-deciding
 - If you find yourself about to argue something the Log already settled, **stop and reference the decision** — don't relitigate without explicit cause
@@ -101,10 +103,10 @@ Work is organized into named Tracks:
 |---|---|---|
 | A1 | Doc-sync (integrate standup outputs) | Done |
 | A2 | Patrick's "Theory Library & Exercise Section" doc evaluation | Done — Doc 11 v0.3; Decisions #48–#52 committed |
-| B | Open-question triage | Queued |
+| B | Open-question triage | Done — Doc 12 committed (97 entries, 17 clusters); Decisions #53–#55 added; T-022 retired; new cluster C-17 (substrate-architecture refinement) surfaces T-097 (cognitive-vs-motor distinction) pairing with T-026 + T-027 |
 | C | Taxonomy reconciliation (Doc 03 ↔ Doc 07) | Queued |
-| C2 | Exercise UI shape design pass (resolve Doc 11 §11.10) | Queued — precursor to D and E |
-| D | V1 preset atom catalog authoring | Queued — depends on C, C2 |
+| C2 | Exercise UI shape design pass (resolve T-008 / former Doc 11 §11.10) | Queued — precursor to D and E |
+| D | V1 preset atom catalog authoring | Queued — depends on C, C2, and V1-decide-soon backlog from Doc 12. **Foundational sub-task:** C-17 substrate-architecture refinement (T-026 + T-027 + T-097) must resolve before catalog authoring. |
 | E | PRD authoring | Queued — depends on D substantially complete |
 
 A session should know which Track it's in. If a session surfaces work belonging to a different Track, log it for that Track rather than absorbing it.
@@ -175,4 +177,4 @@ Steven maintains a separate repo `stevengizzi/claude-workflow` with general-purp
 
 This file is living. Update it when conventions change, new tracks arrive, or new tools come online. Keep it terse — every line gets read at session start.
 
-Last updated: May 2026.
+Last updated: May 12, 2026 (Track B Phase 3 close).

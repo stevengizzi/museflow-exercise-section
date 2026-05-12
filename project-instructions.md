@@ -60,6 +60,7 @@ A note on the metarepo: its protocols are largely engineering-sprint-shaped. Thi
 | `09-agentic-museflow-vision.md` | Freestanding agentic-system vision document |
 | `10-may7-brainstorm-synthesis.md` | Synthesis of the May 7, 2026 agentic-system brainstorm (Steven, Staley, Patrick); source of committed Decisions #42–#47 |
 | `11-patrick-doc-integration-memo.md` | A2 deliverable — evaluation of Patrick's Theory Library & Exercise Section brainstorm against current canon (v0.3, current). Decisions #48–#52 derived from this memo are committed to Doc 05. |
+| `12-open-question-triage.md` | Track B deliverable — unified deduplicated open-question inventory (97 entries across 17 clusters), Phase 2 disposition (decide-now / V1-decide-soon / V2-defer / explicit-punt / resolved / retired), and Phase 3 decide-now resolutions (Decisions #53–#55, T-022 retired, new C-17 substrate-architecture-refinement cluster). The V1-decide-soon bucket (45 entries) is the working backlog for Tracks C2 / C / D / E and the agentic plan. |
 
 Prior versions of canon docs that have been substantially revised are archived under `docs/archive/` (e.g., `11-patrick-doc-integration-memo-v0.1.md`, `-v0.2.md`). Archived versions are retained for audit-trail but are not canon — the unversioned filename in `docs/` is always the canonical current state.
 
@@ -73,10 +74,10 @@ Work is organized into named Tracks, each producing specific deliverables:
 
 - **A1** — Doc-sync (integrate standup outputs into canon). **Done.**
 - **A2** — Patrick's "Theory Library & Exercise Section" doc evaluation, producing an integration memo. **Done** — v0.3 committed as Doc 11 (v0.1/v0.2 archived under `docs/archive/`); Decisions #48–#52 committed to the Decision Log with dependent doc-sync to Bible §2.1.1/§2.2, Glossary, Doc 09 §13.11/§5.2, UX Spec §9, and amendments to Decisions #16, #41, #45.
-- **B** — Open-question triage (sort the ~32 open questions plus newly-surfaced ones into decide-now / V1-deferrable / V2+ / explicit-punt). **Queued.** Inventory now includes the nine questions from Doc 11 §11.1–§11.10, with §11.4 priority elevated (blocking ~6 V1 preset candidates) and §11.10 new (exercise UI session structure — natural lead-in to C2).
+- **B** — Open-question triage. **Done** — Doc 12 committed (Phase 1 inventory + Phase 2 disposition + Phase 3 decide-now session). Produced 97-entry inventory across 17 clusters; Decisions #53–#55 added (Decision #39 caveat retired; "Large Music Model" framing reserved internal-only; generation-cost-gating canonical for pricing framing); T-022 retired; new cluster C-17 (substrate-architecture refinement) surfaces a foundational architectural question (T-097, cognitive-vs-motor substrate distinction) that pairs with T-026 (pedaling placement) and T-027 (technique drills placement). Decide-now bucket is empty; the V1-decide-soon backlog (45 entries) is the working input to downstream Tracks.
 - **C** — Taxonomy reconciliation (update Doc 03 to align atom identity with Doc 07's framework). **Queued.**
-- **C2** — Exercise UI shape design pass (resolve §11.10 — SRT-style continuous vs. tutorial-style discrete prompt-and-perform vs. other; likely needs sketches/mockups). **Queued.** Precursor to D and E.
-- **D** — V1 preset atom catalog authoring (the actual ship list of `authoring_origin = preset` atoms). **Queued.** Depends on C, C2, and partial B.
+- **C2** — Exercise UI shape design pass (resolve T-008 / former Doc 11 §11.10 — SRT-style continuous vs. tutorial-style discrete prompt-and-perform vs. other; likely needs sketches/mockups). **Queued.** Precursor to D and E.
+- **D** — V1 preset atom catalog authoring (the actual ship list of `authoring_origin = preset` atoms). **Queued.** Depends on C, C2, and the V1-decide-soon backlog from Doc 12. **Foundational sub-task:** C-17 substrate-architecture refinement (T-026 + T-027 + T-097) must resolve before catalog authoring — the cognitive-vs-motor catalog framing affects how pedal, technique drills, and dual-trained atoms are admitted. T-021 (V1 catalog scope) is the central scoping call.
 - **E** — PRD authoring (the macro spec for Patrick's MVP decomposition). **Queued.** Depends on D substantially complete.
 
 Conversations should know which Track they're in and stay in scope. If a conversation surfaces work that belongs to a different Track, log it for that Track rather than absorbing it.
@@ -160,15 +161,15 @@ This project is accessed via:
 - **claude.ai web/mobile** — primary surface for design conversations and document iteration
 - **Claude Code** (terminal) — for direct repo work, in-IDE editing, and implementation sessions. Bootstrap protocol differs slightly; see `bootstrap-index.md`.
 
-The GitHub repo is the canonical source of truth. Steven commits manually after each phase; project knowledge syncs automatically. Future addition under consideration: a `CLAUDE.md` at the repo root for Claude Code session bootstrap (TBD).
+The GitHub repo is the canonical source of truth. Steven commits manually after each phase; project knowledge syncs automatically. A `CLAUDE.md` file at the repo root provides parallel Claude Code session bootstrap, optimized for terminal/IDE workflows. Both `project-instructions.md` (claude.ai surface) and `CLAUDE.md` (Claude Code surface) describe the same project and conventions but are tuned for their respective contexts.
 
 ## On the workflow metarepo's document-building procedures
 
 The workflow metarepo (`stevengizzi/claude-workflow`) includes a `document-seeding.md` protocol that prescribes a specific 8-document canon (`project-knowledge.md`, `decision-log.md`, `dec-index.md`, `risk-register.md`, `architecture.md`, `roadmap.md`, `sprint-history.md`, `CLAUDE.md`). That canon is shaped for engineering-sprint workflows.
 
-This project's canon (10 numbered docs from `00-handoff-brief.md` through `09-agentic-museflow-vision.md`) is different and was built for design-first work. **The metarepo's canon does not apply to this project as a wholesale prescription.** Its disciplines (numbered decisions, explicit risk surfacing, sprint history) are useful in spirit and partially adopted (e.g., the numbered Decision Log).
+This project's canon (13 numbered docs from `00-handoff-brief.md` through `12-open-question-triage.md`) is different and was built for design-first work. **The metarepo's canon does not apply to this project as a wholesale prescription.** Its disciplines (numbered decisions, explicit risk surfacing, sprint history) are useful in spirit and partially adopted (e.g., the numbered Decision Log).
 
-If we move into pure sprint-cycle implementation in the future, adding metarepo-shaped artifacts (especially `CLAUDE.md` for Claude Code, possibly `project-knowledge.md` as a synthesis layer) would be reasonable. Until then, the existing canon remains canonical.
+If we move into pure sprint-cycle implementation in the future, adding metarepo-shaped artifacts (especially additional surfacing of risk register, sprint history, or a `project-knowledge.md` synthesis layer) would be reasonable. Until then, the existing canon remains canonical.
 
 ## A note on this document
 

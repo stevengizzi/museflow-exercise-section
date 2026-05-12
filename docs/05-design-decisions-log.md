@@ -307,6 +307,8 @@ The following decisions were made during a continued conversation refining the e
 
 **Decision made:** Added deferral notes to the micro-PTA section of the Architecture Doc. The theoretical framework remains documented but dedicated micro-PTA exercises are not in V1 scope. The architecture supports them for future activation.
 
+**Note (2026-05-12, Track B Phase 3):** Triage entry T-022 (open-question register UX Spec §9 #17) formally retired by this Decision. The original "V1 or deferred" question is fully answered here.
+
 ---
 
 ## Decision 25: Core Unit Refinement → Exercise Atom Identity
@@ -504,6 +506,8 @@ Generated exercises are first-class citizens of the Exercise content mode, tagge
 
 **Amendment (May 2026, post-May-7-brainstorm):** Per Decision #44, the team's working position is amended toward the **augmentation framing**: MAGE persists as a permanent algorithmic generation engine, with the AI adjusting MAGE's music-XML output for musicality, stylistic fitness, and goal-specific shaping. The May 7, 2026 Emergent Curriculum brainstorm produced directional alignment across Steven, Patrick, and Staley (Patrick's articulation of the AI-adjusts-MAGE-output mechanism, Steven's concurrence, Staley's non-pushback). The training-data-then-replacement framing (Staley's earlier articulation) is no longer the team's working framing. The question remains formally open pending Staley's explicit retirement of that framing; full closure of the open status is deferred to that confirmation. See Decision #44.
 
+**Amendment (2026-05-12, per Decision #53):** **Formally closed.** The open status retained per the prior amendment (pending Staley's explicit retirement of the training-data-then-replacement framing) is retired. Decision #53 confirms augmentation framing as canonical without further procedural blocker; Staley remains free to articulate framing-retirement independently. See Decision #53.
+
 ---
 
 ## Decision 40: Exercise Atom Schema — Five Field Additions
@@ -629,12 +633,12 @@ The schema impact:
 **Reasoning:** Patrick's articulation provides the concrete mechanism (AI adjusts music XML output by MAGE) that the augmentation framing previously lacked. Steven's concurrence and Staley's non-pushback constitute directional alignment.
 
 **Caveats / what remains open:**
-- Staley has not explicitly retired the training-data-then-replacement framing. The amendment records the convergence; full closure of the question awaits Staley's explicit confirmation.
+- ~~Staley has not explicitly retired the training-data-then-replacement framing. The amendment records the convergence; full closure of the question awaits Staley's explicit confirmation.~~ *(Retired by Decision #53, 2026-05-12 — procedural caveat closed; augmentation framing is canon's working framing without further blocker. Staley remains free to articulate framing-retirement independently.)*
 - Cost implications of the augmentation framing differ from the replacement framing (per Doc 09 §10.4): MAGE+AI is a hybrid stack, not a single LLM. This is a feature, not a bug, but architectural commitment must reflect it.
 
 **Phasing:** N/A — architectural framing, not a feature.
 
-**Cross-references:** Decision #39 (amended, not superseded). Doc 09 §10.3, §10.4.
+**Cross-references:** Decision #39 (amended, not superseded; formally closed by Decision #53). Doc 09 §10.3, §10.4. Decision #53 (procedural caveat retired).
 
 ---
 
@@ -845,5 +849,49 @@ Per Decision #43 (cross-mode performance constraints), if a B/I/A-style summary 
 **Phasing:** V1 — at the schema level, this is a non-decision (don't add the field). UX exploration may surface B/I/A or alternatives later, at which point per-mode derivation rules are designed.
 
 **Cross-references:** Decision #7 (3-axis difficulty model); Decision #43 (cross-mode performance constraints — sharpens the case against a flat schema label); UX Spec §9 Open Question #5; Doc 11 §4.3 (full reasoning).
+
+---
+
+# Decisions Added by Track B Phase 3 (Decide-Now Session, 2026-05-12)
+
+## Decision 53: Decision #39's Open-Status Caveat Formally Retired
+
+**Source:** Track B Phase 3 (T-067). Decision #44 (May 7 augmentation amendment) carried a procedural caveat — "Staley has not explicitly retired the training-data-then-replacement framing. The amendment records the convergence; full closure of the question awaits Staley's explicit confirmation." That caveat has held Decision #39's open-question status open as a matter of bookkeeping rather than substance.
+
+**Decision made:** The procedural "awaits-Staley-explicit-confirmation" caveat in Decision #44 is **retired**. Decision #39's open-question status is **formally closed** — augmentation framing (MAGE persists as a permanent algorithmic generation engine, with AI adjusting MAGE's music-XML output for musicality, stylistic fitness, and goal-specific shaping) is canon's working framing without procedural blocker. Staley remains free to articulate framing-retirement independently; canon does not wait on it.
+
+**Reasoning:** The May 7 brainstorm produced directional alignment across Steven, Patrick, and Staley toward augmentation (Patrick articulating the AI-adjusts-MAGE-output mechanism, Steven concurring, Staley not pushing back and expressing positive sentiment toward MAGE). The convergence is substantive; the procedural caveat introduced a paperwork dependency on a confirmation that may or may not be made explicit. Holding a canonical open-question status open for that paperwork creates triage noise (the question recurs across UX Spec §8.6, §9, Doc 09 §13.7 with PARTIALLY STALE flags) without changing the substantive position. The cleaner state is: substantive position is closed; the framing-retirement is something Staley can do or not do on his own timeline; canon doesn't hinge on it.
+
+**Phasing:** V1 documentation work. Decision #39 amended to mark Closed (resolved by Decision #44 + #53). Decision #44 amended to retire the "awaits-Staley-explicit-confirmation" caveat. UX Spec §8.6 Q5, §9 Q27, and Doc 09 §13.7 #32 amended to note formal closure rather than partial-stale status. Triage entry T-067 marked Resolved.
+
+**Cross-references:** Decision #39 (formally closed); Decision #44 (caveat retired); UX Spec §8.6 Q5, §9 Q27 (status updates); Doc 09 §13.7 #32 (status update); Doc 12 T-067 (formally resolves).
+
+---
+
+## Decision 54: "Large Music Model" Framing — Internal-Only Pending Architecture Justification
+
+**Source:** Track B Phase 3 (T-074); Doc 09 §13.7 #39 ("As positioning, it's powerful. As implementation, it could imply training a single foundation model on music — which is not the team's direction. Whether this language enters customer- or investor-facing material warrants deliberate decision.").
+
+**Decision made:** The "Large Music Model" framing is **reserved as internal and aspirational vocabulary only**. It is NOT used in customer-facing or investor-facing material — pitch decks, marketing copy, product surfaces, demo narration, public communications — until and unless the team's architecture commitments justify the framing (e.g., commitment to a fine-tuned music-specific foundation model with substantial training). Internal team usage is unrestricted; the framing can be discussed, sketched, and aspired to internally without constraint.
+
+**Reasoning:** The most natural implementation reading of "Large Music Model" is *a single foundation model trained on music* — which is not the team's current direction. The actual direction (augmented MAGE + LLM adjustment, per Decision #44) is a hybrid stack, not a foundation-model play. Using the framing externally would create a positioning-vs-implementation mismatch that investor and user diligence would surface, with reputational cost. The safer near-term positioning is to describe the system in terms of its actual capabilities (augmented MAGE generation, AI-driven musical-XML adjustment, goal-specific shaping). The framing is preserved as internal aspiration so the team can continue to discuss and pursue architecture directions that might one day justify reactivating it externally.
+
+**Phasing:** V1 documentation and comms call. Affects the investor pitch deck (Patrick), marketing surfaces (Patrick), any demo narration, and Doc 09's customer-facing positioning sections. Internal docs (Doc 09's architecture sections, Doc 10's analogy discussion) are unaffected — they can continue to engage with the framing as design input. If architecture commitments shift to justify the framing, this Decision can be revisited at that point.
+
+**Cross-references:** Doc 09 §13.7 #39 (open question this resolves); Decision #44 (the augmentation framing this Decision aligns with — augmentation is not foundation-model training); Doc 10 §3.9 (analogy-vs-implementation distinction); Doc 12 T-074 (formally resolves).
+
+---
+
+## Decision 55: Generation-Cost-Gating as Canonical Pricing Framing
+
+**Source:** Track B Phase 3 (T-085); Doc 11 §11.9 lean ("Recommended lean: (b)" — generation-gating wins).
+
+**Decision made:** The pricing conversation uses **generation-cost-gating** (per Doc 09 §16) as the canonical framing. Patrick's atom-gating proposal — the "50% atom gating" framing in his Theory Library & Exercise Section doc — is preserved as a discussion artifact and pre-§16 thinking that the team superseded; it is not the forward-design direction. This Decision resolves only the *framing*; the actual pricing structure remains deferred (Decision #37). Generation-cost-gating treats LLM tokens (and possibly MAGE compute under the augmentation framing — see open question T-084) as the variable expense.
+
+**Reasoning:** Atom-gating presumes exercises are scarce and curated, which contradicts the generative architecture committed in Decisions #33 (generation-on-demand) and #41 (substrate × modality combinatorial space). Generation-cost-gating aligns with the actual cost driver: LLM inference, with MAGE compute as a related-but-separate question (T-084). Doc 11 §11.9 recommended this lean; this Decision formalizes it as team-aligned canon. Without explicit alignment, pricing-conversation drift could reintroduce atom-gating framing under deadline pressure, creating downstream rework. Setting the framing now — independent of structure design — protects the eventual pricing-design work from re-litigating the framing question.
+
+**Phasing:** V1 documentation work. Pricing structure design (Decision #37) remains deferred — this Decision is the framing-vocabulary commitment that pricing-design work will operate within. T-079 through T-084 (the C-14 pricing cluster open questions) remain explicit-punt pending pricing-design start; Decision #55 sets the framing they will be answered within.
+
+**Cross-references:** Decision #37 (pricing structure deferred); Doc 09 §16 (cost framework, the basis for generation-gating); Doc 11 §11.9 (full reasoning); Doc 12 T-085 (formally resolves); related open questions T-079–T-084 (pricing cluster).
 
 ---
