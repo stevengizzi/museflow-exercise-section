@@ -62,7 +62,7 @@ Any additional registers encountered during reading are noted in §6.
 
 | ID | Cluster | Count | Likely Track |
 |---|---|---|---|
-| C-01 | Exercise Section UX (hierarchy, nav, card design, naming) | 7 | C2 / C |
+| C-01 | Exercise Section UX (hierarchy, nav, card design, naming) | 9 | C2 / C |
 | C-02 | Exercise UI session structure | 1 | **C2 (priority)** |
 | C-03 | Configuration & performance-constraints UI | 3 | C2 / D |
 | C-04 | Progress, completion, mastery (user-facing) | 4 | C2 / D |
@@ -71,15 +71,16 @@ Any additional registers encountered during reading are noted in §6.
 | C-07 | Per-blueprint catalog-time defaults | 3 | D |
 | C-08 | Cross-section / Master Roadmap appetite | 1 | B / strategic |
 | C-09 | Agentic — Project / Goal / Roadmap structure | 14 | Agentic track |
-| C-10 | Agentic — AI Surface & Dashboard UX | 14 | Agentic track |
+| C-10 | Agentic — AI Surface & Dashboard UX | 15 | Agentic track |
 | C-11 | Agentic — Custom Content Generation & Authoring | 5 | Agentic track |
 | C-12 | Agentic — MAGE, LLM Infra, User-Modeling, Cost | 8 | Agentic / Staley |
 | C-13 | Engagement / Notifications | 4 | Andrew's track |
-| C-14 | Pricing / Tiering / Gating | 7 | Patrick / strategic |
+| C-14 | Pricing / Tiering / Gating | 8 | Patrick / strategic |
 | C-15 | Teacher / Institutional | 6 | Patrick + Staley |
 | C-16 | Content classes beyond core three | 5 | B / strategic |
-| C-17 | Substrate-architecture refinement *(added Phase 3, 2026-05-12)* | 3 | D + B |
-| | **Total** | **97** | |
+| C-17 | Substrate-architecture refinement *(added Phase 3, 2026-05-12; reopened with T-100, 2026-05-13)* | 4 | D + B |
+| C-18 | Community / Network Effects *(added 2026-05-13 per Doc 14 §2.3)* | 1 | New track G (strategic scoping) |
+| | **Total** | **103** | |
 
 ---
 
@@ -87,20 +88,20 @@ Any additional registers encountered during reading are noted in §6.
 
 *(Phase 2 bucket assignment; Phase 3 outcomes annotated. Phase 3 details in §11.)*
 
-**Bucket totals (post-Phase-3):**
+**Bucket totals (post-Phase-3, with 2026-05-13 additions):**
 
-| Bucket | Phase 2 count | Phase 3 change | Final count | Definition |
-|---|---|---|---|---|
-| Decide-now | 4 | T-026 withdrawn + re-bucketed; T-067, T-074, T-085 resolved | 0 | Mechanical-given-canon calls; resolved inline in Phase 3 |
-| Already-resolved | 1 | T-022 retired | 0 | Canon already answered; formally retired in Phase 3 |
-| V1-decide-soon | 43 | T-026 added (re-bucketed); T-097 added (new) | 42 | Needs deliberate design work in this Track's near-term — blocks V1 exercise section ship and/or investor demo |
-| V2-defer | 31 | — | 31 | Out of V1 scope; will resolve when V2 / agentic-track work ramps |
-| Explicit-punt | 17 | — | 17 | Long-horizon, gated on external events |
-| Resolved (Phase 3) | — | T-067 → #53; T-074 → #54; T-085 → #55; T-026, T-027, T-097 — resolved by Decisions #57 + #58 | 6 | Resolved by a specific Decision in Phase 3 |
-| Retired | — | T-022 | 1 | Formally retired from inventory (canon already answered) |
-| **Total** | **96** | +1 (T-097) | **97** | |
+| Bucket | Phase 2 count | Phase 3 change | 2026-05-13 additions | Final count | Definition |
+|---|---|---|---|---|---|
+| Decide-now | 4 | T-026 withdrawn + re-bucketed; T-067, T-074, T-085 resolved | — | 0 | Mechanical-given-canon calls; resolved inline in Phase 3 |
+| Already-resolved | 1 | T-022 retired | — | 0 | Canon already answered; formally retired in Phase 3 |
+| V1-decide-soon | 43 | T-026 added (re-bucketed); T-097 added (new) | T-098, T-099 added (PRD-adjacent) | 44 | Needs deliberate design work in this Track's near-term — blocks V1 exercise section ship and/or investor demo |
+| V2-defer | 31 | — | T-100, T-101, T-102 added | 34 | Out of V1 scope; will resolve when V2 / agentic-track work ramps |
+| Explicit-punt | 17 | — | T-103 added (V3+ speculative) | 18 | Long-horizon, gated on external events |
+| Resolved (Phase 3) | — | T-067 → #53; T-074 → #54; T-085 → #55; T-026, T-027, T-097 — resolved by Decisions #57 + #58 | — | 6 | Resolved by a specific Decision in Phase 3 |
+| Retired | — | T-022 | — | 1 | Formally retired from inventory (canon already answered) |
+| **Total** | **96** | +1 (T-097) | +6 (T-098 through T-103) | **103** | |
 
-**Bucket-grouped T-ID listings (post-Phase-3):**
+**Bucket-grouped T-ID listings (post-Phase-3, with 2026-05-13 additions):**
 
 ### Resolved in Phase 3 (6)
 - **T-067** — MAGE long-term role caveat → **Decision #53** (Staley-caveat retired; Decision #39 formally closed)
@@ -111,9 +112,9 @@ Any additional registers encountered during reading are noted in §6.
 ### Retired in Phase 3 (1)
 - **T-022** — Micro-PTA exercises in V1 scope (Decision #24 fully answered; formally retired)
 
-### V1-decide-soon (45)
+### V1-decide-soon (44)
 - **Track C2 anchor:** T-008
-- **Exercise UX (Track C2 / C):** T-001, T-002, T-003, T-004, T-005, T-006, T-007
+- **Exercise UX (Track C2 / C):** T-001, T-002, T-003, T-004, T-005, T-006, T-007, T-099 *(authoring-origin discrimination, added 2026-05-13)*
 - **Configuration UI:** T-009, T-010, T-011
 - **Progress / completion UI:** T-012, T-013, T-014, T-015
 - **Catalog (Track D):** T-016, T-017, T-018, T-019, T-021, T-023, T-024
@@ -121,13 +122,14 @@ Any additional registers encountered during reading are noted in §6.
 - **Catalog-time defaults:** T-030, T-031, T-032
 - **Agentic — demo-blocking:** T-038, T-039, T-042, T-043, T-049, T-052, T-053, T-054, T-057, T-058, T-062
 - **Agentic — team-org / infra:** T-068, T-069
+- **Pricing (added 2026-05-13):** T-098 *(Universal Affordance Symmetry × tier-gating interaction)*
 - **Content classes:** T-093, T-095
 
-### V2-defer (31)
-- T-020, T-029, T-033, T-034, T-035, T-037, T-040, T-044, T-045, T-046, T-048, T-050, T-051, T-055, T-056, T-060, T-061, T-063, T-064, T-066, T-075, T-076, T-077, T-078, T-086, T-087, T-089, T-090, T-091, T-092, T-096
+### V2-defer (34)
+- T-020, T-029, T-033, T-034, T-035, T-037, T-040, T-044, T-045, T-046, T-048, T-050, T-051, T-055, T-056, T-060, T-061, T-063, T-064, T-066, T-075, T-076, T-077, T-078, T-086, T-087, T-089, T-090, T-091, T-092, T-096, T-100 *(K-family vs. etudes boundary, added 2026-05-13)*, T-101 *(semi-lattice engagement weights in user UI, added 2026-05-13)*, T-102 *(community/marketplace V1 scope, added 2026-05-13)*
 
-### Explicit-punt (17)
-- T-036, T-041, T-047, T-059, T-065, T-070, T-071, T-072, T-073, T-079, T-080, T-081, T-082, T-083, T-084, T-088, T-094
+### Explicit-punt (18)
+- T-036, T-041, T-047, T-059, T-065, T-070, T-071, T-072, T-073, T-079, T-080, T-081, T-082, T-083, T-084, T-088, T-094, T-103 *(camera tracking × Three AI Roles placement, added 2026-05-13)*
 
 ---
 
@@ -162,6 +164,16 @@ Any additional registers encountered during reading are noted in §6.
 **T-007 — *User Paths naming.*** "User Paths" is a placeholder. Alternatives: "Playlists," "Plans." User-facing name TBD.
   Sources: UX §9 #19
   **Bucket:** V1-decide-soon. **Reasoning:** Naming call that affects design conversations. Could be elevated to decide-now if Steven wants to pick fast (Plans vs. Playlists vs. User Paths); flagged as ambiguous in §8.
+
+**T-099 — *Authoring-origin discrimination in V1 surfacing.*** *(Added 2026-05-13 per Doc 14 §12.4 Q-B.)* Decision #34's 2026-05-12 amendment establishes that `authoring_origin` is canonical at every authored hierarchy level (atoms, blueprints, paths, roadmaps, Projects) drawn from the four-origin vocabulary in Doc 09 §3.3 (MuseFlow preset / user-generated / AI-generated / community-generated). The V1 surfacing model for discriminating these is open: badges per item? Filter chips at the top of browse views? Faceted browse? Color coding? Plain text labels? Different patterns for different hierarchy levels? The choice has substantial UX implications and interacts with the AI-averse user constraint (T-006) and with Universal Affordance Symmetry (Decision #61).
+  Sources: Doc 14 §12.4 Q-B
+  Cross-refs: Decision #34 (2026-05-12 amendment); Decision #61 (Universal Affordance Symmetry); Doc 09 §3.3 (Four Authorship Origins); T-006 (default browse view — preset-default vs. all-mixed); T-007 (User Paths naming, related taxonomy question)
+  **Bucket:** V1-decide-soon. **Reasoning:** Affects every browse surface in the product. Track C2 design work; pairs naturally with T-006.
+
+**T-101 — *Semi-lattice substrate-engagement weights in user-facing UI.*** *(Added 2026-05-13 per Doc 14 §12.4 Q-D.)* Decision #58 (Semi-Lattice Engagement) establishes that substrate engagement is a graph computed at agent-reasoning time — "tree for users, semi-lattice for the agent." The user-facing UI in V1 presents a simpler tree-based filter/browse model. Open question: should adjacent-substrate engagement weights ever be exposed to power users in any form (e.g., "this exercise also exercises K-A4 Pivoting at engagement weight 0.6")? Or is the engagement layer strictly agent-only forever? The former might enable power-user filter discovery; the latter keeps UX simple. Two distinct sub-questions: (a) V1 — definitely agent-only; (b) V2+ — surfacing model open.
+  Sources: Doc 14 §12.4 Q-D
+  Cross-refs: Decision #58 (Semi-Lattice Engagement); Decision #25 (atom identity — tree-structured); T-099 (related surfacing question)
+  **Bucket:** V2-defer. **Reasoning:** V1 is agent-only per Decision #58's "tree for users" framing; V2+ surfacing model is genuinely open but does not block V1 ship.
 
 ---
 
@@ -429,6 +441,12 @@ Any additional registers encountered during reading are noted in §6.
   Cross-refs: T-054 (exercise control surface enumeration)
   **Bucket:** V2-defer. **Reasoning:** Agentic-policy capability question; post-V1, parallels broader agent live-toggle design.
 
+**T-103 — *Camera-based hand tracking → Three AI Roles placement.*** *(Added 2026-05-13 per Doc 14 §12.4 Q-F.)* Staley's May 12 "crazy idea": when camera-based hand tracking becomes feasible (current power-user setup; future AR/VR), where does it fit in the Three AI Roles model (Decision #59)? Two candidate placements: (a) Practice Partner — the camera is a new input modality the in-session AI uses to observe technique, posture, hand position (mirrors the "teacher in the room watching" metaphor); (b) Composer-Librarian — the camera output is content-generating context that informs what the AI prescribes next (analogous to how the user-modeling layer informs the Coach). Both readings have merit. The question is V3+ speculation per Doc 14 §10 — no commitment, no demo dependency, no V1 implications. Logged so it doesn't fall out of the conversation when the camera capability matures.
+  Sources: Doc 14 §12.4 Q-F, Doc 14 §10
+  Cross-refs: Decision #59 (Three AI Roles); Decision #47 (User-Modeling Layer — adjacent input substrate); Doc 09 §6A (Agent Control Surfaces per Content Mode — eventual home if Practice Partner reading wins)
+  **Bucket:** Explicit-punt. **Reasoning:** V3+ speculative capability; the underlying hardware/UX feasibility constraints are not yet aligned. Resolution gated on camera-tracking capability maturing to feasibility. No V1 / V2 dependencies.
+  **Status:** OPEN (speculative).
+
 ---
 
 ### C-11 — Agentic — Custom Content Generation & Authoring
@@ -554,6 +572,11 @@ Any additional registers encountered during reading are noted in §6.
   Status: **RESOLVED** (Phase 3, 2026-05-12) by **Decision #55** — generation-cost-gating confirmed as canonical pricing framing.
   **Bucket:** Decide-now. **Reasoning:** Doc 11 §11.9 recommended (b) generation-gating framing wins; Patrick's atom-gating becomes pre-§16 framing we superseded. Doc 11 flagged this as 'team-alignment question, not just a memo recommendation'. Proposed Phase 3 decision: confirm (b) and align team.
 
+**T-098 — *Universal Affordance Symmetry × tier-gating interaction.*** *(Added 2026-05-13 per Doc 14 §12.4 Q-A.)* Decision #61 (Universal Affordance Symmetry) establishes that every AI capability has a manual user-driven equivalent and is silent on tier-gating. Two readings of the interaction are possible: (a) tier-gating gates only the AI-mediated path, leaving the manual path universal across tiers; (b) tier-gating may apply to AI-mediated and manual paths independently (e.g., the Repertoire Builder itself could be a premium-tier feature per Decision #37's source notes, gating the manual authoring path while AI-mediated generation might be available to free-tier users at limited volume). The choice has substantive UX and pricing implications. Affects whether the PRD and downstream design can frame any feature as "free-tier only without AI" or whether the manual path is always free-tier accessible.
+  Sources: Doc 14 §12.4 Q-A
+  Cross-refs: Decision #61 (Universal Affordance Symmetry — silent on this); Decision #37 (pricing not yet encoded; Repertoire Builder + transposition floated as premium-tier candidates); T-079 (pricing model design — parent question); T-080 (atom-level tier-gating); T-081 (generation volume tiers)
+  **Bucket:** V1-decide-soon. **Reasoning:** Elevated above T-079's explicit-punt status because Decision #61 has shipped and the PRD will need to reflect the principle. The PRD does not require the pricing model itself to be answered, but does require a working assumption about whether features-with-AI-mediation can be tier-gated without breaking the symmetry constraint. Resolution venue: pairs with PRD authoring and any subsequent pricing-design work.
+
 ---
 
 ### C-15 — Teacher / Institutional
@@ -643,6 +666,24 @@ The original C-17 framing ("cognitive vs. motor substrate distinction") is parti
   Cross-refs: Decision #25 (atom identity — preserved); Decision #57 (K-substrate family); Decision #58 (semi-lattice engagement layer); Decision #5 (Kinesthetic modality — adjacent and reinforcing, but distinct from K-substrate family); T-026, T-027 (sub-questions, also resolved); Doc 02 §3.1.5 (canonical catalog home); Doc 02 §3.2.1 (semi-lattice layer).
   **Status:** RESOLVED.
 
+**T-100 — *K-family motor drills vs. Etudes — placement boundary.*** *(Added 2026-05-13 per Doc 14 §12.4 Q-C; reopens C-17 cluster.)* Decision #57 admits K-substrate motor drills (Hanon-style, technique-cluster) into the Exercise content mode. Decision #60 admits AI-generated Etudes into the Repertoire content mode, defined as "composed musical material with explicit training intent." These two categories border each other along a continuum: a Hanon exercise is a K-A1/K-A3-trained Exercise-mode atom; a composed motor-development etude with the same training intent is Repertoire-mode content. The placement boundary needs framing: (a) is the cut purely on the Spectrum (Hanon = Automaticity pole = Exercise; composed motor etude = synthesis midpoint = Repertoire)? (b) is there additional discriminator (e.g., compositional length, presence of musical phrasing)? (c) does the same training intent ever produce both an Exercise atom and a Repertoire etude as alternative manifestations of the same goal? Catalog authoring (Track D) and any future Repertoire-mode etude library work will both need this answered.
+  Sources: Doc 14 §12.4 Q-C
+  Cross-refs: Decision #57 (K-substrate family); Decision #58 (Semi-Lattice Engagement); Decision #56 (Spectrum); Decision #60 (Etudes + Variations); T-021 (V1 catalog scope — adjacent); T-027 (technique drills placement — resolved, but related)
+  **Bucket:** V2-defer. **Reasoning:** Decision #57 fully admits K-substrate motor drills to the Exercise catalog; the Repertoire-mode etude side is R&D-active (Decision #60) but does not block V1 Exercise-section work. The boundary question becomes load-bearing only when both sides have implementations to coordinate, which is V2-era at earliest. May elevate to V1-decide-soon if any V1 Repertoire-mode etude work surfaces.
+  **Status:** OPEN.
+
+---
+
+### C-18 — Community / Network Effects *(added 2026-05-13 per Doc 14 §2.3)*
+
+This cluster groups questions about MuseFlow's community / network-effects pillar — shareable artifacts, content/roadmap/exercise marketplaces, user-to-user discussion, social-style features. Surfaced as a strategic pillar by Staley on the May 12 standup with team alignment in principle; not yet committed to canon as a Decision because the shape requires its own scoping pass. Resolution venue is a new Track G (Community / Network Effects scoping).
+
+**T-102 — *Community / marketplace V1 scope.*** *(Added 2026-05-13 per Doc 14 §12.4 Q-E.)* Staley's May 12 push: B2C apps require shareability and network effects for organic growth. Concrete examples discussed: shareable high scores, content marketplace (user-authored exercises, user-authored roadmaps, user-authored repertoire), user-to-user discussion of progress and technique. Steven extended: an open marketplace for sourcing content adds the strongest value. The team aligned in principle but did not commit phasing. Open: what is the V1 scope? Options range from (a) none — community is V2+ entirely; (b) lightweight only — shareable progress / high scores; (c) read-only marketplace — browse community-shared content but not publish in V1; (d) full marketplace — author, publish, discover, install in V1. Each option has different schema, moderation, and engineering implications. Pricing-tier interaction (Decision #37) is also open. Decision #61 (Universal Affordance Symmetry) reinforces that community-sourced content is one of the four authoring origins per Doc 09 §3.3; the V1 surfacing model (T-099) needs to handle community-origin content uniformly with the other three origins regardless of the V1 marketplace scope.
+  Sources: Doc 14 §12.4 Q-E
+  Cross-refs: Decision #34 (custom authoring — Repertoire Builder is the upstream authoring surface); Decision #41 (Content Mode / Path Mode Architecture — community content fits the same architecture); Decision #61 (Universal Affordance Symmetry); Doc 09 §3.3 (Four Authorship Origins — community-generated is one of the four); T-091 (teacher-authored exercise sharing scope — adjacent precursor); T-099 (V1 authoring-origin surfacing — must accommodate community even if marketplace is V2+)
+  **Bucket:** V2-defer. **Reasoning:** The strategic pillar is aligned but the V1 scope requires its own scoping pass (proposed Track G in Doc 14 §12.3 T-A). Community features do not block V1 Exercise-section ship; the architecture already accommodates community-origin content per Doc 09 §3.3. Marketplace shape, moderation, sharing-scope, and pricing interaction are V2-era at earliest.
+  **Status:** OPEN.
+
 ---
 
 ## 6. Stale / Resolved summary
@@ -655,7 +696,9 @@ The original C-17 framing ("cognitive vs. motor substrate distinction") is parti
 
 *(Phase 1 found no clean retirement candidates beyond partially-stale items. Phase 3 retired T-022 after confirming Decision #24 fully answers the V1-or-deferred question.)*
 
-**Closure note** The C-17 cluster (Substrate-architecture refinement) — T-026, T-027, T-097 — is fully resolved as of 2026-05-12 by Decisions #57 + #58 (Track C-17 substrate-architecture refinement work). The C-17 cluster is now empty of open questions but is retained in §5's cluster index for audit trail. The substrate-architecture refinement work also produced Decisions #56 (Novelty-Automaticity Spectrum), #59 (Three AI Roles), and #60 (Etudes + Variations) as adjacent canon additions; those decisions do not resolve specific T-NNN entries but recontextualize broader framing across multiple clusters.
+**Closure note** The C-17 cluster (Substrate-architecture refinement) was fully resolved as of 2026-05-12 by Decisions #57 + #58 (Track C-17 substrate-architecture refinement work), then **reopened on 2026-05-13 with T-100** (K-family motor drills vs. Etudes placement boundary, V2-defer) per Doc 14 §12.4 Q-C. T-026, T-027, T-097 remain resolved. The substrate-architecture refinement work also produced Decisions #56 (Novelty-Automaticity Spectrum), #59 (Three AI Roles), and #60 (Etudes + Variations) as adjacent canon additions; those decisions do not resolve specific T-NNN entries but recontextualize broader framing across multiple clusters.
+
+**2026-05-13 additions note** Six new entries (T-098 through T-103) were added on 2026-05-13 per Doc 14 §12.4 Q-A through Q-F, alongside one new cluster (C-18 Community / Network Effects). Inventory grew from 97 to 103 entries across 17 → 18 clusters. The additions reflect open questions surfaced by the May 12 standup and codified through Decision #61 (Universal Affordance Symmetry) and the Decision #34 amendments. T-098 (Universal Affordance Symmetry × tier-gating interaction) is the only one bucketed V1-decide-soon at the pricing-cluster level — PRD-adjacent. T-099 (V1 authoring-origin surfacing) is V1-decide-soon at the UX-cluster level, pairing with T-006.
 
 ### 6.2 `PARTIALLY STALE` entries (kept in inventory; resolution status noted)
 

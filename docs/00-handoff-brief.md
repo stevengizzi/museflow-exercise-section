@@ -172,7 +172,7 @@ For future conversations: Steven's thinking style is first-principles, systems-o
 
 He's also willing to change direction when something isn't working. The "core unit" concept went through three definitions before landing on the exercise atom. The navigation model evolved from pure library to layered drill-down to the current hybrid. He wants to be shown alternatives and hear honest pushback, not just have his ideas reflected back.
 
-Key collaborators: **Staley** (CTO) — engineering lead who emphasizes data model correctness as the foundation. **Andrew Urbanowicz** (VP of Engineering) — repertoire editor, audio recognition, proactive nudging. **Asif** (contractor) — engineering collaborator for exercise section implementation. **Patrick Boylan** (co-founder) — product, marketing, commercial production, and fundraising. **Tom Urbanowicz** (Andrew's father) — small angel investor and advisor; occasionally helps with sales/marketing.
+Key collaborators: **Staley** (CTO) — engineering lead who emphasizes data model correctness as the foundation. **Andrew Urbanowicz** (VP of Engineering) — Repertoire Builder, audio recognition, proactive nudging. **Asif** (contractor) — engineering collaborator for exercise section implementation. **Patrick Boylan** (co-founder) — product, marketing, commercial production, and fundraising. **Tom Urbanowicz** (Andrew's father) — small angel investor and advisor; occasionally helps with sales/marketing.
 
 ---
 

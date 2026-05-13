@@ -65,6 +65,8 @@ Two composition paths:
 
 Both paths are first-class. The product is designed so that AI-averse users can engage fully without invoking AI; AI-engaged users get a personalized experience.
 
+**The underlying principle** is what we call Universal Affordance Symmetry (Decision #61): *every capability the MuseFlow AI can perform has a manual, user-driven equivalent.* AI is a layer over the same product, not a separate product. The pitch line: *"MuseFlow's AI doesn't replace what you can do. It does what you'd do, in service of what you've said you want."*
+
 ### 2.2 The Three AI Roles
 
 MuseFlow AI is not a single agent. It plays three distinct roles you'd recognize from any great teacher:
@@ -76,6 +78,8 @@ MuseFlow AI is not a single agent. It plays three distinct roles you'd recognize
 **The Practice Partner** — moment-scoped AI that's in every session with you. Controls performance constraints in real time (tempo, accuracy, looping); surfaces insights and advice ("your left hand is rushing at bar 12"); orchestrates the app the way a teacher in the room would (auto-looping, start-position movement, next-step decisions); senses engagement (frustration, boredom, flow state) and signals back to the Coach.
 
 Each role decomposes into 4–6 specific capabilities. Each operates at different scope, latency, and cost profile. Together they constitute the AI ecosystem within the broader product ecosystem.
+
+> **Team alignment note (2026-05-12):** The Three AI Roles framing was presented to the full team at the May 12 standup (Doc 14 §1.2) and received unforced convergence — Andrew, the team member who had not been on the May 7 brainstorm where the framework was developed, received it as natural, and Patrick and Staley reinforced the framing for pitch use. The Practice Partner example ("'Let's narrow in on this second line… I'm going to bring your tempo down 20 BPM…'") landed especially well as a demonstration of the role's scope. The framing is validated for pitch-deck and investor-conversation use.
 
 ### 2.3 What AI-Generated Content Looks Like
 
@@ -237,7 +241,7 @@ Candidate metric categories to develop:
 
 - **Steven Gizzi** — Founder/CEO. First-principles systems thinker; architect of MuseFlow's pedagogical framework (PTA Loop, FTA Field, Novelty-Automaticity Spectrum, substrate catalog, Three AI Roles framework). Leads product design.
 - **Staley** — CTO. Engineering at the highest level; agentic system architecture; AI/ML infrastructure. Drives the technical platform that the AI roles operate on.
-- **Andrew Urbanowicz** — VP of Engineering. Repertoire editor, audio recognition, proactive notification system.
+- **Andrew Urbanowicz** — VP of Engineering. Repertoire Builder, audio recognition, proactive notification system.
 - **Asif** — Contractor. Primary implementer for the Exercise section.
 - **Patrick Boylan** — Co-founder. Product, marketing, pitch deck, fundraising. Decomposes the macro PRD into MVP work.
 

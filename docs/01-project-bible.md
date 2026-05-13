@@ -137,7 +137,7 @@ Repertoire is the synthesis but is also more than the midpoint. It introduces a 
  
 At the level of raw musical material, all three modes generate or reference the same underlying content: notation, audio, complexity parameters. They differ in **scheduling and bounding policy**, not in content type. *Steel is shapeless until you give it form. Music is shapeless until we manifest it into Sight Reading, Exercises, or Repertoire.*
  
-Architecturally, this means **one content generator, three scheduling/bounding policies** — not three generators. The same generative pipeline produces material for all three modes; the mode determines how that material is scheduled, bounded, and presented. This extends what Decisions #33 (exercise generation on demand) and #34 (custom authoring via repertoire editor) already imply, and gives the agentic system a clean factoring: generate content from a unified pipeline, route through the policy layer appropriate to the user's training intent.
+Architecturally, this means **one content generator, three scheduling/bounding policies** — not three generators. The same generative pipeline produces material for all three modes; the mode determines how that material is scheduled, bounded, and presented. This extends what Decisions #33 (exercise generation on demand) and #34 (custom authoring via the Repertoire Builder) already imply, and gives the agentic system a clean factoring: generate content from a unified pipeline, route through the policy layer appropriate to the user's training intent.
  
 The Shapeless Content principle also explains why mode boundaries are pedagogically meaningful rather than arbitrary: the *act of shaping* — the policy applied — is where the pedagogical value differentiates, not the raw material.
  
@@ -405,6 +405,9 @@ Every exercise should target a difficulty level at the edge of the user's curren
 ### 8.8 Contextual Transfer
 Substrates trained in isolation must also be trainable in context. A user who can identify intervals flawlessly in a dedicated interval exercise must also be able to recognize those intervals when they appear embedded in a chord progression or melodic passage. The exercise system should progress users from isolated substrate drilling toward contextual, compound exercises where trained atoms appear within larger musical structures. This principle drives the design of compound and cross-domain exercise families, and it also defines the relationship between the Exercise Section (controlled isolation) and the Repertoire Section (uncontrolled context).
 
+### 8.9 Universal Affordance Symmetry
+Every capability the MuseFlow AI can perform has a manual, user-driven equivalent. AI mediation is a layer over user-accessible primitives, not a replacement for them. This principle is what holds the Tooling Ecosystem framing together (Doc 13 §2.1) and what makes the commitment to AI-averse users structural rather than aspirational. It does not require parallel release timing for the AI-mediated and manual paths; it requires only that the manual path exists as a first-class part of the design. See Decision #61 and Doc 09 §1.7 (canonical home).
+
 ---
 
 ## 9. Relationship to MuseFlow Product Features
@@ -425,7 +428,7 @@ Substrates trained in isolation must also be trainable in context. A user who ca
 | **Agentic Exercise System (Projects)** | Users describe goals in natural language; the MuseFlow AI builds Projects with personalized roadmaps composed of exercise atoms, repertoire, sight-reading targets, and AI-generated custom content. See UX & Navigation Spec §8 and Doc 09 (Agentic MuseFlow Vision). | **Active R&D track / TBD** |
 | **Streak Tracking** | Engagement and consistency layer built on top of exercise completion data. | **V1–V2** |
 
-> **Note (May 2026):** Additional capabilities surfaced in April 28 and May 5 standups have phasing **TBD** and are not yet rowed into this table. These include: exercise generation on demand (Decision #33), custom authoring via the repertoire editor (#34), teacher tools and assignment flows (#35), mobile parity per atom/blueprint (#36), Lit-Keys mode and completion handicap (#38), User Paths as a third path mode (#41), and the engagement/nudging layer (#19 amendment). Phasing for each of these is a target for the open-question triage and PRD-authoring phases. The full list of additions and their reasoning is tracked in the Design Decisions Log (Decisions #32–#41).
+> **Note (May 2026):** Additional capabilities surfaced in April 28 and May 5 standups have phasing **TBD** and are not yet rowed into this table. These include: exercise generation on demand (Decision #33), custom authoring via the Repertoire Builder (#34), teacher tools and assignment flows (#35), mobile parity per atom/blueprint (#36), Lit-Keys mode and completion handicap (#38), User Paths as a third path mode (#41), and the engagement/nudging layer (#19 amendment). Phasing for each of these is a target for the open-question triage and PRD-authoring phases. The full list of additions and their reasoning is tracked in the Design Decisions Log (Decisions #32–#41).
 
 ### 9.2 V1 Design Philosophy
 

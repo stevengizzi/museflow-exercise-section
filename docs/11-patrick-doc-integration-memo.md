@@ -265,7 +265,7 @@ Sharing the name is unworkable. Two options for resolution:
 - **Established SRT precedent** — production today, screenshots-of-record.
 - **Staley's "free-play interlude as part of the path"** comment (Standup Synthesis §1) — likely refers to the completion-policy meaning, invocable as part of a Project's roadmap.
 - **Decision #45** — the user-generated-sight-reading resolution already established the analogous capability ("no completion criteria, just play endlessly") within that content mode. Decision #49 is the exercise-side parallel.
-- The repertoire-side parallel (playing a piece endlessly without it logging as practice or completion) is its own thing, separate from Andrew's repertoire editor (which is an authoring/audition tool, not a Free Play mode). The repertoire parallel falls under the repertoire control surface (Doc 09 §6A.1) and likely already exists in some form; not a target of this memo.
+- The repertoire-side parallel (playing a piece endlessly without it logging as practice or completion) is its own thing, separate from Andrew's Repertoire Builder (which is an authoring/audition tool, not a Free Play mode). The repertoire parallel falls under the repertoire control surface (Doc 09 §6A.1) and likely already exists in some form; not a target of this memo.
 
 **Recommendation:** Absorb the established Game / Free Play pattern into the Exercise content mode as a **completion-policy element of the exercise control surface (Doc 09 §6A.2), live-toggleable during a session**. Bundle the naming-collision resolution (rename the deferred candidate to "Improvisation" or similar) into the same Decision (#49). See §10.
 

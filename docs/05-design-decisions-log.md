@@ -426,17 +426,21 @@ Generated exercises are first-class citizens of the Exercise content mode, tagge
 
 ---
 
-## Decision 34: Custom Authoring Path via Andrew's Repertoire Editor
+## Decision 34: Custom Authoring Path via Andrew's Repertoire Builder
 
 **Source:** Andrew's May 5, 2026 demo of an in-app music editor (click-to-add notes, drag-to-reposition, save to user library, notation editing, MIDI playback, three play modes). Patrick's framing during the demo: "I think this would be to give to instructors as well. They can write their own exercises, upload them, then share with their students, all within the MuseFlow ecosystem."
 
-**Decision made:** Andrew's repertoire editor is the natural authoring surface for custom exercises (and custom repertoire) authored by users and teachers. The data flow is: editor → exercise atom (or repertoire entity) → mode catalog (with `authoring_origin` set to user or teacher) → assignable / shareable / browsable.
+**Decision made:** Andrew's Repertoire Builder is the natural authoring surface for custom exercises (and custom repertoire) authored by users and teachers. The data flow is: editor → exercise atom (or repertoire entity) → mode catalog (with `authoring_origin` set to user or teacher) → assignable / shareable / browsable.
 
-**Reasoning:** Building a separate exercise-authoring tool would duplicate functionality the repertoire editor already provides. Treating the editor as a multi-purpose authoring surface unifies the user-content-creation story across modes and reduces engineering load.
+**Reasoning:** Building a separate exercise-authoring tool would duplicate functionality the Repertoire Builder already provides. Treating the editor as a multi-purpose authoring surface unifies the user-content-creation story across modes and reduces engineering load.
 
 **Phasing:** TBD. Specific UX flows for exercise authoring (vs. repertoire authoring) within the editor are not yet designed. Teacher-authored exercise assignment is part of the elevated teacher-tools scope (see Decision #35).
 
-**Cross-references:** Decisions #33 (generation on demand), #35 (teacher tools), #40 (atom schema — `authoring_origin`).
+**Cross-references:** Decisions #33 (generation on demand), #35 (teacher tools), #40 (atom schema — `authoring_origin`), #41 (Content Mode and Path Mode Architecture), #61 (Universal Affordance Symmetry); Doc 09 §3.3 (Four Authorship Origins); Doc 04 Glossary "Repertoire Builder" (naming history).
+
+**Amendment (2026-05-12, per Doc 14 §2.5):** The canonical name for the surface this Decision describes is **Repertoire Builder**, not "Repertoire Editor" (the original title). The team settled on Repertoire Builder during the May 12 standup after Patrick's loose usage of "composer dashboard" triggered a naming check; Steven clarified that "composer dashboard" is reserved for a different (currently unspecified) surface. The functional scope of this Decision is unchanged by the rename. All in-canon references to "Repertoire Editor" have been updated to "Repertoire Builder" alongside this amendment; the Glossary entry preserves the naming history.
+
+**Amendment (2026-05-12, per Doc 14 §2.2 + §1.6):** The `authoring_origin` field's applicability is hereby reaffirmed as canonical at **every authored hierarchy level**, not only at the atom level — atoms, blueprints, paths, roadmaps, and Projects all carry an `authoring_origin` value drawn from the four-origin vocabulary in Doc 09 §3.3 (MuseFlow preset / user-generated / AI-generated / community-generated). This was already articulated in Doc 09 §3.3 ("the same vocabulary applies across content and paths, content modes and path modes") but had not been elevated into the Decision Log. The May 12 standup explicitly extended the principle to roadmaps in conversation (Steven: roadmaps come in *preset / user-generated / AI-generated / community-sourced* flavors, parallel to atoms); this amendment makes that elevation canonical. Practical consequence: any V1 surfacing model for authoring-origin discrimination (filters, badges, etc.) must operate uniformly across hierarchy levels, not only at the atom/content-mode level. See Doc 12 T-099 (V1 surfacing model — open).
 
 ---
 
@@ -447,7 +451,7 @@ Generated exercises are first-class citizens of the Exercise content mode, tagge
 **Decision made:** Teacher tools and assignment flows are elevated from "open future item" (the prior status) to an active design scope. Specific capabilities anticipated:
 - Teachers can view student progress per atom / molecule / strand / cluster
 - Teachers can assign specific atoms, molecules, strands, or paths to specific students
-- Teachers can author custom exercises (via the repertoire editor; see Decision #34) and assign them to students
+- Teachers can author custom exercises (via the Repertoire Builder; see Decision #34) and assign them to students
 
 **Reasoning:** Earnest is paying. The instructor portal has commercial pressure on it. The exercise section's design needs to anticipate these capabilities so the data model and UX can accommodate teacher-as-viewer-of-student-data and assignment-as-first-class-object without later restructuring.
 
@@ -473,7 +477,7 @@ Generated exercises are first-class citizens of the Exercise content mode, tagge
 
 ## Decision 37: Pricing/Tier Gating Not Yet Encoded in Schema
 
-**Source:** Pricing-tier discussion across both standups (free unlimited / mid / premium at $15.99 floated; custom repertoire editor and transposition floated as premium-tier candidates). No tier structure is committed.
+**Source:** Pricing-tier discussion across both standups (free unlimited / mid / premium at $15.99 floated; the custom-authoring Repertoire Builder and transposition floated as premium-tier candidates). No tier structure is committed.
 
 **Decision made:** Tier gating is **not currently encoded as a field on the atom schema**. A `tier_gating` field was considered (see Q&A history during A1) and dropped on the rationale that adding speculative fields creates noise and falsely signals that pricing is a near-term design surface. When pricing is designed, adding the field is an additive non-breaking schema change.
 
@@ -1034,5 +1038,34 @@ Variations on a Theme is the second use case because it does NOT require AI to c
 **Phasing:** Both are Composer-Librarian role capabilities (Decision #59). Phasing per Decision #59: R&D-active under Mage's generation work. Investor demo scope (Doc 09 §15.2) is the V1 target for at least Variations on a Theme; full etude generation is V1–V2 depending on Mage's generation maturity.
  
 **Cross-references:** Decision #33 (Generation on Demand — etudes are repertoire-scope generation); Decision #34 (Custom Authoring — Variations is the repertoire-mode custom-authoring path); Decision #44 (MAGE augmentation — the generation engine); Decision #56 (Novelty-Automaticity Spectrum — etudes manifest near the synthesis midpoint; Variations are scheduling/complexity transforms over repertoire); Decision #59 (Three AI Roles — both are Composer-Librarian capabilities); Doc 09 §9 (Custom Content Generation — canonical home); Doc 13 (pitch deck register).
+
+---
+
+## Decision 61: Universal Affordance Symmetry
+
+**Source:** May 12, 2026 standup discussion (Doc 14 §1.6, §2.1). Steven's explicit articulation, with team alignment: *"there really is nothing that the AI on MuseFlow could do that a user could not also do."* Surfaced in the context of presenting the Three AI Roles (Decision #59) framework and explaining the relationship between AI-mediated and user-driven affordances.
+
+**Decision made:** **Universal Affordance Symmetry is a canonical product-architecture principle.** For every capability MuseFlow's AI can perform, the equivalent capability is also available to the user as a manual, user-driven affordance. AI mediation is an option layered over user-accessible primitives, never a replacement for them. This applies across all three AI Roles (Coach, Composer-Librarian, Practice Partner) and across all of MuseFlow's content modes and path modes:
+
+- **Coach capabilities** — what the Coach does (goal interpretation, roadmap composition, plan adaptation, cross-mode orchestration) the user can also do manually (state a goal, build a User Path, edit their own roadmap, switch modes themselves).
+- **Composer-Librarian capabilities** — what the Composer-Librarian does (sourcing, generating, modifying, evaluating content) the user can also do (browse the preset catalog, author custom content via the Repertoire Builder, simplify or complexify pieces themselves, choose their own content).
+- **Practice Partner capabilities** — what the Practice Partner does in-session (control tempo, accuracy thresholds, looping, next-step decisions) the user can also do manually (the existing control surfaces remain user-operable).
+- **Authoring origins** — the four-origin vocabulary (MuseFlow preset / user-generated / AI-generated / community-generated; see Doc 09 §3.3) applies uniformly at every authored hierarchy level (atoms, blueprints, paths, roadmaps, Projects). AI-generated content is one origin among four; it does not displace the others.
+
+**Reasoning:** Three converging reasons make this principle load-bearing rather than aspirational.
+
+*Product positioning.* MuseFlow's positioning as a tooling ecosystem (Doc 13 §2.1) — composable manually or autonomously — depends on every tool being a tool. If AI-only capabilities exist alongside manual capabilities, the "tooling ecosystem" framing fractures: the AI becomes a separate product instead of a layer over the same product. Universal Affordance Symmetry is the principle that holds the ecosystem framing together.
+
+*The AI-averse-user constraint.* Decision #41 (Content Mode and Path Mode Architecture) and the broader project working principle commit MuseFlow to serving users who prefer to engage with the product without AI mediation. That commitment requires that every product capability be accessible without invoking AI. The principle here makes that commitment structural rather than aspirational: a feature that fails the symmetry test fails the AI-averse-user constraint by construction.
+
+*Design discipline against silent AI-only features.* Without an explicit principle, individual feature designs can quietly assume AI mediation and become AI-only by oversight. The principle gives the PRD and downstream design work a load-bearing constraint to test against: *what's the user-driven equivalent of this AI capability?* If the question has no answer, the feature design is incomplete.
+
+The principle is not a constraint that *every* feature must ship the manual equivalent in the same release as the AI-mediated version. It is a constraint that the design contains the user-driven affordance as a first-class element, even if shipping phasing differs. (Example: the agent's roadmap-composition capability and the User Path manual-authoring capability are both first-class per Decision #41, even if their release timing is different.)
+
+**Interaction with pricing tier gating (open).** The principle is silent on whether tier-gating applies to *AI mediation only* or to *both AI mediation and the manual equivalent* of a given capability. Two readings are possible: (a) tier-gating gates only the AI-mediated path, leaving the manual path universal; (b) tier-gating may apply to either path independently. The choice has substantive UX and pricing implications. Recorded as open question T-098 in Doc 12 (C-14 pricing cluster); resolution gated on the pricing-design work (Decision #37) beginning.
+
+**Phasing:** Conceptual canon now. Canonical home Doc 09 §1.7 (parallel to the Three AI Roles section §1.6). Cross-referenced in Doc 01 §8.9 (new Design Principle). The principle constrains all subsequent design work — PRD, Track C2 UI-shape work, Track D catalog authoring, future Track G (community/network-effects) scoping. No V1 implementation commitment is created by this Decision alone; it is the constraint within which V1 work proceeds.
+
+**Cross-references:** Decision #29 (Agentic Vision — symmetry is the principle that keeps the agent layer composable with user-driven affordances); Decision #34 (Custom Authoring — manual equivalent for Composer-Librarian content generation); Decision #41 (Content Mode and Path Mode Architecture — the User Path mode is the symmetry partner of AI-mediated Projects); Decision #46 (Agent-Controllable Repertoire Practice Control Surface — the user-controllable equivalent already exists, validating the principle); Decision #56 (Novelty-Automaticity Spectrum — symmetry applies across all three content modes); Decision #59 (Three AI Roles — symmetry applies per-role); Doc 01 §8.9 (Design Principle); Doc 09 §1.7 (canonical home); Doc 09 §3.3 (Four Authorship Origins — uniform across hierarchy levels); Doc 13 §2.1 (Tooling Ecosystem framing); Doc 12 T-098 (interaction with pricing — open); Doc 14 §1.6, §2.1, §12.1 (source).
 
 ---

@@ -442,7 +442,7 @@ Exercises are inherently combinatorial — atoms are defined by patches across m
 Three generation triggers are anticipated:
 
 - **User-triggered**: a user requests a custom exercise targeting specific skills or constraints from inside the Exercise content mode's **Generate** flow
-- **Teacher-triggered**: a teacher generates an exercise (typically via the repertoire editor surface, see §8.5) to assign to a student
+- **Teacher-triggered**: a teacher generates an exercise (typically via the Repertoire Builder surface, see §8.5) to assign to a student
 - **Agent-triggered**: the MuseFlow AI generates an exercise as part of a Project roadmap, in service of a goal-specific gap
 
 Generated exercises are first-class citizens of the Exercise content mode, tagged with `authoring_origin` (system / teacher / user / agent) and accessible via Browse-by-origin filtering. They persist beyond the originating context — a Project-generated atom can be revisited outside the Project, and a teacher-generated atom can be assigned to multiple students.
@@ -453,11 +453,11 @@ Steven's framing on why this is tractable (May 5 standup): exercises are easier 
 
 Beyond agent-generated exercises, three additional authoring paths are anticipated:
 
-- **User authoring**: a user constructs a custom exercise atom via parameter selection (substrate, modality, target variables, content scope) or via the repertoire editor surface
+- **User authoring**: a user constructs a custom exercise atom via parameter selection (substrate, modality, target variables, content scope) or via the Repertoire Builder surface
 - **Teacher authoring**: a teacher constructs custom exercises through the same surface, with the ability to assign them to specific students
 - **Community authoring** (future): exercises shared between users, eventually via a marketplace
 
-The repertoire editor (Andrew's May 5 demo) is the natural authoring surface for content of any kind. Specific UX for exercise authoring (vs. repertoire authoring) within the editor is open; see §8.6.
+The Repertoire Builder (Andrew's May 5 demo) is the natural authoring surface for content of any kind. Specific UX for exercise authoring (vs. repertoire authoring) within the editor is open; see §8.6.
 
 ### 8.5 Where Projects Live in the Navigation
 

@@ -120,6 +120,54 @@ The Practice Partner operates within a single content piece in a single session 
 
 ---
 
+### 1.7 Universal Affordance Symmetry
+
+The principle that holds the agentic layer composable with the rest of MuseFlow: **every capability the MuseFlow AI can perform has a manual, user-driven equivalent.** AI mediation is a layer over user-accessible primitives, not a replacement for them. Settled as canon on May 12, 2026 — see Decision #61 in the Design Decisions Log; sourced from the May 12 standup discussion where Steven articulated the principle and the team aligned.
+
+#### 1.7.1 What the Principle Says
+
+For every capability the AI exposes, the equivalent user-driven affordance exists as a first-class part of the product. Per AI Role:
+
+- The **Coach** interprets a stated goal, composes a roadmap, adapts plans, switches modes. The user-driven equivalent: state a goal manually (or skip stating one), construct a User Path (Decision #41), edit the roadmap directly, switch modes through the navigation.
+- The **Composer-Librarian** sources from libraries, generates new content on demand, modifies existing content (simplify / complexify / transpose), evaluates fit. The user-driven equivalent: browse the preset catalog and library, author custom content via the Repertoire Builder (Decision #34), choose simplification/transposition manually, judge fit themselves.
+- The **Practice Partner** controls tempo / accuracy / looping in real time, surfaces insights, orchestrates auto-loop and start-position movement, senses engagement. The user-driven equivalent: every control surface already exists as a manually-operable affordance — the Practice Partner controls what the user can also control directly.
+
+Authoring origins (§3.3) follow the same symmetry: AI-generated content is one of four origins (alongside MuseFlow preset, user-generated, community-generated). It does not displace the others; it sits parallel to them at every authored hierarchy level (atoms, blueprints, paths, roadmaps, Projects).
+
+#### 1.7.2 Why This Matters
+
+*The Tooling Ecosystem framing depends on it.* MuseFlow's product positioning (Doc 13 §2.1) is that the ecosystem is composable manually or by AI. That positioning works only if every tool in the ecosystem is, in fact, a tool — accessible to direct manipulation. If AI-only capabilities exist, the ecosystem fractures into two products: the manual MuseFlow and the AI MuseFlow. The symmetry principle prevents that bifurcation.
+
+*The AI-averse-user constraint becomes structural.* MuseFlow commits to serving users who prefer to engage without AI mediation (Decision #41 and the broader project working principle). Symmetry makes that commitment structural rather than aspirational: a user who never touches AI features must still have access to the full product.
+
+*Design discipline against silent AI-only features.* Each feature designed under this principle is testable: *what's the user-driven equivalent?* A feature design that fails the test is incomplete. The principle becomes a load-bearing constraint on the PRD, Track C2 UI-shape work, and all subsequent design work.
+
+#### 1.7.3 What the Principle Does Not Say
+
+The principle does **not** require that every feature ship its manual equivalent in the same release as the AI-mediated version. Phasing per capability is open. It requires only that the design contains the user-driven affordance as a first-class element. (Example: AI-mediated Projects and manually-authored User Paths are both first-class per Decision #41; their release timing may differ.)
+
+The principle is **silent on tier-gating**. Whether pricing tiers gate the AI-mediated path only, or both the AI-mediated and the manual paths independently, is an open question (Doc 12 T-098) gated on pricing-design work beginning (Decision #37).
+
+The principle does **not** assert that the AI-mediated and user-driven paths are equally rich. The AI-mediated path may operate over more context (the agent has access to the full skill model, the full atom-engagement graph, the full corpus) and produce results the user could not practically derive themselves at scale. The symmetry is *categorical*, not *capacity-equivalent*: the user can do the same kind of thing, even if not at the same scope.
+
+#### 1.7.4 Cross-Reference Map
+
+The principle touches multiple existing canon items:
+
+| Canon item | Relationship |
+|---|---|
+| Decision #29 (Agentic Vision) | The agent layer is composable because of symmetry |
+| Decision #34 (Repertoire Builder custom authoring) | The Composer-Librarian's manual equivalent |
+| Decision #41 (Content Mode + Path Mode Architecture) | User Path is the symmetry partner of AI-mediated Projects |
+| Decision #46 (Agent-Controllable Repertoire Practice Control Surface) | Pre-existing user-controllable surface validates symmetry was already de-facto canon |
+| Decision #59 (Three AI Roles) | Symmetry applies per role |
+| §3.3 Four Authorship Origins | Symmetry at the authoring-origin level |
+| §6.4 (The AI Surface Is Not the Only Way to Use MuseFlow) | Restates the principle at the AI-Surface level |
+| Doc 13 §2.1 (Tooling Ecosystem) | Pitch-deck-level expression of the principle |
+| Doc 12 T-098 | Open question on tier-gating interaction |
+
+---
+
 ## 2. The Project Concept
 
 ### 2.1 Definition
@@ -618,7 +666,7 @@ The user can find generated content by:
 Three trigger types are anticipated:
 
 - **User-triggered (manual)**: the user explicitly requests generation via the Generate flow inside a content mode ("I want a custom exercise focused on minor 6th and minor 7th interval recognition with limited time")
-- **Teacher-triggered**: a teacher generates an exercise (via the repertoire editor surface; see Decision #34 and §9.5) and assigns it to one or more students
+- **Teacher-triggered**: a teacher generates an exercise (via the Repertoire Builder surface; see Decision #34 and §9.5) and assigns it to one or more students
 - **Agent-triggered**: the AI generates content as part of a Project roadmap, in service of a goal-specific gap
 
 These three triggers may share infrastructure but have different UX flows.
@@ -1033,7 +1081,7 @@ Several properties make the agentic system a strong demo wedge:
 - **It's visible.** Generating a roadmap from a stated goal is a tangible, on-screen output. Watching the system construct a custom path is the kind of moment that lands on stage.
 - **It's general.** The same demo flow works for any goal — preparing for an audition, learning a piece, improving a skill. The investor sees one demo and extrapolates a thousand.
 - **It's defensible.** Building the agentic system requires the exercise framework, the content modes, the data model, MAGE — all the work the team has been doing. Competitors cannot ship the agentic system without first replicating the substrate.
-- **It's composable with the team's other work.** Andrew's audio recognition makes Project execution richer (the agent can hear the user practicing). The repertoire editor (Andrew's demo) makes custom-content authoring real. Auto-tempo adjustment (shipped) makes Project pacing adaptive. Looping (in development) makes practice sessions tractable. Each existing piece slots into the agentic story.
+- **It's composable with the team's other work.** Andrew's audio recognition makes Project execution richer (the agent can hear the user practicing). The Repertoire Builder (Andrew's demo) makes custom-content authoring real. Auto-tempo adjustment (shipped) makes Project pacing adaptive. Looping (in development) makes practice sessions tractable. Each existing piece slots into the agentic story.
 
 ---
 

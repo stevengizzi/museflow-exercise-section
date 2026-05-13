@@ -43,6 +43,9 @@ The end the Spectrum serves. Fluency removes limitations on movement; movement f
 ### Contextual Interference Effect
 The pedagogical research finding (Shea & Morgan 1979 forward) that high contextual variation in practice produces worse immediate performance but stronger retention and transfer. The mechanism underlying the Novelty pole. Deliberate interleaving along the Spectrum applies this principle as design philosophy.
 
+### Universal Affordance Symmetry
+The product-architecture principle that every capability the MuseFlow AI can perform has a manual, user-driven equivalent. AI mediation is a layer over user-accessible primitives, never a replacement for them. The principle holds the Tooling Ecosystem framing together (the ecosystem is composable manually or autonomously only if every tool is, in fact, a tool) and makes the commitment to AI-averse users structural rather than aspirational. The principle is categorical, not capacity-equivalent — the user can do the same kind of thing the AI does, but not necessarily at the same scale or with the same context. Silent on tier-gating, which remains open. See Doc 01 §8.9, Doc 09 §1.7 (canonical home), and Decision #61.
+
 ---
 
 ## PTA Loop Components
@@ -272,6 +275,11 @@ A multi-dimensional descriptor attached to every exercise, curriculum level, and
 
 ### User Skill Rating (ELO)
 A user-facing composite skill rating computed from performance data across exercises, repertoire, and curriculum. Analogous to chess ELO ratings. Depends on the Complexity Vector for meaningful computation — a user's ELO is only meaningful if the system knows the difficulty of what they attempted. V2 feature.
+
+### Repertoire Builder
+The in-app music editor (click-to-add notes, drag-to-reposition, save to user library, notation editing, MIDI playback, three play modes) Andrew demoed May 5, 2026. The natural authoring surface for custom content of any kind — user-authored or teacher-authored exercises *and* user-authored or teacher-authored repertoire. The data flow is: editor → exercise atom or repertoire entity → mode catalog with `authoring_origin` set to `user` or `teacher` → assignable / shareable / browsable. See Decision #34.
+
+**Naming history.** Previously referred to in canon as the "Repertoire Editor" (Decision #34's original title; multiple cross-references through May 2026). Patrick's loose usage on the May 12 standup briefly called it the "composer dashboard"; Steven clarified that "composer dashboard" is reserved for something else (a future / distinct surface, currently unspecified) and the team settled on **Repertoire Builder** as the canonical name. The Repertoire Builder name covers both the repertoire-authoring and exercise-authoring use cases of the same surface; specific UX for each use case within the surface remains open. See Doc 14 §2.5 for the rename-decision record.
 
 ---
 
