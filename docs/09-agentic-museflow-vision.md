@@ -551,7 +551,7 @@ The sight-reading surface is similarly parallel:
 - **Level construction** — invoking the Sight Reading Generate flow to build a level matching the parameters; the resulting level is stored with appropriate `authoring_origin` (per Decision #45)
 - **Game-mode toggles** — which sight-reading game modes are active for the session
 - **Performance constraints** — accuracy thresholds, time pressure, completion criteria (Decision #43); user-generated levels may carry "no completion criteria, just play endlessly" as a configurable option
-- **Difficulty controls** — chevron count (Optimal Grip), tempo, error tolerance
+- **Difficulty controls** — chevron count (Optimal Grip), tempo, error tolerance. The shipped Automatic Tempo Adjustment (ATA) feature is the Practice-Partner-controllable tempo modulator here; per Decision #62, ATA also exposes a user-controllable configuration panel (the Universal-Affordance-Symmetry-conforming manual equivalent).
 
 The agent's sight-reading-practice job is a policy over this surface in the same shape as exercises and repertoire.
 

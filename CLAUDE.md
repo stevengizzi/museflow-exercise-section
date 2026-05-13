@@ -17,49 +17,55 @@ This is a **design-first repo**, not a sprint-cycle implementation repo. The bul
 ```
 docs/
 ├── 00-handoff-brief.md            # Pre-A1 handoff; mostly historical
-├── 01-project-bible.md             # Vision, content/path modes, foundational frameworks (PTA Loop, FTA Field, Novelty-Automaticity Spectrum §2.4)
+├── 01-project-bible.md             # Vision, content/path modes, foundational frameworks (PTA Loop, FTA Field, Novelty-Automaticity Spectrum §2.4, Universal Affordance Symmetry §8.9)
 ├── 02-system-architecture.md       # Substrate catalog (F/T/A/X/K), training methods, atom schema, semi-lattice engagement §3.2.1
 ├── 03-exercise-taxonomy.md         # Combinatorial exercise matrix, pruning rules, Technique cluster §11.5
 ├── 04-glossary.md                  # Vocabulary canon
-├── 05-design-decisions-log.md      # 60 numbered decisions; consult before re-deciding
+├── 05-design-decisions-log.md      # 62 numbered decisions; consult before re-deciding
 ├── 06-exercise-blueprints.md       # 13 UI/interaction templates
 ├── 07-ux-navigation-spec.md        # Navigation model, configuration, agentic reframe (§8), open questions (§9)
-├── 08-standup-synthesis-apr28-may5.md   # May 2026 team meetings synthesis
-├── 09-agentic-museflow-vision.md   # Freestanding agentic-system vision; Three AI Roles §1.6; Spectrum-driven roadmap composition §5.6
+├── 08-standup-synthesis-apr28-may5.md   # April/May 2026 team meetings synthesis
+├── 09-agentic-museflow-vision.md   # Freestanding agentic-system vision; Three AI Roles §1.6; Universal Affordance Symmetry §1.7; Spectrum-driven roadmap composition §5.6
 ├── 10-may7-brainstorm-synthesis.md # May 7, 2026 brainstorm synthesis; source of Decisions #42–#47
 ├── 11-patrick-doc-integration-memo.md  # A2 deliverable; source of Decisions #48–#52
-├── 12-open-question-triage.md         # Track B deliverable; 97-entry open-question inventory; C-17 cluster created AND resolved 2026-05-12
-├── 13-pitch-deck-register.md           # NEW (2026-05-12). Pitch Deck & External Communications Register. Patrick is the primary consumer.
+├── 12-open-question-triage.md         # Track B deliverable; 103-entry open-question inventory across 18 clusters
+├── 13-pitch-deck-register-v0.1.md      # Pitch Deck & External Communications Register. Patrick is the primary consumer.
+├── 14-standup-synthesis-may12.md       # May 12, 2026 standup synthesis + triage + Funnel cross-project handoff. Source of Decisions #61–#62.
 └── archive/                        # Prior versions of substantially-revised canon docs (audit trail)
 ```
 
-The canon evolves through a tracked sequence of conversations on claude.ai (Tracks A1, A2, B, C-17 done; C/C2/D/E queued). Steven commits to this repo manually after each phase. There is no programmatic write-back from Claude conversations.
+The canon evolves through a tracked sequence of conversations on claude.ai (Tracks A1, A2, B, C-17 done; C/C2/D/E/G queued). Steven commits to this repo manually after each phase. There is no programmatic write-back from Claude conversations.
 
 ## Reading order for orientation
 
 For a fresh session, read in this order:
 
-1. `docs/01-project-bible.md` — vision, content/path modes, foundational frameworks (PTA Loop, FTA Field, Novelty-Automaticity Spectrum)
-2. `docs/05-design-decisions-log.md` — 60 numbered decisions; this is the operational truth about what's been settled
+1. `docs/01-project-bible.md` — vision, content/path modes, foundational frameworks (PTA Loop, FTA Field, Novelty-Automaticity Spectrum, Universal Affordance Symmetry §8.9)
+2. `docs/05-design-decisions-log.md` — 62 numbered decisions; this is the operational truth about what's been settled
 3. `docs/07-ux-navigation-spec.md` — atom hierarchy, navigation model, open questions register
 4. `docs/02-system-architecture.md` — schema definitions, substrate catalog (now including K-substrate family §3.1.5)
-5. `docs/09-agentic-museflow-vision.md` — agentic system context; Three AI Roles framework §1.6
+5. `docs/09-agentic-museflow-vision.md` — agentic system context; Three AI Roles framework §1.6; Universal Affordance Symmetry §1.7
 6. `docs/10-may7-brainstorm-synthesis.md` — strategic synthesis; source of Decisions #42–#47 and several open-question clusters
 7. `docs/11-patrick-doc-integration-memo.md` — A2 evaluation of Patrick's brainstorm doc; source of committed Decisions #48–#52
-8. `docs/12-open-question-triage.md` — Track B deliverable; 97-entry open-question inventory with full disposition. Working backlog for Tracks C2 / C / D / E. Consult §4.5 disposition summary and §8.6 Phase 3 resolutions before starting work in any downstream Track; individual entry status lines (RESOLVED / RETIRED) live with each T-NNN entry in §5. C-17 cluster entries (T-026, T-027, T-097) are Resolved as of 2026-05-12.
-9. `docs/13-pitch-deck-register.md` — Pitch Deck & External Communications Register. Read when external-comms work surfaces or when assembling pitch-ready content. Sections 1–4 are pitch-ready in v0.1; sections 5–8 are sketch/placeholder.
+8. `docs/12-open-question-triage.md` — Track B deliverable; 103-entry open-question inventory across 18 clusters with full disposition. Working backlog for Tracks C2 / C / D / E / G. Consult §4.5 disposition summary and §8.6 Phase 3 resolutions before starting work in any downstream Track; individual entry status lines (RESOLVED / RETIRED) live with each T-NNN entry in §5. C-17 cluster entries (T-026, T-027, T-097) are Resolved as of 2026-05-12; reopened with T-100 (V2-defer) on 2026-05-13.
+9. `docs/13-pitch-deck-register-v0.1.md` — Pitch Deck & External Communications Register. Read when external-comms work surfaces or when assembling pitch-ready content. Sections 1–4 are pitch-ready in v0.1; sections 5–8 are sketch/placeholder.
+10. `docs/14-standup-synthesis-may12.md` — May 12, 2026 standup synthesis + triage + Funnel cross-project handoff. Source of Decisions #61 (Universal Affordance Symmetry) + #62 (Adjustable ATA Configuration). Reference document; not active design canon.
 
 `docs/04-glossary.md` is reference-on-demand. `docs/03`, `docs/06`, `docs/08`, `docs/00` are read when relevant to the task. `docs/archive/` holds prior versions of substantially-revised canon docs (audit-trail only; not canon).
 
-## Recent foundational additions (Track C-17, May 12 2026)
+## Recent foundational additions (May 12–13 2026)
 
-Five framework concepts admitted to canon in the Track C-17 closeout. Quick orientation for sessions that don't have time to read the full Doc 01/02/09 updates:
+Seven framework concepts and product calls admitted to canon across the Track C-17 closeout (May 12) and the Doc 14 standup synthesis integration (May 13). Quick orientation for sessions that don't have time to read the full Doc 01 / 02 / 09 / 13 updates:
 
 - **Novelty-Automaticity Spectrum** (Decision #56, Doc 01 §2.4) — central pedagogical axis: Novelty pole (Sight Reading; generalization) ↔ Automaticity pole (Exercises; automatic execution); Repertoire as synthesis midpoint with artistic-intent overlay. Fluency is the outcome.
 - **K-substrate family** (Decision #57, Doc 02 §3.1.5) — motor-primary substrates, parallel-axis to F/T/A. Catalogs finger-independence, pivoting, stretching/squeezing, whole-hand translation, wrist rotation, octaves, trill, three staccato types, hand-coordination motion types, pedaling, three-system integration, etc.
 - **Semi-lattice substrate engagement** (Decision #58, Doc 02 §3.2.1) — atom identity stays single-substrate; incidental substrate engagement is a graph computable at agent-reasoning time. *Tree for users, semi-lattice for the agent.*
 - **Three AI Roles** (Decision #59, Doc 09 §1.6) — Coach (relationship-scoped), Composer-Librarian (content-scoped; Mage and Opusmodus are implementation tools here), Practice Partner (moment-scoped). Resolves the recurring Mage-vs-Opusmodus framing confusion.
 - **Etudes + Variations on a Theme** (Decision #60, Doc 09 §9) — two distinct AI-generated-repertoire patterns. Etudes: AI-generated with explicit training intent. Variations: AI-mediated modification of existing repertoire along a complexity spectrum.
+- **Universal Affordance Symmetry** (Decision #61, Doc 09 §1.7, Doc 01 §8.9) — every AI capability has a manual user-driven equivalent. AI mediation is a layer over user-accessible primitives, not a replacement. Load-bearing constraint on all subsequent design work; *test every feature design against "what's the user-driven equivalent?"*
+- **Adjustable Advanced ATA Configuration** (Decision #62, Doc 04 Glossary "ATA") — Automatic Tempo Adjustment gets a configurable threshold panel + adjusted defaults; queued for Asif post the data-fixes freeze. Sight Reading mode primary; Exercise-mode interaction TBD.
+
+Additionally, **Repertoire Builder** is the canonical name for the surface previously called "Repertoire Editor" (per Decision #34's May 12 amendment, sourced from Doc 14 §2.5). Use Repertoire Builder in all new writing.
 
 ## Who Steven is
 
@@ -67,7 +73,7 @@ Five framework concepts admitted to canon in the Track C-17 closeout. Quick orie
 
 **Current MuseFlow team:**
 - **Staley** (CTO) — engineering at the highest level; agentic system / AI/ML infrastructure
-- **Andrew Urbanowicz** (VP of Engineering) — repertoire editor, audio recognition, proactive nudging
+- **Andrew Urbanowicz** (VP of Engineering) — Repertoire Builder, audio recognition, proactive nudging
 - **Asif** (contractor) — primary implementer for exercise section work
 - **Patrick Boylan** (co-founder) — product, marketing, pitch deck, fundraising. Primary consumer of Doc 13.
 
@@ -77,7 +83,7 @@ Older canon docs sometimes misattribute Staley's contributions to "Austin Clifto
 
 ### Decision Log discipline
 
-- New decisions append to `docs/05-design-decisions-log.md` at the highest number (currently 60)
+- New decisions append to `docs/05-design-decisions-log.md` at the highest number (currently 62)
 - Existing decisions are amended (not replaced) when refined; amendments are dated and labeled
 - Consult the relevant entry before re-deriving or re-deciding
 - If you find yourself about to argue something the Log already settled, **stop and reference the decision** — don't relitigate without explicit cause
@@ -128,12 +134,14 @@ Work is organized into named Tracks:
 |---|---|---|
 | A1 | Doc-sync (integrate standup outputs) | Done |
 | A2 | Patrick's "Theory Library & Exercise Section" doc evaluation | Done — Doc 11 v0.3; Decisions #48–#52 committed |
-| B | Open-question triage | Done — Doc 12 committed (97 entries, 17 clusters); Decisions #53–#55 added; T-022 retired; cluster C-17 created |
-| C-17 | Substrate-architecture refinement (T-026, T-027, T-097) | Done (2026-05-12) — Decisions #56–#60 + amendment to #13. Five frameworks admitted (Spectrum, K-family, Semi-lattice engagement, Three AI Roles, Etudes/Variations). Doc 13 created. |
-| C | Taxonomy reconciliation (Doc 03 ↔ Doc 07) | Queued — K-family awareness required |
-| C2 | Exercise UI shape design pass (resolve T-008 / former Doc 11 §11.10) | Queued — precursor to D and E |
-| D | V1 preset atom catalog authoring | Queued — depends on C, C2, and V1-decide-soon backlog from Doc 12. Substrate-architecture foundation now stable (Track C-17 done); K-substrates in scope. |
-| E | PRD authoring | Queued — depends on D substantially complete. Three AI Roles + Spectrum are foundational context. |
+| B | Open-question triage | Done — Doc 12 committed (originally 97 entries across 17 clusters; grown to 103 across 18 with the May 13 additions); Decisions #53–#55 added; T-022 retired; cluster C-17 created |
+| C-17 | Substrate-architecture refinement (T-026, T-027, T-097) | Done (2026-05-12) — Decisions #56–#60 + amendment to #13. Five frameworks admitted (Spectrum, K-family, Semi-lattice engagement, Three AI Roles, Etudes/Variations). Doc 13 created. Cluster reopened 2026-05-13 with T-100 (V2-defer). |
+| (Doc 14 synthesis-to-canon integration) | Decision #61 (Universal Affordance Symmetry), Decision #62 (Adjustable ATA Configuration), Repertoire Builder rename, `authoring_origin` extension, Doc 12 additions T-098–T-103, C-18 cluster (Community) | Done (2026-05-13) — closes the Doc 14 synthesis-to-canon loop |
+| C | Taxonomy reconciliation (Doc 03 ↔ Doc 07) | Queued — K-family awareness required; lower priority |
+| C2 | Exercise UI shape design pass (resolve T-008 + T-099) | Queued — precursor to D; may interleave with E |
+| D | V1 preset atom catalog authoring | Queued — depends on C, C2, and the V1-decide-soon backlog from Doc 12. Substrate-architecture foundation stable; K-substrates in scope. T-021 V1 catalog scope call is central. |
+| E | PRD authoring | **Active — target EOD Friday May 15.** Macro spec for Patrick's MVP decomposition. Decisions #56–#62 + Universal Affordance Symmetry are foundational PRD constraints. |
+| G | Community / Network Effects scoping | Queued — post-PRD timing. Strategic shaping pass producing scoping document (likely Doc 15) that lays out shareable artifacts, content/roadmap/exercise marketplace, V1/V2/V3 phasing options, and the list of Decisions the track produces. *Not* a Decision-authoring track — a pre-Decision shaping pass. Surfaced by Staley on May 12 standup; tracked in Doc 12 C-18 (T-102). |
 
 A session should know which Track it's in. If a session surfaces work belonging to a different Track, log it for that Track rather than absorbing it.
 
@@ -171,7 +179,7 @@ A session should know which Track it's in. If a session surfaces work belonging 
 ### Adding a new Decision
 
 1. Read `docs/05-design-decisions-log.md` to confirm the topic isn't already covered
-2. Append a new section at the end, using the highest unused number (currently next is #61)
+2. Append a new section at the end, using the highest unused number (currently next is #63)
 3. Follow the existing format: `## Decision N: <Title>`, then `**Source:**`, `**Decision made:**`, `**Reasoning:**` (optional `**Alternative:**`, `**Phasing:**`, `**Cross-references:**`)
 4. Cross-reference any related decisions
 5. If the new decision contradicts or refines an earlier one, **amend** the earlier one with a dated note rather than replacing its body
@@ -215,4 +223,4 @@ Steven maintains a separate repo `stevengizzi/claude-workflow` with general-purp
 
 This file is living. Update it when conventions change, new tracks arrive, or new tools come online. Keep it terse — every line gets read at session start.
 
-Last updated: 2026-05-12 (Track C-17 closeout — Decisions #56–#60 admitted, Doc 13 created, five framework concepts surfaced).
+Last updated: 2026-05-13 (Doc 14 synthesis-to-canon integration — Decisions #61 + #62 admitted, Repertoire Builder rename across canon, `authoring_origin` extension to all hierarchy levels, Doc 12 grown to 103 entries across 18 clusters, Track G surfaced).

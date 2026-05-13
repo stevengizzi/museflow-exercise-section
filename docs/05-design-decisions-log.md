@@ -1069,3 +1069,27 @@ The principle is not a constraint that *every* feature must ship the manual equi
 **Cross-references:** Decision #29 (Agentic Vision — symmetry is the principle that keeps the agent layer composable with user-driven affordances); Decision #34 (Custom Authoring — manual equivalent for Composer-Librarian content generation); Decision #41 (Content Mode and Path Mode Architecture — the User Path mode is the symmetry partner of AI-mediated Projects); Decision #46 (Agent-Controllable Repertoire Practice Control Surface — the user-controllable equivalent already exists, validating the principle); Decision #56 (Novelty-Automaticity Spectrum — symmetry applies across all three content modes); Decision #59 (Three AI Roles — symmetry applies per-role); Doc 01 §8.9 (Design Principle); Doc 09 §1.7 (canonical home); Doc 09 §3.3 (Four Authorship Origins — uniform across hierarchy levels); Doc 13 §2.1 (Tooling Ecosystem framing); Doc 12 T-098 (interaction with pricing — open); Doc 14 §1.6, §2.1, §12.1 (source).
 
 ---
+
+## Decision 62: Adjustable Advanced ATA Configuration Model
+
+**Source:** Doc 14 §5 + §2.4 (May 12, 2026 standup). Jonathan's two-week feedback loop on ATA thresholds drove the discussion. Patrick and Staley converged on the configurable-panel approach during the standup; Staley confirmed Asif's next implementation task as building this surface (queued behind the data-fixes freeze per Doc 14 §8).
+
+**Decision made:** The shipped Automatic Tempo Adjustment (ATA) feature is extended with a **configurable advanced panel** providing user-controlled threshold settings, along with **adjusted default parameters**.
+
+1. **Configurable advanced panel.** A new UI affordance — an icon next to the existing ATA on/off toggle in the Sight Reading session UI — opens a drop-down panel exposing user-controllable settings for ATA behavior. Settings exposed include, at minimum, the tempo-increase threshold and the tempo-decrease threshold (the parameters Jonathan flagged). Other ATA parameters may be exposed as the panel design matures; the call-to-action for this Decision is that *some* user-control surface exists, not that *all* parameters are exposed in V1.
+2. **Adjusted default parameters.** The current shipped defaults — calibrated for Patrick's practice style (looping faster, more complex music) — do not generalize. Specifically: at slower playing speeds the current defaults fail to trigger tempo-decrease when they should. Two candidate default-adjustment strategies, to be evaluated empirically during implementation:
+   - **Speed-aware defaults** — the threshold is a function of detected playing speed (faster playing → tighter thresholds; slower playing → looser).
+   - **Looser flat defaults** — single set of defaults loose enough to cover the realistic speed/complexity range.
+The specific default values and the choice between the two strategies are implementation-tuning calls, not architectural commitments.
+
+**Reasoning:** *Personalization first.* Patrick on the call: "it's a very personalized thing what you want to increase by and then when you want it to increase and how much you want it to increase and decrease same thing." Different musicians at different speeds, complexities, and instruments need different ATA behavior. Hard-coded defaults are a single calibration point; a configurable surface is the right shape.
+
+*The current defaults are a known regression.* Staley's observation that the existing defaults don't decrease tempo as expected at slower playing speeds is not a corner case — it represents a substantial fraction of MuseFlow's actual user base. Continuing to ship those defaults without adjustment is shipping a known unhelpful behavior.
+
+*Validates Universal Affordance Symmetry (Decision #61) at the Practice Partner role.* The Practice Partner role (Decision #59) includes real-time tempo control as a capability. Per Universal Affordance Symmetry, that capability must have a manual user-driven equivalent. The configurable ATA panel is that equivalent — the user can directly set the thresholds the Practice Partner would otherwise adjust. The two paths coexist by design.
+
+**Phasing:** Implementation queued for Asif post the data-fixes freeze (Doc 14 §8 — Staley's halt-new-features-until-data-fixes mandate). Sight Reading mode is the primary scope (where ATA currently lives). Exercise-mode interaction with ATA — if Exercise blueprints invoke ATA-style tempo modulation — is TBD; this Decision does not commit to or rule out an Exercise-mode ATA surface. The configuration model defined here would extend naturally if Exercise-mode ATA is later admitted, but no commitment is made.
+
+**Cross-references:** Doc 02 §5 (Performance Constraints catalog — tempo modulators); Doc 09 §6A.3 (Sight-Reading Control Surface — ATA is a Practice-Partner-controllable element here); Decision #43 (Performance Constraints as cross-content-mode primitive — informs whether ATA generalizes beyond Sight Reading); Decision #45 (User-configurable Sight Reading level settings — adjacent surface); Decision #59 (Three AI Roles — Practice Partner role); Decision #61 (Universal Affordance Symmetry — ATA panel is the manual equivalent of Practice-Partner tempo control); Doc 04 Glossary "Automatic Tempo Adjustment (ATA)"; Doc 14 §5 + §2.4 + §12.1 D-B (source).
+
+---

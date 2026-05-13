@@ -255,6 +255,9 @@ The full taxonomy of staccato articulation techniques as distinct motor substrat
 ### Optimal Grip™
 MuseFlow's adaptive difficulty scoring system. Positions the user at the intersection of substrate complexity, training method scaffolding, and performance constraint tightness where they are maximally challenged but still succeeding more often than failing. Named after Csikszentmihalyi's concept of flow, where grip strength on a climbing wall must match the difficulty of the hold.
 
+### Automatic Tempo Adjustment (ATA)
+Shipped Sight-Reading-mode feature that modulates session tempo automatically based on user performance — increasing tempo when accuracy is high, decreasing when it falters. Operates via configurable thresholds. Per Decision #62, the V1.x configuration model exposes the increase-threshold and decrease-threshold to user control via an advanced-panel UI next to the ATA toggle, with adjusted defaults that better accommodate slower playing speeds. ATA is one of the Practice-Partner-role-controllable surfaces (Decision #59); the configurable panel is its Universal-Affordance-Symmetry-conforming manual equivalent (Decision #61).
+
 ### Workshop / Sandbox
 An open-ended environment for free exploration, improvisation, and unstructured practice. Complements the structured exercise system. Provides a space for creative application of skills trained through exercises.
 
